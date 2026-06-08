@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { mainNav, site } from "@/lib/site";
+import { mainNav, site, routes } from "@/lib/site";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -47,7 +47,7 @@ export default function Header() {
 
         <div className="flex items-center gap-3">
           <Link
-            href="/contact"
+            href={routes.contact}
             className="hidden rounded-full bg-orange px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-orange-dark sm:inline-block"
           >
             Devis gratuit
@@ -87,7 +87,7 @@ export default function Header() {
               </Link>
             ))}
             <Link
-              href="/contact"
+              href={routes.contact}
               onClick={() => setOpen(false)}
               className="mt-2 rounded-full bg-orange px-5 py-3 text-center text-base font-semibold text-white"
             >

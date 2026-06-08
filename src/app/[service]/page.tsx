@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
-import { services, site } from "@/lib/site";
+import { services, site, routes } from "@/lib/site";
 
 // URLs identiques au WordPress actuel -> aucune redirection nécessaire pour les services.
 export const dynamicParams = false;
@@ -24,8 +24,8 @@ export async function generateMetadata({
   const data = getService(service);
   if (!data) return {};
   return {
-    title: `${data.heading} — ${site.zone}`,
-    description: data.excerpt,
+    title: data.seoTitle,
+    description: data.metaDescription,
     alternates: { canonical: `/${data.slug}` },
   };
 }
@@ -72,13 +72,13 @@ export default async function ServicePage({
 
         <div className="mt-10 flex flex-wrap gap-4">
           <Link
-            href="/contact"
+            href={routes.contact}
             className="rounded-full bg-orange px-6 py-3 font-semibold text-white transition-colors hover:bg-orange-dark"
           >
             Demander un devis
           </Link>
           <Link
-            href="/realisations"
+            href={routes.realisations}
             className="rounded-full border border-anthracite/20 px-6 py-3 font-semibold text-anthracite transition-colors hover:bg-muted"
           >
             Voir nos réalisations

@@ -3,13 +3,13 @@ import path from "node:path";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { site } from "@/lib/site";
+import { site, routes } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Réalisations",
+  title: "Réalisations – Charpentier à Toulouse & Bessières",
   description:
-    "Découvrez en photos les réalisations d'ATB Charpente : charpentes, couverture, tuiles, gouttières zinc, isolation et pergolas.",
-  alternates: { canonical: "/realisations" },
+    "Découvrez en photos les réalisations d'ATB Charpente à Toulouse et ses environs : charpentes, couverture, tuiles, gouttières zinc, isolation et pergolas.",
+  alternates: { canonical: routes.realisations },
 };
 
 function getPhotos() {
@@ -60,7 +60,7 @@ export default function RealisationsPage() {
 
         <div className="mt-12 text-center">
           <Link
-            href="/contact"
+            href={routes.contact}
             className="inline-block rounded-full bg-orange px-7 py-3.5 font-semibold text-white transition-colors hover:bg-orange-dark"
           >
             Demander un devis gratuit

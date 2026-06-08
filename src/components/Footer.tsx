@@ -57,7 +57,9 @@ export default function Footer() {
             Contact
           </h3>
           <ul className="space-y-2 text-sm">
-            <li>{site.contact.city}</li>
+            <li>
+              {site.contact.postalCode} {site.contact.addressLocality}
+            </li>
             <li>
               <a href={site.contact.phoneHref} className="hover:text-orange">
                 {site.contact.phone}

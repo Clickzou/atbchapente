@@ -3,10 +3,10 @@ import ContactForm from "@/components/ContactForm";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Contact & devis gratuit",
+  title: "Contact & devis gratuit – Charpentier à Toulouse",
   description:
-    "Contactez ATB Charpente pour un devis gratuit : charpente, couverture, zinguerie et rénovation de toiture à 30 km autour de Bessières.",
-  alternates: { canonical: "/contact" },
+    "Contactez ATB Charpente pour un devis gratuit : charpente, couverture, zinguerie et rénovation de toiture à Toulouse et ses environs.",
+  alternates: { canonical: "/contact-charpentier" },
 };
 
 export default function ContactPage() {
@@ -39,7 +39,7 @@ export default function ContactPage() {
             </li>
             <li>
               <span className="font-semibold text-anthracite">Secteur : </span>
-              {site.contact.city} — {site.zone}
+              {site.contact.addressLocality} ({site.contact.postalCode}) — {site.zone}
             </li>
           </ul>
           <p className="mt-8 text-sm text-foreground/60">
