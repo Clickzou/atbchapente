@@ -3,6 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { services, site, routes } from "@/lib/site";
+import { serviceContent } from "@/lib/services";
+import ArticleRenderer from "@/components/ArticleRenderer";
 
 // URLs identiques au WordPress actuel -> aucune redirection nécessaire pour les services.
 export const dynamicParams = false;
@@ -39,6 +41,8 @@ export default async function ServicePage({
   const data = getService(service);
   if (!data) notFound();
 
+  const body = serviceContent[data.slug];
+
   return (
     <>
       {/* En-tête de page */}
@@ -58,17 +62,13 @@ export default async function ServicePage({
 
       {/* Contenu — placeholder, sera remplacé par le texte réel issu du .wpress */}
       <section className="mx-auto max-w-3xl px-4 py-16 lg:px-8">
-        <div className="prose prose-neutral max-w-none">
+        {body ? (
+          <ArticleRenderer blocks={body} />
+        ) : (
           <p className="text-foreground/80">
             {site.name} réalise vos travaux de {data.title.toLowerCase()} {site.zone}.
-            Cette page reprendra le contenu détaillé du service (descriptif,
-            étapes, matériaux, exemples) issu du site actuel.
           </p>
-          <p className="mt-4 rounded-lg border border-orange/30 bg-orange/5 p-4 text-sm text-foreground/70">
-            ⚙️ Contenu de démonstration — à remplacer par le texte réel une fois
-            l&apos;export WordPress fourni.
-          </p>
-        </div>
+        )}
 
         <div className="mt-10 flex flex-wrap gap-4">
           <Link
