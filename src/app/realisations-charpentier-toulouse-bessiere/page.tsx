@@ -12,12 +12,17 @@ export const metadata: Metadata = {
   alternates: { canonical: routes.realisations },
 };
 
+// Visuels à exclure de la galerie (ne sont pas des chantiers réels) :
+// fondateur, image « zone d'intervention », photos stock (iStock), visuels FAQ.
+const EXCLUDE = /^(axel|zone-|istock-|question-)/i;
+
 function getPhotos() {
   const dir = path.join(process.cwd(), "public", "images", "realisations");
   try {
     return fs
       .readdirSync(dir)
       .filter((f) => /\.(jpe?g|png|webp)$/i.test(f))
+      .filter((f) => !EXCLUDE.test(f))
       .sort();
   } catch {
     return [];
