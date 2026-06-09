@@ -273,7 +273,7 @@ export default async function ServicePage({
         }
         if (s.kind === "zone") {
           return (
-            <section key={i} className={bg}>
+            <section key={i} className="bg-muted">
               <div className="mx-auto max-w-7xl px-4 py-16 lg:px-8">
                 <h2 className="text-center text-3xl font-bold text-anthracite">
                   Zone d&apos;intervention
