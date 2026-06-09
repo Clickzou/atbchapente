@@ -80,7 +80,7 @@ export default function Home() {
       <HeroSlider />
 
       {/* SERVICES */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-muted/60 to-white py-20">
+      <section className="relative overflow-hidden bg-muted py-20">
         <BlueprintBackground />
         <div className="relative z-10 mx-auto max-w-7xl px-4 lg:px-8">
           <Reveal className="reveal-stagger mb-12 text-center">
