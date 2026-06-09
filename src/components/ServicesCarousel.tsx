@@ -9,8 +9,10 @@ import { services } from "@/lib/site";
 // variant "full" = pleine largeur (home) ; "compact" = conteneur étroit (articles).
 export default function ServicesCarousel({
   variant = "full",
+  place,
 }: {
   variant?: "full" | "compact";
+  place?: string;
 }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const pad = variant === "full" ? "px-4 lg:px-[100px]" : "px-4 lg:px-12";
@@ -41,7 +43,7 @@ export default function ServicesCarousel({
             <div className="relative h-64 overflow-hidden">
               <Image
                 src={s.image}
-                alt={s.title}
+                alt={place ? `${s.title} à ${place}` : s.title}
                 fill
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
                 sizes="(max-width: 640px) 82vw, 24rem"

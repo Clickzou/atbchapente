@@ -96,6 +96,12 @@ export default async function VillePage({
   const city = cityBySlug.get(ville);
   if (!city) notFound();
 
+  // Croquis alterné par ville (casse la répétition d'une page à l'autre).
+  const croquis =
+    [...city.slug].reduce((a, c) => a + c.charCodeAt(0), 0) % 2 === 0
+      ? "croquis-pergola.jpg"
+      : "croquis-toiture.jpg";
+
   const faq = [
     {
       q: `ATB Charpente intervient-elle à ${city.name} ?`,
@@ -319,7 +325,7 @@ export default async function VillePage({
           <p className="mt-3 text-foreground/70">{prestaSubtitle(city)}</p>
         </div>
         <div className="mt-8">
-          <ServicesCarousel variant="compact" />
+          <ServicesCarousel variant="compact" place={city.name} />
         </div>
       </section>
 
@@ -329,7 +335,7 @@ export default async function VillePage({
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
             <div className="order-2 lg:order-1">
               <Image
-                src="/images/croquis-pergola.jpg"
+                src={`/images/${croquis}`}
                 alt={`Croquis d'une réalisation de charpente à ${city.name}`}
                 width={900}
                 height={650}
