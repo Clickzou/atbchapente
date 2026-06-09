@@ -139,19 +139,13 @@ export default function Home() {
               ))}
             </ul>
 
-            <div className="mt-9 flex flex-wrap items-center gap-5">
+            <div className="mt-9">
               <Link
-                href={routes.contact}
+                href={routes.realisations}
                 className="inline-block rounded-full bg-orange px-7 py-3.5 font-semibold text-white transition-colors hover:bg-orange-dark"
               >
-                Contactez-nous
+                Découvrez nos réalisations
               </Link>
-              <a
-                href={site.contact.phoneHref}
-                className="font-semibold text-anthracite transition-colors hover:text-orange"
-              >
-                {site.contact.phone}
-              </a>
             </div>
           </div>
         </Reveal>

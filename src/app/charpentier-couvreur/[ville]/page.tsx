@@ -341,6 +341,12 @@ export default async function VillePage({
                 height={650}
                 className="h-auto w-full rounded-xl"
               />
+              <Link
+                href={routes.realisations}
+                className="mt-6 inline-block rounded-full bg-orange px-7 py-3.5 font-semibold text-white transition-colors hover:bg-orange-dark"
+              >
+                Découvrez nos réalisations
+              </Link>
             </div>
             <div className="order-1 lg:order-2">
               <h2 className="text-2xl font-bold text-anthracite">
