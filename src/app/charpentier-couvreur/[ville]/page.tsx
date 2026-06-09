@@ -41,6 +41,18 @@ function populationSentence(c: City) {
   return `Village d'environ ${hab} habitants, ${c.name} bénéficie de notre proximité et de notre réactivité.`;
 }
 
+// Court sous-titre unique (varié par commune) pour la section prestations.
+function prestaSubtitle(c: City): string {
+  const v = [...c.slug].reduce((a, ch) => a + ch.charCodeAt(0), 0) % 5;
+  return [
+    `Tous vos travaux de toiture à ${c.name}, réalisés par un artisan local et qualifié.`,
+    `De la charpente à la couverture, ATB Charpente couvre l'ensemble de vos besoins à ${c.name}.`,
+    `Charpente, couverture, zinguerie et isolation : un interlocuteur unique à ${c.name}.`,
+    `Un savoir-faire complet et sur mesure au service des toitures de ${c.name}.`,
+    `Création comme rénovation : votre toiture entre de bonnes mains à ${c.name}.`,
+  ][v];
+}
+
 // 5 variantes d'introduction, choisies de façon déterministe par commune,
 // pour éviter des pages au texte identique (anti-doorway).
 function buildIntro(c: City): string {
@@ -296,12 +308,13 @@ export default async function VillePage({
 
       {/* Section 2 — Nos prestations (carrousel pleine largeur, fond gris) */}
       <section className="bg-muted py-16">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="mx-auto max-w-2xl px-4 text-center lg:px-8">
           <h2 className="text-2xl font-bold text-anthracite">
             Nos prestations à {city.name}
           </h2>
+          <p className="mt-3 text-foreground/70">{prestaSubtitle(city)}</p>
         </div>
-        <div className="mt-6">
+        <div className="mt-8">
           <ServicesCarousel />
         </div>
       </section>
