@@ -29,6 +29,7 @@ const SECTION_IMAGES: Record<string, SectionImage[]> = {
   ],
   "pose-changement-gouttieres-zinc": [
     { match: "la pose neuve de gouttières", src: "/images/gouttiere-zinc.jpg", side: "right" },
+    { match: "remplacement et rénovation de gouttières", src: "/images/remplacement-gouttiere.jpg", side: "left" },
   ],
   // Les autres services seront renseignés page par page.
 };
