@@ -12,47 +12,6 @@ export const content: ContentBlock[] = [
   {
     type: "heading",
     level: 2,
-    text: "Les différents types de charpente bois",
-  },
-  {
-    type: "paragraph",
-    text: "Il existe plusieurs familles de charpente, chacune adaptée à un type de projet, à un budget et à une esthétique. Avant toute **création de charpente bois**, nous vous conseillons sur la solution la plus pertinente pour votre maison.",
-  },
-  {
-    type: "heading",
-    level: 3,
-    text: "La charpente traditionnelle",
-  },
-  {
-    type: "paragraph",
-    text: "Composée de pièces en **bois massif** (pannes, chevrons, arbalétriers, entraits), la **charpente traditionnelle** est le choix privilégié pour les constructions de caractère, les grandes portées et les **charpentes apparentes**. Elle libère les combles, ce qui facilite leur aménagement, et apporte un cachet chaleureux à l'intérieur. C'est aussi la solution idéale lorsqu'il faut respecter le style d'un bâti ancien ou les exigences architecturales d'un secteur protégé, comme on en trouve dans le centre de Toulouse.",
-  },
-  {
-    type: "heading",
-    level: 3,
-    text: "La charpente à fermettes",
-  },
-  {
-    type: "paragraph",
-    text: "Plus légère et préfabriquée en atelier, la **charpente à fermettes** (ou charpente industrielle) est rapide à mettre en œuvre et économique. Elle convient parfaitement aux constructions modernes et aux maisons individuelles. Lorsque les combles doivent rester habitables, nous étudions des fermettes aménageables ou la possibilité d'ouvrir une charpente fermette existante.",
-  },
-  {
-    type: "heading",
-    level: 3,
-    text: "L'ossature bois",
-  },
-  {
-    type: "paragraph",
-    text: "Technique écologique et performante, l'**ossature bois** est idéale pour les extensions, les surélévations et les maisons à construire dans les règles de l'art. Légère, isolante et rapide à monter, elle s'intègre aussi bien aux projets contemporains qu'aux maisons traditionnelles de la région toulousaine. Nous l'utilisons fréquemment pour agrandir une habitation sans alourdir les fondations.",
-  },
-  {
-    type: "callout",
-    variant: "tip",
-    text: "Vous hésitez entre charpente traditionnelle, fermette ou ossature bois ? Le bon choix dépend de la portée, de votre volonté d'aménager les combles, du budget et de l'esthétique recherchée. Lors de notre visite gratuite à Toulouse ou dans ses environs, nous vous orientons vers la solution la mieux adaptée à votre projet.",
-  },
-  {
-    type: "heading",
-    level: 2,
     text: "Création d'une charpente bois neuve",
   },
   {

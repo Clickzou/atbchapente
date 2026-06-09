@@ -4,8 +4,31 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { services, site, routes } from "@/lib/site";
 import { serviceContent } from "@/lib/services";
+import type { ContentBlock } from "@/lib/articles/types";
 import ArticleRenderer from "@/components/ArticleRenderer";
 import ZoneMap from "@/components/ZoneMap";
+
+// Cartes « types de charpente » (page charpente uniquement).
+const CHARPENTE_TYPES = [
+  {
+    title: "La charpente traditionnelle",
+    photo: "/images/realisations/iStock-1028706698.jpg",
+    icon: "M6 52 L32 12 L58 52 Z M32 12 V52 M32 52 L19 34 M32 52 L45 34",
+    text: "En bois massif (pannes, chevrons, arbalétriers), idéale pour les constructions de caractère, les grandes portées et les charpentes apparentes. Elle libère les combles et apporte un cachet chaleureux.",
+  },
+  {
+    title: "La charpente à fermettes",
+    photo: "/images/realisations/iStock-686911778.jpg",
+    icon: "M6 50 H58 L32 16 Z M6 50 L32 34 M58 50 L32 34",
+    text: "Préfabriquée en atelier, plus légère et économique, parfaite pour les constructions modernes. Des fermettes aménageables permettent de conserver des combles habitables.",
+  },
+  {
+    title: "L'ossature bois",
+    photo: "/images/realisations/iStock-1302464279.jpg",
+    icon: "M10 54 V26 L32 10 L54 26 V54 Z M22 54 V32 M42 54 V32",
+    text: "Écologique, isolante et rapide à monter : idéale pour les extensions, les surélévations et les maisons neuves. Elle s'intègre aux projets contemporains comme traditionnels.",
+  },
+];
 
 // URLs identiques au WordPress actuel -> aucune redirection nécessaire pour les services.
 export const dynamicParams = false;
@@ -54,6 +77,36 @@ export default async function ServicePage({
 
   const body = serviceContent[data.slug];
   const croquis = CROQUIS[data.slug] ?? "croquis-charpente.jpg";
+  const isCharpente = data.slug === "creation-charpente-bois-renovation";
+
+  // Découpage du contenu : intro (avant le 1er H2), groupes par H2, FAQ et CTA
+  // isolés, et le groupe « zone d'intervention » extrait pour la section carte.
+  const allBlocks = body ?? [];
+  const faqBlock = allBlocks.find((b) => b.type === "faq");
+  const ctaBlock = allBlocks.find((b) => b.type === "cta");
+  const contentBlocks = allBlocks.filter(
+    (b) => b.type !== "faq" && b.type !== "cta",
+  );
+  const firstH2 = contentBlocks.findIndex(
+    (b) => b.type === "heading" && b.level === 2,
+  );
+  const intro = firstH2 === -1 ? contentBlocks : contentBlocks.slice(0, firstH2);
+  const groups: ContentBlock[][] = [];
+  for (const b of firstH2 === -1 ? [] : contentBlocks.slice(firstH2)) {
+    if (b.type === "heading" && b.level === 2) groups.push([b]);
+    else if (groups.length) groups[groups.length - 1].push(b);
+  }
+  const isZone = (g: ContentBlock[]) =>
+    g[0].type === "heading" && /zone d.intervention/i.test(g[0].text);
+  const zoneGroup = groups.find(isZone) ?? null;
+  const mainGroups = groups.filter((g) => !isZone(g));
+
+  // Sections à fonds alternés (cartes types, H2, FAQ, zone)
+  const sections: { kind: "cards" | "blocks" | "faq" | "zone"; blocks?: ContentBlock[] }[] = [];
+  if (isCharpente) sections.push({ kind: "cards" });
+  for (const g of mainGroups) sections.push({ kind: "blocks", blocks: g });
+  if (faqBlock) sections.push({ kind: "faq" });
+  sections.push({ kind: "zone" });
 
   return (
     <>
@@ -110,18 +163,17 @@ export default async function ServicePage({
         </div>
       </section>
 
-      {/* Contenu — texte à gauche, croquis à droite, pleine largeur */}
+      {/* Intro — texte à gauche, croquis à droite, pleine largeur */}
       <section className="mx-auto max-w-[1600px] px-4 py-16 lg:px-12">
         <div className="grid gap-10 lg:grid-cols-[1.5fr_1fr] lg:items-start lg:gap-14">
           <div>
-            {body ? (
-              <ArticleRenderer blocks={body} />
+            {intro.length ? (
+              <ArticleRenderer blocks={intro} />
             ) : (
               <p className="text-foreground/80">
                 {site.name} réalise vos travaux de {data.title.toLowerCase()} {site.zone}.
               </p>
             )}
-
             <div className="mt-10 flex flex-wrap gap-4">
               <Link
                 href={routes.contact}
@@ -137,7 +189,6 @@ export default async function ServicePage({
               </Link>
             </div>
           </div>
-
           <div className="lg:sticky lg:top-28">
             <Image
               src={`/images/${croquis}`}
@@ -150,18 +201,102 @@ export default async function ServicePage({
         </div>
       </section>
 
-      {/* Zone d'intervention (renforce le local + alimente le silo villes) */}
-      <section className="bg-muted">
-        <div className="mx-auto max-w-7xl px-4 py-16 lg:px-8">
-          <div className="mb-8 text-center">
-            <h2 className="text-3xl font-bold text-anthracite">Zone d&apos;intervention</h2>
-            <p className="mx-auto mt-3 max-w-2xl text-foreground/70">
-              {data.title} à Toulouse et dans un rayon de 30 km (secteur Bessières).
-            </p>
-          </div>
-          <ZoneMap />
-        </div>
-      </section>
+      {/* Sections — fonds alternés (cartes types, H2, FAQ, zone) */}
+      {sections.map((s, i) => {
+        const bg = i % 2 === 0 ? "bg-muted" : "";
+        if (s.kind === "cards") {
+          return (
+            <section key={i} className={bg}>
+              <div className="mx-auto max-w-[1600px] px-4 py-16 lg:px-12">
+                <div className="mb-10 max-w-2xl">
+                  <h2 className="text-3xl font-bold text-anthracite">
+                    Les différents types de charpente bois
+                  </h2>
+                  <p className="mt-3 text-foreground/70">
+                    Plusieurs familles de charpente existent, chacune adaptée à un
+                    projet, un budget et une esthétique. Nous vous conseillons sur la
+                    solution la plus pertinente.
+                  </p>
+                </div>
+                <div className="grid gap-6 md:grid-cols-3">
+                  {CHARPENTE_TYPES.map((t) => (
+                    <div
+                      key={t.title}
+                      className="overflow-hidden rounded-2xl border border-black/5 bg-white shadow-sm"
+                    >
+                      <div className="relative h-44">
+                        <Image
+                          src={t.photo}
+                          alt={t.title}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                        />
+                      </div>
+                      <div className="p-6">
+                        <span className="mb-3 flex h-11 w-11 items-center justify-center rounded-full bg-orange/10 text-orange">
+                          <svg width="22" height="22" viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                            <path d={t.icon} />
+                          </svg>
+                        </span>
+                        <h3 className="text-lg font-semibold text-anthracite">{t.title}</h3>
+                        <p className="mt-2 text-sm text-foreground/70">{t.text}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+          );
+        }
+        if (s.kind === "faq") {
+          return (
+            <section key={i} className={bg}>
+              <div className="mx-auto max-w-3xl px-4 py-14 lg:px-8">
+                <h2 className="text-2xl font-bold text-anthracite">
+                  Questions fréquentes
+                </h2>
+                <div className="mt-6">
+                  <ArticleRenderer blocks={[faqBlock!]} />
+                </div>
+              </div>
+            </section>
+          );
+        }
+        if (s.kind === "zone") {
+          return (
+            <section key={i} className={bg}>
+              <div className="mx-auto max-w-7xl px-4 py-16 lg:px-8">
+                <h2 className="text-center text-3xl font-bold text-anthracite">
+                  Zone d&apos;intervention
+                </h2>
+                {zoneGroup && (
+                  <div className="mx-auto mt-4 max-w-3xl text-center [&_p]:text-foreground/70">
+                    <ArticleRenderer blocks={zoneGroup.slice(1)} />
+                  </div>
+                )}
+                <div className="mt-8">
+                  <ZoneMap />
+                </div>
+              </div>
+            </section>
+          );
+        }
+        return (
+          <section key={i} className={bg}>
+            <div className="mx-auto max-w-3xl px-4 py-14 lg:px-8">
+              <ArticleRenderer blocks={s.blocks!} />
+            </div>
+          </section>
+        );
+      })}
+
+      {/* CTA final */}
+      {ctaBlock && (
+        <section className="mx-auto max-w-3xl px-4 py-14 lg:px-8">
+          <ArticleRenderer blocks={[ctaBlock]} />
+        </section>
+      )}
     </>
   );
 }
