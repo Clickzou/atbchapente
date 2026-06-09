@@ -3,6 +3,44 @@ import Image from "next/image";
 import { site, routes } from "@/lib/site";
 import HeroSlider from "@/components/HeroSlider";
 import ServicesCarousel from "@/components/ServicesCarousel";
+import ContactForm from "@/components/ContactForm";
+
+const faq = [
+  {
+    q: "Quels travaux de toiture réalise ATB Charpente ?",
+    a: "Nous réalisons la création et la rénovation de charpente bois, la couverture et le remaniement de tuiles, la pose et le changement de gouttières zinc, l'isolation de toiture, la pose de fenêtres de toit et la création de pergolas en bois.",
+  },
+  {
+    q: "Dans quel secteur intervenez-vous autour de Toulouse ?",
+    a: "ATB Charpente intervient à Toulouse et dans un rayon de 30 km autour de Bessières, soit près de 180 communes (L'Union, Balma, Grenade, Fronton, Saint-Sulpice-la-Pointe…).",
+  },
+  {
+    q: "Le devis est-il gratuit ?",
+    a: "Oui. Chaque devis est gratuit, détaillé et sans engagement. Nous nous déplaçons pour évaluer votre projet et vous conseiller.",
+  },
+  {
+    q: "Êtes-vous couverts par une garantie décennale ?",
+    a: "Oui, ATB Charpente est un artisan assuré et qualifié : tous nos travaux sont couverts par la garantie décennale.",
+  },
+  {
+    q: "Combien de temps dure une rénovation de toiture ?",
+    a: "De quelques jours pour une intervention ciblée (traitement, remaniement) à environ deux semaines pour une rénovation complète, selon l'ampleur du chantier.",
+  },
+  {
+    q: "Quel budget prévoir pour une charpente ou une réfection de toiture ?",
+    a: "Le prix dépend de la surface, des matériaux et de l'état existant. Seul un devis sur mesure, après visite, permet de donner un chiffre fiable — il est gratuit.",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
 import BlueprintBackground from "@/components/BlueprintBackground";
 import Reveal from "@/components/Reveal";
 import ZoneMap from "@/components/ZoneMap";
@@ -127,14 +165,14 @@ export default function Home() {
           alt=""
           width={520}
           height={400}
-          className="pointer-events-none absolute left-[50px] top-[calc(50%-50px)] hidden w-[24%] max-w-sm -translate-y-1/2 opacity-20 lg:block"
+          className="pointer-events-none absolute left-[50px] top-[calc(50%-50px)] hidden w-[29%] max-w-md -translate-y-1/2 opacity-20 lg:block"
         />
         <Image
           src="/images/croquis-pergola.jpg"
           alt=""
           width={520}
           height={400}
-          className="pointer-events-none absolute right-[80px] top-[calc(50%+50px)] hidden w-[24%] max-w-sm -translate-y-1/2 opacity-20 lg:block"
+          className="pointer-events-none absolute right-[80px] top-[calc(50%+100px)] hidden w-[29%] max-w-md -translate-y-1/2 opacity-20 lg:block"
         />
         <div className="relative z-10 mx-auto max-w-7xl px-4 lg:px-8">
           <div className="mb-8 text-center">
@@ -173,6 +211,61 @@ export default function Home() {
             >
               Devis gratuit
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="bg-muted">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+        <div className="mx-auto max-w-4xl px-4 py-20 lg:px-8">
+          <div className="mb-10 text-center">
+            <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-orange">
+              FAQ
+            </p>
+            <h2 className="text-3xl font-bold text-anthracite">Questions fréquentes</h2>
+          </div>
+          <div className="space-y-3">
+            {faq.map((f) => (
+              <details
+                key={f.q}
+                className="rounded-xl border border-black/5 bg-white p-5 shadow-sm"
+              >
+                <summary className="cursor-pointer font-semibold text-anthracite">
+                  {f.q}
+                </summary>
+                <p className="mt-3 text-foreground/80">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section className="relative overflow-hidden bg-anthracite-dark">
+        <Image
+          src="/images/realisations/creation-charpente.jpg"
+          alt=""
+          fill
+          className="object-cover opacity-30"
+          sizes="100vw"
+        />
+        <div className="relative mx-auto max-w-7xl px-4 py-20 lg:px-8">
+          <div className="w-full rounded-2xl bg-[#f7f3ec] p-8 shadow-xl sm:max-w-xl sm:p-10 lg:ml-auto">
+            <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-orange">
+              Contactez-nous
+            </p>
+            <h2 className="text-3xl font-bold leading-tight text-anthracite sm:text-4xl">
+              Vous avez une question ?
+              <br />
+              Nous pouvons vous aider !
+            </h2>
+            <div className="mt-6">
+              <ContactForm />
+            </div>
           </div>
         </div>
       </section>
