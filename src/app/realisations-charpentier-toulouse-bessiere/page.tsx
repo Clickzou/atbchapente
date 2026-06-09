@@ -13,9 +13,11 @@ export const metadata: Metadata = {
   alternates: { canonical: routes.realisations },
 };
 
-// Visuels à exclure de la galerie (ne sont pas des chantiers réels) :
-// fondateur, image « zone d'intervention », photos stock (iStock), visuels FAQ.
-const EXCLUDE = /^(axel|zone-|istock-|question-)/i;
+// Visuels à exclure de la galerie (ne sont pas des chantiers réels) : fondateur,
+// croquis « zone d'intervention » (et ses copies), photos stock (iStock + visuels
+// de charpentier génériques) et visuels FAQ.
+const EXCLUDE =
+  /^(axel|zone-|istock-|question-)|zone-intervention|charpentier-toulouse-bessieres|creation-projet-charpente/i;
 
 function getPhotos() {
   const dir = path.join(process.cwd(), "public", "images", "realisations");
