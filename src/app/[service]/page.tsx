@@ -9,6 +9,7 @@ import type { ContentBlock } from "@/lib/articles/types";
 import ArticleRenderer from "@/components/ArticleRenderer";
 import ZoneMap from "@/components/ZoneMap";
 import IconsBackground from "@/components/IconsBackground";
+import GoogleReviewBadge from "@/components/GoogleReviewBadge";
 
 // Images par section, déclarées par slug de service. `match` est comparé (en
 // minuscules, "inclut") au titre du H2. La position gauche/droite est alternée
@@ -587,6 +588,7 @@ export default async function ServicePage({
               </svg>
               <span className="text-sm font-semibold text-white">Garantie décennale</span>
             </div>
+            <GoogleReviewBadge />
           </div>
         </div>
       </section>

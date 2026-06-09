@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { site, routes, services } from "@/lib/site";
+import GoogleReviewBadge from "@/components/GoogleReviewBadge";
 
 // Diaporama plein écran : chaque slide présente UN service (image + titre + lien).
 // Seul le 1er titre est un <h1> (porte le mot-clé principal) ; les autres sont des
@@ -141,6 +142,7 @@ export default function HeroSlider() {
             </svg>
             <span className="text-sm font-semibold text-white">Garantie décennale</span>
           </div>
+          <GoogleReviewBadge />
         </div>
       </div>
 

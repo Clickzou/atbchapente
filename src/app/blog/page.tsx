@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getArticlesSorted } from "@/lib/articles";
 import BlogList, { type BlogCard } from "@/components/BlogList";
+import GoogleReviewBadge from "@/components/GoogleReviewBadge";
 
 export const metadata: Metadata = {
   title: "Blog — Conseils charpente, couverture & toiture",
@@ -30,6 +31,9 @@ export default function BlogPage() {
             Conseils, guides et actualités autour de la charpente, de la couverture
             et de la toiture à Toulouse et ses environs.
           </p>
+          <div className="mt-6">
+            <GoogleReviewBadge />
+          </div>
         </div>
       </section>
 

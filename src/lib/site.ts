@@ -21,6 +21,12 @@ export const site = {
     postalCode: "31660",
     region: "Occitanie",
   },
+  // Avis Google (fiche GMB). TODO: remplacer `url` par l'URL exacte de la fiche
+  // (lien « partager » de la fiche Google) ; le lien Maps ci-dessous fait l'affaire.
+  reviews: {
+    rating: "5,0",
+    url: "https://www.google.com/maps/search/?api=1&query=ATB+Charpente+Bessi%C3%A8res",
+  },
 } as const;
 
 // Routes nommées (slugs réels du WordPress = continuité SEO).

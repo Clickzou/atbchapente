@@ -1,9 +1,10 @@
 import fs from "node:fs";
 import path from "node:path";
-import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { site, routes } from "@/lib/site";
+import Gallery from "@/components/Gallery";
+import GoogleReviewBadge from "@/components/GoogleReviewBadge";
 
 export const metadata: Metadata = {
   title: "Réalisations – Charpentier à Toulouse & Bessières",
@@ -41,27 +42,14 @@ export default function RealisationsPage() {
             Un aperçu de nos chantiers de charpente, couverture et zinguerie
             réalisés {site.zone}.
           </p>
+          <div className="mt-6">
+            <GoogleReviewBadge />
+          </div>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-16 lg:px-8">
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-          {photos.map((file, i) => (
-            <div
-              key={file}
-              className="relative aspect-square overflow-hidden rounded-lg bg-muted"
-            >
-              <Image
-                src={`/images/realisations/${file}`}
-                alt={`Réalisation ATB Charpente ${i + 1}`}
-                fill
-                className="object-cover transition-transform duration-300 hover:scale-105"
-                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                loading={i < 8 ? "eager" : "lazy"}
-              />
-            </div>
-          ))}
-        </div>
+        <Gallery photos={photos} />
 
         <div className="mt-12 text-center">
           <Link
