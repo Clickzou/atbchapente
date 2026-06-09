@@ -127,12 +127,6 @@ export default async function ServicePage({
           </h1>
           <p className="mt-5 max-w-2xl text-lg text-white/85">{data.excerpt}</p>
           <div className="mt-8 flex flex-wrap gap-4">
-            <Link
-              href={routes.contact}
-              className="rounded-full bg-orange px-7 py-3.5 font-semibold text-white transition-colors hover:bg-orange-dark"
-            >
-              Demander un devis gratuit
-            </Link>
             <a
               href={site.contact.phoneHref}
               className="rounded-full border border-white/30 px-7 py-3.5 font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/10"
