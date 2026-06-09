@@ -131,7 +131,7 @@ function getService(slug: string) {
 const CROQUIS: Record<string, string> = {
   "creation-charpente-bois-renovation": "charpente-neuve.jpg",
   "isolation-toiture": "isolation-toiture.jpg",
-  "pose-changement-gouttieres-zinc": "croquis-toiture.jpg",
+  "pose-changement-gouttieres-zinc": "gouttiere-toit.jpg",
   "pose-remaniement-tuiles": "croquis-toiture.jpg",
   "creation-fenetre-de-toit-bois": "croquis-maison.jpg",
   "creation-pergola-bois": "croquis-pergola.jpg",
