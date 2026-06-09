@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -22,6 +23,33 @@ const SECTION_IMAGES: Record<string, SectionImage[]> = {
   ],
   // Les autres services seront renseignés page par page.
 };
+
+// Sections « bénéfices » : le texte (titre + paragraphes) à gauche, et les items
+// de la liste rendus en cartes à icône à droite. Indexé par slug ; `match` est
+// comparé (minuscules, "inclut") au titre H2.
+const SECTION_BENEFITS: Record<string, string[]> = {
+  "isolation-toiture": ["pourquoi isoler sa toiture"],
+};
+
+// Icônes (cyclées) pour les cartes de bénéfices.
+const BENEFIT_ICONS: ReactNode[] = [
+  // Pertes de chaleur (thermomètre)
+  <path key="t" d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z" />,
+  // Confort été / hiver (soleil)
+  <g key="s">
+    <circle cx="12" cy="12" r="4" />
+    <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+  </g>,
+  // Économies (euro)
+  <path key="e" d="M18 7a6 6 0 1 0 0 10M4 10h8M4 14h8" />,
+  // Protection (bouclier)
+  <path key="p" d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" />,
+  // Valorisation (maison + flèche haut)
+  <g key="v">
+    <path d="M3 11l9-8 9 8M5 10v10h14V10" />
+    <path d="M9.5 15.5L12 13l2.5 2.5M12 13v5" />
+  </g>,
+];
 
 // Cartes « types de charpente » (page charpente uniquement).
 const CHARPENTE_TYPES = [
@@ -119,15 +147,23 @@ export default async function ServicePage({
   // Sections à fonds alternés (cartes types, H2, FAQ, zone). Pour les sections
   // « blocks », on attache l'image éventuelle (alternance gauche/droite auto).
   const imgConf = SECTION_IMAGES[data.slug] ?? [];
+  const benefitConf = SECTION_BENEFITS[data.slug] ?? [];
   let imgCount = 0;
   const sections: {
-    kind: "cards" | "blocks" | "faq" | "zone";
+    kind: "cards" | "blocks" | "faq" | "zone" | "benefits";
     blocks?: ContentBlock[];
     img?: { src: string; side: "left" | "right"; bg?: string };
   }[] = [];
   if (isCharpente) sections.push({ kind: "cards" });
   for (const g of mainGroups) {
     const head = g[0];
+    if (
+      head.type === "heading" &&
+      benefitConf.some((m) => head.text.toLowerCase().includes(m))
+    ) {
+      sections.push({ kind: "benefits", blocks: g });
+      continue;
+    }
     const conf =
       head.type === "heading"
         ? imgConf.find((c) => head.text.toLowerCase().includes(c.match))
@@ -276,6 +312,48 @@ export default async function ServicePage({
                       </div>
                     </div>
                   ))}
+                </div>
+              </div>
+            </section>
+          );
+        }
+        if (s.kind === "benefits") {
+          const blocks = s.blocks!;
+          const listBlock = blocks.find((b) => b.type === "list");
+          const textBlocks = blocks.filter((b) => b.type !== "list");
+          const items =
+            listBlock && listBlock.type === "list" ? listBlock.items : [];
+          return (
+            <section key={i} className={bg}>
+              <div className="mx-auto max-w-[1600px] px-4 py-14 lg:px-12">
+                <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-14">
+                  <div>
+                    <ArticleRenderer blocks={textBlocks} />
+                  </div>
+                  <div className="grid gap-4">
+                    {items.map((it, k) => (
+                      <div
+                        key={k}
+                        className="flex items-start gap-4 rounded-2xl border border-black/5 bg-white p-5 shadow-sm"
+                      >
+                        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-orange/10 text-orange">
+                          <svg
+                            width="22"
+                            height="22"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            {BENEFIT_ICONS[k % BENEFIT_ICONS.length]}
+                          </svg>
+                        </span>
+                        <p className="text-sm text-foreground/80">{it}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </section>
