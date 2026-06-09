@@ -38,19 +38,82 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Étiquette (tooltip) Leaflet aux couleurs ATB */
-.leaflet-tooltip.atb-tip {
-  background: var(--anthracite);
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 3px 8px;
-  font-weight: 600;
-  font-size: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+/* ── Carte zone d'intervention (SVG) ── */
+.zm-line {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  opacity: 0.55;
 }
-.leaflet-tooltip.atb-tip::before {
-  border-top-color: var(--anthracite);
+.atb-zone.is-visible .zm-line {
+  animation: zm-draw 1s ease forwards;
+}
+.zm-dot {
+  opacity: 0;
+  transform: scale(0.4);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.atb-zone.is-visible .zm-dot {
+  animation: zm-pop 0.4s ease forwards;
+}
+@keyframes zm-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes zm-pop {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+/* étiquette au survol */
+.zm-commune {
+  cursor: default;
+  outline: none;
+}
+.zm-tip {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  pointer-events: none;
+}
+.zm-commune:hover .zm-tip,
+.zm-commune:focus-visible .zm-tip {
+  opacity: 1;
+}
+.zm-commune:hover .zm-dot {
+  r: 6;
+}
+/* halo pulsant de Toulouse */
+.zm-halo {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: zm-halo 2.6s ease-in-out infinite;
+}
+@keyframes zm-halo {
+  0% {
+    opacity: 0.4;
+    transform: scale(0.7);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .zm-line {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  .zm-dot {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .zm-halo {
+    animation: none;
+    opacity: 0.25;
+  }
 }
 
 /* ── Animations d'entrée au scroll (Reveal) ── */

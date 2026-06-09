@@ -1,100 +1,136 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import "leaflet/dist/leaflet.css";
+import { zoneMap } from "@/lib/zone-map-data";
 
-// Vraie carte (Leaflet + OpenStreetMap) de la zone d'intervention autour de
-// Toulouse. Chaque commune est un marqueur ; le nom s'affiche au survol.
-// Toulouse est mise en avant (plus gros + label permanent).
+// Carte vectorielle stylisée (façon Securinfor) : silhouette réelle de la
+// Haute-Garonne + communes qui rayonnent depuis Toulouse. Au survol d'une
+// commune, son nom s'affiche. Animations déclenchées à l'entrée à l'écran.
 
-type Commune = { name: string; lat: number; lng: number; main?: boolean };
+const { width: W, height: H, path, communes } = zoneMap;
+const toulouse = communes.find((c) => c.main)!;
 
-const COMMUNES: Commune[] = [
-  { name: "Toulouse", lat: 43.6045, lng: 1.444, main: true },
-  { name: "L'Union", lat: 43.6553, lng: 1.4869 },
-  { name: "Saint-Jean", lat: 43.6586, lng: 1.5006 },
-  { name: "Balma", lat: 43.6107, lng: 1.4998 },
-  { name: "Montrabé", lat: 43.6406, lng: 1.5347 },
-  { name: "Castelmaurou", lat: 43.6669, lng: 1.5419 },
-  { name: "Montastruc-la-Conseillère", lat: 43.6936, lng: 1.5736 },
-  { name: "Verfeil", lat: 43.6553, lng: 1.65 },
-  { name: "Saint-Sulpice-la-Pointe", lat: 43.7722, lng: 1.69 },
-  { name: "Buzet-sur-Tarn", lat: 43.7733, lng: 1.5378 },
-  { name: "Bessières", lat: 43.7969, lng: 1.6028 },
-  { name: "Villemur-sur-Tarn", lat: 43.8678, lng: 1.5025 },
-  { name: "Fronton", lat: 43.8389, lng: 1.3889 },
-  { name: "Castelnau-d'Estrétefonds", lat: 43.805, lng: 1.345 },
-  { name: "Grenade", lat: 43.7728, lng: 1.2964 },
-  { name: "Montauban", lat: 44.0181, lng: 1.355 },
-];
+type Pt = { name: string; x: number; y: number; main?: boolean };
+
+function bezier(a: Pt, b: Pt) {
+  const dx = b.x - a.x;
+  const dy = b.y - a.y;
+  const dist = Math.hypot(dx, dy) || 1;
+  const curv = Math.min(dist * 0.14, 48);
+  const cx = (a.x + b.x) / 2 + (-dy / dist) * curv;
+  const cy = (a.y + b.y) / 2 + (dx / dist) * curv;
+  return `M${a.x},${a.y} Q${cx.toFixed(1)},${cy.toFixed(1)} ${b.x},${b.y}`;
+}
+
+const others = communes.filter((c) => !c.main);
 
 export default function ZoneMap() {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    let cancelled = false;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let map: any;
-
-    (async () => {
-      const L = await import("leaflet");
-      if (cancelled || !ref.current) return;
-
-      map = L.map(ref.current, {
-        scrollWheelZoom: false,
-        zoomControl: true,
-        attributionControl: true,
-      });
-
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        maxZoom: 18,
-        attribution: "&copy; OpenStreetMap",
-      }).addTo(map);
-
-      // Cercle indicatif ~30 km autour de Toulouse
-      const toulouse = COMMUNES.find((c) => c.main)!;
-      L.circle([toulouse.lat, toulouse.lng], {
-        radius: 30000,
-        color: "#ed7d1a",
-        weight: 1,
-        fillColor: "#ed7d1a",
-        fillOpacity: 0.05,
-        dashArray: "6 6",
-      }).addTo(map);
-
-      for (const c of COMMUNES) {
-        const marker = L.circleMarker([c.lat, c.lng], {
-          radius: c.main ? 9 : 6,
-          color: "#ffffff",
-          weight: 2,
-          fillColor: c.main ? "#d96d0f" : "#ed7d1a",
-          fillOpacity: 1,
-        }).addTo(map);
-        marker.bindTooltip(c.name, {
-          direction: "top",
-          offset: [0, -6],
-          permanent: !!c.main,
-          className: "atb-tip",
-        });
-      }
-
-      const bounds = L.latLngBounds(
-        COMMUNES.map((c) => [c.lat, c.lng] as [number, number]),
-      );
-      map.fitBounds(bounds, { padding: [50, 50] });
-    })();
-
-    return () => {
-      cancelled = true;
-      if (map) map.remove();
-    };
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) el.classList.toggle("is-visible", e.isIntersecting);
+      },
+      { threshold: 0.25 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
   }, []);
 
   return (
-    <div
-      ref={ref}
-      className="z-0 h-[460px] w-full overflow-hidden rounded-2xl ring-1 ring-black/10 sm:h-[540px]"
-      aria-label="Carte de la zone d'intervention autour de Toulouse"
-    />
+    <div ref={ref} className="atb-zone mx-auto w-full max-w-2xl">
+      <svg
+        viewBox={`0 0 ${W} ${H}`}
+        className="h-auto w-full"
+        role="img"
+        aria-label="Carte de la zone d'intervention autour de Toulouse (Haute-Garonne)"
+      >
+        {/* Silhouette de la Haute-Garonne */}
+        <path
+          d={path}
+          fill="var(--anthracite)"
+          stroke="#ffffff"
+          strokeWidth={1.2}
+          strokeLinejoin="round"
+        />
+
+        {/* Courbes rayonnant depuis Toulouse */}
+        {others.map((c, i) => (
+          <path
+            key={`l-${c.name}`}
+            className="zm-line"
+            d={bezier(toulouse, c)}
+            fill="none"
+            stroke="var(--orange)"
+            strokeWidth={1.4}
+            strokeLinecap="round"
+            style={{ animationDelay: `${0.3 + i * 0.08}s` }}
+          />
+        ))}
+
+        {/* Communes (point + étiquette au survol) */}
+        {others.map((c, i) => {
+          const tw = c.name.length * 6.7 + 18;
+          const flip = c.y < 46; // étiquette dessous si trop haut
+          return (
+            <g key={c.name} className="zm-commune" tabIndex={0}>
+              <circle
+                className="zm-dot"
+                cx={c.x}
+                cy={c.y}
+                r={4.5}
+                fill="var(--orange)"
+                stroke="#fff"
+                strokeWidth={1.5}
+                style={{ animationDelay: `${0.9 + i * 0.08}s` }}
+              />
+              <g className="zm-tip" transform={`translate(${c.x}, ${c.y})`}>
+                <rect
+                  x={-tw / 2}
+                  y={flip ? 12 : -34}
+                  width={tw}
+                  height={22}
+                  rx={5}
+                  fill="var(--anthracite-dark)"
+                />
+                <text
+                  x={0}
+                  y={flip ? 27 : -19}
+                  textAnchor="middle"
+                  fill="#fff"
+                  fontSize={13}
+                  fontWeight={600}
+                >
+                  {c.name}
+                </text>
+              </g>
+            </g>
+          );
+        })}
+
+        {/* Toulouse : halo + repère charpente + label permanent */}
+        <circle className="zm-halo" cx={toulouse.x} cy={toulouse.y} r={10} fill="var(--orange)" />
+        <path
+          d={`M${toulouse.x - 10},${toulouse.y + 4} L${toulouse.x},${toulouse.y - 9} L${toulouse.x + 10},${toulouse.y + 4} Z`}
+          fill="var(--orange)"
+          stroke="#fff"
+          strokeWidth={1.5}
+          strokeLinejoin="round"
+        />
+        <g transform={`translate(${toulouse.x}, ${toulouse.y})`}>
+          <rect x={-34} y={10} width={68} height={22} rx={5} fill="var(--orange)" />
+          <text x={0} y={25} textAnchor="middle" fill="#fff" fontSize={13} fontWeight={700}>
+            Toulouse
+          </text>
+        </g>
+      </svg>
+
+      <p className="mt-4 text-center text-sm text-foreground/60">
+        Survolez une ville · intervention dans un rayon de ~30 km autour de Toulouse
+      </p>
+    </div>
   );
 }
