@@ -87,7 +87,7 @@ export const services: Service[] = [
       "Pose et remplacement de gouttières zinc à Toulouse et ses environs pour une évacuation des eaux durable. Devis gratuit.",
     excerpt:
       "Pose et remplacement de gouttières zinc pour une évacuation des eaux durable.",
-    image: "/images/realisations/iStock-820550792.jpg",
+    image: "/images/realisations/pose-goutuere-zinc.webp",
   },
   {
     slug: "pose-remaniement-tuiles",

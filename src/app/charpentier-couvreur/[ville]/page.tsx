@@ -13,13 +13,18 @@ export function generateStaticParams() {
   return cities.map((c) => ({ ville: c.slug }));
 }
 
-// Photo de la ville : générée par fal.ai dans public/images/villes/{slug}.webp.
-// Tant qu'elle n'existe pas, on retombe sur une image charpente par défaut.
+// Photo d'en-tête : image dédiée à la ville si elle existe
+// (public/images/villes/{slug}.webp), sinon une photo du pool de chantiers
+// (fal.ai) assignée de façon déterministe, sinon un repli par défaut.
+const POOL_SIZE = 16;
 function heroFor(slug: string) {
-  const abs = path.join(process.cwd(), "public", "images", "villes", `${slug}.webp`);
-  return fs.existsSync(abs)
-    ? `/images/villes/${slug}.webp`
-    : "/images/realisations/creation-charpente.jpg";
+  const ville = path.join(process.cwd(), "public", "images", "villes", `${slug}.webp`);
+  if (fs.existsSync(ville)) return `/images/villes/${slug}.webp`;
+  const idx = [...slug].reduce((a, ch) => a + ch.charCodeAt(0), 0) % POOL_SIZE;
+  const n = String(idx + 1).padStart(2, "0");
+  const pool = path.join(process.cwd(), "public", "images", "chantiers", `${n}.jpg`);
+  if (fs.existsSync(pool)) return `/images/chantiers/${n}.jpg`;
+  return "/images/realisations/creation-charpente.jpg";
 }
 
 // Phrase sur la commune, variée selon sa taille réelle (unicité factuelle).
