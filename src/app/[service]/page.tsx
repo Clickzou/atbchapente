@@ -34,6 +34,7 @@ const SECTION_IMAGES: Record<string, SectionImage[]> = {
   ],
   "pose-remaniement-tuiles": [
     { match: "le remaniement et la réfection", src: "/images/refection-tuiles.jpg", side: "right" },
+    { match: "démoussage et entretien", src: "/images/nettoyage-tuiles.jpg", side: "left" },
   ],
   // Les autres services seront renseignés page par page.
 };
