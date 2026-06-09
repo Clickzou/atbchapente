@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import { services, site, routes } from "@/lib/site";
+import { site, routes } from "@/lib/site";
 import HeroSlider from "@/components/HeroSlider";
+import ServicesCarousel from "@/components/ServicesCarousel";
 import BlueprintBackground from "@/components/BlueprintBackground";
 import Reveal from "@/components/Reveal";
 import ZoneMap from "@/components/ZoneMap";
@@ -22,34 +23,10 @@ export default function Home() {
               Un interlocuteur unique pour l&apos;ensemble de vos travaux de toiture.
             </p>
           </Reveal>
-          <Reveal className="reveal-stagger grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((s) => (
-            <Link
-              key={s.slug}
-              href={`/${s.slug}`}
-              className="group overflow-hidden rounded-xl border border-black/5 bg-white shadow-sm transition-shadow hover:shadow-md"
-            >
-              <div className="relative h-48 overflow-hidden">
-                <Image
-                  src={s.image}
-                  alt={s.title}
-                  fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-lg font-semibold text-anthracite group-hover:text-orange">
-                  {s.heading}
-                </h3>
-                <p className="mt-2 text-sm text-foreground/70">{s.excerpt}</p>
-                <span className="mt-4 inline-block text-sm font-semibold text-orange">
-                  En savoir plus →
-                </span>
-              </div>
-            </Link>
-          ))}
-          </Reveal>
+        </div>
+        {/* Carrousel pleine largeur */}
+        <div className="relative z-10 mt-4">
+          <ServicesCarousel />
         </div>
       </section>
 
@@ -143,16 +120,33 @@ export default function Home() {
       </section>
 
       {/* ZONE D'INTERVENTION */}
-      <section className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
-        <div className="mb-8 text-center">
-          <h2 className="text-3xl font-bold text-anthracite">Zone d&apos;intervention</h2>
-          <p className="mx-auto mt-3 max-w-2xl text-foreground/70">
-            ATB Charpente intervient à Toulouse et dans un rayon de 30 km (secteur
-            Bessières).
-          </p>
+      <section className="relative overflow-hidden py-20">
+        {/* Croquis décoratifs de part et d'autre de la carte (grand écran) */}
+        <Image
+          src="/images/croquis-toiture.jpg"
+          alt=""
+          width={520}
+          height={400}
+          className="pointer-events-none absolute left-0 top-1/2 hidden w-[24%] max-w-sm -translate-y-1/2 opacity-20 lg:block"
+        />
+        <Image
+          src="/images/croquis-pergola.jpg"
+          alt=""
+          width={520}
+          height={400}
+          className="pointer-events-none absolute right-0 top-1/2 hidden w-[24%] max-w-sm -translate-y-1/2 opacity-20 lg:block"
+        />
+        <div className="relative z-10 mx-auto max-w-7xl px-4 lg:px-8">
+          <div className="mb-8 text-center">
+            <h2 className="text-3xl font-bold text-anthracite">Zone d&apos;intervention</h2>
+            <p className="mx-auto mt-3 max-w-2xl text-foreground/70">
+              ATB Charpente intervient à Toulouse et dans un rayon de 30 km (secteur
+              Bessières).
+            </p>
+          </div>
+          {/* Carte interactive de la zone (découpée par commune) */}
+          <ZoneMap />
         </div>
-        {/* Carte interactive de la zone (découpée par commune) */}
-        <ZoneMap />
       </section>
 
       {/* CTA */}
