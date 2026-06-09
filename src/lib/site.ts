@@ -65,7 +65,7 @@ export const services: Service[] = [
       "Charpentier à Toulouse : charpente traditionnelle, ossature bois, rénovation et extension sur mesure. Devis gratuit autour de Toulouse et Bessières.",
     excerpt:
       "Charpente traditionnelle, ossature bois, rénovation et extension, réalisées sur mesure.",
-    image: "/images/realisations/IMG-20250403-WA0001.jpg",
+    image: "/images/realisations/creation-charpente.jpg",
   },
   {
     slug: "isolation-toiture",
@@ -76,7 +76,7 @@ export const services: Service[] = [
       "Isolation de toiture par l'extérieur (sarking) à Toulouse et Bessières : confort thermique et économies d'énergie. Devis gratuit.",
     excerpt:
       "Amélioration du confort et des performances énergétiques de votre toiture.",
-    image: "/images/realisations/IMG-20250403-WA0005.jpg",
+    image: "/images/realisations/isolation-toiture-par-exterieur.jpg",
   },
   {
     slug: "pose-changement-gouttieres-zinc",
@@ -87,7 +87,7 @@ export const services: Service[] = [
       "Pose et remplacement de gouttières zinc à Toulouse et ses environs pour une évacuation des eaux durable. Devis gratuit.",
     excerpt:
       "Pose et remplacement de gouttières zinc pour une évacuation des eaux durable.",
-    image: "/images/realisations/IMG-20250403-WA0010.jpg",
+    image: "/images/realisations/iStock-820550792.jpg",
   },
   {
     slug: "pose-remaniement-tuiles",
@@ -97,7 +97,7 @@ export const services: Service[] = [
     metaDescription:
       "Couverture neuve, réfection et remaniement de toitures en tuiles à Toulouse et Bessières. Charpentier couvreur, devis gratuit.",
     excerpt: "Couverture neuve, réfection et remaniement de toitures en tuiles.",
-    image: "/images/realisations/IMG-20250403-WA0015.jpg",
+    image: "/images/realisations/pose-changement-tuile-canal-romane-plate.jpg",
   },
   {
     slug: "creation-fenetre-de-toit-bois",
@@ -108,7 +108,7 @@ export const services: Service[] = [
       "Installation de fenêtres de toit à Toulouse pour apporter lumière et ventilation à vos combles. Devis gratuit.",
     excerpt:
       "Installation de fenêtres de toit pour apporter lumière et ventilation à vos combles.",
-    image: "/images/realisations/IMG-20250403-WA0020.jpg",
+    image: "/images/realisations/creation-fenetre-bois.jpg",
   },
   {
     slug: "creation-pergola-bois",
@@ -119,7 +119,7 @@ export const services: Service[] = [
       "Conception et fabrication de pergolas en bois sur mesure à Toulouse et ses environs. Devis gratuit.",
     excerpt:
       "Conception et fabrication de pergolas en bois sur mesure pour vos extérieurs.",
-    image: "/images/realisations/IMG-20250403-WA0025.jpg",
+    image: "/images/realisations/pose-pergola-bois-toulouse-bessiere.jpg",
   },
 ];
 
