@@ -254,7 +254,7 @@ export default function Home() {
           sizes="100vw"
         />
         <div className="relative mx-auto max-w-7xl px-4 py-20 lg:px-8">
-          <div className="w-full rounded-2xl bg-[#f7f3ec] p-8 shadow-xl sm:max-w-xl sm:p-10 lg:ml-auto">
+          <div className="w-full rounded-2xl bg-white p-8 shadow-xl sm:max-w-xl sm:p-10 lg:ml-auto">
             <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-orange">
               Contactez-nous
             </p>
