@@ -52,8 +52,8 @@ html {
 /* Apparition décalée des enfants directs (ex. cartes, titre + sous-titre) */
 .reveal-stagger > * {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(38px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
 }
 .reveal-stagger.is-in > * {
   opacity: 1;

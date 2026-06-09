@@ -17,16 +17,15 @@ export default function Reveal({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    // Rejoué à chaque entrée dans l'écran. Déclenché quand la section est
+    // confortablement visible (rootMargin bas négatif) pour que l'effet soit vu.
     const io = new IntersectionObserver(
       (entries) => {
         for (const e of entries) {
-          if (e.isIntersecting) {
-            el.classList.add("is-in");
-            io.unobserve(el);
-          }
+          el.classList.toggle("is-in", e.isIntersecting);
         }
       },
-      { threshold: 0.15, rootMargin: "0px 0px -10% 0px" },
+      { threshold: 0, rootMargin: "0px 0px -18% 0px" },
     );
     io.observe(el);
     return () => io.disconnect();
