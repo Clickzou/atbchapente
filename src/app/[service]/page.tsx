@@ -55,6 +55,13 @@ const SECTION_BENEFITS: Record<string, BenefitConf[]> = {
       icon: <path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z" />,
     },
   ],
+  "creation-fenetre-de-toit-bois": [
+    {
+      match: "pourquoi installer une fenêtre de toit",
+      // Fenêtre de toit
+      icon: <path d="M4 4h16v16H4z M12 4v16 M4 12h16" />,
+    },
+  ],
 };
 
 // Sections « grille de cartes » : les items d'une liste deviennent des cartes
