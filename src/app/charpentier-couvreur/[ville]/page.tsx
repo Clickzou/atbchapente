@@ -9,6 +9,7 @@ import { cities, cityBySlug, type City } from "@/lib/zone-communes";
 import { cityContent } from "@/lib/city-content";
 import ServicesCarousel from "@/components/ServicesCarousel";
 import ContactForm from "@/components/ContactForm";
+import IconsBackground from "@/components/IconsBackground";
 
 export const dynamicParams = false;
 
@@ -184,6 +185,7 @@ export default async function VillePage({
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-anthracite-dark/90 via-anthracite-dark/55 to-anthracite-dark/20" />
+        <IconsBackground />
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-28 lg:px-8">
           <nav className="mb-4 text-sm text-white/60">
             <Link href="/" className="hover:text-orange">Accueil</Link> /{" "}
@@ -242,7 +244,7 @@ export default async function VillePage({
       </section>
 
       {/* Section 1 : texte à gauche, stats à droite — pleine largeur avec marges */}
-      <section className="mx-auto max-w-7xl px-4 py-16 lg:px-8">
+      <section className="mx-auto max-w-[1600px] px-4 py-16 lg:px-12">
         <div className="grid gap-10 lg:grid-cols-[1.7fr_1fr] lg:items-stretch lg:gap-14">
           <div>
             {cityContent[city.slug] ? (
@@ -315,13 +317,13 @@ export default async function VillePage({
           <p className="mt-3 text-foreground/70">{prestaSubtitle(city)}</p>
         </div>
         <div className="mt-8">
-          <ServicesCarousel />
+          <ServicesCarousel variant="compact" />
         </div>
       </section>
 
       {/* Section 3 — Métier (pleine largeur : croquis à gauche, texte à droite) */}
       <section>
-        <div className="mx-auto max-w-7xl px-4 py-16 lg:px-8">
+        <div className="mx-auto max-w-[1600px] px-4 py-16 lg:px-12">
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
             <div className="order-2 lg:order-1">
               <Image

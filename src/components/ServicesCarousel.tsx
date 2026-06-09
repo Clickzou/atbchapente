@@ -13,9 +13,9 @@ export default function ServicesCarousel({
   variant?: "full" | "compact";
 }) {
   const trackRef = useRef<HTMLDivElement>(null);
-  const pad = variant === "full" ? "px-4 lg:px-[100px]" : "px-1";
-  const arrowL = variant === "full" ? "left-[58px]" : "left-1";
-  const arrowR = variant === "full" ? "right-[58px]" : "right-1";
+  const pad = variant === "full" ? "px-4 lg:px-[100px]" : "px-4 lg:px-12";
+  const arrowL = variant === "full" ? "left-[58px]" : "left-3";
+  const arrowR = variant === "full" ? "right-[58px]" : "right-3";
 
   const scroll = (dir: number) => {
     const el = trackRef.current;

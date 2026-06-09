@@ -38,6 +38,89 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ── Fond d'icônes métier animé (hero des articles villes) ── */
+.atb-icons-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+  color: var(--icons-stroke, #ffffff);
+}
+.atb-icons-bg .ai-icon {
+  position: absolute;
+  opacity: 0.1;
+  transform: translateY(var(--p, 0px));
+  animation: icon-breathe 8s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+.atb-icons-bg .ai-float {
+  width: 100%;
+  height: 100%;
+  animation: icon-float 12s ease-in-out infinite;
+}
+.atb-icons-bg .ai-rot {
+  width: 100%;
+  height: 100%;
+  animation: icon-rotate 18s ease-in-out infinite;
+}
+.atb-icons-bg svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.atb-icons-bg svg path,
+.atb-icons-bg svg circle {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: icon-draw var(--dur, 6s) ease-in-out var(--delay, 0s) infinite alternate;
+}
+@keyframes icon-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes icon-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-16px);
+  }
+}
+@keyframes icon-breathe {
+  0%,
+  100% {
+    opacity: 0.05;
+  }
+  50% {
+    opacity: 0.14;
+  }
+}
+@keyframes icon-rotate {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .atb-icons-bg .ai-icon,
+  .atb-icons-bg .ai-float,
+  .atb-icons-bg .ai-rot {
+    animation: none;
+    transform: none;
+  }
+  .atb-icons-bg svg path,
+  .atb-icons-bg svg circle {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
+
 /* ── Carte zone d'intervention découpée par commune (SVG) ── */
 .zm-shape {
   fill: #3b4a63; /* slate-blue : effet carte premium */
