@@ -1,13 +1,51 @@
+import fs from "node:fs";
+import path from "node:path";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import { site, services, routes } from "@/lib/site";
-import { cities, cityBySlug } from "@/lib/zone-communes";
+import { cities, cityBySlug, type City } from "@/lib/zone-communes";
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
   return cities.map((c) => ({ ville: c.slug }));
+}
+
+// Photo de la ville : générée par fal.ai dans public/images/villes/{slug}.webp.
+// Tant qu'elle n'existe pas, on retombe sur une image charpente par défaut.
+function heroFor(slug: string) {
+  const abs = path.join(process.cwd(), "public", "images", "villes", `${slug}.webp`);
+  return fs.existsSync(abs)
+    ? `/images/villes/${slug}.webp`
+    : "/images/realisations/creation-charpente.jpg";
+}
+
+// Phrase sur la commune, variée selon sa taille réelle (unicité factuelle).
+function populationSentence(c: City) {
+  if (!c.population) return "";
+  const hab = c.population.toLocaleString("fr-FR");
+  if (c.population >= 5000)
+    return `Avec ses quelque ${hab} habitants, ${c.name} est une commune dynamique de l'agglomération.`;
+  if (c.population >= 1500)
+    return `Commune d'environ ${hab} habitants, ${c.name} fait partie de notre zone d'intervention privilégiée.`;
+  return `Village d'environ ${hab} habitants, ${c.name} bénéficie de notre proximité et de notre réactivité.`;
+}
+
+// 5 variantes d'introduction, choisies de façon déterministe par commune,
+// pour éviter des pages au texte identique (anti-doorway).
+function buildIntro(c: City): string {
+  const v = [...c.slug].reduce((a, ch) => a + ch.charCodeAt(0), 0) % 5;
+  const here = c.epci ? `${c.name}, au sein de ${c.epci},` : `${c.name}`;
+  const variants = [
+    `Vous cherchez un charpentier couvreur à ${c.name} ? ATB Charpente intervient à ${c.name} (${c.cp}) et dans toute son agglomération, à environ ${c.distToulouse} km de Toulouse, pour vos travaux de charpente, couverture et zinguerie, du neuf à la rénovation.`,
+    `Besoin d'un charpentier ou d'un couvreur à ${c.name} ? Installée à Bessières, à seulement ${c.distBessieres} km de ${c.name}, ATB Charpente met 20 ans d'expérience au service de votre toiture : charpente bois, couverture en tuiles, zinguerie et isolation.`,
+    `À ${here} ATB Charpente réalise vos travaux de toiture sur mesure. ${populationSentence(c)} Nous intervenons aussi bien pour la création que pour la rénovation de votre charpente et de votre couverture.`,
+    `Charpentier couvreur de proximité, ATB Charpente accompagne les habitants de ${c.name} (${c.cp}) dans tous leurs projets de toiture : charpente traditionnelle, ossature bois, remaniement de tuiles, gouttières zinc, fenêtres de toit et pergolas en bois.`,
+    `Pour vos travaux de charpente et de couverture à ${c.name}, faites confiance à un artisan local. À ${c.distToulouse} km de Toulouse, ATB Charpente conjugue savoir-faire traditionnel et garantie décennale pour un toit solide et durable.`,
+  ];
+  return variants[v];
 }
 
 export async function generateMetadata({
@@ -22,6 +60,9 @@ export async function generateMetadata({
     title: `Charpentier couvreur à ${city.name} (${city.cp}) | ATB Charpente`,
     description: `Charpentier couvreur à ${city.name} : charpente, couverture, zinguerie, isolation de toiture et pergola. Artisan, garantie décennale, devis gratuit. Intervention rapide à ${city.name} et alentours.`,
     alternates: { canonical: `/charpentier-couvreur/${city.slug}` },
+    // Anti-doorway : seules les villes à vraie demande sont indexées ; la longue
+    // traîne reste crawlable (follow) mais hors index.
+    robots: city.indexed ? undefined : { index: false, follow: true },
   };
 }
 
@@ -101,8 +142,16 @@ export default async function VillePage({
       />
 
       {/* En-tête */}
-      <section className="bg-anthracite-dark text-white">
-        <div className="mx-auto max-w-4xl px-4 pb-16 pt-32 lg:px-8">
+      <section className="relative overflow-hidden bg-anthracite-dark text-white">
+        <Image
+          src={heroFor(city.slug)}
+          alt={`Charpentier couvreur à ${city.name}`}
+          fill
+          priority
+          className="object-cover opacity-30"
+          sizes="100vw"
+        />
+        <div className="relative z-10 mx-auto max-w-4xl px-4 pb-16 pt-32 lg:px-8">
           <nav className="mb-4 text-sm text-white/60">
             <Link href="/" className="hover:text-orange">Accueil</Link> /{" "}
             <span className="text-white/90">Charpentier couvreur à {city.name}</span>
@@ -118,14 +167,23 @@ export default async function VillePage({
       </section>
 
       <article className="mx-auto max-w-4xl px-4 py-14 lg:px-8">
-        <p className="text-lg leading-relaxed text-foreground/85">
-          Vous cherchez un <strong>charpentier couvreur à {city.name}</strong> ? ATB
-          Charpente intervient à {city.name} et dans toute son agglomération, à environ{" "}
-          {city.distToulouse} km de Toulouse, pour vos travaux de toiture neufs comme en
-          rénovation. De la <strong>charpente bois</strong> à la{" "}
-          <strong>couverture en tuiles</strong>, en passant par la zinguerie et
-          l&apos;isolation, nous mettons 20 ans d&apos;expérience et un savoir-faire
-          artisanal au service de votre toit.
+        <p className="text-lg leading-relaxed text-foreground/85">{buildIntro(city)}</p>
+
+        {/* À propos de la commune — données réelles (unicité factuelle) */}
+        <h2 className="mt-12 text-2xl font-bold text-anthracite">
+          Votre charpentier couvreur de proximité à {city.name}
+        </h2>
+        <p className="mt-4 text-foreground/80">
+          {city.name} ({city.cp})
+          {city.population
+            ? ` compte environ ${city.population.toLocaleString("fr-FR")} habitants`
+            : ""}
+          {city.epci ? ` et fait partie de ${city.epci}` : ""}, dans le département de{" "}
+          {city.departement || "la Haute-Garonne"}. Située à environ {city.distToulouse}{" "}
+          km de Toulouse et {city.distBessieres} km de notre atelier de Bessières, la
+          commune bénéficie d&apos;une intervention rapide d&apos;ATB Charpente pour la
+          création comme la rénovation de votre toiture : <strong>charpente bois</strong>,{" "}
+          <strong>couverture en tuiles</strong>, zinguerie et isolation.
         </p>
 
         {/* Prestations */}

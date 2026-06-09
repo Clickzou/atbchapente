@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { services, site, routes } from "@/lib/site";
 import { getArticlesSorted } from "@/lib/articles";
-import { cities } from "@/lib/zone-communes";
+import { indexedCities } from "@/lib/zone-communes";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = ["", routes.realisations, routes.blog, routes.contact].map(
@@ -28,7 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     }));
 
-  const cityPages = cities.map((c) => ({
+  const cityPages = indexedCities.map((c) => ({
     url: `${site.url}/charpentier-couvreur/${c.slug}`,
     changeFrequency: "monthly" as const,
     priority: 0.5,
