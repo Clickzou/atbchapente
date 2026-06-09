@@ -33,7 +33,10 @@ export default function ServicesCarousel({
         ref={trackRef}
         className={`flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth ${pad} pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden`}
       >
-        {services.map((s) => (
+        {services.map((s) => {
+          // Sur les pages villes, on adapte le titre (« à Toulouse » → ville).
+          const heading = place ? s.heading.replace(/Toulouse/g, place) : s.heading;
+          return (
           <Link
             key={s.slug}
             href={`/${s.slug}`}
@@ -51,7 +54,7 @@ export default function ServicesCarousel({
             </div>
             <div className="flex flex-1 flex-col p-6">
               <h3 className="text-lg font-semibold text-anthracite group-hover:text-orange">
-                {s.heading}
+                {heading}
               </h3>
               <p className="mt-2 flex-1 text-sm text-foreground/70">{s.excerpt}</p>
               <span className="mt-4 inline-block text-sm font-semibold text-orange">
@@ -59,7 +62,8 @@ export default function ServicesCarousel({
               </span>
             </div>
           </Link>
-        ))}
+          );
+        })}
       </div>
 
       {/* Flèches */}
