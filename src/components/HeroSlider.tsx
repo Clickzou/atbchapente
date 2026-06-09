@@ -73,6 +73,7 @@ export default function HeroSlider() {
         <div className="relative mb-5 min-h-[150px] sm:min-h-[190px] lg:min-h-[230px]">
           {slides.map((slide, i) =>
             i === 0 ? (
+              // Slide 1 : unique H1 de la page (reste dans le DOM même en fondu).
               <h1
                 key={i}
                 className={`${titleClass} transition-opacity duration-700 ${
@@ -83,17 +84,16 @@ export default function HeroSlider() {
                 {slide.title}
               </h1>
             ) : (
-              <div
+              // Slides suivantes : titres visuels NON sémantiques (aucun Hn).
+              <p
                 key={i}
-                role="heading"
-                aria-level={2}
                 aria-hidden={i !== index}
                 className={`${titleClass} transition-opacity duration-700 ${
                   i === index ? "opacity-100" : "opacity-0"
                 }`}
               >
                 {slide.title}
-              </div>
+              </p>
             ),
           )}
         </div>
