@@ -16,7 +16,7 @@ function sectionImageFor(
   if (h.includes("création d'une charpente bois neuve"))
     return { src: "/images/charpente-neuve.jpg", side: "left" };
   if (h.includes("rénovation et renforcement"))
-    return { src: "/images/renovation-charpente.png", side: "right" };
+    return { src: "/images/renovation-charpente-bois.jpg", side: "right" };
   return null;
 }
 
