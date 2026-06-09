@@ -27,6 +27,9 @@ const SECTION_IMAGES: Record<string, SectionImage[]> = {
     { match: "quels isolants pour votre toiture", src: "/images/isolation-toit.jpg", side: "left" },
     { match: "votre artisan pour l'isolation", src: "/images/realisations/isolation-toiture-zone-intervention-toulouse.jpg", side: "right", bg: "#F9EBDE" },
   ],
+  "pose-changement-gouttieres-zinc": [
+    { match: "la pose neuve de gouttières", src: "/images/gouttiere-zinc.jpg", side: "right" },
+  ],
   // Les autres services seront renseignés page par page.
 };
 
