@@ -4,6 +4,8 @@ import "./globals.css";
 import { site } from "@/lib/site";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import CookieBanner from "@/components/CookieBanner";
+import LeadPopup from "@/components/LeadPopup";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -70,6 +72,8 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <CookieBanner />
+        <LeadPopup />
       </body>
     </html>
   );

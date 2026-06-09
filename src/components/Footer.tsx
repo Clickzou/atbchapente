@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { mainNav, services, site, routes } from "@/lib/site";
+import CookieSettingsButton from "@/components/CookieSettingsButton";
 
 export default function Footer() {
   const year = 2026;
@@ -90,6 +91,7 @@ export default function Footer() {
             <Link href="/politique-de-confidentialite" className="hover:text-orange">
               Politique de confidentialité
             </Link>
+            <CookieSettingsButton />
           </div>
         </div>
       </div>

@@ -7,6 +7,7 @@ import type { Metadata } from "next";
 import { site, routes } from "@/lib/site";
 import { cities, cityBySlug, type City } from "@/lib/zone-communes";
 import { cityContent } from "@/lib/city-content";
+import { cityContentMetier } from "@/lib/city-content-metier";
 import ServicesCarousel from "@/components/ServicesCarousel";
 import ContactForm from "@/components/ContactForm";
 import IconsBackground from "@/components/IconsBackground";
@@ -67,6 +68,23 @@ function buildIntro(c: City): string {
     `Pour vos travaux de charpente et de couverture à ${c.name}, faites confiance à un artisan local. À ${c.distToulouse} km de Toulouse, ATB Charpente conjugue savoir-faire traditionnel et garantie décennale pour un toit solide et durable.`,
   ];
   return variants[v];
+}
+
+// Texte « métier » de repli pour les villes NON indexées (noindex). Les villes
+// indexées utilisent un contenu IA unique (cityContentMetier) — anti-duplication.
+function buildMetierFallback(c: City): string[] {
+  const facts =
+    `${c.name} (${c.cp})` +
+    (c.population ? ` compte environ ${c.population.toLocaleString("fr-FR")} habitants` : "") +
+    (c.epci ? ` et fait partie de ${c.epci}` : "") +
+    `, dans le département ${c.departement || "de la Haute-Garonne"}. À environ ${c.distToulouse} km de Toulouse et ${c.distBessieres} km de notre atelier de Bessières, la commune bénéficie d'une intervention rapide.`;
+  return [
+    `À ${c.name}, nous réalisons la création et la rénovation de charpentes bois : charpente traditionnelle, fermettes et ossature bois. Nos charpentiers interviennent sur les constructions neuves comme sur la restauration de charpentes anciennes — renforcement, remplacement de pièces, traitement curatif contre les insectes xylophages (capricornes, vrillettes) et les champignons.`,
+    `La couverture protège votre maison des intempéries. À ${c.name}, nous posons et rénovons les toitures en tuiles — tuiles canal et romanes en terre cuite, typiques de la région toulousaine, comme les tuiles mécaniques. Réfection complète, remaniement, remplacement de tuiles cassées, démoussage et traitement hydrofuge redonnent étanchéité et esthétique à votre toit.`,
+    `Côté zinguerie, nous installons et remplaçons vos gouttières en zinc, ainsi que les descentes, noues, solins et habillages de rives, et traitons les gouttières qui débordent ou fuient pour protéger durablement vos façades et fondations.`,
+    `Pour améliorer votre confort à ${c.name}, nous assurons aussi l'isolation de toiture par l'extérieur (sarking) ou des combles, la pose de fenêtres de toit et la création de pergolas en bois sur mesure.`,
+    facts,
+  ];
 }
 
 export async function generateMetadata({
@@ -359,56 +377,18 @@ export default async function VillePage({
                 Charpente, couverture et zinguerie à {city.name}
               </h2>
               <div className="mt-4 space-y-4 text-foreground/80">
-            <p>
-              En tant que{" "}
-              <Link href={routes.cornerstone} className="font-medium text-orange hover:underline">
-                charpentier couvreur à Toulouse
-              </Link>{" "}
-              intervenant jusqu&apos;à {city.name}, ATB Charpente couvre l&apos;ensemble
-              de vos besoins de toiture, du gros œuvre à la finition.
-            </p>
-            <p>
-              À {city.name}, nous réalisons la <strong>création et la rénovation de
-              charpentes bois</strong> : charpente traditionnelle, fermettes et ossature
-              bois. Nos charpentiers interviennent sur les constructions neuves comme sur
-              la restauration de charpentes anciennes — renforcement, remplacement de
-              pièces, traitement curatif contre les insectes xylophages (capricornes,
-              vrillettes) et les champignons. Chaque ouvrage est dimensionné pour garantir
-              la solidité et la durabilité de votre toiture.
-            </p>
-            <p>
-              La <strong>couverture</strong> protège votre maison des intempéries. À{" "}
-              {city.name}, nous posons et rénovons les toitures en tuiles — tuiles canal et
-              romanes en terre cuite, typiques de la région toulousaine, comme les tuiles
-              mécaniques. Réfection complète, remaniement, remplacement de tuiles cassées,
-              démoussage et traitement hydrofuge : nous redonnons étanchéité et esthétique
-              à votre toit, dans le respect du style local.
-            </p>
-            <p>
-              Côté <strong>zinguerie</strong>, une bonne évacuation des eaux de pluie est
-              indispensable. Nous installons et remplaçons vos gouttières en zinc, réputées
-              pour leur durabilité, ainsi que les descentes, noues, solins et habillages de
-              rives, et traitons les gouttières qui débordent ou fuient pour protéger
-              durablement vos façades et fondations.
-            </p>
-            <p>
-              Enfin, pour améliorer votre confort et réduire vos factures d&apos;énergie à{" "}
-              {city.name}, nous assurons l&apos;<strong>isolation de toiture</strong> par
-              l&apos;extérieur (sarking) ou des combles, la pose de{" "}
-              <strong>fenêtres de toit</strong> et la création de{" "}
-              <strong>pergolas en bois</strong> sur mesure.
-            </p>
-            <p>
-              {city.name} ({city.cp})
-              {city.population
-                ? ` compte environ ${city.population.toLocaleString("fr-FR")} habitants`
-                : ""}
-              {city.epci ? ` et fait partie de ${city.epci}` : ""}, dans le département de{" "}
-              {city.departement || "la Haute-Garonne"}. Située à environ {city.distToulouse}{" "}
-              km de Toulouse et {city.distBessieres} km de notre atelier de Bessières, la
-              commune bénéficie d&apos;une intervention rapide.
-            </p>
+                {(cityContentMetier[city.slug] ?? buildMetierFallback(city)).map(
+                  (p, i) => (
+                    <p key={i}>{p}</p>
+                  ),
+                )}
               </div>
+              <Link
+                href={routes.cornerstone}
+                className="mt-5 inline-flex items-center gap-1 font-semibold text-orange hover:underline"
+              >
+                Charpentier couvreur à Toulouse →
+              </Link>
             </div>
           </div>
         </div>
