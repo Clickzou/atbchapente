@@ -8,6 +8,7 @@ import { serviceContent } from "@/lib/services";
 import type { ContentBlock } from "@/lib/articles/types";
 import ArticleRenderer from "@/components/ArticleRenderer";
 import ZoneMap from "@/components/ZoneMap";
+import IconsBackground from "@/components/IconsBackground";
 
 // Images par section, déclarées par slug de service. `match` est comparé (en
 // minuscules, "inclut") au titre du H2. La position gauche/droite est alternée
@@ -56,7 +57,14 @@ const SECTION_BENEFITS: Record<string, BenefitConf[]> = {
 
 // Sections « grille de cartes » : les items d'une liste deviennent des cartes
 // (icône + titre = label **gras** de l'item + texte = reste). En pleine largeur.
-type ListCardsConf = { match: string; icon?: ReactNode };
+// `split` : texte à gauche, cartes à droite (sinon grille pleine largeur).
+// `centered` : intro + callout centrés (grille pleine largeur).
+type ListCardsConf = {
+  match: string;
+  icon?: ReactNode;
+  split?: boolean;
+  centered?: boolean;
+};
 const SECTION_LISTCARDS: Record<string, ListCardsConf[]> = {
   "pose-changement-gouttieres-zinc": [
     {
@@ -68,11 +76,13 @@ const SECTION_LISTCARDS: Record<string, ListCardsConf[]> = {
   "pose-remaniement-tuiles": [
     {
       match: "la couverture en tuiles",
+      split: true,
       // Toit en tuiles (rangées)
       icon: <path d="M3 11l9-7 9 7M5 10v10h14V10M5 13.5h14M5 17h14" />,
     },
     {
       match: "quand faut-il remanier",
+      centered: true,
       // Triangle d'alerte
       icon: <path d="M12 3l9 16H3z M12 10v4 M12 17h.01" />,
     },
@@ -89,6 +99,9 @@ const SECTION_TIMELINE: Record<string, string[]> = {
 // de zone (sous le titre « Zone d'intervention »). Évite une section en double.
 const ZONE_HEADINGS: Record<string, string> = {
   "pose-changement-gouttieres-zinc": "vos gouttières zinc à toulouse",
+  "pose-remaniement-tuiles": "couvreur à toulouse",
+  "creation-fenetre-de-toit-bois": "pose de fenêtre de toit à toulouse",
+  "creation-pergola-bois": "création de pergola en bois à toulouse",
 };
 
 // Sépare le label en gras de tête (« **Titre** reste ») du reste du texte.
@@ -302,6 +315,8 @@ export default async function ServicePage({
     duoBlocks?: ContentBlock[][];
     benefitIcon?: ReactNode;
     listIcon?: ReactNode;
+    listSplit?: boolean;
+    listCentered?: boolean;
   }[] = [];
   if (isCharpente) sections.push({ kind: "cards" });
   const consumed = new Set<number>();
@@ -334,7 +349,13 @@ export default async function ServicePage({
     }
     const lc = listCardsConf.find((c) => headText.includes(c.match));
     if (lc) {
-      sections.push({ kind: "listcards", blocks: g, listIcon: lc.icon });
+      sections.push({
+        kind: "listcards",
+        blocks: g,
+        listIcon: lc.icon,
+        listSplit: lc.split,
+        listCentered: lc.centered,
+      });
       continue;
     }
     if (timelineConf.some((m) => headText.includes(m))) {
@@ -649,8 +670,9 @@ export default async function ServicePage({
           const items =
             listBlock && listBlock.type === "list" ? listBlock.items : [];
           return (
-            <section key={i} className={bg}>
-              <div className="mx-auto max-w-3xl px-4 py-14 lg:px-8">
+            <section key={i} className={`relative overflow-hidden ${bg}`}>
+              <IconsBackground tone="dark" />
+              <div className="relative z-10 mx-auto max-w-3xl px-4 py-14 lg:px-8">
                 <ArticleRenderer blocks={preList} />
                 <ol className="mt-8">
                   {items.map((it, k) => {
@@ -691,48 +713,73 @@ export default async function ServicePage({
           const postList = listIdx === -1 ? [] : blocks.slice(listIdx + 1);
           const items =
             listBlock && listBlock.type === "list" ? listBlock.items : [];
+          const cardEls = items.map((it, k) => {
+            const { label, rest } = splitLabel(it);
+            return (
+              <div
+                key={k}
+                className="flex flex-col rounded-2xl border border-black/5 bg-white p-6 text-left shadow-sm"
+              >
+                <span className="mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-orange/10 text-orange">
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    {s.listIcon}
+                  </svg>
+                </span>
+                {label && (
+                  <h3 className="font-semibold text-anthracite">{label}</h3>
+                )}
+                <p className="mt-2 text-sm text-foreground/70">
+                  {renderInline(rest)}
+                </p>
+              </div>
+            );
+          });
+
+          if (s.listSplit) {
+            return (
+              <section key={i} className={bg}>
+                <div className="mx-auto max-w-[1600px] px-4 py-14 lg:px-12">
+                  <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-14">
+                    <div className="lg:order-1">
+                      <ArticleRenderer blocks={preList} />
+                      {postList.length > 0 && (
+                        <div className="mt-6">
+                          <ArticleRenderer blocks={postList} />
+                        </div>
+                      )}
+                    </div>
+                    <div className="grid gap-4 sm:grid-cols-2 lg:order-2">
+                      {cardEls}
+                    </div>
+                  </div>
+                </div>
+              </section>
+            );
+          }
+
+          const textWrap = s.listCentered
+            ? "mx-auto max-w-3xl text-center"
+            : "max-w-3xl";
           return (
             <section key={i} className={bg}>
               <div className="mx-auto max-w-[1600px] px-4 py-14 lg:px-12">
-                <div className="max-w-3xl">
+                <div className={textWrap}>
                   <ArticleRenderer blocks={preList} />
                 </div>
                 <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                  {items.map((it, k) => {
-                    const { label, rest } = splitLabel(it);
-                    return (
-                      <div
-                        key={k}
-                        className="flex flex-col rounded-2xl border border-black/5 bg-white p-6 shadow-sm"
-                      >
-                        <span className="mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-orange/10 text-orange">
-                          <svg
-                            width="22"
-                            height="22"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            {s.listIcon}
-                          </svg>
-                        </span>
-                        {label && (
-                          <h3 className="font-semibold text-anthracite">
-                            {label}
-                          </h3>
-                        )}
-                        <p className="mt-2 text-sm text-foreground/70">
-                          {renderInline(rest)}
-                        </p>
-                      </div>
-                    );
-                  })}
+                  {cardEls}
                 </div>
                 {postList.length > 0 && (
-                  <div className="mt-8 max-w-3xl">
+                  <div className={`mt-8 ${textWrap}`}>
                     <ArticleRenderer blocks={postList} />
                   </div>
                 )}

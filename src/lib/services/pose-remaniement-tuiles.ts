@@ -87,11 +87,11 @@ export const content: ContentBlock[] = [
   {
     type: "list",
     items: [
-      "**Mousses et lichens** abondants : ils retiennent l'humidité, soulèvent les tuiles et accélèrent leur dégradation.",
-      "**Tuiles cassées, fissurées ou glissées** : visibles depuis le sol ou repérables après un coup de vent.",
-      "**Infiltrations et traces d'humidité** dans les combles, auréoles au plafond ou charpente qui noircit.",
-      "**Tuiles poreuses ou gélives** qui s'effritent et perdent leur étanchéité avec le gel et le temps.",
-      "**Faîtage descellé** ou solins fissurés au niveau des cheminées et des raccords.",
+      "**Mousses et lichens** Abondants, ils retiennent l'humidité, soulèvent les tuiles et accélèrent leur dégradation.",
+      "**Tuiles cassées, fissurées ou glissées** Visibles depuis le sol ou repérables après un coup de vent, elles laissent entrer l'eau.",
+      "**Infiltrations et traces d'humidité** Auréoles au plafond, combles humides ou charpente qui noircit : l'eau s'est déjà infiltrée.",
+      "**Tuiles poreuses ou gélives** Elles s'effritent et perdent leur étanchéité sous l'effet du gel et du temps.",
+      "**Faîtage descellé** Le scellement du faîtage ou les solins se fissurent au niveau des cheminées et des raccords.",
     ],
   },
   {
