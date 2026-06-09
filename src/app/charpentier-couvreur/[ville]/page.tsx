@@ -6,6 +6,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { site, services, routes } from "@/lib/site";
 import { cities, cityBySlug, type City } from "@/lib/zone-communes";
+import { cityContent } from "@/lib/city-content";
 
 export const dynamicParams = false;
 
@@ -95,7 +96,19 @@ export default async function VillePage({
     },
     {
       q: `Faut-il une autorisation pour refaire sa toiture à ${city.name} ?`,
-      a: `La réfection à l'identique ne nécessite en général qu'une déclaration préalable de travaux en mairie de ${city.name}. Nous vous conseillons sur les démarches selon votre projet.`,
+      a: `La réfection à l'identique ne nécessite en général qu'une déclaration préalable de travaux en mairie de ${city.name}. Pour une surélévation ou une modification de l'aspect (matériau, couleur des tuiles), des règles d'urbanisme locales (PLU) peuvent s'appliquer : nous vous conseillons sur les démarches selon votre projet.`,
+    },
+    {
+      q: `Quel est le prix d'une charpente ou d'une réfection de toiture à ${city.name} ?`,
+      a: `Le tarif dépend de la surface, de la pente, de l'état de l'existant, du type de tuiles et de l'accès au chantier. À ${city.name}, chaque devis est établi sur mesure après une visite gratuite, pour un prix juste et sans surprise.`,
+    },
+    {
+      q: `Intervenez-vous en urgence à ${city.name} (fuite, tempête) ?`,
+      a: `Oui. Après un coup de vent, une tempête ou en cas de fuite à ${city.name}, nous intervenons rapidement pour une mise hors d'eau et la réparation de votre toiture. Contactez-nous au ${site.contact.phone}.`,
+    },
+    {
+      q: `À quelle fréquence entretenir sa toiture à ${city.name} ?`,
+      a: `Un contrôle tous les ans et un démoussage tous les 5 à 10 ans prolongent nettement la durée de vie de votre couverture. Le climat de la région toulousaine (fortes chaleurs, orages) favorise mousses et déplacements de tuiles : un entretien régulier évite les infiltrations.`,
     },
   ];
 
@@ -146,33 +159,84 @@ export default async function VillePage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* En-tête */}
-      <section className="relative overflow-hidden bg-anthracite-dark text-white">
+      {/* HERO landing — plein écran, comme la home, avec réassurance */}
+      <section className="relative flex min-h-[100svh] items-center overflow-hidden bg-anthracite-dark text-white">
         <Image
           src={heroFor(city.slug)}
           alt={`Charpentier couvreur à ${city.name}`}
           fill
           priority
-          className="object-cover opacity-30"
+          className="object-cover"
           sizes="100vw"
         />
-        <div className="relative z-10 mx-auto max-w-4xl px-4 pb-16 pt-32 lg:px-8">
+        <div className="absolute inset-0 bg-gradient-to-r from-anthracite-dark/90 via-anthracite-dark/55 to-anthracite-dark/20" />
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-28 lg:px-8">
           <nav className="mb-4 text-sm text-white/60">
             <Link href="/" className="hover:text-orange">Accueil</Link> /{" "}
             <span className="text-white/90">Charpentier couvreur à {city.name}</span>
           </nav>
-          <h1 className="text-3xl font-bold sm:text-4xl lg:text-5xl">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-orange">
+            Charpentier couvreur · {city.cp}
+          </p>
+          <h1 className="max-w-3xl text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
             Charpentier couvreur à {city.name}
           </h1>
-          <p className="mt-4 max-w-2xl text-lg text-white/80">
-            Charpente, couverture, zinguerie et isolation de toiture à {city.name} (
-            {city.cp}). Artisan, garantie décennale, devis gratuit.
+          <p className="mt-5 max-w-2xl text-lg text-white/85">
+            Charpente, couverture, zinguerie et isolation de toiture à {city.name}. Artisan
+            de proximité, garantie décennale, devis gratuit et intervention rapide.
           </p>
+          <div className="mt-8 flex flex-wrap gap-4">
+            <Link
+              href={routes.contact}
+              className="rounded-full bg-orange px-7 py-3.5 font-semibold text-white transition-colors hover:bg-orange-dark"
+            >
+              Demander un devis gratuit
+            </Link>
+            <a
+              href={site.contact.phoneHref}
+              className="rounded-full border border-white/30 px-7 py-3.5 font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/10"
+            >
+              {site.contact.phone}
+            </a>
+          </div>
+
+          {/* Réassurance */}
+          <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-5">
+            <div>
+              <p className="text-3xl font-bold text-orange">
+                20<span className="text-xl"> ans</span>
+              </p>
+              <p className="text-sm text-white/70">d&apos;expérience</p>
+            </div>
+            <span className="h-10 w-px bg-white/20" aria-hidden />
+            <div>
+              <p className="text-3xl font-bold text-orange">
+                130<span className="text-xl">+</span>
+              </p>
+              <p className="text-sm text-white/70">chantiers réalisés</p>
+            </div>
+            <span className="hidden h-10 w-px bg-white/20 sm:block" aria-hidden />
+            <div className="flex items-center gap-2.5 rounded-full bg-white/10 px-4 py-2 ring-1 ring-white/15 backdrop-blur">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-orange">
+                <path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" strokeLinejoin="round" />
+                <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <span className="text-sm font-semibold text-white">Garantie décennale</span>
+            </div>
+          </div>
         </div>
       </section>
 
       <article className="mx-auto max-w-5xl px-4 py-14 lg:px-8">
-        <p className="text-lg leading-relaxed text-foreground/85">{buildIntro(city)}</p>
+        {cityContent[city.slug] ? (
+          <div className="space-y-4 text-lg leading-relaxed text-foreground/85">
+            {cityContent[city.slug].map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </div>
+        ) : (
+          <p className="text-lg leading-relaxed text-foreground/85">{buildIntro(city)}</p>
+        )}
 
         {/* Infos clés — cartes mettant en valeur les données réelles */}
         <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
@@ -220,6 +284,52 @@ export default async function VillePage({
                 </div>
               );
             })}
+        </div>
+
+        {/* Travaux détaillés — texte SEO localisé */}
+        <h2 className="mt-14 text-2xl font-bold text-anthracite">
+          Charpente, couverture et zinguerie à {city.name}
+        </h2>
+        <div className="mt-4 space-y-4 text-foreground/80">
+          <p>
+            En tant que charpentier couvreur intervenant à{" "}
+            <Link href="/" className="font-medium text-orange hover:underline">
+              Toulouse
+            </Link>{" "}
+            et jusqu&apos;à {city.name}, ATB Charpente couvre l&apos;ensemble de vos
+            besoins de toiture, du gros œuvre à la finition.
+          </p>
+          <p>
+            À {city.name}, nous réalisons la <strong>création et la rénovation de
+            charpentes bois</strong> : charpente traditionnelle, fermettes et ossature
+            bois. Nos charpentiers interviennent sur les constructions neuves comme sur
+            la restauration de charpentes anciennes — renforcement, remplacement de
+            pièces, traitement curatif contre les insectes xylophages (capricornes,
+            vrillettes) et les champignons. Chaque ouvrage est dimensionné pour garantir
+            la solidité et la durabilité de votre toiture.
+          </p>
+          <p>
+            La <strong>couverture</strong> protège votre maison des intempéries. À{" "}
+            {city.name}, nous posons et rénovons les toitures en tuiles — tuiles canal et
+            romanes en terre cuite, typiques de la région toulousaine, comme les tuiles
+            mécaniques. Réfection complète, remaniement, remplacement de tuiles cassées,
+            démoussage et traitement hydrofuge : nous redonnons étanchéité et esthétique
+            à votre toit, dans le respect du style local.
+          </p>
+          <p>
+            Côté <strong>zinguerie</strong>, une bonne évacuation des eaux de pluie est
+            indispensable. Nous installons et remplaçons vos gouttières en zinc, réputées
+            pour leur durabilité, ainsi que les descentes, noues, solins et habillages de
+            rives, et traitons les gouttières qui débordent ou fuient pour protéger
+            durablement vos façades et fondations.
+          </p>
+          <p>
+            Enfin, pour améliorer votre confort et réduire vos factures d&apos;énergie à{" "}
+            {city.name}, nous assurons l&apos;<strong>isolation de toiture</strong> par
+            l&apos;extérieur (sarking) ou des combles, la pose de{" "}
+            <strong>fenêtres de toit</strong> et la création de{" "}
+            <strong>pergolas en bois</strong> sur mesure.
+          </p>
         </div>
 
         {/* Prestations — cartes */}
