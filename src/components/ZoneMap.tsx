@@ -100,7 +100,7 @@ export default function ZoneMap() {
 
       {/* Carte */}
       <div
-        className="relative w-full overflow-hidden rounded-2xl bg-white"
+        className="relative w-full overflow-hidden rounded-2xl bg-transparent"
         style={{ aspectRatio: data ? `${data.width} / ${data.height}` : "1 / 1" }}
       >
         {!data && (

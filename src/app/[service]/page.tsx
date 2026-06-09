@@ -11,7 +11,7 @@ import ZoneMap from "@/components/ZoneMap";
 // Image illustrant certaines sections (gauche ou droite du texte), par titre de H2.
 function sectionImageFor(
   heading: string,
-): { src: string; side: "left" | "right" } | null {
+): { src: string; side: "left" | "right"; bg?: string } | null {
   const h = heading.toLowerCase();
   if (h.includes("création d'une charpente bois neuve"))
     return { src: "/images/charpente-neuve.jpg", side: "left" };
@@ -19,6 +19,12 @@ function sectionImageFor(
     return { src: "/images/renovation-charpente-bois.jpg", side: "right" };
   if (h.includes("extension et surélévation"))
     return { src: "/images/extension-charpente-bois.jpg", side: "left" };
+  if (h.includes("pourquoi choisir"))
+    return {
+      src: "/images/realisations/zone-intervention-atb-construction.jpg",
+      side: "right",
+      bg: "#F9EBDE",
+    };
   return null;
 }
 
@@ -294,7 +300,11 @@ export default async function ServicePage({
         const img = head.type === "heading" ? sectionImageFor(head.text) : null;
         if (img) {
           return (
-            <section key={i} className={bg}>
+            <section
+              key={i}
+              className={img.bg ? "" : bg}
+              style={img.bg ? { backgroundColor: img.bg } : undefined}
+            >
               <div className="mx-auto max-w-[1600px] px-4 py-14 lg:px-12">
                 <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-14">
                   <div className={`order-2 ${img.side === "left" ? "lg:order-1" : "lg:order-2"}`}>
