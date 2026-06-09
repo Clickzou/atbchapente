@@ -31,6 +31,9 @@ const SECTION_IMAGES: Record<string, SectionImage[]> = {
     { match: "la pose neuve de gouttières", src: "/images/gouttiere-zinc.jpg", side: "right" },
     { match: "remplacement et rénovation de gouttières", src: "/images/remplacement-gouttiere.jpg", side: "left" },
   ],
+  "pose-remaniement-tuiles": [
+    { match: "le remaniement et la réfection", src: "/images/refection-tuiles.jpg", side: "right" },
+  ],
   // Les autres services seront renseignés page par page.
 };
 
@@ -68,7 +71,18 @@ const SECTION_LISTCARDS: Record<string, ListCardsConf[]> = {
       // Toit en tuiles (rangées)
       icon: <path d="M3 11l9-7 9 7M5 10v10h14V10M5 13.5h14M5 17h14" />,
     },
+    {
+      match: "quand faut-il remanier",
+      // Triangle d'alerte
+      icon: <path d="M12 3l9 16H3z M12 10v4 M12 17h.01" />,
+    },
   ],
+};
+
+// Sections « timeline » : la liste (ordonnée) d'étapes devient une frise
+// verticale numérotée et reliée. Indexé par slug.
+const SECTION_TIMELINE: Record<string, string[]> = {
+  "pose-remaniement-tuiles": ["la pose de tuiles neuves"],
 };
 
 // Par service : fragment de titre H2 dont le contenu alimente la section carte
@@ -269,6 +283,7 @@ export default async function ServicePage({
   const compareConf = SECTION_COMPARE[data.slug] ?? [];
   const duoConf = SECTION_DUO[data.slug] ?? [];
   const listCardsConf = SECTION_LISTCARDS[data.slug] ?? [];
+  const timelineConf = SECTION_TIMELINE[data.slug] ?? [];
   let imgCount = 0;
   const sections: {
     kind:
@@ -279,7 +294,8 @@ export default async function ServicePage({
       | "benefits"
       | "compare"
       | "duo"
-      | "listcards";
+      | "listcards"
+      | "timeline";
     blocks?: ContentBlock[];
     img?: { src: string; side: "left" | "right"; bg?: string };
     compare?: CompareConf;
@@ -319,6 +335,10 @@ export default async function ServicePage({
     const lc = listCardsConf.find((c) => headText.includes(c.match));
     if (lc) {
       sections.push({ kind: "listcards", blocks: g, listIcon: lc.icon });
+      continue;
+    }
+    if (timelineConf.some((m) => headText.includes(m))) {
+      sections.push({ kind: "timeline", blocks: g });
       continue;
     }
     const conf = imgConf.find((c) => headText.includes(c.match));
@@ -616,6 +636,49 @@ export default async function ServicePage({
                     );
                   })}
                 </div>
+              </div>
+            </section>
+          );
+        }
+        if (s.kind === "timeline") {
+          const blocks = s.blocks!;
+          const listIdx = blocks.findIndex((b) => b.type === "list");
+          const preList = listIdx === -1 ? blocks : blocks.slice(0, listIdx);
+          const listBlock = listIdx === -1 ? undefined : blocks[listIdx];
+          const postList = listIdx === -1 ? [] : blocks.slice(listIdx + 1);
+          const items =
+            listBlock && listBlock.type === "list" ? listBlock.items : [];
+          return (
+            <section key={i} className={bg}>
+              <div className="mx-auto max-w-3xl px-4 py-14 lg:px-8">
+                <ArticleRenderer blocks={preList} />
+                <ol className="mt-8">
+                  {items.map((it, k) => {
+                    const { label, rest } = splitLabel(it);
+                    const last = k === items.length - 1;
+                    return (
+                      <li key={k} className="flex gap-5">
+                        <div className="flex flex-col items-center">
+                          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-orange text-sm font-bold text-white">
+                            {k + 1}
+                          </span>
+                          {!last && <span className="my-1 w-0.5 flex-1 bg-orange/25" />}
+                        </div>
+                        <div className={last ? "pt-1.5" : "pb-8 pt-1.5"}>
+                          {label && (
+                            <h3 className="font-semibold text-anthracite">{label}</h3>
+                          )}
+                          <p className="text-foreground/75">{renderInline(rest)}</p>
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ol>
+                {postList.length > 0 && (
+                  <div className="mt-4">
+                    <ArticleRenderer blocks={postList} />
+                  </div>
+                )}
               </div>
             </section>
           );
