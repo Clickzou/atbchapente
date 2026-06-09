@@ -8,6 +8,13 @@ import type { ContentBlock } from "@/lib/articles/types";
 import ArticleRenderer from "@/components/ArticleRenderer";
 import ZoneMap from "@/components/ZoneMap";
 
+// Image illustrant certaines sections (à gauche du texte), par titre de H2.
+function sectionImageFor(heading: string): string | null {
+  const h = heading.toLowerCase();
+  if (h.includes("création d'une charpente bois neuve")) return "/images/charpente-neuve.jpg";
+  return null;
+}
+
 // Cartes « types de charpente » (page charpente uniquement).
 const CHARPENTE_TYPES = [
   {
@@ -271,6 +278,30 @@ export default async function ServicePage({
                 )}
                 <div className="mt-8">
                   <ZoneMap />
+                </div>
+              </div>
+            </section>
+          );
+        }
+        const head = s.blocks![0];
+        const img = head.type === "heading" ? sectionImageFor(head.text) : null;
+        if (img) {
+          return (
+            <section key={i} className={bg}>
+              <div className="mx-auto max-w-[1600px] px-4 py-14 lg:px-12">
+                <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-14">
+                  <div className="order-2 lg:order-1">
+                    <Image
+                      src={img}
+                      alt={head.type === "heading" ? head.text : ""}
+                      width={900}
+                      height={650}
+                      className="h-auto w-full rounded-2xl"
+                    />
+                  </div>
+                  <div className="order-1 lg:order-2">
+                    <ArticleRenderer blocks={s.blocks!} />
+                  </div>
                 </div>
               </div>
             </section>
