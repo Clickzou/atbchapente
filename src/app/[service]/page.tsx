@@ -36,6 +36,9 @@ const SECTION_IMAGES: Record<string, SectionImage[]> = {
     { match: "étanchéité et raccords", src: "/images/fenetre-de-toit.jpg", side: "right" },
     { match: "aménagement et confort des combles", src: "/images/fenetres/amenagement-combles.jpg", side: "left" },
   ],
+  "creation-pergola-bois": [
+    { match: "essences de bois et traitements", src: "/images/pergolas/essences-bois.jpg", side: "right" },
+  ],
   "pose-remaniement-tuiles": [
     { match: "le remaniement et la réfection", src: "/images/refection-tuiles.jpg", side: "right" },
     { match: "démoussage et entretien", src: "/images/nettoyage-tuiles.jpg", side: "left" },
@@ -49,7 +52,8 @@ const SECTION_IMAGES: Record<string, SectionImage[]> = {
 // comparé (minuscules, "inclut") au titre H2.
 // `icon` (optionnel) remplace l'icône cyclée par une icône unique pour toutes
 // les cartes de la section (utile pour des « composants » plutôt que bénéfices).
-type BenefitConf = { match: string; icon?: ReactNode };
+// `cardsSide` : côté des cartes (défaut "right" = texte gauche / cartes droite).
+type BenefitConf = { match: string; icon?: ReactNode; cardsSide?: "left" | "right" };
 const SECTION_BENEFITS: Record<string, BenefitConf[]> = {
   "isolation-toiture": [{ match: "pourquoi isoler sa toiture" }],
   "pose-changement-gouttieres-zinc": [
@@ -64,6 +68,14 @@ const SECTION_BENEFITS: Record<string, BenefitConf[]> = {
       match: "pourquoi installer une fenêtre de toit",
       // Fenêtre de toit
       icon: <path d="M4 4h16v16H4z M12 4v16 M4 12h16" />,
+    },
+  ],
+  "creation-pergola-bois": [
+    {
+      match: "pourquoi choisir une pergola",
+      cardsSide: "left",
+      // Pergola (poteaux + traverses)
+      icon: <path d="M4 8v12M20 8v12M3 8h18M3 8l2-3h14l2 3M8 8v6M12 8v6M16 8v6" />,
     },
   ],
 };
@@ -84,6 +96,13 @@ const SECTION_LISTCARDS: Record<string, ListCardsConf[]> = {
       match: "les signes d'usure",
       // Triangle d'alerte
       icon: <path d="M12 3l9 16H3z M12 10v4 M12 17h.01" />,
+    },
+  ],
+  "creation-pergola-bois": [
+    {
+      match: "l'entretien de votre pergola",
+      // Éclat / entretien
+      icon: <path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" />,
     },
   ],
   "pose-remaniement-tuiles": [
@@ -107,13 +126,16 @@ const SECTION_LISTCARDS: Record<string, ListCardsConf[]> = {
 const SECTION_TIMELINE: Record<string, string[]> = {
   "pose-remaniement-tuiles": ["la pose de tuiles neuves"],
   "creation-fenetre-de-toit-bois": ["les étapes de la pose"],
+  "creation-pergola-bois": ["les étapes de conception et de fabrication"],
 };
 
 // Sections « cartes-photo » : items de liste rendus en cartes avec photo (haut),
 // titre (label gras) et texte. `images[k]` = photo de la k-ième carte.
+// `fromHeadings` : cartes construites depuis les sous-titres H3 (titre + paragraphes)
+// au lieu des items de liste. `split` : cartes à gauche, texte à droite.
 const SECTION_PHOTOCARDS: Record<
   string,
-  { match: string; images: string[]; split?: boolean }[]
+  { match: string; images: string[]; split?: boolean; fromHeadings?: boolean }[]
 > = {
   "creation-fenetre-de-toit-bois": [
     {
@@ -124,6 +146,70 @@ const SECTION_PHOTOCARDS: Record<
         "/images/fenetres/projection.jpg",
         "/images/fenetres/combinees.jpg",
         "/images/fenetres/volet.jpg",
+      ],
+    },
+  ],
+  "creation-pergola-bois": [
+    {
+      match: "les différents types de pergolas",
+      fromHeadings: true,
+      images: [
+        "/images/pergolas/adossee.jpg",
+        "/images/pergolas/autoportee.jpg",
+        "/images/pergolas/bioclimatique.jpg",
+      ],
+    },
+  ],
+};
+
+// Sections « avantages / inconvénients » : deux cartes (ou plus) au contenu
+// rédigé en config, avec listes ✓ (avantages) et ✗ (inconvénients).
+type ProsConsCard = {
+  title: string;
+  badge?: string;
+  recommended?: boolean;
+  pros: string[];
+  cons: string[];
+};
+const SECTION_PROSCONS: Record<
+  string,
+  { match: string; cards: ProsConsCard[] }[]
+> = {
+  "creation-pergola-bois": [
+    {
+      match: "pergola sur mesure ou pergola en kit",
+      cards: [
+        {
+          title: "Pergola en kit",
+          badge: "Économique",
+          pros: [
+            "Prix d'achat réduit",
+            "Disponible immédiatement en grande surface",
+            "Montage possible soi-même",
+          ],
+          cons: [
+            "Dimensions standardisées, peu adaptables",
+            "Bois et finitions de qualité variable",
+            "Ancrage sommaire, moins résistant au vent",
+            "S'intègre rarement à la configuration du terrain",
+          ],
+        },
+        {
+          title: "Pergola bois sur mesure",
+          badge: "Notre recommandation",
+          recommended: true,
+          pros: [
+            "Conçue pour votre terrain : pente, orientation et usages",
+            "Proportions justes et intégration parfaite au bâti",
+            "Assemblages soignés et ancrage dimensionné contre le vent",
+            "Bois sélectionné pour sa durabilité",
+            "Valorise l'espace, même une petite terrasse",
+          ],
+          cons: [
+            "Budget plus élevé qu'un modèle en kit",
+            "Délai de fabrication à prévoir",
+          ],
+        },
       ],
     },
   ],
@@ -342,6 +428,7 @@ export default async function ServicePage({
   const listCardsConf = SECTION_LISTCARDS[data.slug] ?? [];
   const timelineConf = SECTION_TIMELINE[data.slug] ?? [];
   const photoCardsConf = SECTION_PHOTOCARDS[data.slug] ?? [];
+  const prosConsConf = SECTION_PROSCONS[data.slug] ?? [];
   const bgConf = SECTION_BG[data.slug] ?? [];
   let imgCount = 0;
   const sections: {
@@ -355,17 +442,21 @@ export default async function ServicePage({
       | "duo"
       | "listcards"
       | "timeline"
-      | "photocards";
+      | "photocards"
+      | "proscons";
     blocks?: ContentBlock[];
     img?: { src: string; side: "left" | "right"; bg?: string };
     compare?: CompareConf;
     duoBlocks?: ContentBlock[][];
     benefitIcon?: ReactNode;
+    benefitCardsSide?: "left" | "right";
     listIcon?: ReactNode;
     listSplit?: boolean;
     listCentered?: boolean;
     photoImages?: string[];
     photoSplit?: boolean;
+    photoFromHeadings?: boolean;
+    prosCons?: ProsConsCard[];
     customBg?: string;
   }[] = [];
   if (isCharpente) sections.push({ kind: "cards" });
@@ -392,9 +483,19 @@ export default async function ServicePage({
       sections.push({ kind: "compare", blocks: g, compare: cmp });
       continue;
     }
+    const prc = prosConsConf.find((c) => headText.includes(c.match));
+    if (prc) {
+      sections.push({ kind: "proscons", blocks: g, prosCons: prc.cards });
+      continue;
+    }
     const ben = benefitConf.find((c) => headText.includes(c.match));
     if (ben) {
-      sections.push({ kind: "benefits", blocks: g, benefitIcon: ben.icon });
+      sections.push({
+        kind: "benefits",
+        blocks: g,
+        benefitIcon: ben.icon,
+        benefitCardsSide: ben.cardsSide,
+      });
       continue;
     }
     const lc = listCardsConf.find((c) => headText.includes(c.match));
@@ -419,6 +520,7 @@ export default async function ServicePage({
         blocks: g,
         photoImages: pc.images,
         photoSplit: pc.split,
+        photoFromHeadings: pc.fromHeadings,
       });
       continue;
     }
@@ -602,6 +704,107 @@ export default async function ServicePage({
             </section>
           );
         }
+        if (s.kind === "proscons") {
+          const blocks = s.blocks!;
+          const h2 = blocks.find((b) => b.type === "heading" && b.level === 2);
+          const callout = blocks.find((b) => b.type === "callout");
+          const cards = s.prosCons ?? [];
+          return (
+            <section key={i} className={bg}>
+              <div className="mx-auto max-w-[1600px] px-4 py-14 lg:px-12">
+                {h2 && h2.type === "heading" && (
+                  <h2 className="mx-auto max-w-3xl text-center text-3xl font-bold text-anthracite">
+                    {h2.text}
+                  </h2>
+                )}
+                <div className="mt-10 grid gap-6 md:grid-cols-2">
+                  {cards.map((c, k) => (
+                    <div
+                      key={k}
+                      className={`flex flex-col rounded-2xl border bg-white p-7 shadow-sm ${
+                        c.recommended
+                          ? "border-orange ring-1 ring-orange/30"
+                          : "border-black/5"
+                      }`}
+                    >
+                      {c.badge && (
+                        <span
+                          className={`mb-3 inline-block w-fit rounded-full px-3 py-1 text-xs font-semibold ${
+                            c.recommended
+                              ? "bg-orange text-white"
+                              : "bg-muted text-foreground/70"
+                          }`}
+                        >
+                          {c.badge}
+                        </span>
+                      )}
+                      <h3 className="text-xl font-bold text-anthracite">
+                        {c.title}
+                      </h3>
+                      <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-foreground/50">
+                        Avantages
+                      </p>
+                      <ul className="mt-2 space-y-2">
+                        {c.pros.map((p, j) => (
+                          <li
+                            key={j}
+                            className="flex items-start gap-2 text-sm text-foreground/80"
+                          >
+                            <svg
+                              className="mt-0.5 shrink-0 text-orange"
+                              width="18"
+                              height="18"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
+                              <path d="M5 12l5 5L20 7" />
+                            </svg>
+                            <span>{p}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <p className="mt-5 text-xs font-semibold uppercase tracking-wide text-foreground/50">
+                        Inconvénients
+                      </p>
+                      <ul className="mt-2 space-y-2">
+                        {c.cons.map((p, j) => (
+                          <li
+                            key={j}
+                            className="flex items-start gap-2 text-sm text-foreground/80"
+                          >
+                            <svg
+                              className="mt-0.5 shrink-0 text-red-500"
+                              width="18"
+                              height="18"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
+                              <path d="M6 6l12 12M18 6L6 18" />
+                            </svg>
+                            <span>{p}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+                {callout && (
+                  <div className="mx-auto mt-8 max-w-3xl">
+                    <ArticleRenderer blocks={[callout]} />
+                  </div>
+                )}
+              </div>
+            </section>
+          );
+        }
         if (s.kind === "compare") {
           const blocks = s.blocks!;
           const h2 = blocks[0];
@@ -724,43 +927,78 @@ export default async function ServicePage({
         }
         if (s.kind === "photocards") {
           const blocks = s.blocks!;
-          const listIdx = blocks.findIndex((b) => b.type === "list");
-          const preList = listIdx === -1 ? blocks : blocks.slice(0, listIdx);
-          const listBlock = listIdx === -1 ? undefined : blocks[listIdx];
-          const postList = listIdx === -1 ? [] : blocks.slice(listIdx + 1);
-          const items =
-            listBlock && listBlock.type === "list" ? listBlock.items : [];
           const imgs = s.photoImages ?? [];
-          const photoCardEls = items.map((it, k) => {
-            const { label, rest } = splitLabel(it);
-            const src = imgs[k];
-            return (
-              <div
-                key={k}
-                className="flex flex-col overflow-hidden rounded-2xl border border-black/5 bg-white shadow-sm"
-              >
-                {src && (
-                  <div className="relative h-44">
-                    <Image
-                      src={src}
-                      alt={label || data.title}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 25vw"
-                    />
-                  </div>
-                )}
-                <div className="flex flex-1 flex-col p-5">
-                  {label && (
-                    <h3 className="font-semibold text-anthracite">{label}</h3>
-                  )}
+          let preList: ContentBlock[];
+          let postList: ContentBlock[] = [];
+          let cardData: { src?: string; title: string; body: ReactNode }[] = [];
+
+          if (s.photoFromHeadings) {
+            // Cartes construites depuis les sous-titres H3 (titre + paragraphes).
+            const firstH3 = blocks.findIndex(
+              (b) => b.type === "heading" && b.level === 3,
+            );
+            preList = firstH3 === -1 ? blocks : blocks.slice(0, firstH3);
+            const subs: ContentBlock[][] = [];
+            for (const b of firstH3 === -1 ? [] : blocks.slice(firstH3)) {
+              if (b.type === "heading" && b.level === 3) subs.push([b]);
+              else if (subs.length) subs[subs.length - 1].push(b);
+            }
+            cardData = subs.map((sub, k) => ({
+              src: imgs[k],
+              title: sub[0].type === "heading" ? sub[0].text : "",
+              body: (
+                <div className="mt-2 [&_p]:text-sm [&_p]:text-foreground/70 [&_p+p]:mt-3">
+                  <ArticleRenderer blocks={sub.slice(1)} />
+                </div>
+              ),
+            }));
+          } else {
+            const listIdx = blocks.findIndex((b) => b.type === "list");
+            preList = listIdx === -1 ? blocks : blocks.slice(0, listIdx);
+            const listBlock = listIdx === -1 ? undefined : blocks[listIdx];
+            postList = listIdx === -1 ? [] : blocks.slice(listIdx + 1);
+            const items =
+              listBlock && listBlock.type === "list" ? listBlock.items : [];
+            cardData = items.map((it, k) => {
+              const { label, rest } = splitLabel(it);
+              return {
+                src: imgs[k],
+                title: label,
+                body: (
                   <p className="mt-2 text-sm text-foreground/70">
                     {renderInline(rest)}
                   </p>
+                ),
+              };
+            });
+          }
+
+          const photoCardEls = cardData.map((c, k) => (
+            <div
+              key={k}
+              className="flex flex-col overflow-hidden rounded-2xl border border-black/5 bg-white shadow-sm"
+            >
+              {c.src && (
+                <div className="relative h-48">
+                  <Image
+                    src={c.src}
+                    alt={c.title || data.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
                 </div>
+              )}
+              <div className="flex flex-1 flex-col p-5">
+                {c.title && (
+                  <h3 className="font-semibold text-anthracite">{c.title}</h3>
+                )}
+                {c.body}
               </div>
-            );
-          });
+            </div>
+          ));
+          const gridCols =
+            cardData.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4";
 
           if (s.photoSplit) {
             return (
@@ -790,7 +1028,7 @@ export default async function ServicePage({
                 <div className="max-w-3xl">
                   <ArticleRenderer blocks={preList} />
                 </div>
-                <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                <div className={`mt-8 grid gap-6 sm:grid-cols-2 ${gridCols}`}>
                   {photoCardEls}
                 </div>
                 {postList.length > 0 && (
@@ -934,14 +1172,15 @@ export default async function ServicePage({
           const textBlocks = blocks.filter((b) => b.type !== "list");
           const items =
             listBlock && listBlock.type === "list" ? listBlock.items : [];
+          const cardsLeft = s.benefitCardsSide === "left";
           return (
             <section key={i} className={bg}>
               <div className="mx-auto max-w-[1600px] px-4 py-14 lg:px-12">
                 <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-14">
-                  <div>
+                  <div className={cardsLeft ? "lg:order-2" : "lg:order-1"}>
                     <ArticleRenderer blocks={textBlocks} />
                   </div>
-                  <div className="grid gap-4">
+                  <div className={`grid gap-4 ${cardsLeft ? "lg:order-1" : "lg:order-2"}`}>
                     {items.map((it, k) => (
                       <div
                         key={k}
