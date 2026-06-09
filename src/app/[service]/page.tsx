@@ -59,7 +59,7 @@ function getService(slug: string) {
 // Croquis (dessin au trait) associé à chaque service.
 const CROQUIS: Record<string, string> = {
   "creation-charpente-bois-renovation": "charpente-neuve.jpg",
-  "isolation-toiture": "croquis-maison.jpg",
+  "isolation-toiture": "isolation-toiture.webp",
   "pose-changement-gouttieres-zinc": "croquis-toiture.jpg",
   "pose-remaniement-tuiles": "croquis-toiture.jpg",
   "creation-fenetre-de-toit-bois": "croquis-maison.jpg",
