@@ -25,6 +25,7 @@ const SECTION_IMAGES: Record<string, SectionImage[]> = {
   "isolation-toiture": [
     { match: "isolation des combles perdus", src: "/images/realisations/IMG-20250403-WA0018.jpg", side: "right" },
     { match: "quels isolants pour votre toiture", src: "/images/isolation-toit.jpg", side: "left" },
+    { match: "votre artisan pour l'isolation", src: "/images/realisations/zone-intervention-atb-construction.jpg", side: "right", bg: "#F9EBDE" },
   ],
   // Les autres services seront renseignés page par page.
 };
@@ -74,6 +75,12 @@ const SECTION_COMPARE: Record<string, CompareConf[]> = {
       consCard: 1,
     },
   ],
+};
+
+// Sections « duo » : deux H2 consécutifs fusionnés en une seule section à deux
+// cartes côte à côte. Chaque paire = [match du 1er H2, match du 2e H2].
+const SECTION_DUO: Record<string, [string, string][]> = {
+  "isolation-toiture": [["les bénéfices concrets", "aides financières"]],
 };
 
 // Icônes (par index de carte) pour les sections comparaison.
@@ -185,35 +192,44 @@ export default async function ServicePage({
   const imgConf = SECTION_IMAGES[data.slug] ?? [];
   const benefitConf = SECTION_BENEFITS[data.slug] ?? [];
   const compareConf = SECTION_COMPARE[data.slug] ?? [];
+  const duoConf = SECTION_DUO[data.slug] ?? [];
   let imgCount = 0;
   const sections: {
-    kind: "cards" | "blocks" | "faq" | "zone" | "benefits" | "compare";
+    kind: "cards" | "blocks" | "faq" | "zone" | "benefits" | "compare" | "duo";
     blocks?: ContentBlock[];
     img?: { src: string; side: "left" | "right"; bg?: string };
     compare?: CompareConf;
+    duoBlocks?: ContentBlock[][];
   }[] = [];
   if (isCharpente) sections.push({ kind: "cards" });
-  for (const g of mainGroups) {
+  const consumed = new Set<number>();
+  for (let gi = 0; gi < mainGroups.length; gi++) {
+    if (consumed.has(gi)) continue;
+    const g = mainGroups[gi];
     const head = g[0];
-    const cmp =
-      head.type === "heading"
-        ? compareConf.find((c) => head.text.toLowerCase().includes(c.match))
-        : undefined;
+    const headText = head.type === "heading" ? head.text.toLowerCase() : "";
+
+    // Duo : fusion de deux H2 consécutifs en une section à deux cartes.
+    const duo = duoConf.find(([a]) => headText.includes(a));
+    const next = mainGroups[gi + 1];
+    const nextText =
+      next && next[0].type === "heading" ? next[0].text.toLowerCase() : "";
+    if (duo && next && nextText.includes(duo[1])) {
+      sections.push({ kind: "duo", duoBlocks: [g, next] });
+      consumed.add(gi + 1);
+      continue;
+    }
+
+    const cmp = compareConf.find((c) => headText.includes(c.match));
     if (cmp) {
       sections.push({ kind: "compare", blocks: g, compare: cmp });
       continue;
     }
-    if (
-      head.type === "heading" &&
-      benefitConf.some((m) => head.text.toLowerCase().includes(m))
-    ) {
+    if (benefitConf.some((m) => headText.includes(m))) {
       sections.push({ kind: "benefits", blocks: g });
       continue;
     }
-    const conf =
-      head.type === "heading"
-        ? imgConf.find((c) => head.text.toLowerCase().includes(c.match))
-        : undefined;
+    const conf = imgConf.find((c) => headText.includes(c.match));
     let img;
     if (conf) {
       img = {
@@ -360,6 +376,33 @@ export default async function ServicePage({
                       </div>
                     </div>
                   ))}
+                </div>
+              </div>
+            </section>
+          );
+        }
+        if (s.kind === "duo") {
+          return (
+            <section key={i} className={bg}>
+              <div className="mx-auto max-w-[1600px] px-4 py-14 lg:px-12">
+                <div className="grid gap-6 md:grid-cols-2 md:items-stretch">
+                  {s.duoBlocks!.map((grp, k) => {
+                    const title = grp[0].type === "heading" ? grp[0].text : "";
+                    const rest = grp.slice(1);
+                    return (
+                      <div
+                        key={k}
+                        className="flex flex-col rounded-2xl border border-black/5 bg-white p-7 shadow-sm"
+                      >
+                        <h2 className="text-2xl font-bold text-anthracite">
+                          {title}
+                        </h2>
+                        <div className="mt-3">
+                          <ArticleRenderer blocks={rest} />
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </section>
