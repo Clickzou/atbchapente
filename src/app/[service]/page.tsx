@@ -13,13 +13,17 @@ import ZoneMap from "@/components/ZoneMap";
 // minuscules, "inclut") au titre du H2. La position gauche/droite est alternée
 // automatiquement selon l'ordre d'apparition des sections illustrées.
 // Pour répliquer la mise en page sur un autre service : ajouter ses entrées ici.
-type SectionImage = { match: string; src: string; bg?: string };
+// `side` (optionnel) fige le côté de l'image ; sinon alternance auto.
+type SectionImage = { match: string; src: string; bg?: string; side?: "left" | "right" };
 const SECTION_IMAGES: Record<string, SectionImage[]> = {
   "creation-charpente-bois-renovation": [
     { match: "création d'une charpente bois neuve", src: "/images/realisations/creation-charpente.jpg" },
     { match: "rénovation et renforcement", src: "/images/renovation-charpente-bois.jpg" },
     { match: "extension et surélévation", src: "/images/extension-charpente-bois.jpg" },
     { match: "pourquoi choisir", src: "/images/realisations/zone-intervention-atb-construction.jpg", bg: "#F9EBDE" },
+  ],
+  "isolation-toiture": [
+    { match: "isolation des combles perdus", src: "/images/realisations/IMG-20250403-WA0018.jpg", side: "right" },
   ],
   // Les autres services seront renseignés page par page.
 };
@@ -214,7 +218,9 @@ export default async function ServicePage({
       img = {
         src: conf.src,
         bg: conf.bg,
-        side: (imgCount % 2 === 0 ? "left" : "right") as "left" | "right",
+        side: (conf.side ?? (imgCount % 2 === 0 ? "left" : "right")) as
+          | "left"
+          | "right",
       };
       imgCount++;
     }
