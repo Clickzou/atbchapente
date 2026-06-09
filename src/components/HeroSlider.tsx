@@ -26,7 +26,7 @@ const slides = services.map((s, i) => ({
   label: s.title,
 }));
 
-const DELAY = 5000;
+const DELAY = 3000;
 const titleClass =
   "absolute inset-0 max-w-3xl text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl";
 

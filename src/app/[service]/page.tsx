@@ -48,7 +48,7 @@ export default async function ServicePage({
     <>
       {/* HERO landing — comme la home et les articles */}
       <section className="relative flex min-h-[100svh] items-center overflow-hidden bg-anthracite-dark text-white">
-        <Image src={data.image} alt="" fill priority className="object-cover" sizes="100vw" />
+        <Image src={data.heroImage ?? data.image} alt="" fill priority className="object-cover" sizes="100vw" />
         <div className="absolute inset-0 bg-gradient-to-r from-anthracite-dark/90 via-anthracite-dark/55 to-anthracite-dark/20" />
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-28 lg:px-8">
           <nav className="mb-4 text-sm text-white/60">

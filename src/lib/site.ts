@@ -53,6 +53,7 @@ export type Service = {
   metaDescription: string;
   excerpt: string; // accroche carte d'accueil
   image: string;
+  heroImage?: string; // image d'en-tête de la page service (sinon `image`)
 };
 
 export const services: Service[] = [
@@ -66,6 +67,7 @@ export const services: Service[] = [
     excerpt:
       "Charpente traditionnelle, ossature bois, rénovation et extension, réalisées sur mesure.",
     image: "/images/realisations/creation-charpente.jpg",
+    heroImage: "/images/realisations/IMG-20250403-WA0010.jpg",
   },
   {
     slug: "isolation-toiture",
