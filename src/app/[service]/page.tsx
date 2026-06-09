@@ -17,6 +17,8 @@ function sectionImageFor(
     return { src: "/images/charpente-neuve.jpg", side: "left" };
   if (h.includes("rénovation et renforcement"))
     return { src: "/images/renovation-charpente-bois.jpg", side: "right" };
+  if (h.includes("extension et surélévation"))
+    return { src: "/images/extension-charpente-bois.jpg", side: "left" };
   return null;
 }
 
