@@ -111,6 +111,7 @@ export const services: Service[] = [
     excerpt:
       "Installation de fenêtres de toit pour apporter lumière et ventilation à vos combles.",
     image: "/images/realisations/creation-fenetre-bois.jpg",
+    heroImage: "/images/realisations/IMG-20250403-WA0015.jpg",
   },
   {
     slug: "creation-pergola-bois",

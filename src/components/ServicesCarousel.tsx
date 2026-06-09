@@ -42,7 +42,7 @@ export default function ServicesCarousel({
           >
             <div className="relative h-64 overflow-hidden">
               <Image
-                src={s.image}
+                src={`/images/services/${s.slug}.jpg`}
                 alt={place ? `${s.title} à ${place}` : s.title}
                 fill
                 className="object-cover transition-transform duration-300 group-hover:scale-105"

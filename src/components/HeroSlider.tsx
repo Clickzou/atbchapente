@@ -10,7 +10,7 @@ import { site, routes, services } from "@/lib/site";
 // <div>. Tous les titres restent dans le DOM (fondu) pour préserver le H1 (SEO).
 // Libellés calibrés pour tenir sur ~3 lignes (bloc de titre de hauteur fixe).
 const heroTitles = [
-  "Charpentier à Toulouse : création & rénovation de charpente bois",
+  "Création & rénovation de charpente bois à Toulouse",
   "Isolation de toiture à Toulouse pour un confort thermique durable",
   "Pose & changement de gouttières zinc et zinguerie à Toulouse",
   "Couverture neuve & remaniement de toiture en tuiles à Toulouse",
@@ -18,13 +18,24 @@ const heroTitles = [
   "Création de pergola en bois sur mesure pour vos extérieurs à Toulouse",
 ];
 
-const slides = services.map((s, i) => ({
-  src: s.image,
-  title: heroTitles[i] ?? s.heading,
-  excerpt: s.excerpt,
-  href: `/${s.slug}`,
-  label: s.title,
-}));
+const slides = [
+  {
+    // Slide d'intro (générale)
+    src: "/images/realisations/creation-fenetre-bois.jpg",
+    title: "Charpentier à Toulouse",
+    excerpt:
+      "ATB Charpente, votre artisan charpentier-couvreur à Toulouse et ses environs : charpente, couverture, zinguerie et isolation, du neuf à la rénovation.",
+    href: routes.realisations,
+    label: "nos réalisations",
+  },
+  ...services.map((s, i) => ({
+    src: s.image,
+    title: heroTitles[i] ?? s.heading,
+    excerpt: s.excerpt,
+    href: `/${s.slug}`,
+    label: s.title,
+  })),
+];
 
 const DELAY = 3000;
 const titleClass =
