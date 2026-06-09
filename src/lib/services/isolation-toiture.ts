@@ -80,7 +80,20 @@ export const content: ContentBlock[] = [
   },
   {
     type: "paragraph",
-    text: "L'isolation par l'intérieur se réalise sous la toiture, en posant l'isolant entre et sous les chevrons, côté pièces. Plus rapide à mettre en œuvre et souvent plus économique, elle reste une excellente option lorsque la couverture est en bon état et qu'il n'est pas nécessaire de la déposer. Son principal inconvénient : elle réduit légèrement le volume habitable des combles et demande un soin particulier pour éviter les ponts thermiques au niveau des chevrons.",
+    text: "L'isolation par l'intérieur se réalise sous la toiture, en posant l'isolant entre et sous les chevrons, côté pièces. Plus rapide à mettre en œuvre et souvent plus économique, elle reste une excellente option lorsque la couverture est en bon état et qu'il n'est pas nécessaire de la déposer.",
+  },
+  {
+    type: "paragraph",
+    text: "Concrètement, des panneaux ou rouleaux d'isolant (laine de verre, laine de roche ou laine de bois) sont fixés contre la sous-face de la toiture, puis masqués par un parement, le plus souvent des plaques de plâtre. C'est une solution éprouvée et accessible, particulièrement adaptée à la rénovation, qui permet d'améliorer le confort sans échafaudage ni intervention sur la couverture. Elle demande toutefois une mise en œuvre soignée pour rester durable et performante.",
+  },
+  {
+    type: "list",
+    items: [
+      "Réduction de la hauteur sous plafond et du volume habitable des combles.",
+      "Risque de ponts thermiques au niveau des chevrons si la pose n'est pas soignée.",
+      "Performance globale inférieure au sarking sur une isolation réellement continue.",
+      "Finitions intérieures à reprendre (parement, peinture) après les travaux.",
+    ],
   },
   {
     type: "heading",

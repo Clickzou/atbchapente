@@ -53,13 +53,20 @@ const BENEFIT_ICONS: ReactNode[] = [
 
 // Sections « comparaison » : deux sous-parties H3 affichées en deux cartes côte
 // à côte (avec puces ✓). `recommended` met en avant l'une des cartes (liseré).
-type CompareConf = { match: string; badges?: [string, string]; recommended?: 0 | 1 };
+type CompareConf = {
+  match: string;
+  badges?: [string, string];
+  recommended?: 0 | 1;
+  /** Index de la carte dont la liste est affichée en « inconvénients » (✗). */
+  consCard?: 0 | 1;
+};
 const SECTION_COMPARE: Record<string, CompareConf[]> = {
   "isolation-toiture": [
     {
       match: "quelle solution choisir",
       badges: ["Performance maximale", "Plus économique"],
       recommended: 0,
+      consCard: 1,
     },
   ],
 };
@@ -385,6 +392,7 @@ export default async function ServicePage({
                       listB && listB.type === "list" ? listB.items : [];
                     const recommended = s.compare?.recommended === k;
                     const badge = s.compare?.badges?.[k];
+                    const isCons = s.compare?.consCard === k;
                     return (
                       <div
                         key={k}
@@ -428,29 +436,38 @@ export default async function ServicePage({
                           </div>
                         )}
                         {advs.length > 0 && (
-                          <ul className="mt-4 space-y-2">
-                            {advs.map((a, j) => (
-                              <li
-                                key={j}
-                                className="flex items-start gap-2 text-sm text-foreground/80"
-                              >
-                                <svg
-                                  className="mt-0.5 shrink-0 text-orange"
-                                  width="18"
-                                  height="18"
-                                  viewBox="0 0 24 24"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  strokeWidth="2.5"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
+                          <>
+                            <p className="mt-5 text-xs font-semibold uppercase tracking-wide text-foreground/50">
+                              {isCons ? "À prendre en compte" : "Avantages"}
+                            </p>
+                            <ul className="mt-2 space-y-2">
+                              {advs.map((a, j) => (
+                                <li
+                                  key={j}
+                                  className="flex items-start gap-2 text-sm text-foreground/80"
                                 >
-                                  <path d="M5 12l5 5L20 7" />
-                                </svg>
-                                <span>{a}</span>
-                              </li>
-                            ))}
-                          </ul>
+                                  <svg
+                                    className={`mt-0.5 shrink-0 ${isCons ? "text-red-500" : "text-orange"}`}
+                                    width="18"
+                                    height="18"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                  >
+                                    {isCons ? (
+                                      <path d="M6 6l12 12M18 6L6 18" />
+                                    ) : (
+                                      <path d="M5 12l5 5L20 7" />
+                                    )}
+                                  </svg>
+                                  <span>{a}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </>
                         )}
                       </div>
                     );
