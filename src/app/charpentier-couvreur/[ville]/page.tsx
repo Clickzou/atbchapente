@@ -185,7 +185,6 @@ export default async function VillePage({
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-anthracite-dark/90 via-anthracite-dark/55 to-anthracite-dark/20" />
-        <IconsBackground />
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-28 lg:px-8">
           <nav className="mb-4 text-sm text-white/60">
             <Link href="/" className="hover:text-orange">Accueil</Link> /{" "}
@@ -243,9 +242,11 @@ export default async function VillePage({
         </div>
       </section>
 
-      {/* Section 1 : texte à gauche, stats à droite — pleine largeur avec marges */}
-      <section className="mx-auto max-w-[1600px] px-4 py-16 lg:px-12">
-        <div className="grid gap-10 lg:grid-cols-[1.7fr_1fr] lg:items-stretch lg:gap-14">
+      {/* Section 1 : texte + stats, avec fond d'icônes métier animé */}
+      <section className="relative overflow-hidden">
+        <IconsBackground tone="dark" />
+        <div className="relative z-10 mx-auto max-w-[1600px] px-4 py-16 lg:px-12">
+          <div className="grid gap-10 lg:grid-cols-[1.7fr_1fr] lg:items-stretch lg:gap-14">
           <div>
             {cityContent[city.slug] ? (
               <div className="space-y-4 text-lg leading-relaxed text-foreground/85">
@@ -304,6 +305,7 @@ export default async function VillePage({
                   </div>
                 );
               })}
+            </div>
           </div>
         </div>
       </section>

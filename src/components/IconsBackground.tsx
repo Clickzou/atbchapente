@@ -36,7 +36,11 @@ const ICONS: Icon[] = [
   { paths: ["M8 42 L48 26 L56 30 L16 46 Z", "M48 26 V34", "M16 46 V54 L56 38 V30"], top: "42%", left: "90%", size: 100, float: 9.5, breathe: 6, draw: 4.5, rot: true, speed: 0.22 },
 ];
 
-export default function IconsBackground() {
+export default function IconsBackground({
+  tone = "light",
+}: {
+  tone?: "light" | "dark";
+}) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -70,7 +74,16 @@ export default function IconsBackground() {
   }, []);
 
   return (
-    <div ref={ref} className="atb-icons-bg" aria-hidden>
+    <div
+      ref={ref}
+      className={`atb-icons-bg${tone === "dark" ? " is-dark" : ""}`}
+      aria-hidden
+      style={
+        {
+          "--icons-stroke": tone === "dark" ? "var(--anthracite)" : "#ffffff",
+        } as CSSProperties
+      }
+    >
       {ICONS.map((ic, i) => {
         const iconStyle = {
           top: ic.top,
