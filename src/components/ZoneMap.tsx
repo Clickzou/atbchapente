@@ -1,135 +1,148 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { zoneMap } from "@/lib/zone-map-data";
+import { useEffect, useRef, useState } from "react";
 
-// Carte vectorielle stylisée (façon Securinfor) : silhouette réelle de la
-// Haute-Garonne + communes qui rayonnent depuis Toulouse. Au survol d'une
-// commune, son nom s'affiche. Animations déclenchées à l'entrée à l'écran.
+// Carte de la zone d'intervention découpée PAR COMMUNE (façon Securinfor).
+// Toutes les communes dans 30 km autour de Bessières, contours réels.
+// Au survol d'une commune : surbrillance + nom. Données chargées à la volée.
 
-const { width: W, height: H, path, communes } = zoneMap;
-const toulouse = communes.find((c) => c.main)!;
+type ZoneCommune = {
+  name: string;
+  d: string;
+  cx: number;
+  cy: number;
+  role?: "main" | "base";
+};
+type ZoneData = { width: number; height: number; communes: ZoneCommune[] };
 
-type Pt = { name: string; x: number; y: number; main?: boolean };
-
-function bezier(a: Pt, b: Pt) {
-  const dx = b.x - a.x;
-  const dy = b.y - a.y;
-  const dist = Math.hypot(dx, dy) || 1;
-  const curv = Math.min(dist * 0.14, 48);
-  const cx = (a.x + b.x) / 2 + (-dy / dist) * curv;
-  const cy = (a.y + b.y) / 2 + (dx / dist) * curv;
-  return `M${a.x},${a.y} Q${cx.toFixed(1)},${cy.toFixed(1)} ${b.x},${b.y}`;
-}
-
-const others = communes.filter((c) => !c.main);
+type Hover = { name: string; cx: number; cy: number } | null;
 
 export default function ZoneMap() {
   const ref = useRef<HTMLDivElement>(null);
+  const [data, setData] = useState<ZoneData | null>(null);
+  const [hover, setHover] = useState<Hover>(null);
 
+  // Chargement à la volée quand la section approche de l'écran.
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const io = new IntersectionObserver(
       (entries) => {
-        for (const e of entries) el.classList.toggle("is-visible", e.isIntersecting);
+        if (entries.some((e) => e.isIntersecting)) {
+          io.disconnect();
+          fetch("/data/zone-map.json")
+            .then((r) => r.json())
+            .then(setData)
+            .catch(() => {});
+        }
       },
-      { threshold: 0.25 },
+      { rootMargin: "200px" },
     );
     io.observe(el);
     return () => io.disconnect();
   }, []);
 
+  const labels = data?.communes.filter((c) => c.role) ?? [];
+
   return (
-    <div ref={ref} className="atb-zone mx-auto w-full max-w-2xl">
-      <svg
-        viewBox={`0 0 ${W} ${H}`}
-        className="h-auto w-full"
-        role="img"
-        aria-label="Carte de la zone d'intervention autour de Toulouse (Haute-Garonne)"
+    <div ref={ref} className="mx-auto w-full max-w-3xl">
+      <div
+        className="relative w-full overflow-hidden rounded-2xl bg-white ring-1 ring-black/5"
+        style={{ aspectRatio: data ? `${data.width} / ${data.height}` : "1 / 1" }}
       >
-        {/* Silhouette de la Haute-Garonne */}
-        <path
-          d={path}
-          fill="var(--anthracite)"
-          stroke="#ffffff"
-          strokeWidth={1.2}
-          strokeLinejoin="round"
-        />
+        {!data && (
+          <div className="absolute inset-0 flex items-center justify-center text-sm text-foreground/40">
+            Chargement de la carte…
+          </div>
+        )}
 
-        {/* Courbes rayonnant depuis Toulouse */}
-        {others.map((c, i) => (
-          <path
-            key={`l-${c.name}`}
-            className="zm-line"
-            d={bezier(toulouse, c)}
-            fill="none"
-            stroke="var(--orange)"
-            strokeWidth={1.4}
-            strokeLinecap="round"
-            style={{ animationDelay: `${0.3 + i * 0.08}s` }}
-          />
-        ))}
-
-        {/* Communes (point + étiquette au survol) */}
-        {others.map((c, i) => {
-          const tw = c.name.length * 6.7 + 18;
-          const flip = c.y < 46; // étiquette dessous si trop haut
-          return (
-            <g key={c.name} className="zm-commune" tabIndex={0}>
-              <circle
-                className="zm-dot"
-                cx={c.x}
-                cy={c.y}
-                r={4.5}
-                fill="var(--orange)"
-                stroke="#fff"
-                strokeWidth={1.5}
-                style={{ animationDelay: `${0.9 + i * 0.08}s` }}
+        {data && (
+          <svg
+            viewBox={`0 0 ${data.width} ${data.height}`}
+            className="block h-full w-full"
+            role="img"
+            aria-label="Carte de la zone d'intervention : communes dans 30 km autour de Bessières"
+            onMouseLeave={() => setHover(null)}
+          >
+            {/* Communes */}
+            {data.communes.map((c, i) => (
+              <path
+                key={c.name + i}
+                d={c.d}
+                className={`zm-shape ${
+                  c.role === "main" ? "is-main" : c.role === "base" ? "is-base" : ""
+                }`}
+                onMouseEnter={() => setHover({ name: c.name, cx: c.cx, cy: c.cy })}
               />
-              <g className="zm-tip" transform={`translate(${c.x}, ${c.y})`}>
-                <rect
-                  x={-tw / 2}
-                  y={flip ? 12 : -34}
-                  width={tw}
-                  height={22}
-                  rx={5}
-                  fill="var(--anthracite-dark)"
-                />
-                <text
-                  x={0}
-                  y={flip ? 27 : -19}
-                  textAnchor="middle"
-                  fill="#fff"
-                  fontSize={13}
-                  fontWeight={600}
-                >
-                  {c.name}
-                </text>
-              </g>
-            </g>
-          );
-        })}
+            ))}
 
-        {/* Toulouse : halo + repère charpente + label permanent */}
-        <circle className="zm-halo" cx={toulouse.x} cy={toulouse.y} r={10} fill="var(--orange)" />
-        <path
-          d={`M${toulouse.x - 10},${toulouse.y + 4} L${toulouse.x},${toulouse.y - 9} L${toulouse.x + 10},${toulouse.y + 4} Z`}
-          fill="var(--orange)"
-          stroke="#fff"
-          strokeWidth={1.5}
-          strokeLinejoin="round"
-        />
-        <g transform={`translate(${toulouse.x}, ${toulouse.y})`}>
-          <rect x={-34} y={10} width={68} height={22} rx={5} fill="var(--orange)" />
-          <text x={0} y={25} textAnchor="middle" fill="#fff" fontSize={13} fontWeight={700}>
-            Toulouse
-          </text>
-        </g>
-      </svg>
+            {/* Labels permanents Toulouse / Bessières */}
+            {labels.map((c) => {
+              const w = c.name.length * 7 + (c.role === "base" ? 54 : 16);
+              const text = c.role === "base" ? `${c.name} · siège` : c.name;
+              return (
+                <g key={`lbl-${c.name}`} pointerEvents="none">
+                  <circle cx={c.cx} cy={c.cy} r={4} fill="#fff" />
+                  <g transform={`translate(${c.cx}, ${c.cy + 8})`}>
+                    <rect
+                      x={-w / 2}
+                      y={4}
+                      width={w}
+                      height={20}
+                      rx={5}
+                      fill="var(--anthracite-dark)"
+                    />
+                    <text x={0} y={18} textAnchor="middle" fill="#fff" fontSize={12} fontWeight={700}>
+                      {text}
+                    </text>
+                  </g>
+                </g>
+              );
+            })}
+
+            {/* Tooltip au survol */}
+            {hover && (
+              <g pointerEvents="none">
+                {(() => {
+                  const w = Math.max(60, hover.name.length * 7 + 16);
+                  const x = Math.min(
+                    data.width - w / 2 - 4,
+                    Math.max(w / 2 + 4, hover.cx),
+                  );
+                  const above = hover.cy > 34;
+                  const y = above ? hover.cy - 30 : hover.cy + 14;
+                  return (
+                    <g transform={`translate(${x}, ${y})`}>
+                      <rect
+                        x={-w / 2}
+                        y={0}
+                        width={w}
+                        height={22}
+                        rx={5}
+                        fill="var(--orange)"
+                      />
+                      <text
+                        x={0}
+                        y={15}
+                        textAnchor="middle"
+                        fill="#fff"
+                        fontSize={13}
+                        fontWeight={700}
+                      >
+                        {hover.name}
+                      </text>
+                    </g>
+                  );
+                })()}
+              </g>
+            )}
+          </svg>
+        )}
+      </div>
 
       <p className="mt-4 text-center text-sm text-foreground/60">
-        Survolez une ville · intervention dans un rayon de ~30 km autour de Toulouse
+        Survolez une commune · {data ? data.communes.length : "—"} villes couvertes dans
+        un rayon de ~30 km autour de Bessières
       </p>
     </div>
   );
