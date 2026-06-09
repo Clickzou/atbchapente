@@ -22,9 +22,9 @@ const slides = [
   {
     // Slide d'intro (générale)
     src: "/images/realisations/creation-fenetre-bois.jpg",
-    title: "Charpentier à Toulouse",
+    title: "Artisan charpentier-couvreur à Toulouse et ses environs",
     excerpt:
-      "ATB Charpente, votre artisan charpentier-couvreur à Toulouse et ses environs : charpente, couverture, zinguerie et isolation, du neuf à la rénovation.",
+      "Charpente, couverture, zinguerie et isolation, du neuf à la rénovation.",
     href: routes.realisations,
     label: "nos réalisations",
   },
