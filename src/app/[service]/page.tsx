@@ -33,9 +33,32 @@ const SECTION_IMAGES: Record<string, SectionImage[]> = {
 // Sections « bénéfices » : le texte (titre + paragraphes) à gauche, et les items
 // de la liste rendus en cartes à icône à droite. Indexé par slug ; `match` est
 // comparé (minuscules, "inclut") au titre H2.
-const SECTION_BENEFITS: Record<string, string[]> = {
-  "isolation-toiture": ["pourquoi isoler sa toiture"],
+// `icon` (optionnel) remplace l'icône cyclée par une icône unique pour toutes
+// les cartes de la section (utile pour des « composants » plutôt que bénéfices).
+type BenefitConf = { match: string; icon?: ReactNode };
+const SECTION_BENEFITS: Record<string, BenefitConf[]> = {
+  "isolation-toiture": [{ match: "pourquoi isoler sa toiture" }],
+  "pose-changement-gouttieres-zinc": [
+    {
+      match: "le rôle des gouttières",
+      // Goutte d'eau (zinguerie / évacuation)
+      icon: <path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z" />,
+    },
+  ],
 };
+
+// Rendu minimal du gras **…** dans une chaîne (pour le texte des cartes).
+function renderInline(text: string): ReactNode {
+  return text.split(/\*\*(.+?)\*\*/g).map((p, idx) =>
+    idx % 2 === 1 ? (
+      <strong key={idx} className="font-semibold text-anthracite">
+        {p}
+      </strong>
+    ) : (
+      p
+    ),
+  );
+}
 
 // Icônes (cyclées) pour les cartes de bénéfices.
 const BENEFIT_ICONS: ReactNode[] = [
@@ -65,6 +88,8 @@ type CompareConf = {
   recommended?: 0 | 1;
   /** Index de la carte dont la liste est affichée en « inconvénients » (✗). */
   consCard?: 0 | 1;
+  /** Icônes dédiées (sinon COMPARE_ICONS par défaut). */
+  icons?: [ReactNode, ReactNode];
 };
 const SECTION_COMPARE: Record<string, CompareConf[]> = {
   "isolation-toiture": [
@@ -73,6 +98,17 @@ const SECTION_COMPARE: Record<string, CompareConf[]> = {
       badges: ["Performance maximale", "Plus économique"],
       recommended: 0,
       consCard: 1,
+    },
+  ],
+  "pose-changement-gouttieres-zinc": [
+    {
+      match: "pourquoi choisir le zinc",
+      icons: [
+        // Durabilité (bouclier)
+        <path key="d" d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" />,
+        // Esthétique (éclat)
+        <path key="e" d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" />,
+      ],
     },
   ],
 };
@@ -200,6 +236,7 @@ export default async function ServicePage({
     img?: { src: string; side: "left" | "right"; bg?: string };
     compare?: CompareConf;
     duoBlocks?: ContentBlock[][];
+    benefitIcon?: ReactNode;
   }[] = [];
   if (isCharpente) sections.push({ kind: "cards" });
   const consumed = new Set<number>();
@@ -225,8 +262,9 @@ export default async function ServicePage({
       sections.push({ kind: "compare", blocks: g, compare: cmp });
       continue;
     }
-    if (benefitConf.some((m) => headText.includes(m))) {
-      sections.push({ kind: "benefits", blocks: g });
+    const ben = benefitConf.find((c) => headText.includes(c.match));
+    if (ben) {
+      sections.push({ kind: "benefits", blocks: g, benefitIcon: ben.icon });
       continue;
     }
     const conf = imgConf.find((c) => headText.includes(c.match));
@@ -463,7 +501,8 @@ export default async function ServicePage({
                             strokeLinecap="round"
                             strokeLinejoin="round"
                           >
-                            {COMPARE_ICONS[k % COMPARE_ICONS.length]}
+                            {s.compare?.icons?.[k] ??
+                              COMPARE_ICONS[k % COMPARE_ICONS.length]}
                           </svg>
                         </span>
                         {badge && (
@@ -557,10 +596,10 @@ export default async function ServicePage({
                             strokeLinecap="round"
                             strokeLinejoin="round"
                           >
-                            {BENEFIT_ICONS[k % BENEFIT_ICONS.length]}
+                            {s.benefitIcon ?? BENEFIT_ICONS[k % BENEFIT_ICONS.length]}
                           </svg>
                         </span>
-                        <p className="text-sm text-foreground/80">{it}</p>
+                        <p className="text-sm text-foreground/80">{renderInline(it)}</p>
                       </div>
                     ))}
                   </div>
