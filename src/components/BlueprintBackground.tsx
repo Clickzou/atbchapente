@@ -11,7 +11,21 @@ export default function BlueprintBackground() {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    // Déclenche (et rejoue) le tracé quand la section entre dans l'écran.
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          el.classList.toggle("is-visible", e.isIntersecting);
+        }
+      },
+      { threshold: 0.2 },
+    );
+    io.observe(el);
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return () => io.disconnect();
+    }
 
     let raf = 0;
     const update = () => {
@@ -29,6 +43,7 @@ export default function BlueprintBackground() {
     window.addEventListener("resize", onScroll, { passive: true });
     update();
     return () => {
+      io.disconnect();
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       if (raf) cancelAnimationFrame(raf);

@@ -75,10 +75,13 @@
   @keyframes bp-draw{to{stroke-dashoffset:0}}
   @keyframes bp-fade{to{opacity:1}}
   @keyframes bp-breathe{0%,100%{opacity:.06}50%{opacity:.13}}
-  .atb-blueprint-bg .bp-main path{stroke-dasharray:2600;stroke-dashoffset:2600;animation:bp-draw 3.6s ease .2s forwards}
-  .atb-blueprint-bg .bp-secondary path{stroke-dasharray:2600;stroke-dashoffset:2600;animation:bp-draw 3.2s ease 1.6s forwards}
-  .atb-blueprint-bg .bp-dim path{stroke-dasharray:1600;stroke-dashoffset:1600;animation:bp-draw 2.6s ease 3s forwards}
-  .atb-blueprint-bg .bp-marker{opacity:0;animation:bp-fade 1.4s ease 3.6s forwards}
+  .atb-blueprint-bg .bp-main path,.atb-blueprint-bg .bp-secondary path{stroke-dasharray:2600;stroke-dashoffset:2600}
+  .atb-blueprint-bg .bp-dim path{stroke-dasharray:1600;stroke-dashoffset:1600}
+  .atb-blueprint-bg .bp-marker{opacity:0}
+  .atb-blueprint-bg.is-visible .bp-main path{animation:bp-draw 3.6s ease .2s forwards}
+  .atb-blueprint-bg.is-visible .bp-secondary path{animation:bp-draw 3.2s ease 1.6s forwards}
+  .atb-blueprint-bg.is-visible .bp-dim path{animation:bp-draw 2.6s ease 3s forwards}
+  .atb-blueprint-bg.is-visible .bp-marker{animation:bp-fade 1.4s ease 3.6s forwards}
   @media (prefers-reduced-motion: reduce){
     .atb-blueprint-bg{animation:none;opacity:.1}
     .atb-blueprint-bg .bp-parallax{transform:none}
@@ -90,7 +93,14 @@
 <script>
   (function () {
     var el = document.currentScript.parentNode.querySelector('.atb-blueprint-bg');
-    if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!el) return;
+
+    // Déclenche (et rejoue) le tracé quand la section entre dans l'écran.
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { el.classList.toggle('is-visible', e.isIntersecting); });
+    }, { threshold: 0.2 }).observe(el);
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     var raf = 0;
     function update() {
       var r = el.getBoundingClientRect();

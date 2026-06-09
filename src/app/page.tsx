@@ -3,6 +3,7 @@ import Image from "next/image";
 import { services, communes, site, routes } from "@/lib/site";
 import HeroSlider from "@/components/HeroSlider";
 import BlueprintBackground from "@/components/BlueprintBackground";
+import Reveal from "@/components/Reveal";
 
 export default function Home() {
   return (
@@ -14,13 +15,13 @@ export default function Home() {
       <section className="relative overflow-hidden bg-gradient-to-b from-muted/60 to-white py-20">
         <BlueprintBackground />
         <div className="relative z-10 mx-auto max-w-7xl px-4 lg:px-8">
-          <div className="mb-12 text-center">
+          <Reveal className="reveal-stagger mb-12 text-center">
             <h2 className="text-3xl font-bold text-anthracite">Nos prestations</h2>
             <p className="mx-auto mt-3 max-w-2xl text-foreground/70">
               Un interlocuteur unique pour l&apos;ensemble de vos travaux de toiture.
             </p>
-          </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          </Reveal>
+          <Reveal className="reveal-stagger grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (
             <Link
               key={s.slug}
@@ -47,7 +48,7 @@ export default function Home() {
               </div>
             </Link>
           ))}
-          </div>
+          </Reveal>
         </div>
       </section>
 
