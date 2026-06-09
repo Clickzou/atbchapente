@@ -58,15 +58,18 @@ html {
 .zm-shape.is-base {
   fill: var(--orange-dark);
 }
-/* libellé des grandes villes — texte blanc contouré, lisible sur la carte */
-.zm-biglabel {
-  fill: #ffffff;
-  font-size: 11px;
-  font-weight: 600;
-  stroke: rgba(20, 28, 44, 0.55);
-  stroke-width: 2.5px;
-  paint-order: stroke;
-  stroke-linejoin: round;
+/* commune recherchée : clignote en orange */
+.zm-shape.is-selected {
+  animation: zm-blink 0.9s ease-in-out infinite;
+}
+@keyframes zm-blink {
+  0%,
+  100% {
+    fill: var(--orange);
+  }
+  50% {
+    fill: #ffd9b0;
+  }
 }
 
 /* ── Animations d'entrée au scroll (Reveal) ── */
