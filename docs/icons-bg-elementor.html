@@ -1,0 +1,96 @@
+<!--
+  ATB Charpente — Fond d'icônes métier animé (charpente / construction bois)
+  --------------------------------------------------------------------------
+  À coller dans un WIDGET HTML Elementor, À L'INTÉRIEUR de la section.
+  La SECTION parente doit être en `position: relative` (sinon le fond se
+  positionne par rapport au body). Conçu pour un fond SOMBRE (icônes blanches).
+  Couleur des traits réglable via --icons-stroke.
+
+  Animations : dessin progressif, flottement, respiration d'opacité, légère
+  rotation (certaines icônes), parallaxe au scroll (JS natif). Aucune dépendance.
+-->
+<div class="atb-icons-bg" aria-hidden="true" style="--icons-stroke:#ffffff;"></div>
+
+<style>
+  .atb-icons-bg{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;color:var(--icons-stroke,#fff)}
+  .atb-icons-bg .ai-icon{position:absolute;opacity:.1;transform:translateY(var(--p,0px));animation:icon-breathe 8s ease-in-out infinite;will-change:transform,opacity}
+  .atb-icons-bg .ai-float{width:100%;height:100%;animation:icon-float 12s ease-in-out infinite}
+  .atb-icons-bg .ai-rot{width:100%;height:100%;animation:icon-rotate 18s ease-in-out infinite}
+  .atb-icons-bg svg{display:block;width:100%;height:100%}
+  .atb-icons-bg svg path,.atb-icons-bg svg circle{stroke-dasharray:600;stroke-dashoffset:600;animation:icon-draw var(--dur,6s) ease-in-out var(--delay,0s) infinite alternate}
+  @keyframes icon-draw{to{stroke-dashoffset:0}}
+  @keyframes icon-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+  @keyframes icon-breathe{0%,100%{opacity:.05}50%{opacity:.14}}
+  @keyframes icon-rotate{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+  @media (prefers-reduced-motion: reduce){
+    .atb-icons-bg .ai-icon,.atb-icons-bg .ai-float,.atb-icons-bg .ai-rot{animation:none;transform:none}
+    .atb-icons-bg svg path,.atb-icons-bg svg circle{animation:none;stroke-dashoffset:0}
+  }
+</style>
+
+<script>
+  (function () {
+    var root = document.currentScript.parentNode.querySelector('.atb-icons-bg');
+    if (!root) return;
+    // 7 icônes : [paths], top, left, size, float(s), breathe(s), draw(s), rot, speed
+    var ICONS = [
+      [["M6 52 L32 12 L58 52 Z","M32 12 V52","M32 52 L19 34","M32 52 L45 34"],"13%","3%",96,11,8,6,0,0.18],
+      [["M22 16 H44 V25 H22 Z","M33 25 L24 52"],"64%","11%",54,9,7,5,1,0.26],
+      [["M44 32 A16 16 0 1 1 12 32 A16 16 0 1 1 44 32","M42 28 H58 V38 H50"],"16%","82%",112,13,9,7,0,0.10],
+      [["M16 14 V50 H50","M24 22 V44 H46"],"72%","73%",70,10,6.5,5.5,1,0.20],
+      [["M10 22 H54 V46 H10 Z","M10 22 L32 36 L54 22","M32 36 V46"],"7%","47%",60,12,7.5,6.5,0,0.16],
+      [["M10 54 V26 L32 10 L54 26 V54 Z","M22 54 V34","M42 54 V34","M12 27 L32 39 L52 27"],"76%","37%",86,14,8.5,7.5,0,0.12],
+      [["M8 42 L48 26 L56 30 L16 46 Z","M48 26 V34","M16 46 V54 L56 38 V30"],"42%","90%",100,9.5,6,4.5,1,0.22]
+    ];
+    var SVGNS = 'http://www.w3.org/2000/svg';
+    ICONS.forEach(function (ic, i) {
+      var icon = document.createElement('div');
+      icon.className = 'ai-icon';
+      icon.dataset.speed = ic[8];
+      icon.style.top = ic[1]; icon.style.left = ic[2];
+      icon.style.width = ic[3] + 'px'; icon.style.height = ic[3] + 'px';
+      icon.style.animationDuration = ic[5] + 's';
+
+      var float = document.createElement('div');
+      float.className = 'ai-float';
+      float.style.animationDuration = ic[4] + 's';
+
+      var svg = document.createElementNS(SVGNS, 'svg');
+      svg.setAttribute('viewBox', '0 0 64 64');
+      svg.setAttribute('fill', 'none');
+      svg.setAttribute('stroke', 'currentColor');
+      svg.setAttribute('stroke-width', '2');
+      svg.setAttribute('stroke-linecap', 'round');
+      svg.setAttribute('stroke-linejoin', 'round');
+      svg.style.setProperty('--dur', ic[6] + 's');
+      svg.style.setProperty('--delay', (i * 0.5) + 's');
+      ic[0].forEach(function (d) {
+        var p = document.createElementNS(SVGNS, 'path');
+        p.setAttribute('d', d);
+        svg.appendChild(p);
+      });
+
+      if (ic[7]) { var rot = document.createElement('div'); rot.className = 'ai-rot'; rot.appendChild(svg); float.appendChild(rot); }
+      else { float.appendChild(svg); }
+      icon.appendChild(float);
+      root.appendChild(icon);
+    });
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var icons = Array.prototype.slice.call(root.querySelectorAll('.ai-icon'));
+    var raf = 0;
+    function update() {
+      var r = root.getBoundingClientRect();
+      var offset = window.innerHeight / 2 - (r.top + r.height / 2);
+      icons.forEach(function (el) {
+        var s = parseFloat(el.dataset.speed) || 0;
+        el.style.setProperty('--p', (offset * s * 0.3).toFixed(1) + 'px');
+      });
+      raf = 0;
+    }
+    function onScroll() { if (!raf) raf = requestAnimationFrame(update); }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    update();
+  })();
+</script>
