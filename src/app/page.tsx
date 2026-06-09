@@ -127,14 +127,14 @@ export default function Home() {
           alt=""
           width={520}
           height={400}
-          className="pointer-events-none absolute left-0 top-1/2 hidden w-[24%] max-w-sm -translate-y-1/2 opacity-20 lg:block"
+          className="pointer-events-none absolute left-[50px] top-[calc(50%-50px)] hidden w-[24%] max-w-sm -translate-y-1/2 opacity-20 lg:block"
         />
         <Image
           src="/images/croquis-pergola.jpg"
           alt=""
           width={520}
           height={400}
-          className="pointer-events-none absolute right-0 top-1/2 hidden w-[24%] max-w-sm -translate-y-1/2 opacity-20 lg:block"
+          className="pointer-events-none absolute right-[80px] top-[calc(50%+50px)] hidden w-[24%] max-w-sm -translate-y-1/2 opacity-20 lg:block"
         />
         <div className="relative z-10 mx-auto max-w-7xl px-4 lg:px-8">
           <div className="mb-8 text-center">
