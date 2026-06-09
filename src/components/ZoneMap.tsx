@@ -1,9 +1,11 @@
 "use client";
 
-// Carte interactive de la zone d'intervention autour de Toulouse.
-// Les communes sont positionnées selon leurs coordonnées réelles (projection
-// simple corrigée en longitude). Au survol d'un point, le nom de la ville
-// apparaît. Toulouse est mise en avant avec un halo.
+import { useEffect, useRef } from "react";
+import "leaflet/dist/leaflet.css";
+
+// Vraie carte (Leaflet + OpenStreetMap) de la zone d'intervention autour de
+// Toulouse. Chaque commune est un marqueur ; le nom s'affiche au survol.
+// Toulouse est mise en avant (plus gros + label permanent).
 
 type Commune = { name: string; lat: number; lng: number; main?: boolean };
 
@@ -26,123 +28,73 @@ const COMMUNES: Commune[] = [
   { name: "Montauban", lat: 44.0181, lng: 1.355 },
 ];
 
-// Projection (équirectangulaire corrigée). Marges en % pour l'aération.
-const LAT_MID = 43.8;
-const K = Math.cos((LAT_MID * Math.PI) / 180);
-const PAD = 10;
-
-const projected = COMMUNES.map((c) => ({ ...c, px: c.lng * K, py: c.lat }));
-const xs = projected.map((p) => p.px);
-const ys = projected.map((p) => p.py);
-const minX = Math.min(...xs);
-const maxX = Math.max(...xs);
-const minY = Math.min(...ys);
-const maxY = Math.max(...ys);
-
-function pos(p: { px: number; py: number }) {
-  const fx = (p.px - minX) / (maxX - minX);
-  const fy = (maxY - p.py) / (maxY - minY); // nord en haut
-  return {
-    left: PAD + fx * (100 - 2 * PAD),
-    top: PAD + fy * (100 - 2 * PAD),
-  };
-}
-
-const points = projected.map((p) => ({ ...p, ...pos(p) }));
-const toulouse = points.find((p) => p.main)!;
-
 export default function ZoneMap() {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let map: any;
+
+    (async () => {
+      const L = await import("leaflet");
+      if (cancelled || !ref.current) return;
+
+      map = L.map(ref.current, {
+        scrollWheelZoom: false,
+        zoomControl: true,
+        attributionControl: true,
+      });
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 18,
+        attribution: "&copy; OpenStreetMap",
+      }).addTo(map);
+
+      // Cercle indicatif ~30 km autour de Toulouse
+      const toulouse = COMMUNES.find((c) => c.main)!;
+      L.circle([toulouse.lat, toulouse.lng], {
+        radius: 30000,
+        color: "#ed7d1a",
+        weight: 1,
+        fillColor: "#ed7d1a",
+        fillOpacity: 0.05,
+        dashArray: "6 6",
+      }).addTo(map);
+
+      for (const c of COMMUNES) {
+        const marker = L.circleMarker([c.lat, c.lng], {
+          radius: c.main ? 9 : 6,
+          color: "#ffffff",
+          weight: 2,
+          fillColor: c.main ? "#d96d0f" : "#ed7d1a",
+          fillOpacity: 1,
+        }).addTo(map);
+        marker.bindTooltip(c.name, {
+          direction: "top",
+          offset: [0, -6],
+          permanent: !!c.main,
+          className: "atb-tip",
+        });
+      }
+
+      const bounds = L.latLngBounds(
+        COMMUNES.map((c) => [c.lat, c.lng] as [number, number]),
+      );
+      map.fitBounds(bounds, { padding: [50, 50] });
+    })();
+
+    return () => {
+      cancelled = true;
+      if (map) map.remove();
+    };
+  }, []);
+
   return (
-    <div className="relative mx-auto aspect-[5/6] w-full max-w-2xl overflow-hidden rounded-2xl bg-gradient-to-br from-muted to-white ring-1 ring-black/5 sm:aspect-[4/5]">
-      {/* trame de fond façon carte */}
-      <div
-        aria-hidden
-        className="absolute inset-0 opacity-[0.5]"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle, rgba(58,58,60,0.12) 1px, transparent 1px)",
-          backgroundSize: "26px 26px",
-        }}
-      />
-
-      {/* lignes rayonnant depuis Toulouse + cercles de zone */}
-      <svg
-        aria-hidden
-        viewBox="0 0 100 100"
-        preserveAspectRatio="none"
-        className="absolute inset-0 h-full w-full"
-      >
-        <circle
-          cx={toulouse.left}
-          cy={toulouse.top}
-          r="22"
-          fill="none"
-          stroke="var(--color-orange)"
-          strokeWidth="0.25"
-          strokeDasharray="1.5 1.5"
-          opacity="0.45"
-        />
-        <circle
-          cx={toulouse.left}
-          cy={toulouse.top}
-          r="40"
-          fill="none"
-          stroke="var(--color-orange)"
-          strokeWidth="0.25"
-          strokeDasharray="1.5 1.5"
-          opacity="0.3"
-        />
-        {points
-          .filter((p) => !p.main)
-          .map((p) => (
-            <line
-              key={p.name}
-              x1={toulouse.left}
-              y1={toulouse.top}
-              x2={p.left}
-              y2={p.top}
-              stroke="var(--color-orange)"
-              strokeWidth="0.3"
-              opacity="0.25"
-            />
-          ))}
-      </svg>
-
-      {/* marqueurs */}
-      {points.map((p) => (
-        <div
-          key={p.name}
-          className="group absolute z-10 -translate-x-1/2 -translate-y-1/2"
-          style={{ left: `${p.left}%`, top: `${p.top}%` }}
-        >
-          {p.main ? (
-            <>
-              {/* Toulouse : halo + point + label permanent */}
-              <span className="absolute left-1/2 top-1/2 -z-10 h-10 w-10 -translate-x-1/2 -translate-y-1/2 animate-ping rounded-full bg-orange/30" />
-              <span className="block h-4 w-4 rounded-full bg-orange ring-4 ring-orange/25" />
-              <span className="absolute left-1/2 top-full mt-1.5 -translate-x-1/2 whitespace-nowrap rounded-md bg-anthracite px-2 py-0.5 text-xs font-semibold text-white">
-                Toulouse
-              </span>
-            </>
-          ) : (
-            <button
-              type="button"
-              className="block cursor-default"
-              aria-label={p.name}
-            >
-              <span className="block h-3 w-3 rounded-full bg-orange/80 ring-2 ring-white transition-transform group-hover:scale-125 group-focus:scale-125" />
-              <span className="pointer-events-none absolute bottom-full left-1/2 mb-1.5 -translate-x-1/2 whitespace-nowrap rounded-md bg-anthracite px-2 py-1 text-xs font-medium text-white opacity-0 shadow-md transition-opacity group-hover:opacity-100 group-focus:opacity-100">
-                {p.name}
-              </span>
-            </button>
-          )}
-        </div>
-      ))}
-
-      {/* légende */}
-      <div className="absolute bottom-3 left-3 rounded-md bg-white/80 px-3 py-1.5 text-xs text-foreground/70 backdrop-blur">
-        Survolez une ville · rayon ~30 km autour de Toulouse
-      </div>
-    </div>
+    <div
+      ref={ref}
+      className="z-0 h-[460px] w-full overflow-hidden rounded-2xl ring-1 ring-black/10 sm:h-[540px]"
+      aria-label="Carte de la zone d'intervention autour de Toulouse"
+    />
   );
 }

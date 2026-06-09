@@ -38,6 +38,21 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Étiquette (tooltip) Leaflet aux couleurs ATB */
+.leaflet-tooltip.atb-tip {
+  background: var(--anthracite);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-weight: 600;
+  font-size: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+.leaflet-tooltip.atb-tip::before {
+  border-top-color: var(--anthracite);
+}
+
 /* ── Animations d'entrée au scroll (Reveal) ── */
 .reveal {
   opacity: 0;
