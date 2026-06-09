@@ -32,6 +32,9 @@ const SECTION_IMAGES: Record<string, SectionImage[]> = {
     { match: "la pose neuve de gouttières", src: "/images/gouttiere-zinc.jpg", side: "right" },
     { match: "remplacement et rénovation de gouttières", src: "/images/remplacement-gouttiere.jpg", side: "left" },
   ],
+  "creation-fenetre-de-toit-bois": [
+    { match: "étanchéité et raccords", src: "/images/fenetre-de-toit.jpg", side: "right" },
+  ],
   "pose-remaniement-tuiles": [
     { match: "le remaniement et la réfection", src: "/images/refection-tuiles.jpg", side: "right" },
     { match: "démoussage et entretien", src: "/images/nettoyage-tuiles.jpg", side: "left" },
@@ -107,10 +110,14 @@ const SECTION_TIMELINE: Record<string, string[]> = {
 
 // Sections « cartes-photo » : items de liste rendus en cartes avec photo (haut),
 // titre (label gras) et texte. `images[k]` = photo de la k-ième carte.
-const SECTION_PHOTOCARDS: Record<string, { match: string; images: string[] }[]> = {
+const SECTION_PHOTOCARDS: Record<
+  string,
+  { match: string; images: string[]; split?: boolean }[]
+> = {
   "creation-fenetre-de-toit-bois": [
     {
       match: "types et modèles",
+      split: true,
       images: [
         "/images/fenetres/rotation.jpg",
         "/images/fenetres/projection.jpg",
@@ -133,7 +140,10 @@ const ZONE_HEADINGS: Record<string, string> = {
 // Sépare le label en gras de tête (« **Titre** reste ») du reste du texte.
 function splitLabel(text: string): { label: string; rest: string } {
   const m = text.match(/^\*\*([^*]+)\*\*\s*([\s\S]*)$/);
-  return m ? { label: m[1], rest: m[2] } : { label: "", rest: text };
+  // Retire un « : » de liaison résiduel en tête de description.
+  return m
+    ? { label: m[1], rest: m[2].replace(/^[:：]\s*/, "") }
+    : { label: "", rest: text };
 }
 
 // Rendu minimal du gras **…** dans une chaîne (pour le texte des cartes).
@@ -346,6 +356,7 @@ export default async function ServicePage({
     listSplit?: boolean;
     listCentered?: boolean;
     photoImages?: string[];
+    photoSplit?: boolean;
   }[] = [];
   if (isCharpente) sections.push({ kind: "cards" });
   const consumed = new Set<number>();
@@ -393,7 +404,12 @@ export default async function ServicePage({
     }
     const pc = photoCardsConf.find((c) => headText.includes(c.match));
     if (pc) {
-      sections.push({ kind: "photocards", blocks: g, photoImages: pc.images });
+      sections.push({
+        kind: "photocards",
+        blocks: g,
+        photoImages: pc.images,
+        photoSplit: pc.split,
+      });
       continue;
     }
     const conf = imgConf.find((c) => headText.includes(c.match));
@@ -704,6 +720,59 @@ export default async function ServicePage({
           const items =
             listBlock && listBlock.type === "list" ? listBlock.items : [];
           const imgs = s.photoImages ?? [];
+          const photoCardEls = items.map((it, k) => {
+            const { label, rest } = splitLabel(it);
+            const src = imgs[k];
+            return (
+              <div
+                key={k}
+                className="flex flex-col overflow-hidden rounded-2xl border border-black/5 bg-white shadow-sm"
+              >
+                {src && (
+                  <div className="relative h-44">
+                    <Image
+                      src={src}
+                      alt={label || data.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 25vw"
+                    />
+                  </div>
+                )}
+                <div className="flex flex-1 flex-col p-5">
+                  {label && (
+                    <h3 className="font-semibold text-anthracite">{label}</h3>
+                  )}
+                  <p className="mt-2 text-sm text-foreground/70">
+                    {renderInline(rest)}
+                  </p>
+                </div>
+              </div>
+            );
+          });
+
+          if (s.photoSplit) {
+            return (
+              <section key={i} className={bg}>
+                <div className="mx-auto max-w-[1600px] px-4 py-14 lg:px-12">
+                  <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-14">
+                    <div className="grid gap-5 sm:grid-cols-2 lg:order-1">
+                      {photoCardEls}
+                    </div>
+                    <div className="lg:order-2">
+                      <ArticleRenderer blocks={preList} />
+                      {postList.length > 0 && (
+                        <div className="mt-6">
+                          <ArticleRenderer blocks={postList} />
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </section>
+            );
+          }
+
           return (
             <section key={i} className={bg}>
               <div className="mx-auto max-w-[1600px] px-4 py-14 lg:px-12">
@@ -711,36 +780,7 @@ export default async function ServicePage({
                   <ArticleRenderer blocks={preList} />
                 </div>
                 <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                  {items.map((it, k) => {
-                    const { label, rest } = splitLabel(it);
-                    const src = imgs[k];
-                    return (
-                      <div
-                        key={k}
-                        className="flex flex-col overflow-hidden rounded-2xl border border-black/5 bg-white shadow-sm"
-                      >
-                        {src && (
-                          <div className="relative h-44">
-                            <Image
-                              src={src}
-                              alt={label || data.title}
-                              fill
-                              className="object-cover"
-                              sizes="(max-width: 768px) 100vw, 25vw"
-                            />
-                          </div>
-                        )}
-                        <div className="flex flex-1 flex-col p-5">
-                          {label && (
-                            <h3 className="font-semibold text-anthracite">{label}</h3>
-                          )}
-                          <p className="mt-2 text-sm text-foreground/70">
-                            {renderInline(rest)}
-                          </p>
-                        </div>
-                      </div>
-                    );
-                  })}
+                  {photoCardEls}
                 </div>
                 {postList.length > 0 && (
                   <div className="mt-8 max-w-3xl">
