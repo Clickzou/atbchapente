@@ -12,6 +12,7 @@ type ZoneCommune = {
   cx: number;
   cy: number;
   role?: "main" | "base";
+  big?: boolean;
 };
 type ZoneData = { width: number; height: number; communes: ZoneCommune[] };
 
@@ -42,7 +43,7 @@ export default function ZoneMap() {
     return () => io.disconnect();
   }, []);
 
-  const labels = data?.communes.filter((c) => c.role) ?? [];
+  const labels = data?.communes.filter((c) => c.role || c.big) ?? [];
 
   return (
     <div ref={ref} className="mx-auto w-full max-w-3xl">
@@ -76,27 +77,37 @@ export default function ZoneMap() {
               />
             ))}
 
-            {/* Labels permanents Toulouse / Bessières */}
+            {/* Labels permanents — grandes villes (texte) + Toulouse/Bessières (pastille) */}
             {labels.map((c) => {
-              const w = c.name.length * 7 + (c.role === "base" ? 54 : 16);
-              const text = c.role === "base" ? `${c.name} · siège` : c.name;
-              return (
-                <g key={`lbl-${c.name}`} pointerEvents="none">
-                  <circle cx={c.cx} cy={c.cy} r={4} fill="#fff" />
-                  <g transform={`translate(${c.cx}, ${c.cy + 8})`}>
-                    <rect
-                      x={-w / 2}
-                      y={4}
-                      width={w}
-                      height={20}
-                      rx={5}
-                      fill="var(--anthracite-dark)"
-                    />
-                    <text x={0} y={18} textAnchor="middle" fill="#fff" fontSize={12} fontWeight={700}>
-                      {text}
-                    </text>
+              if (c.role) {
+                const text = c.role === "base" ? `${c.name} · siège` : c.name;
+                const w = text.length * 7 + 18;
+                const fill = c.role === "main" ? "var(--orange)" : "var(--anthracite-dark)";
+                return (
+                  <g key={`lbl-${c.name}`} pointerEvents="none">
+                    <circle cx={c.cx} cy={c.cy} r={4} fill="#fff" />
+                    <g transform={`translate(${c.cx}, ${c.cy + 8})`}>
+                      <rect x={-w / 2} y={4} width={w} height={20} rx={5} fill={fill} />
+                      <text x={0} y={18} textAnchor="middle" fill="#fff" fontSize={12} fontWeight={700}>
+                        {text}
+                      </text>
+                    </g>
                   </g>
-                </g>
+                );
+              }
+              // grande ville : libellé texte contouré, lisible sur la carte
+              return (
+                <text
+                  key={`lbl-${c.name}`}
+                  className="zm-biglabel"
+                  x={c.cx}
+                  y={c.cy}
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  pointerEvents="none"
+                >
+                  {c.name}
+                </text>
               );
             })}
 

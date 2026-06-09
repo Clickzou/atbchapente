@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { services, communes, site, routes } from "@/lib/site";
+import { services, site, routes } from "@/lib/site";
 import HeroSlider from "@/components/HeroSlider";
 import BlueprintBackground from "@/components/BlueprintBackground";
 import Reveal from "@/components/Reveal";
@@ -151,21 +151,8 @@ export default function Home() {
             Bessières).
           </p>
         </div>
-        <div className="flex flex-wrap justify-center gap-3">
-          {communes.map((c) => (
-            <span
-              key={c}
-              className="rounded-full border border-black/5 bg-muted px-4 py-2 text-sm text-anthracite"
-            >
-              {c}
-            </span>
-          ))}
-        </div>
-
-        {/* Carte interactive de la zone */}
-        <div className="mt-12">
-          <ZoneMap />
-        </div>
+        {/* Carte interactive de la zone (découpée par commune) */}
+        <ZoneMap />
       </section>
 
       {/* CTA */}
