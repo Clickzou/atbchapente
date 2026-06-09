@@ -14,7 +14,7 @@ function sectionImageFor(
 ): { src: string; side: "left" | "right"; bg?: string } | null {
   const h = heading.toLowerCase();
   if (h.includes("création d'une charpente bois neuve"))
-    return { src: "/images/charpente-neuve.jpg", side: "left" };
+    return { src: "/images/realisations/creation-charpente.jpg", side: "left" };
   if (h.includes("rénovation et renforcement"))
     return { src: "/images/renovation-charpente-bois.jpg", side: "right" };
   if (h.includes("extension et surélévation"))
@@ -63,7 +63,7 @@ function getService(slug: string) {
 
 // Croquis (dessin au trait) associé à chaque service.
 const CROQUIS: Record<string, string> = {
-  "creation-charpente-bois-renovation": "croquis-charpente.jpg",
+  "creation-charpente-bois-renovation": "charpente-neuve.jpg",
   "isolation-toiture": "croquis-maison.jpg",
   "pose-changement-gouttieres-zinc": "croquis-toiture.jpg",
   "pose-remaniement-tuiles": "croquis-toiture.jpg",
@@ -281,21 +281,15 @@ export default async function ServicePage({
           return (
             <section key={i} className="bg-muted">
               <div className="mx-auto max-w-[1600px] px-4 py-16 lg:px-12">
-                <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-14">
-                  <div className="lg:order-1">
-                    <h2 className="text-3xl font-bold text-anthracite">
-                      Zone d&apos;intervention
-                    </h2>
-                    {zoneGroup && (
-                      <div className="mt-4 [&_p]:text-foreground/70">
-                        <ArticleRenderer blocks={zoneGroup.slice(1)} />
-                      </div>
-                    )}
-                  </div>
-                  <div className="lg:order-2">
-                    <ZoneMap />
-                  </div>
-                </div>
+                <ZoneMap
+                  split
+                  heading="Zone d'intervention"
+                  intro={
+                    zoneGroup ? (
+                      <ArticleRenderer blocks={zoneGroup.slice(1)} />
+                    ) : undefined
+                  }
+                />
               </div>
             </section>
           );

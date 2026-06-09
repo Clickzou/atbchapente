@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useMemo } from "react";
+import { useEffect, useRef, useState, useMemo, type ReactNode } from "react";
 import Link from "next/link";
 
 // Carte de la zone découpée par commune. Recherche d'une ville (surbrillance
@@ -24,7 +24,17 @@ const norm = (s: string) =>
 const hrefFor = (c: ZoneCommune) =>
   c.role ? "/" : `/charpentier-couvreur/${c.slug}`;
 
-export default function ZoneMap() {
+// `split` : dispose le texte + la recherche + la légende dans une colonne de
+// gauche et la carte à droite (centrées verticalement). Sinon : empilé, centré.
+export default function ZoneMap({
+  split = false,
+  heading,
+  intro,
+}: {
+  split?: boolean;
+  heading?: string;
+  intro?: ReactNode;
+} = {}) {
   const ref = useRef<HTMLDivElement>(null);
   const [data, setData] = useState<ZoneData | null>(null);
   const [hover, setHover] = useState<Hover>(null);
@@ -61,48 +71,51 @@ export default function ZoneMap() {
   const labels = data?.communes.filter((c) => c.role) ?? [];
   const selectedCommune = data?.communes.find((c) => c.slug === selected) ?? null;
 
-  return (
-    <div ref={ref} className="mx-auto w-full max-w-3xl">
-      {/* Recherche */}
-      <div className="relative mx-auto mb-3 max-w-md">
-        <input
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Votre ville ? (ex. Bouloc, Grenade…)"
-          className="w-full rounded-full border border-black/10 bg-white px-5 py-3 text-sm shadow-sm focus:border-orange focus:outline-none"
-          aria-label="Rechercher votre commune"
-        />
-        {matches.length > 0 && query.trim().length >= 2 && (
-          <ul className="absolute z-20 mt-2 max-h-64 w-full overflow-auto rounded-xl border border-black/5 bg-white py-1 shadow-lg">
-            {matches.map((c) => (
-              <li key={c.slug}>
-                <Link
-                  href={hrefFor(c)}
-                  onMouseEnter={() => setSelected(c.slug)}
-                  className="flex items-center justify-between px-4 py-2 text-sm hover:bg-muted"
-                >
-                  <span className="font-medium text-anthracite">{c.name}</span>
-                  <span className="text-xs text-orange">Voir →</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+  // Recherche
+  const searchEl = (
+    <div className={`relative max-w-md ${split ? "" : "mx-auto"} mb-3`}>
+      <input
+        type="text"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="Votre ville ? (ex. Bouloc, Grenade…)"
+        className="w-full rounded-full border border-black/10 bg-white px-5 py-3 text-sm shadow-sm focus:border-orange focus:outline-none"
+        aria-label="Rechercher votre commune"
+      />
+      {matches.length > 0 && query.trim().length >= 2 && (
+        <ul className="absolute z-20 mt-2 max-h-64 w-full overflow-auto rounded-xl border border-black/5 bg-white py-1 shadow-lg">
+          {matches.map((c) => (
+            <li key={c.slug}>
+              <Link
+                href={hrefFor(c)}
+                onMouseEnter={() => setSelected(c.slug)}
+                className="flex items-center justify-between px-4 py-2 text-sm hover:bg-muted"
+              >
+                <span className="font-medium text-anthracite">{c.name}</span>
+                <span className="text-xs text-orange">Voir →</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 
-      {/* Légende (au-dessus de la carte) */}
-      <p className="mb-4 text-center text-sm text-foreground/60">
-        Survolez ou recherchez une commune ·{" "}
-        {data ? data.communes.length : "—"} villes couvertes dans un rayon de ~30 km
-        autour de Bessières
-      </p>
+  // Légende
+  const legendEl = (
+    <p className={`mb-4 text-sm text-foreground/60 ${split ? "" : "text-center"}`}>
+      Survolez ou recherchez une commune ·{" "}
+      {data ? data.communes.length : "—"} villes couvertes dans un rayon de ~30 km
+      autour de Bessières
+    </p>
+  );
 
-      {/* Carte */}
-      <div
-        className="relative w-full overflow-hidden rounded-2xl bg-transparent"
-        style={{ aspectRatio: data ? `${data.width} / ${data.height}` : "1 / 1" }}
-      >
+  // Carte (SVG)
+  const mapEl = (
+    <div
+      className="relative w-full overflow-hidden rounded-2xl bg-transparent"
+      style={{ aspectRatio: data ? `${data.width} / ${data.height}` : "1 / 1" }}
+    >
         {!data && (
           <div className="absolute inset-0 flex items-center justify-center text-sm text-foreground/40">
             Chargement de la carte…
@@ -187,7 +200,38 @@ export default function ZoneMap() {
             )}
           </svg>
         )}
+    </div>
+  );
+
+  // Disposition « split » : texte + recherche + légende à gauche, carte à droite.
+  if (split) {
+    return (
+      <div ref={ref} className="w-full">
+        <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-14">
+          <div className="lg:order-1">
+            {heading && (
+              <h2 className="text-3xl font-bold text-anthracite">{heading}</h2>
+            )}
+            {intro && (
+              <div className="mt-4 [&_p]:text-foreground/70">{intro}</div>
+            )}
+            <div className="mt-6">
+              {searchEl}
+              {legendEl}
+            </div>
+          </div>
+          <div className="lg:order-2">{mapEl}</div>
+        </div>
       </div>
+    );
+  }
+
+  // Disposition par défaut : empilée et centrée.
+  return (
+    <div ref={ref} className="mx-auto w-full max-w-3xl">
+      {searchEl}
+      {legendEl}
+      {mapEl}
     </div>
   );
 }
