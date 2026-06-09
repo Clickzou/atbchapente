@@ -62,6 +62,13 @@ const SECTION_LISTCARDS: Record<string, ListCardsConf[]> = {
       icon: <path d="M12 3l9 16H3z M12 10v4 M12 17h.01" />,
     },
   ],
+  "pose-remaniement-tuiles": [
+    {
+      match: "la couverture en tuiles",
+      // Toit en tuiles (rangées)
+      icon: <path d="M3 11l9-7 9 7M5 10v10h14V10M5 13.5h14M5 17h14" />,
+    },
+  ],
 };
 
 // Par service : fragment de titre H2 dont le contenu alimente la section carte
@@ -197,7 +204,7 @@ const CROQUIS: Record<string, string> = {
   "creation-charpente-bois-renovation": "charpente-neuve.jpg",
   "isolation-toiture": "isolation-toiture.jpg",
   "pose-changement-gouttieres-zinc": "gouttiere-toit.jpg",
-  "pose-remaniement-tuiles": "croquis-toiture.jpg",
+  "pose-remaniement-tuiles": "couverture-tuile.jpg",
   "creation-fenetre-de-toit-bois": "croquis-maison.jpg",
   "creation-pergola-bois": "croquis-pergola.jpg",
 };
