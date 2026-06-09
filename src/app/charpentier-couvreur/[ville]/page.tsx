@@ -22,8 +22,8 @@ export function generateStaticParams() {
 // (fal.ai) assignée de façon déterministe, sinon un repli par défaut.
 const POOL_SIZE = 16;
 function heroFor(slug: string) {
-  const ville = path.join(process.cwd(), "public", "images", "villes", `${slug}.webp`);
-  if (fs.existsSync(ville)) return `/images/villes/${slug}.webp`;
+  const ville = path.join(process.cwd(), "public", "images", "villes", `${slug}.jpg`);
+  if (fs.existsSync(ville)) return `/images/villes/${slug}.jpg`;
   const idx = [...slug].reduce((a, ch) => a + ch.charCodeAt(0), 0) % POOL_SIZE;
   const n = String(idx + 1).padStart(2, "0");
   const pool = path.join(process.cwd(), "public", "images", "chantiers", `${n}.jpg`);
@@ -96,11 +96,17 @@ export default async function VillePage({
   const city = cityBySlug.get(ville);
   if (!city) notFound();
 
-  // Croquis alterné par ville (casse la répétition d'une page à l'autre).
+  // Croquis alterné par ville (4 variantes) pour casser la répétition.
+  const croquisList = [
+    "croquis-pergola.jpg",
+    "croquis-toiture.jpg",
+    "croquis-charpente.jpg",
+    "croquis-maison.jpg",
+  ];
   const croquis =
-    [...city.slug].reduce((a, c) => a + c.charCodeAt(0), 0) % 2 === 0
-      ? "croquis-pergola.jpg"
-      : "croquis-toiture.jpg";
+    croquisList[
+      [...city.slug].reduce((a, c) => a + c.charCodeAt(0), 0) % croquisList.length
+    ];
 
   const faq = [
     {
