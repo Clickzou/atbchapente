@@ -1,47 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { services, communes, site, routes } from "@/lib/site";
+import HeroSlider from "@/components/HeroSlider";
 
 export default function Home() {
   return (
     <>
-      {/* HERO */}
-      <section className="relative overflow-hidden bg-anthracite-dark text-white">
-        <Image
-          src="/images/realisations/IMG-20250403-WA0003.jpg"
-          alt=""
-          fill
-          priority
-          className="object-cover opacity-30"
-        />
-        <div className="relative mx-auto max-w-7xl px-4 py-24 lg:px-8 lg:py-32">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-orange">
-            {site.baseline}
-          </p>
-          <h1 className="max-w-3xl text-4xl font-bold leading-tight sm:text-5xl">
-            Charpentier couvreur à Toulouse — charpente, couverture & zinguerie
-          </h1>
-          <p className="mt-5 max-w-2xl text-lg text-white/80">
-            ATB Charpente intervient à Toulouse et ses environs (jusqu&apos;à 30 km,
-            secteur Bessières) pour vos travaux de charpente, couverture et
-            zinguerie, du neuf à la rénovation, avec un savoir-faire artisanal.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <Link
-              href={routes.contact}
-              className="rounded-full bg-orange px-7 py-3.5 font-semibold text-white transition-colors hover:bg-orange-dark"
-            >
-              Demander un devis gratuit
-            </Link>
-            <Link
-              href={routes.realisations}
-              className="rounded-full border border-white/30 px-7 py-3.5 font-semibold text-white transition-colors hover:bg-white/10"
-            >
-              Voir nos réalisations
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* HERO — diaporama plein écran, un slide par service */}
+      <HeroSlider />
 
       {/* SERVICES */}
       <section className="mx-auto max-w-7xl px-4 py-20 lg:px-8">
