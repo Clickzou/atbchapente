@@ -51,6 +51,30 @@ const BENEFIT_ICONS: ReactNode[] = [
   </g>,
 ];
 
+// Sections « comparaison » : deux sous-parties H3 affichées en deux cartes côte
+// à côte (avec puces ✓). `recommended` met en avant l'une des cartes (liseré).
+type CompareConf = { match: string; badges?: [string, string]; recommended?: 0 | 1 };
+const SECTION_COMPARE: Record<string, CompareConf[]> = {
+  "isolation-toiture": [
+    {
+      match: "quelle solution choisir",
+      badges: ["Performance maximale", "Plus économique"],
+      recommended: 0,
+    },
+  ],
+};
+
+// Icônes (par index de carte) pour les sections comparaison.
+const COMPARE_ICONS: ReactNode[] = [
+  // Par l'extérieur (toit + couches)
+  <path key="ext" d="M3 14l9-7 9 7M6 12.5V20M18 12.5V20M3 20h18M9 9.5l3-2.3 3 2.3" />,
+  // Par l'intérieur (maison)
+  <g key="int">
+    <path d="M3 11l9-8 9 8M5 10v10h14V10" />
+    <path d="M9 20v-6h6v6" />
+  </g>,
+];
+
 // Cartes « types de charpente » (page charpente uniquement).
 const CHARPENTE_TYPES = [
   {
@@ -148,15 +172,25 @@ export default async function ServicePage({
   // « blocks », on attache l'image éventuelle (alternance gauche/droite auto).
   const imgConf = SECTION_IMAGES[data.slug] ?? [];
   const benefitConf = SECTION_BENEFITS[data.slug] ?? [];
+  const compareConf = SECTION_COMPARE[data.slug] ?? [];
   let imgCount = 0;
   const sections: {
-    kind: "cards" | "blocks" | "faq" | "zone" | "benefits";
+    kind: "cards" | "blocks" | "faq" | "zone" | "benefits" | "compare";
     blocks?: ContentBlock[];
     img?: { src: string; side: "left" | "right"; bg?: string };
+    compare?: CompareConf;
   }[] = [];
   if (isCharpente) sections.push({ kind: "cards" });
   for (const g of mainGroups) {
     const head = g[0];
+    const cmp =
+      head.type === "heading"
+        ? compareConf.find((c) => head.text.toLowerCase().includes(c.match))
+        : undefined;
+    if (cmp) {
+      sections.push({ kind: "compare", blocks: g, compare: cmp });
+      continue;
+    }
     if (
       head.type === "heading" &&
       benefitConf.some((m) => head.text.toLowerCase().includes(m))
@@ -312,6 +346,115 @@ export default async function ServicePage({
                       </div>
                     </div>
                   ))}
+                </div>
+              </div>
+            </section>
+          );
+        }
+        if (s.kind === "compare") {
+          const blocks = s.blocks!;
+          const h2 = blocks[0];
+          const firstH3 = blocks.findIndex(
+            (b) => b.type === "heading" && b.level === 3,
+          );
+          const intro = firstH3 === -1 ? blocks.slice(1) : blocks.slice(1, firstH3);
+          const subs: ContentBlock[][] = [];
+          for (const b of firstH3 === -1 ? [] : blocks.slice(firstH3)) {
+            if (b.type === "heading" && b.level === 3) subs.push([b]);
+            else if (subs.length) subs[subs.length - 1].push(b);
+          }
+          return (
+            <section key={i} className={bg}>
+              <div className="mx-auto max-w-[1600px] px-4 py-14 lg:px-12">
+                <div className="mx-auto max-w-3xl text-center">
+                  <h2 className="text-3xl font-bold text-anthracite">
+                    {h2.type === "heading" ? h2.text : ""}
+                  </h2>
+                  {intro.length > 0 && (
+                    <div className="mt-3 [&_p]:text-foreground/70">
+                      <ArticleRenderer blocks={intro} />
+                    </div>
+                  )}
+                </div>
+                <div className="mt-10 grid gap-6 md:grid-cols-2">
+                  {subs.map((sub, k) => {
+                    const title = sub[0].type === "heading" ? sub[0].text : "";
+                    const listB = sub.find((b) => b.type === "list");
+                    const paras = sub.slice(1).filter((b) => b.type !== "list");
+                    const advs =
+                      listB && listB.type === "list" ? listB.items : [];
+                    const recommended = s.compare?.recommended === k;
+                    const badge = s.compare?.badges?.[k];
+                    return (
+                      <div
+                        key={k}
+                        className={`relative flex flex-col rounded-2xl border bg-white p-7 shadow-sm ${
+                          recommended
+                            ? "border-orange ring-1 ring-orange/30"
+                            : "border-black/5"
+                        }`}
+                      >
+                        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-orange/10 text-orange">
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            {COMPARE_ICONS[k % COMPARE_ICONS.length]}
+                          </svg>
+                        </span>
+                        {badge && (
+                          <span
+                            className={`mt-4 inline-block w-fit rounded-full px-3 py-1 text-xs font-semibold ${
+                              recommended
+                                ? "bg-orange text-white"
+                                : "bg-muted text-foreground/70"
+                            }`}
+                          >
+                            {badge}
+                          </span>
+                        )}
+                        <h3 className="mt-3 text-xl font-bold text-anthracite">
+                          {title}
+                        </h3>
+                        {paras.length > 0 && (
+                          <div className="mt-2 [&_p]:text-sm [&_p]:text-foreground/70">
+                            <ArticleRenderer blocks={paras} />
+                          </div>
+                        )}
+                        {advs.length > 0 && (
+                          <ul className="mt-4 space-y-2">
+                            {advs.map((a, j) => (
+                              <li
+                                key={j}
+                                className="flex items-start gap-2 text-sm text-foreground/80"
+                              >
+                                <svg
+                                  className="mt-0.5 shrink-0 text-orange"
+                                  width="18"
+                                  height="18"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="2.5"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                >
+                                  <path d="M5 12l5 5L20 7" />
+                                </svg>
+                                <span>{a}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </section>
