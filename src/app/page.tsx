@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { services, communes, site, routes } from "@/lib/site";
 import HeroSlider from "@/components/HeroSlider";
-import TradeBackground from "@/components/TradeBackground";
+import BlueprintBackground from "@/components/BlueprintBackground";
 
 export default function Home() {
   return (
@@ -12,7 +12,7 @@ export default function Home() {
 
       {/* SERVICES */}
       <section className="relative overflow-hidden bg-gradient-to-b from-muted/60 to-white py-20">
-        <TradeBackground />
+        <BlueprintBackground />
         <div className="relative z-10 mx-auto max-w-7xl px-4 lg:px-8">
           <div className="mb-12 text-center">
             <h2 className="text-3xl font-bold text-anthracite">Nos prestations</h2>

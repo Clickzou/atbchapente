@@ -1,0 +1,107 @@
+<!--
+  ATB Charpente — Fond animé « plan d'architecte » (blueprint)
+  ------------------------------------------------------------
+  À coller dans un WIDGET HTML Elementor, placé À L'INTÉRIEUR de la section.
+  Pré-requis : la SECTION/COLONNE parente doit être en `position: relative`
+  (Avancé > Disposition, ou ça marche aussi si la section Elementor est déjà
+  positionnée). Le bloc se met en arrière-plan (z-index:0, pointer-events:none).
+
+  Couleur du trait : variable --bp-stroke.
+    - Fond CLAIR  -> mettre une couleur sombre (ex. #3a3a3c).
+    - Fond SOMBRE -> mettre du blanc / beige très clair (ex. #efe9da).
+-->
+<div class="atb-blueprint-bg" aria-hidden="true" style="--bp-stroke:#efe9da;">
+  <div class="bp-parallax">
+    <svg viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" fill="none"
+         stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Ferme principale (décentrée) -->
+      <g class="bp-main" stroke-width="1.6" vector-effect="non-scaling-stroke">
+        <path d="M780 440 H1320" />
+        <path d="M780 451 H1320" />
+        <path d="M780 440 L1050 150" />
+        <path d="M1320 440 L1050 150" />
+        <path d="M1050 150 V440" />
+        <path d="M1050 440 L905 295" />
+        <path d="M1050 440 L1195 295" />
+      </g>
+      <!-- Pannes, plan de toiture, chevrons, axes -->
+      <g class="bp-secondary" stroke-width="1" vector-effect="non-scaling-stroke">
+        <path d="M855 360 H1245" />
+        <path d="M938 270 H1162" />
+        <path d="M1013 190 H1037" />
+        <path d="M120 520 H540 V300 H120 Z" />
+        <path d="M120 410 H540" />
+        <path d="M180 300 V520" /><path d="M240 300 V520" /><path d="M300 300 V520" />
+        <path d="M360 300 V520" /><path d="M420 300 V520" /><path d="M480 300 V520" />
+        <path d="M120 300 L210 410" /><path d="M540 300 L450 410" />
+        <path d="M120 520 L210 410" /><path d="M540 520 L450 410" />
+        <path d="M0 545 H1440" />
+        <path d="M1385 60 V560" />
+      </g>
+      <!-- Cotation -->
+      <g class="bp-dim" stroke-width="0.9" vector-effect="non-scaling-stroke">
+        <path d="M780 452 V492" /><path d="M1320 452 V492" />
+        <path d="M790 482 H1310" />
+        <path d="M790 482 l12 -5 M790 482 l12 5" />
+        <path d="M1310 482 l-12 -5 M1310 482 l-12 5" />
+        <path d="M736 150 H772" /><path d="M736 440 H772" />
+        <path d="M748 160 V430" />
+        <path d="M748 160 l-5 12 M748 160 l5 12" />
+        <path d="M748 430 l-5 -12 M748 430 l5 -12" />
+        <path d="M120 540 V566" /><path d="M540 540 V566" />
+        <path d="M130 558 H530" />
+        <path d="M130 558 l12 -5 M130 558 l12 5" />
+        <path d="M530 558 l-12 -5 M530 558 l-12 5" />
+      </g>
+      <!-- Repères techniques -->
+      <g class="bp-marker" stroke-width="1" vector-effect="non-scaling-stroke">
+        <circle cx="1050" cy="150" r="7" />
+        <path d="M1040 150 H1060 M1050 140 V160" stroke-width="0.8" />
+        <circle cx="780" cy="440" r="5" />
+        <circle cx="1320" cy="440" r="5" />
+        <circle cx="330" cy="410" r="6" />
+        <path d="M320 410 H340 M330 400 V420" stroke-width="0.8" />
+      </g>
+    </svg>
+  </div>
+</div>
+
+<style>
+  .atb-blueprint-bg{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;
+    color:var(--bp-stroke,#3a3a3c);animation:bp-breathe 9s ease-in-out infinite}
+  .atb-blueprint-bg .bp-parallax{position:absolute;inset:-6% 0;will-change:transform;
+    transform:translate3d(0,var(--bp-shift,0px),0)}
+  .atb-blueprint-bg svg{position:absolute;inset:0;width:100%;height:100%}
+  @keyframes bp-draw{to{stroke-dashoffset:0}}
+  @keyframes bp-fade{to{opacity:1}}
+  @keyframes bp-breathe{0%,100%{opacity:.06}50%{opacity:.13}}
+  .atb-blueprint-bg .bp-main path{stroke-dasharray:2600;stroke-dashoffset:2600;animation:bp-draw 3.6s ease .2s forwards}
+  .atb-blueprint-bg .bp-secondary path{stroke-dasharray:2600;stroke-dashoffset:2600;animation:bp-draw 3.2s ease 1.6s forwards}
+  .atb-blueprint-bg .bp-dim path{stroke-dasharray:1600;stroke-dashoffset:1600;animation:bp-draw 2.6s ease 3s forwards}
+  .atb-blueprint-bg .bp-marker{opacity:0;animation:bp-fade 1.4s ease 3.6s forwards}
+  @media (prefers-reduced-motion: reduce){
+    .atb-blueprint-bg{animation:none;opacity:.1}
+    .atb-blueprint-bg .bp-parallax{transform:none}
+    .atb-blueprint-bg .bp-main path,.atb-blueprint-bg .bp-secondary path,.atb-blueprint-bg .bp-dim path{animation:none;stroke-dashoffset:0}
+    .atb-blueprint-bg .bp-marker{animation:none;opacity:1}
+  }
+</style>
+
+<script>
+  (function () {
+    var el = document.currentScript.parentNode.querySelector('.atb-blueprint-bg');
+    if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var raf = 0;
+    function update() {
+      var r = el.getBoundingClientRect();
+      var offset = window.innerHeight / 2 - (r.top + r.height / 2);
+      var shift = Math.max(-30, Math.min(30, offset * 0.05));
+      el.style.setProperty('--bp-shift', shift.toFixed(1) + 'px');
+      raf = 0;
+    }
+    function onScroll() { if (!raf) raf = requestAnimationFrame(update); }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    update();
+  })();
+</script>

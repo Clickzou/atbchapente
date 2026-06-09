@@ -38,61 +38,88 @@ html {
   scroll-behavior: smooth;
 }
 
-/* ── Fond animé « métier de charpentier » (section prestations) ── */
-/* Défilement horizontal continu et fluide des fermes de toit */
-@keyframes trade-drift {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-160px); /* largeur d'une ferme = boucle sans couture */
-  }
+/* ── Fond « blueprint / plan d'architecte » (section prestations) ── */
+/* Couleur du trait : anthracite par défaut (section claire). Passer en blanc/beige
+   très clair si la section est sur fond sombre, via --bp-stroke. */
+.atb-blueprint-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  color: var(--bp-stroke, #3a3a3c);
+  animation: bp-breathe 9s ease-in-out infinite; /* respiration d'opacité douce */
+}
+.atb-blueprint-bg .bp-parallax {
+  position: absolute;
+  inset: -6% 0; /* marge pour le déplacement parallaxe */
+  will-change: transform;
+  transform: translate3d(0, var(--bp-shift, 0px), 0);
+}
+.atb-blueprint-bg svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
 }
 
-/* Tracé progressif des fermes (effet « dessin ») */
-@keyframes trade-draw {
-  0% {
-    stroke-dashoffset: 600;
-  }
-  60%,
-  100% {
+/* Tracé progressif (stroke-dashoffset) — étagé : principal, secondaire, cotation */
+@keyframes bp-draw {
+  to {
     stroke-dashoffset: 0;
   }
 }
-
-/* Sciure / copeaux qui descendent doucement */
-@keyframes trade-dust {
-  0% {
-    transform: translateY(-12px) translateX(0);
-    opacity: 0;
+@keyframes bp-fade {
+  to {
+    opacity: 1;
   }
-  15% {
-    opacity: 0.6;
-  }
-  85% {
-    opacity: 0.45;
-  }
+}
+@keyframes bp-breathe {
+  0%,
   100% {
-    transform: translateY(140px) translateX(24px);
-    opacity: 0;
+    opacity: 0.06;
+  }
+  50% {
+    opacity: 0.13;
   }
 }
 
-.trade-trusses {
-  animation: trade-drift 28s linear infinite;
+.atb-blueprint-bg .bp-main path {
+  stroke-dasharray: 2600;
+  stroke-dashoffset: 2600;
+  animation: bp-draw 3.6s ease 0.2s forwards;
 }
-.trade-truss path {
-  stroke-dasharray: 600;
-  animation: trade-draw 6s ease-out forwards;
+.atb-blueprint-bg .bp-secondary path {
+  stroke-dasharray: 2600;
+  stroke-dashoffset: 2600;
+  animation: bp-draw 3.2s ease 1.6s forwards;
 }
-.trade-dust span {
-  animation: trade-dust 9s ease-in-out infinite;
+.atb-blueprint-bg .bp-dim path {
+  stroke-dasharray: 1600;
+  stroke-dashoffset: 1600;
+  animation: bp-draw 2.6s ease 3s forwards;
+}
+.atb-blueprint-bg .bp-marker {
+  opacity: 0;
+  animation: bp-fade 1.4s ease 3.6s forwards;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .trade-trusses,
-  .trade-truss path,
-  .trade-dust span {
+  .atb-blueprint-bg {
     animation: none;
+    opacity: 0.1;
+  }
+  .atb-blueprint-bg .bp-parallax {
+    transform: none;
+  }
+  .atb-blueprint-bg .bp-main path,
+  .atb-blueprint-bg .bp-secondary path,
+  .atb-blueprint-bg .bp-dim path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  .atb-blueprint-bg .bp-marker {
+    animation: none;
+    opacity: 1;
   }
 }

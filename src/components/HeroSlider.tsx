@@ -65,37 +65,24 @@ export default function HeroSlider() {
 
       {/* Contenu */}
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-24 lg:px-8">
-        <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-orange">
+        {/* H1 unique de la page (étiquette), constant et toujours visible */}
+        <h1 className="mb-3 text-sm font-semibold uppercase tracking-widest text-orange">
           {site.baseline}
-        </p>
+        </h1>
 
-        {/* Titres par slide (fondu) — le 1er est le H1, les autres des div */}
+        {/* Titres par slide (fondu) — NON sémantiques (aucun Hn) */}
         <div className="relative mb-5 min-h-[150px] sm:min-h-[190px] lg:min-h-[230px]">
-          {slides.map((slide, i) =>
-            i === 0 ? (
-              // Slide 1 : unique H1 de la page (reste dans le DOM même en fondu).
-              <h1
-                key={i}
-                className={`${titleClass} transition-opacity duration-700 ${
-                  i === index ? "opacity-100" : "opacity-0"
-                }`}
-                aria-hidden={i !== index}
-              >
-                {slide.title}
-              </h1>
-            ) : (
-              // Slides suivantes : titres visuels NON sémantiques (aucun Hn).
-              <p
-                key={i}
-                aria-hidden={i !== index}
-                className={`${titleClass} transition-opacity duration-700 ${
-                  i === index ? "opacity-100" : "opacity-0"
-                }`}
-              >
-                {slide.title}
-              </p>
-            ),
-          )}
+          {slides.map((slide, i) => (
+            <p
+              key={i}
+              aria-hidden={i !== index}
+              className={`${titleClass} transition-opacity duration-700 ${
+                i === index ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              {slide.title}
+            </p>
+          ))}
         </div>
 
         {/* Accroche du service actif */}
