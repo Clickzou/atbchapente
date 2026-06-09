@@ -166,103 +166,169 @@ export default async function VillePage({
         </div>
       </section>
 
-      <article className="mx-auto max-w-4xl px-4 py-14 lg:px-8">
+      <article className="mx-auto max-w-5xl px-4 py-14 lg:px-8">
         <p className="text-lg leading-relaxed text-foreground/85">{buildIntro(city)}</p>
 
-        {/* À propos de la commune — données réelles (unicité factuelle) */}
-        <h2 className="mt-12 text-2xl font-bold text-anthracite">
-          Votre charpentier couvreur de proximité à {city.name}
-        </h2>
-        <p className="mt-4 text-foreground/80">
-          {city.name} ({city.cp})
-          {city.population
-            ? ` compte environ ${city.population.toLocaleString("fr-FR")} habitants`
-            : ""}
-          {city.epci ? ` et fait partie de ${city.epci}` : ""}, dans le département de{" "}
-          {city.departement || "la Haute-Garonne"}. Située à environ {city.distToulouse}{" "}
-          km de Toulouse et {city.distBessieres} km de notre atelier de Bessières, la
-          commune bénéficie d&apos;une intervention rapide d&apos;ATB Charpente pour la
-          création comme la rénovation de votre toiture : <strong>charpente bois</strong>,{" "}
-          <strong>couverture en tuiles</strong>, zinguerie et isolation.
-        </p>
+        {/* Infos clés — cartes mettant en valeur les données réelles */}
+        <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
+          {[
+            city.population && {
+              icon: (
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 7a4 4 0 1 0 0 .01M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+              ),
+              value: city.population.toLocaleString("fr-FR"),
+              label: "habitants",
+            },
+            {
+              icon: <path d="M12 21s-7-5.5-7-11a7 7 0 1 1 14 0c0 5.5-7 11-7 11zM12 10a1 1 0 1 0 0 .01" />,
+              value: `${city.distToulouse} km`,
+              label: "de Toulouse",
+            },
+            {
+              icon: <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6" />,
+              value: `${city.distBessieres} km`,
+              label: "de notre atelier",
+            },
+            {
+              icon: (
+                <path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3zM9 12l2 2 4-4" />
+              ),
+              value: "Décennale",
+              label: "artisan assuré",
+            },
+          ]
+            .filter(Boolean)
+            .map((f, i) => {
+              const card = f as { icon: React.ReactNode; value: string; label: string };
+              return (
+                <div
+                  key={i}
+                  className="rounded-2xl border border-black/5 bg-white p-5 text-center shadow-sm"
+                >
+                  <span className="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-full bg-orange/10 text-orange">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      {card.icon}
+                    </svg>
+                  </span>
+                  <p className="text-lg font-bold text-anthracite">{card.value}</p>
+                  <p className="text-xs text-foreground/60">{card.label}</p>
+                </div>
+              );
+            })}
+        </div>
 
-        {/* Prestations */}
-        <h2 className="mt-12 text-2xl font-bold text-anthracite">
+        {/* Prestations — cartes */}
+        <h2 className="mt-14 text-2xl font-bold text-anthracite">
           Nos prestations à {city.name}
         </h2>
-        <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+        <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (
-            <li key={s.slug}>
-              <Link
-                href={`/${s.slug}`}
-                className="flex items-start gap-2.5 rounded-lg border border-black/5 bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
-              >
-                <span className="mt-1 text-orange">→</span>
-                <span>
-                  <span className="font-semibold text-anthracite">{s.title}</span>
-                  <span className="block text-sm text-foreground/70">{s.excerpt}</span>
-                </span>
-              </Link>
-            </li>
+            <Link
+              key={s.slug}
+              href={`/${s.slug}`}
+              className="group flex flex-col rounded-2xl border border-black/5 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
+            >
+              <span className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-orange/10 text-orange">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M3 11l9-8 9 8M5 9.5V21h14V9.5" />
+                </svg>
+              </span>
+              <h3 className="font-semibold text-anthracite group-hover:text-orange">
+                {s.title}
+              </h3>
+              <p className="mt-2 flex-1 text-sm text-foreground/70">{s.excerpt}</p>
+              <span className="mt-4 text-sm font-semibold text-orange">En savoir plus →</span>
+            </Link>
           ))}
-        </ul>
+        </div>
 
-        {/* Pourquoi nous */}
-        <h2 className="mt-12 text-2xl font-bold text-anthracite">
+        {/* À propos — panneau */}
+        <div className="mt-14 rounded-2xl bg-muted p-6 sm:p-8">
+          <h2 className="text-2xl font-bold text-anthracite">
+            Votre charpentier couvreur de proximité à {city.name}
+          </h2>
+          <p className="mt-4 text-foreground/80">
+            {city.name} ({city.cp})
+            {city.population
+              ? ` compte environ ${city.population.toLocaleString("fr-FR")} habitants`
+              : ""}
+            {city.epci ? ` et fait partie de ${city.epci}` : ""}, dans le département de{" "}
+            {city.departement || "la Haute-Garonne"}. Située à environ {city.distToulouse}{" "}
+            km de Toulouse et {city.distBessieres} km de notre atelier de Bessières, la
+            commune bénéficie d&apos;une intervention rapide d&apos;ATB Charpente pour la
+            création comme la rénovation de votre toiture : charpente bois, couverture en
+            tuiles, zinguerie et isolation.
+          </p>
+        </div>
+
+        {/* Pourquoi nous — cartes */}
+        <h2 className="mt-14 text-2xl font-bold text-anthracite">
           Pourquoi choisir ATB Charpente à {city.name} ?
         </h2>
-        <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+        <div className="mt-6 grid gap-5 sm:grid-cols-2">
           {[
-            "20 ans d'expérience & plus de 130 chantiers réalisés",
-            "Garantie décennale — artisan assuré et qualifié",
-            "Un interlocuteur unique, de l'étude au chantier",
-            "Devis gratuit, détaillé et sans engagement",
+            { t: "20 ans d'expérience", d: "Plus de 130 chantiers réalisés autour de Toulouse." },
+            { t: "Garantie décennale", d: "Artisan assuré et qualifié, travaux garantis." },
+            { t: "Interlocuteur unique", d: "Un seul contact, de l'étude au chantier." },
+            { t: "Devis gratuit", d: "Détaillé et sans engagement, sous 24/48h." },
           ].map((item) => (
-            <li key={item} className="flex items-start gap-2.5 text-foreground/85">
-              <svg className="mt-0.5 shrink-0 text-orange" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M5 12l5 5L20 7" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              <span>{item}</span>
-            </li>
+            <div
+              key={item.t}
+              className="flex items-start gap-4 rounded-2xl border border-black/5 bg-white p-5 shadow-sm"
+            >
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-orange/10 text-orange">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M5 12l5 5L20 7" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+              <div>
+                <p className="font-semibold text-anthracite">{item.t}</p>
+                <p className="mt-1 text-sm text-foreground/70">{item.d}</p>
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
 
-        {/* Communes voisines (maillage) */}
-        <h2 className="mt-12 text-2xl font-bold text-anthracite">
+        {/* Communes voisines — cartes (maillage) */}
+        <h2 className="mt-14 text-2xl font-bold text-anthracite">
           Charpentier couvreur autour de {city.name}
         </h2>
-        <p className="mt-3 text-foreground/80">
-          Nous intervenons également dans les communes voisines de {city.name} :
-        </p>
-        <div className="mt-4 flex flex-wrap gap-2">
+        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {city.neighbors.map((n) => (
             <Link
               key={n.slug}
               href={`/charpentier-couvreur/${n.slug}`}
-              className="rounded-full border border-black/5 bg-muted px-4 py-2 text-sm text-anthracite transition-colors hover:bg-orange hover:text-white"
+              className="group flex items-center gap-3 rounded-xl border border-black/5 bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
             >
-              {n.name}
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-orange/10 text-orange">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 21s-7-5.5-7-11a7 7 0 1 1 14 0c0 5.5-7 11-7 11zM12 10a1 1 0 1 0 0 .01" />
+                </svg>
+              </span>
+              <span className="text-sm font-medium text-anthracite group-hover:text-orange">
+                Charpentier à {n.name}
+              </span>
             </Link>
           ))}
         </div>
 
         {/* FAQ */}
-        <h2 className="mt-12 text-2xl font-bold text-anthracite">
+        <h2 className="mt-14 text-2xl font-bold text-anthracite">
           Questions fréquentes — {city.name}
         </h2>
-        <div className="mt-5 space-y-3">
+        <div className="mt-6 space-y-3">
           {faq.map((f) => (
-            <details key={f.q} className="rounded-lg border border-black/5 bg-white p-4">
+            <details key={f.q} className="rounded-2xl border border-black/5 bg-white p-5 shadow-sm">
               <summary className="cursor-pointer font-semibold text-anthracite">
                 {f.q}
               </summary>
-              <p className="mt-2 text-foreground/80">{f.a}</p>
+              <p className="mt-3 text-foreground/80">{f.a}</p>
             </details>
           ))}
         </div>
 
         {/* CTA */}
-        <div className="mt-12 rounded-2xl bg-anthracite-dark p-8 text-center text-white">
+        <div className="mt-14 overflow-hidden rounded-2xl bg-anthracite-dark p-8 text-center text-white sm:p-10">
           <h2 className="text-2xl font-bold">Un projet de toiture à {city.name} ?</h2>
           <p className="mt-2 text-white/70">
             Contactez ATB Charpente pour un devis gratuit et sans engagement.
