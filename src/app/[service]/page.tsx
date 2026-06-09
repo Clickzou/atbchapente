@@ -72,7 +72,7 @@ const ZONE_HEADINGS: Record<string, string> = {
 
 // Sépare le label en gras de tête (« **Titre** reste ») du reste du texte.
 function splitLabel(text: string): { label: string; rest: string } {
-  const m = text.match(/^\*\*(.+?)\*\*\s*(.*)$/s);
+  const m = text.match(/^\*\*([^*]+)\*\*\s*([\s\S]*)$/);
   return m ? { label: m[1], rest: m[2] } : { label: "", rest: text };
 }
 
