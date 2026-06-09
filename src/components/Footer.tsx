@@ -88,6 +88,20 @@ export default function Footer() {
           </div>
         </div>
       </div>
+
+      <div className="border-t border-white/10">
+        <p className="mx-auto max-w-7xl px-4 py-4 text-center text-xs text-white/50 lg:px-8">
+          <a
+            href="https://clickzou.fr/creation-site-internet-vitrine-artisan/"
+            target="_blank"
+            rel="noopener"
+            className="hover:text-orange"
+          >
+            Création site internet artisan
+          </a>{" "}
+          par Clickzou
+        </p>
+      </div>
     </footer>
   );
 }
