@@ -24,6 +24,7 @@ const SECTION_IMAGES: Record<string, SectionImage[]> = {
   ],
   "isolation-toiture": [
     { match: "isolation des combles perdus", src: "/images/realisations/IMG-20250403-WA0018.jpg", side: "right" },
+    { match: "quels isolants pour votre toiture", src: "/images/isolation-toit.jpg", side: "left" },
   ],
   // Les autres services seront renseignés page par page.
 };
