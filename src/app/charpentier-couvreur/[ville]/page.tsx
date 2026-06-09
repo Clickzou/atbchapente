@@ -319,13 +319,24 @@ export default async function VillePage({
         </div>
       </section>
 
-      {/* Section 3 — Métier (fond blanc) */}
+      {/* Section 3 — Métier (pleine largeur : croquis à gauche, texte à droite) */}
       <section>
-        <div className="mx-auto max-w-5xl px-4 py-16 lg:px-8">
-          <h2 className="text-2xl font-bold text-anthracite">
-            Charpente, couverture et zinguerie à {city.name}
-          </h2>
-          <div className="mt-4 space-y-4 text-foreground/80">
+        <div className="mx-auto max-w-7xl px-4 py-16 lg:px-8">
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+            <div className="order-2 lg:order-1">
+              <Image
+                src="/images/croquis-pergola.jpg"
+                alt={`Croquis d'une réalisation de charpente à ${city.name}`}
+                width={900}
+                height={650}
+                className="h-auto w-full rounded-xl"
+              />
+            </div>
+            <div className="order-1 lg:order-2">
+              <h2 className="text-2xl font-bold text-anthracite">
+                Charpente, couverture et zinguerie à {city.name}
+              </h2>
+              <div className="mt-4 space-y-4 text-foreground/80">
             <p>
               En tant que charpentier couvreur intervenant à{" "}
               <Link href="/" className="font-medium text-orange hover:underline">
@@ -375,6 +386,8 @@ export default async function VillePage({
               km de Toulouse et {city.distBessieres} km de notre atelier de Bessières, la
               commune bénéficie d&apos;une intervention rapide.
             </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
