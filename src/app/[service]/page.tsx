@@ -102,6 +102,23 @@ const SECTION_LISTCARDS: Record<string, ListCardsConf[]> = {
 // verticale numérotée et reliée. Indexé par slug.
 const SECTION_TIMELINE: Record<string, string[]> = {
   "pose-remaniement-tuiles": ["la pose de tuiles neuves"],
+  "creation-fenetre-de-toit-bois": ["les étapes de la pose"],
+};
+
+// Sections « cartes-photo » : items de liste rendus en cartes avec photo (haut),
+// titre (label gras) et texte. `images[k]` = photo de la k-ième carte.
+const SECTION_PHOTOCARDS: Record<string, { match: string; images: string[] }[]> = {
+  "creation-fenetre-de-toit-bois": [
+    {
+      match: "types et modèles",
+      images: [
+        "/images/fenetres/rotation.jpg",
+        "/images/fenetres/projection.jpg",
+        "/images/fenetres/combinees.jpg",
+        "/images/fenetres/volet.jpg",
+      ],
+    },
+  ],
 };
 
 // Par service : fragment de titre H2 dont le contenu alimente la section carte
@@ -306,6 +323,7 @@ export default async function ServicePage({
   const duoConf = SECTION_DUO[data.slug] ?? [];
   const listCardsConf = SECTION_LISTCARDS[data.slug] ?? [];
   const timelineConf = SECTION_TIMELINE[data.slug] ?? [];
+  const photoCardsConf = SECTION_PHOTOCARDS[data.slug] ?? [];
   let imgCount = 0;
   const sections: {
     kind:
@@ -317,7 +335,8 @@ export default async function ServicePage({
       | "compare"
       | "duo"
       | "listcards"
-      | "timeline";
+      | "timeline"
+      | "photocards";
     blocks?: ContentBlock[];
     img?: { src: string; side: "left" | "right"; bg?: string };
     compare?: CompareConf;
@@ -326,6 +345,7 @@ export default async function ServicePage({
     listIcon?: ReactNode;
     listSplit?: boolean;
     listCentered?: boolean;
+    photoImages?: string[];
   }[] = [];
   if (isCharpente) sections.push({ kind: "cards" });
   const consumed = new Set<number>();
@@ -369,6 +389,11 @@ export default async function ServicePage({
     }
     if (timelineConf.some((m) => headText.includes(m))) {
       sections.push({ kind: "timeline", blocks: g });
+      continue;
+    }
+    const pc = photoCardsConf.find((c) => headText.includes(c.match));
+    if (pc) {
+      sections.push({ kind: "photocards", blocks: g, photoImages: pc.images });
       continue;
     }
     const conf = imgConf.find((c) => headText.includes(c.match));
@@ -666,6 +691,62 @@ export default async function ServicePage({
                     );
                   })}
                 </div>
+              </div>
+            </section>
+          );
+        }
+        if (s.kind === "photocards") {
+          const blocks = s.blocks!;
+          const listIdx = blocks.findIndex((b) => b.type === "list");
+          const preList = listIdx === -1 ? blocks : blocks.slice(0, listIdx);
+          const listBlock = listIdx === -1 ? undefined : blocks[listIdx];
+          const postList = listIdx === -1 ? [] : blocks.slice(listIdx + 1);
+          const items =
+            listBlock && listBlock.type === "list" ? listBlock.items : [];
+          const imgs = s.photoImages ?? [];
+          return (
+            <section key={i} className={bg}>
+              <div className="mx-auto max-w-[1600px] px-4 py-14 lg:px-12">
+                <div className="max-w-3xl">
+                  <ArticleRenderer blocks={preList} />
+                </div>
+                <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                  {items.map((it, k) => {
+                    const { label, rest } = splitLabel(it);
+                    const src = imgs[k];
+                    return (
+                      <div
+                        key={k}
+                        className="flex flex-col overflow-hidden rounded-2xl border border-black/5 bg-white shadow-sm"
+                      >
+                        {src && (
+                          <div className="relative h-44">
+                            <Image
+                              src={src}
+                              alt={label || data.title}
+                              fill
+                              className="object-cover"
+                              sizes="(max-width: 768px) 100vw, 25vw"
+                            />
+                          </div>
+                        )}
+                        <div className="flex flex-1 flex-col p-5">
+                          {label && (
+                            <h3 className="font-semibold text-anthracite">{label}</h3>
+                          )}
+                          <p className="mt-2 text-sm text-foreground/70">
+                            {renderInline(rest)}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+                {postList.length > 0 && (
+                  <div className="mt-8 max-w-3xl">
+                    <ArticleRenderer blocks={postList} />
+                  </div>
+                )}
               </div>
             </section>
           );
