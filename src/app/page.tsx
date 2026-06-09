@@ -4,6 +4,7 @@ import { services, communes, site, routes } from "@/lib/site";
 import HeroSlider from "@/components/HeroSlider";
 import BlueprintBackground from "@/components/BlueprintBackground";
 import Reveal from "@/components/Reveal";
+import ZoneMap from "@/components/ZoneMap";
 
 export default function Home() {
   return (
@@ -99,7 +100,7 @@ export default function Home() {
               chantier est mené avec rigueur et passion du travail bien fait.
             </p>
 
-            <ul className="mt-7 grid gap-3 sm:grid-cols-2">
+            <ul className="mt-7 grid gap-3">
               {[
                 "Charpente, couverture & zinguerie",
                 "Un interlocuteur unique, de A à Z",
@@ -159,6 +160,11 @@ export default function Home() {
               {c}
             </span>
           ))}
+        </div>
+
+        {/* Carte interactive de la zone */}
+        <div className="mt-12">
+          <ZoneMap />
         </div>
       </section>
 

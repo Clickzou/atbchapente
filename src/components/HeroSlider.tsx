@@ -106,6 +106,31 @@ export default function HeroSlider() {
             Demander un devis gratuit
           </Link>
         </div>
+
+        {/* Éléments rassurants : chiffres clés + garantie décennale */}
+        <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-5">
+          <div>
+            <p className="text-3xl font-bold text-orange">
+              20<span className="text-xl"> ans</span>
+            </p>
+            <p className="text-sm text-white/70">d&apos;expérience</p>
+          </div>
+          <span className="h-10 w-px bg-white/20" aria-hidden />
+          <div>
+            <p className="text-3xl font-bold text-orange">
+              130<span className="text-xl">+</span>
+            </p>
+            <p className="text-sm text-white/70">chantiers réalisés</p>
+          </div>
+          <span className="hidden h-10 w-px bg-white/20 sm:block" aria-hidden />
+          <div className="flex items-center gap-2.5 rounded-full bg-white/10 px-4 py-2 ring-1 ring-white/15 backdrop-blur">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-orange">
+              <path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" strokeLinejoin="round" />
+              <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            <span className="text-sm font-semibold text-white">Garantie décennale</span>
+          </div>
+        </div>
       </div>
 
       {/* Flèches */}
