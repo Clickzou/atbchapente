@@ -280,17 +280,21 @@ export default async function ServicePage({
         if (s.kind === "zone") {
           return (
             <section key={i} className="bg-muted">
-              <div className="mx-auto max-w-7xl px-4 py-16 lg:px-8">
-                <h2 className="text-center text-3xl font-bold text-anthracite">
-                  Zone d&apos;intervention
-                </h2>
-                {zoneGroup && (
-                  <div className="mx-auto mt-4 max-w-3xl text-center [&_p]:text-foreground/70">
-                    <ArticleRenderer blocks={zoneGroup.slice(1)} />
+              <div className="mx-auto max-w-[1600px] px-4 py-16 lg:px-12">
+                <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-14">
+                  <div className="lg:order-1">
+                    <h2 className="text-3xl font-bold text-anthracite">
+                      Zone d&apos;intervention
+                    </h2>
+                    {zoneGroup && (
+                      <div className="mt-4 [&_p]:text-foreground/70">
+                        <ArticleRenderer blocks={zoneGroup.slice(1)} />
+                      </div>
+                    )}
                   </div>
-                )}
-                <div className="mt-8">
-                  <ZoneMap />
+                  <div className="lg:order-2">
+                    <ZoneMap />
+                  </div>
                 </div>
               </div>
             </section>
@@ -313,7 +317,7 @@ export default async function ServicePage({
                       alt={head.type === "heading" ? head.text : ""}
                       width={900}
                       height={650}
-                      className="h-auto w-full rounded-2xl"
+                      className={`h-auto w-full rounded-2xl${img.bg ? " mix-blend-multiply" : ""}`}
                     />
                   </div>
                   <div className={`order-1 ${img.side === "left" ? "lg:order-2" : "lg:order-1"}`}>
