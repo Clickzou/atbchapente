@@ -18,6 +18,16 @@ function getService(slug: string) {
   return services.find((s) => s.slug === slug);
 }
 
+// Croquis (dessin au trait) associé à chaque service.
+const CROQUIS: Record<string, string> = {
+  "creation-charpente-bois-renovation": "croquis-charpente.jpg",
+  "isolation-toiture": "croquis-maison.jpg",
+  "pose-changement-gouttieres-zinc": "croquis-toiture.jpg",
+  "pose-remaniement-tuiles": "croquis-toiture.jpg",
+  "creation-fenetre-de-toit-bois": "croquis-maison.jpg",
+  "creation-pergola-bois": "croquis-pergola.jpg",
+};
+
 export async function generateMetadata({
   params,
 }: {
@@ -43,6 +53,7 @@ export default async function ServicePage({
   if (!data) notFound();
 
   const body = serviceContent[data.slug];
+  const croquis = CROQUIS[data.slug] ?? "croquis-charpente.jpg";
 
   return (
     <>
@@ -99,29 +110,43 @@ export default async function ServicePage({
         </div>
       </section>
 
-      {/* Contenu */}
-      <section className="mx-auto max-w-3xl px-4 py-16 lg:px-8">
-        {body ? (
-          <ArticleRenderer blocks={body} />
-        ) : (
-          <p className="text-foreground/80">
-            {site.name} réalise vos travaux de {data.title.toLowerCase()} {site.zone}.
-          </p>
-        )}
+      {/* Contenu — texte à gauche, croquis à droite, pleine largeur */}
+      <section className="mx-auto max-w-[1600px] px-4 py-16 lg:px-12">
+        <div className="grid gap-10 lg:grid-cols-[1.5fr_1fr] lg:items-start lg:gap-14">
+          <div>
+            {body ? (
+              <ArticleRenderer blocks={body} />
+            ) : (
+              <p className="text-foreground/80">
+                {site.name} réalise vos travaux de {data.title.toLowerCase()} {site.zone}.
+              </p>
+            )}
 
-        <div className="mt-10 flex flex-wrap gap-4">
-          <Link
-            href={routes.contact}
-            className="rounded-full bg-orange px-6 py-3 font-semibold text-white transition-colors hover:bg-orange-dark"
-          >
-            Demander un devis
-          </Link>
-          <Link
-            href={routes.realisations}
-            className="rounded-full border border-anthracite/20 px-6 py-3 font-semibold text-anthracite transition-colors hover:bg-muted"
-          >
-            Voir nos réalisations
-          </Link>
+            <div className="mt-10 flex flex-wrap gap-4">
+              <Link
+                href={routes.contact}
+                className="rounded-full bg-orange px-6 py-3 font-semibold text-white transition-colors hover:bg-orange-dark"
+              >
+                Demander un devis
+              </Link>
+              <Link
+                href={routes.realisations}
+                className="rounded-full border border-anthracite/20 px-6 py-3 font-semibold text-anthracite transition-colors hover:bg-muted"
+              >
+                Voir nos réalisations
+              </Link>
+            </div>
+          </div>
+
+          <div className="lg:sticky lg:top-28">
+            <Image
+              src={`/images/${croquis}`}
+              alt={`Croquis — ${data.title.toLowerCase()} à Toulouse`}
+              width={900}
+              height={650}
+              className="h-auto w-full rounded-xl"
+            />
+          </div>
         </div>
       </section>
 
