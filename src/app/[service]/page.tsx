@@ -51,6 +51,31 @@ const SECTION_BENEFITS: Record<string, BenefitConf[]> = {
   ],
 };
 
+// Sections « grille de cartes » : les items d'une liste deviennent des cartes
+// (icône + titre = label **gras** de l'item + texte = reste). En pleine largeur.
+type ListCardsConf = { match: string; icon?: ReactNode };
+const SECTION_LISTCARDS: Record<string, ListCardsConf[]> = {
+  "pose-changement-gouttieres-zinc": [
+    {
+      match: "les signes d'usure",
+      // Triangle d'alerte
+      icon: <path d="M12 3l9 16H3z M12 10v4 M12 17h.01" />,
+    },
+  ],
+};
+
+// Par service : fragment de titre H2 dont le contenu alimente la section carte
+// de zone (sous le titre « Zone d'intervention »). Évite une section en double.
+const ZONE_HEADINGS: Record<string, string> = {
+  "pose-changement-gouttieres-zinc": "vos gouttières zinc à toulouse",
+};
+
+// Sépare le label en gras de tête (« **Titre** reste ») du reste du texte.
+function splitLabel(text: string): { label: string; rest: string } {
+  const m = text.match(/^\*\*(.+?)\*\*\s*(.*)$/s);
+  return m ? { label: m[1], rest: m[2] } : { label: "", rest: text };
+}
+
 // Rendu minimal du gras **…** dans une chaîne (pour le texte des cartes).
 function renderInline(text: string): ReactNode {
   return text.split(/\*\*(.+?)\*\*/g).map((p, idx) =>
@@ -222,8 +247,11 @@ export default async function ServicePage({
     if (b.type === "heading" && b.level === 2) groups.push([b]);
     else if (groups.length) groups[groups.length - 1].push(b);
   }
+  const zoneHeading = ZONE_HEADINGS[data.slug];
   const isZone = (g: ContentBlock[]) =>
-    g[0].type === "heading" && /zone d.intervention/i.test(g[0].text);
+    g[0].type === "heading" &&
+    (/zone d.intervention/i.test(g[0].text) ||
+      (!!zoneHeading && g[0].text.toLowerCase().includes(zoneHeading)));
   const zoneGroup = groups.find(isZone) ?? null;
   const mainGroups = groups.filter((g) => !isZone(g));
 
@@ -233,14 +261,24 @@ export default async function ServicePage({
   const benefitConf = SECTION_BENEFITS[data.slug] ?? [];
   const compareConf = SECTION_COMPARE[data.slug] ?? [];
   const duoConf = SECTION_DUO[data.slug] ?? [];
+  const listCardsConf = SECTION_LISTCARDS[data.slug] ?? [];
   let imgCount = 0;
   const sections: {
-    kind: "cards" | "blocks" | "faq" | "zone" | "benefits" | "compare" | "duo";
+    kind:
+      | "cards"
+      | "blocks"
+      | "faq"
+      | "zone"
+      | "benefits"
+      | "compare"
+      | "duo"
+      | "listcards";
     blocks?: ContentBlock[];
     img?: { src: string; side: "left" | "right"; bg?: string };
     compare?: CompareConf;
     duoBlocks?: ContentBlock[][];
     benefitIcon?: ReactNode;
+    listIcon?: ReactNode;
   }[] = [];
   if (isCharpente) sections.push({ kind: "cards" });
   const consumed = new Set<number>();
@@ -269,6 +307,11 @@ export default async function ServicePage({
     const ben = benefitConf.find((c) => headText.includes(c.match));
     if (ben) {
       sections.push({ kind: "benefits", blocks: g, benefitIcon: ben.icon });
+      continue;
+    }
+    const lc = listCardsConf.find((c) => headText.includes(c.match));
+    if (lc) {
+      sections.push({ kind: "listcards", blocks: g, listIcon: lc.icon });
       continue;
     }
     const conf = imgConf.find((c) => headText.includes(c.match));
@@ -566,6 +609,63 @@ export default async function ServicePage({
                     );
                   })}
                 </div>
+              </div>
+            </section>
+          );
+        }
+        if (s.kind === "listcards") {
+          const blocks = s.blocks!;
+          const listIdx = blocks.findIndex((b) => b.type === "list");
+          const preList = listIdx === -1 ? blocks : blocks.slice(0, listIdx);
+          const listBlock = listIdx === -1 ? undefined : blocks[listIdx];
+          const postList = listIdx === -1 ? [] : blocks.slice(listIdx + 1);
+          const items =
+            listBlock && listBlock.type === "list" ? listBlock.items : [];
+          return (
+            <section key={i} className={bg}>
+              <div className="mx-auto max-w-[1600px] px-4 py-14 lg:px-12">
+                <div className="max-w-3xl">
+                  <ArticleRenderer blocks={preList} />
+                </div>
+                <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                  {items.map((it, k) => {
+                    const { label, rest } = splitLabel(it);
+                    return (
+                      <div
+                        key={k}
+                        className="flex flex-col rounded-2xl border border-black/5 bg-white p-6 shadow-sm"
+                      >
+                        <span className="mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-orange/10 text-orange">
+                          <svg
+                            width="22"
+                            height="22"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            {s.listIcon}
+                          </svg>
+                        </span>
+                        {label && (
+                          <h3 className="font-semibold text-anthracite">
+                            {label}
+                          </h3>
+                        )}
+                        <p className="mt-2 text-sm text-foreground/70">
+                          {renderInline(rest)}
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
+                {postList.length > 0 && (
+                  <div className="mt-8 max-w-3xl">
+                    <ArticleRenderer blocks={postList} />
+                  </div>
+                )}
               </div>
             </section>
           );
