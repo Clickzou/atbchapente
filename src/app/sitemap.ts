@@ -4,13 +4,18 @@ import { getArticlesSorted } from "@/lib/articles";
 import { indexedCities } from "@/lib/zone-communes";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPages = ["", routes.realisations, routes.blog, routes.contact].map(
-    (p) => ({
-      url: `${site.url}${p}`,
-      changeFrequency: "monthly" as const,
-      priority: p === "" ? 1 : 0.8,
-    }),
-  );
+  const staticPages = [
+    "",
+    routes.cornerstone,
+    routes.realisations,
+    routes.blog,
+    routes.contact,
+  ].map((p) => ({
+    url: `${site.url}${p}`,
+    changeFrequency: "monthly" as const,
+    // Cornerstone = cible SEO principale : priorité élevée (juste après l'accueil).
+    priority: p === "" ? 1 : p === routes.cornerstone ? 0.9 : 0.8,
+  }));
 
   const servicePages = services.map((s) => ({
     url: `${site.url}/${s.slug}`,

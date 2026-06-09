@@ -35,6 +35,7 @@ export const routes = {
   contact: "/contact-charpentier",
   devis: "/contact-charpentier",
   blog: "/blog",
+  cornerstone: "/charpentier-toulouse", // page pilier (cible SEO principale)
 } as const;
 
 // Navigation principale (libellés courts ; href = slugs réels existants).

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { mainNav, services, site } from "@/lib/site";
+import { mainNav, services, site, routes } from "@/lib/site";
 
 export default function Footer() {
   const year = 2026;
@@ -41,6 +41,11 @@ export default function Footer() {
             Navigation
           </h3>
           <ul className="space-y-2 text-sm">
+            <li>
+              <Link href={routes.cornerstone} className="font-semibold text-white hover:text-orange">
+                Charpentier Toulouse
+              </Link>
+            </li>
             {mainNav.map((item) => (
               <li key={item.href}>
                 <Link href={item.href} className="hover:text-orange">

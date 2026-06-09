@@ -360,12 +360,12 @@ export default async function VillePage({
               </h2>
               <div className="mt-4 space-y-4 text-foreground/80">
             <p>
-              En tant que charpentier couvreur intervenant à{" "}
-              <Link href="/" className="font-medium text-orange hover:underline">
-                Toulouse
+              En tant que{" "}
+              <Link href={routes.cornerstone} className="font-medium text-orange hover:underline">
+                charpentier couvreur à Toulouse
               </Link>{" "}
-              et jusqu&apos;à {city.name}, ATB Charpente couvre l&apos;ensemble de vos
-              besoins de toiture, du gros œuvre à la finition.
+              intervenant jusqu&apos;à {city.name}, ATB Charpente couvre l&apos;ensemble
+              de vos besoins de toiture, du gros œuvre à la finition.
             </p>
             <p>
               À {city.name}, nous réalisons la <strong>création et la rénovation de
