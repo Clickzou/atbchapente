@@ -82,7 +82,7 @@ export default async function ArticlePage({
 
       {/* En-tête */}
       <header className="bg-anthracite-dark text-white">
-        <div className="mx-auto max-w-3xl px-4 py-14 lg:px-8">
+        <div className="mx-auto max-w-3xl px-4 pb-14 pt-28 lg:px-8">
           <nav className="mb-4 text-sm text-white/60">
             <Link href="/" className="hover:text-orange">Accueil</Link> /{" "}
             <Link href="/blog" className="hover:text-orange">Blog</Link> /{" "}

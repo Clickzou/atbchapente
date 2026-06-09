@@ -35,7 +35,7 @@ export default function RealisationsPage() {
   return (
     <>
       <section className="bg-anthracite-dark text-white">
-        <div className="mx-auto max-w-7xl px-4 py-16 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 pb-16 pt-28 lg:px-8">
           <h1 className="text-4xl font-bold sm:text-5xl">Nos réalisations</h1>
           <p className="mt-4 max-w-2xl text-lg text-white/80">
             Un aperçu de nos chantiers de charpente, couverture et zinguerie

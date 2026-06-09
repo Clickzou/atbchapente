@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -8,10 +8,27 @@ import { mainNav, site, routes } from "@/lib/site";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Fond blanc dès qu'on a scrollé, ou quand le menu mobile est ouvert.
+  const solid = scrolled || open;
+
   return (
-    <header className="sticky top-0 z-50 border-b border-black/5 bg-white/95 backdrop-blur">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+        solid
+          ? "border-b border-black/5 bg-white/95 backdrop-blur"
+          : "bg-transparent"
+      }`}
+    >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 lg:px-8">
         <Link href="/" className="flex items-center" aria-label="Accueil ATB Charpente">
           <Image
@@ -19,8 +36,10 @@ export default function Header() {
             alt="ATB Charpente"
             width={150}
             height={150}
-            className="h-14 w-auto"
             priority
+            className={`h-14 w-auto transition-[filter] duration-300 ${
+              solid ? "" : "[filter:brightness(0)_invert(1)]"
+            }`}
           />
         </Link>
 
@@ -36,7 +55,7 @@ export default function Header() {
                 key={item.href}
                 href={item.href}
                 className={`rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-orange ${
-                  active ? "text-orange" : "text-anthracite"
+                  active ? "text-orange" : solid ? "text-anthracite" : "text-white"
                 }`}
               >
                 {item.label}
@@ -57,7 +76,9 @@ export default function Header() {
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex items-center justify-center rounded-md p-2 text-anthracite xl:hidden"
+            className={`inline-flex items-center justify-center rounded-md p-2 transition-colors xl:hidden ${
+              solid ? "text-anthracite" : "text-white"
+            }`}
             aria-label="Ouvrir le menu"
             aria-expanded={open}
           >

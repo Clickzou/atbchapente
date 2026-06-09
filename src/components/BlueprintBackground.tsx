@@ -12,11 +12,21 @@ export default function BlueprintBackground() {
     const el = ref.current;
     if (!el) return;
 
-    // Déclenche (et rejoue) le tracé quand la section entre dans l'écran.
+    // Le fond se dessine ~1 s APRÈS l'entrée à l'écran (les animations du titre,
+    // du texte et des cartes passent en premier). Rejoué à chaque ré-entrée.
+    let revealTimer = 0;
     const io = new IntersectionObserver(
       (entries) => {
         for (const e of entries) {
-          el.classList.toggle("is-visible", e.isIntersecting);
+          if (e.isIntersecting) {
+            revealTimer = window.setTimeout(
+              () => el.classList.add("is-visible"),
+              1000,
+            );
+          } else {
+            window.clearTimeout(revealTimer);
+            el.classList.remove("is-visible");
+          }
         }
       },
       { threshold: 0.2 },
@@ -24,7 +34,10 @@ export default function BlueprintBackground() {
     io.observe(el);
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      return () => io.disconnect();
+      return () => {
+        io.disconnect();
+        window.clearTimeout(revealTimer);
+      };
     }
 
     let raf = 0;
@@ -44,6 +57,7 @@ export default function BlueprintBackground() {
     update();
     return () => {
       io.disconnect();
+      window.clearTimeout(revealTimer);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       if (raf) cancelAnimationFrame(raf);

@@ -48,7 +48,7 @@ export default async function ServicePage({
       {/* En-tête de page */}
       <section className="relative overflow-hidden bg-anthracite-dark text-white">
         <Image src={data.image} alt="" fill className="object-cover opacity-25" />
-        <div className="relative mx-auto max-w-7xl px-4 py-20 lg:px-8">
+        <div className="relative mx-auto max-w-7xl px-4 pb-20 pt-32 lg:px-8">
           <nav className="mb-4 text-sm text-white/60">
             <Link href="/" className="hover:text-orange">
               Accueil

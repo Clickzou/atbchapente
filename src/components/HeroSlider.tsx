@@ -8,13 +8,14 @@ import { site, routes, services } from "@/lib/site";
 // Diaporama plein écran : chaque slide présente UN service (image + titre + lien).
 // Seul le 1er titre est un <h1> (porte le mot-clé principal) ; les autres sont des
 // <div>. Tous les titres restent dans le DOM (fondu) pour préserver le H1 (SEO).
+// Libellés calibrés pour tenir sur ~3 lignes (bloc de titre de hauteur fixe).
 const heroTitles = [
   "Charpentier à Toulouse : création & rénovation de charpente bois",
-  "Isolation de toiture à Toulouse & confort thermique",
-  "Gouttières zinc & zinguerie à Toulouse",
-  "Couverture & remaniement de toiture en tuiles",
-  "Pose de fenêtre de toit & aménagement de combles",
-  "Création de pergola en bois sur mesure",
+  "Isolation de toiture à Toulouse pour un confort thermique durable",
+  "Pose & changement de gouttières zinc et zinguerie à Toulouse",
+  "Couverture neuve & remaniement de toiture en tuiles à Toulouse",
+  "Pose de fenêtre de toit & aménagement de combles à Toulouse",
+  "Création de pergola en bois sur mesure pour vos extérieurs à Toulouse",
 ];
 
 const slides = services.map((s, i) => ({
@@ -70,8 +71,9 @@ export default function HeroSlider() {
           {site.baseline}
         </h1>
 
-        {/* Titres par slide (fondu) — NON sémantiques (aucun Hn) */}
-        <div className="relative mb-5 min-h-[150px] sm:min-h-[190px] lg:min-h-[230px]">
+        {/* Titres par slide (fondu) — NON sémantiques (aucun Hn).
+            Hauteur fixe = 3 lignes pour un bloc stable d'une slide à l'autre. */}
+        <div className="relative mb-5 h-[150px] sm:h-[200px] lg:h-[246px]">
           {slides.map((slide, i) => (
             <p
               key={i}
@@ -85,8 +87,10 @@ export default function HeroSlider() {
           ))}
         </div>
 
-        {/* Accroche du service actif */}
-        <p className="max-w-2xl text-lg text-white/85">{active.excerpt}</p>
+        {/* Accroche du service actif — sur 1 ligne (sauf mobile si trop long) */}
+        <p className="text-lg text-white/85 whitespace-normal sm:whitespace-nowrap">
+          {active.excerpt}
+        </p>
 
         <div className="mt-8 flex flex-wrap gap-4">
           <Link
