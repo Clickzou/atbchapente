@@ -129,6 +129,13 @@ const SECTION_PHOTOCARDS: Record<
   ],
 };
 
+// Couleur de fond personnalisée pour une section de texte (par slug + titre H2).
+const SECTION_BG: Record<string, { match: string; bg: string }[]> = {
+  "creation-fenetre-de-toit-bois": [
+    { match: "réglementation et vis-à-vis", bg: "#F9EBDE" },
+  ],
+};
+
 // Par service : fragment de titre H2 dont le contenu alimente la section carte
 // de zone (sous le titre « Zone d'intervention »). Évite une section en double.
 const ZONE_HEADINGS: Record<string, string> = {
@@ -335,6 +342,7 @@ export default async function ServicePage({
   const listCardsConf = SECTION_LISTCARDS[data.slug] ?? [];
   const timelineConf = SECTION_TIMELINE[data.slug] ?? [];
   const photoCardsConf = SECTION_PHOTOCARDS[data.slug] ?? [];
+  const bgConf = SECTION_BG[data.slug] ?? [];
   let imgCount = 0;
   const sections: {
     kind:
@@ -358,6 +366,7 @@ export default async function ServicePage({
     listCentered?: boolean;
     photoImages?: string[];
     photoSplit?: boolean;
+    customBg?: string;
   }[] = [];
   if (isCharpente) sections.push({ kind: "cards" });
   const consumed = new Set<number>();
@@ -425,7 +434,8 @@ export default async function ServicePage({
       };
       imgCount++;
     }
-    sections.push({ kind: "blocks", blocks: g, img });
+    const customBg = bgConf.find((c) => headText.includes(c.match))?.bg;
+    sections.push({ kind: "blocks", blocks: g, img, customBg });
   }
   if (faqBlock) sections.push({ kind: "faq" });
   sections.push({ kind: "zone" });
@@ -1020,7 +1030,11 @@ export default async function ServicePage({
           );
         }
         return (
-          <section key={i} className={bg}>
+          <section
+            key={i}
+            className={s.customBg ? "" : bg}
+            style={s.customBg ? { backgroundColor: s.customBg } : undefined}
+          >
             <div className="mx-auto max-w-3xl px-4 py-14 lg:px-8">
               <ArticleRenderer blocks={s.blocks!} />
             </div>
