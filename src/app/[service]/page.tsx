@@ -8,25 +8,20 @@ import type { ContentBlock } from "@/lib/articles/types";
 import ArticleRenderer from "@/components/ArticleRenderer";
 import ZoneMap from "@/components/ZoneMap";
 
-// Image illustrant certaines sections (gauche ou droite du texte), par titre de H2.
-function sectionImageFor(
-  heading: string,
-): { src: string; side: "left" | "right"; bg?: string } | null {
-  const h = heading.toLowerCase();
-  if (h.includes("création d'une charpente bois neuve"))
-    return { src: "/images/realisations/creation-charpente.jpg", side: "left" };
-  if (h.includes("rénovation et renforcement"))
-    return { src: "/images/renovation-charpente-bois.jpg", side: "right" };
-  if (h.includes("extension et surélévation"))
-    return { src: "/images/extension-charpente-bois.jpg", side: "left" };
-  if (h.includes("pourquoi choisir"))
-    return {
-      src: "/images/realisations/zone-intervention-atb-construction.jpg",
-      side: "right",
-      bg: "#F9EBDE",
-    };
-  return null;
-}
+// Images par section, déclarées par slug de service. `match` est comparé (en
+// minuscules, "inclut") au titre du H2. La position gauche/droite est alternée
+// automatiquement selon l'ordre d'apparition des sections illustrées.
+// Pour répliquer la mise en page sur un autre service : ajouter ses entrées ici.
+type SectionImage = { match: string; src: string; bg?: string };
+const SECTION_IMAGES: Record<string, SectionImage[]> = {
+  "creation-charpente-bois-renovation": [
+    { match: "création d'une charpente bois neuve", src: "/images/realisations/creation-charpente.jpg" },
+    { match: "rénovation et renforcement", src: "/images/renovation-charpente-bois.jpg" },
+    { match: "extension et surélévation", src: "/images/extension-charpente-bois.jpg" },
+    { match: "pourquoi choisir", src: "/images/realisations/zone-intervention-atb-construction.jpg", bg: "#F9EBDE" },
+  ],
+  // Les autres services seront renseignés page par page.
+};
 
 // Cartes « types de charpente » (page charpente uniquement).
 const CHARPENTE_TYPES = [
@@ -121,10 +116,33 @@ export default async function ServicePage({
   const zoneGroup = groups.find(isZone) ?? null;
   const mainGroups = groups.filter((g) => !isZone(g));
 
-  // Sections à fonds alternés (cartes types, H2, FAQ, zone)
-  const sections: { kind: "cards" | "blocks" | "faq" | "zone"; blocks?: ContentBlock[] }[] = [];
+  // Sections à fonds alternés (cartes types, H2, FAQ, zone). Pour les sections
+  // « blocks », on attache l'image éventuelle (alternance gauche/droite auto).
+  const imgConf = SECTION_IMAGES[data.slug] ?? [];
+  let imgCount = 0;
+  const sections: {
+    kind: "cards" | "blocks" | "faq" | "zone";
+    blocks?: ContentBlock[];
+    img?: { src: string; side: "left" | "right"; bg?: string };
+  }[] = [];
   if (isCharpente) sections.push({ kind: "cards" });
-  for (const g of mainGroups) sections.push({ kind: "blocks", blocks: g });
+  for (const g of mainGroups) {
+    const head = g[0];
+    const conf =
+      head.type === "heading"
+        ? imgConf.find((c) => head.text.toLowerCase().includes(c.match))
+        : undefined;
+    let img;
+    if (conf) {
+      img = {
+        src: conf.src,
+        bg: conf.bg,
+        side: (imgCount % 2 === 0 ? "left" : "right") as "left" | "right",
+      };
+      imgCount++;
+    }
+    sections.push({ kind: "blocks", blocks: g, img });
+  }
   if (faqBlock) sections.push({ kind: "faq" });
   sections.push({ kind: "zone" });
 
@@ -295,7 +313,7 @@ export default async function ServicePage({
           );
         }
         const head = s.blocks![0];
-        const img = head.type === "heading" ? sectionImageFor(head.text) : null;
+        const img = s.img;
         if (img) {
           return (
             <section
