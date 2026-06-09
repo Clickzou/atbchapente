@@ -28,7 +28,7 @@ export default function ServicesCarousel() {
             key={s.slug}
             href={`/${s.slug}`}
             data-card
-            className="group flex w-[82%] shrink-0 snap-start flex-col overflow-hidden rounded-xl border border-black/5 bg-white shadow-sm transition-shadow hover:shadow-md sm:w-[46%] lg:w-[calc((100%-3rem)/3)]"
+            className="group flex w-[82%] shrink-0 snap-start flex-col overflow-hidden rounded-xl border border-black/5 bg-white shadow-sm transition-shadow hover:shadow-md sm:w-[46%] lg:w-[calc((100%-4.5rem)/4)]"
           >
             <div className="relative h-52 overflow-hidden">
               <Image
