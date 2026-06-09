@@ -34,6 +34,7 @@ const SECTION_IMAGES: Record<string, SectionImage[]> = {
   ],
   "creation-fenetre-de-toit-bois": [
     { match: "étanchéité et raccords", src: "/images/fenetre-de-toit.jpg", side: "right" },
+    { match: "aménagement et confort des combles", src: "/images/fenetres/amenagement-combles.jpg", side: "left" },
   ],
   "pose-remaniement-tuiles": [
     { match: "le remaniement et la réfection", src: "/images/refection-tuiles.jpg", side: "right" },
