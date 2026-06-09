@@ -5,9 +5,17 @@ import Link from "next/link";
 import Image from "next/image";
 import { services } from "@/lib/site";
 
-// Carrousel pleine largeur des prestations (défilement horizontal + flèches).
-export default function ServicesCarousel() {
+// Carrousel des prestations (défilement horizontal + flèches).
+// variant "full" = pleine largeur (home) ; "compact" = conteneur étroit (articles).
+export default function ServicesCarousel({
+  variant = "full",
+}: {
+  variant?: "full" | "compact";
+}) {
   const trackRef = useRef<HTMLDivElement>(null);
+  const pad = variant === "full" ? "px-4 lg:px-[100px]" : "px-1";
+  const arrowL = variant === "full" ? "left-[58px]" : "left-1";
+  const arrowR = variant === "full" ? "right-[58px]" : "right-1";
 
   const scroll = (dir: number) => {
     const el = trackRef.current;
@@ -21,7 +29,7 @@ export default function ServicesCarousel() {
     <div className="relative">
       <div
         ref={trackRef}
-        className="flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth px-4 pb-4 lg:px-[100px] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className={`flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth ${pad} pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden`}
       >
         {services.map((s) => (
           <Link
@@ -57,7 +65,7 @@ export default function ServicesCarousel() {
         type="button"
         onClick={() => scroll(-1)}
         aria-label="Précédent"
-        className="absolute left-[58px] top-1/2 hidden -translate-y-1/2 rounded-full bg-white p-3 text-anthracite shadow-lg ring-1 ring-black/5 transition-colors hover:text-orange lg:block"
+        className={`absolute ${arrowL} top-1/2 hidden -translate-y-1/2 rounded-full bg-white p-3 text-anthracite shadow-lg ring-1 ring-black/5 transition-colors hover:text-orange lg:block`}
       >
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M15 18l-6-6 6-6" strokeLinecap="round" strokeLinejoin="round" />

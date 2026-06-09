@@ -4,9 +4,11 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
-import { site, services, routes } from "@/lib/site";
+import { site, routes } from "@/lib/site";
 import { cities, cityBySlug, type City } from "@/lib/zone-communes";
 import { cityContent } from "@/lib/city-content";
+import ServicesCarousel from "@/components/ServicesCarousel";
+import ContactForm from "@/components/ContactForm";
 
 export const dynamicParams = false;
 
@@ -227,243 +229,247 @@ export default async function VillePage({
         </div>
       </section>
 
-      <article className="mx-auto max-w-5xl px-4 py-14 lg:px-8">
-        {cityContent[city.slug] ? (
-          <div className="space-y-4 text-lg leading-relaxed text-foreground/85">
-            {cityContent[city.slug].map((p, i) => (
-              <p key={i}>{p}</p>
+      {/* Section 1 : texte à gauche, stats à droite — pleine largeur avec marges */}
+      <section className="mx-auto max-w-7xl px-4 py-16 lg:px-8">
+        <div className="grid gap-10 lg:grid-cols-[1.7fr_1fr] lg:items-start lg:gap-14">
+          <div>
+            {cityContent[city.slug] ? (
+              <div className="space-y-4 text-lg leading-relaxed text-foreground/85">
+                {cityContent[city.slug].map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
+              </div>
+            ) : (
+              <p className="text-lg leading-relaxed text-foreground/85">{buildIntro(city)}</p>
+            )}
+          </div>
+
+          {/* Stats — cartes données réelles */}
+          <div className="grid grid-cols-2 gap-4">
+            {[
+              city.population && {
+                icon: (
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 7a4 4 0 1 0 0 .01M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+                ),
+                value: city.population.toLocaleString("fr-FR"),
+                label: "habitants",
+              },
+              {
+                icon: <path d="M12 21s-7-5.5-7-11a7 7 0 1 1 14 0c0 5.5-7 11-7 11zM12 10a1 1 0 1 0 0 .01" />,
+                value: `${city.distToulouse} km`,
+                label: "de Toulouse",
+              },
+              {
+                icon: <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6" />,
+                value: `${city.distBessieres} km`,
+                label: "de notre atelier",
+              },
+              {
+                icon: (
+                  <path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3zM9 12l2 2 4-4" />
+                ),
+                value: "Décennale",
+                label: "artisan assuré",
+              },
+            ]
+              .filter(Boolean)
+              .map((f, i) => {
+                const card = f as { icon: React.ReactNode; value: string; label: string };
+                return (
+                  <div
+                    key={i}
+                    className="rounded-2xl border border-black/5 bg-white p-5 text-center shadow-sm"
+                  >
+                    <span className="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-full bg-orange/10 text-orange">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        {card.icon}
+                      </svg>
+                    </span>
+                    <p className="text-lg font-bold text-anthracite">{card.value}</p>
+                    <p className="text-xs text-foreground/60">{card.label}</p>
+                  </div>
+                );
+              })}
+          </div>
+        </div>
+      </section>
+
+      {/* Section 2 — Métier (fond gris clair) */}
+      <section className="bg-muted">
+        <div className="mx-auto max-w-5xl px-4 py-16 lg:px-8">
+          <h2 className="text-2xl font-bold text-anthracite">
+            Charpente, couverture et zinguerie à {city.name}
+          </h2>
+          <div className="mt-4 space-y-4 text-foreground/80">
+            <p>
+              En tant que charpentier couvreur intervenant à{" "}
+              <Link href="/" className="font-medium text-orange hover:underline">
+                Toulouse
+              </Link>{" "}
+              et jusqu&apos;à {city.name}, ATB Charpente couvre l&apos;ensemble de vos
+              besoins de toiture, du gros œuvre à la finition.
+            </p>
+            <p>
+              À {city.name}, nous réalisons la <strong>création et la rénovation de
+              charpentes bois</strong> : charpente traditionnelle, fermettes et ossature
+              bois. Nos charpentiers interviennent sur les constructions neuves comme sur
+              la restauration de charpentes anciennes — renforcement, remplacement de
+              pièces, traitement curatif contre les insectes xylophages (capricornes,
+              vrillettes) et les champignons. Chaque ouvrage est dimensionné pour garantir
+              la solidité et la durabilité de votre toiture.
+            </p>
+            <p>
+              La <strong>couverture</strong> protège votre maison des intempéries. À{" "}
+              {city.name}, nous posons et rénovons les toitures en tuiles — tuiles canal et
+              romanes en terre cuite, typiques de la région toulousaine, comme les tuiles
+              mécaniques. Réfection complète, remaniement, remplacement de tuiles cassées,
+              démoussage et traitement hydrofuge : nous redonnons étanchéité et esthétique
+              à votre toit, dans le respect du style local.
+            </p>
+            <p>
+              Côté <strong>zinguerie</strong>, une bonne évacuation des eaux de pluie est
+              indispensable. Nous installons et remplaçons vos gouttières en zinc, réputées
+              pour leur durabilité, ainsi que les descentes, noues, solins et habillages de
+              rives, et traitons les gouttières qui débordent ou fuient pour protéger
+              durablement vos façades et fondations.
+            </p>
+            <p>
+              Enfin, pour améliorer votre confort et réduire vos factures d&apos;énergie à{" "}
+              {city.name}, nous assurons l&apos;<strong>isolation de toiture</strong> par
+              l&apos;extérieur (sarking) ou des combles, la pose de{" "}
+              <strong>fenêtres de toit</strong> et la création de{" "}
+              <strong>pergolas en bois</strong> sur mesure.
+            </p>
+            <p>
+              {city.name} ({city.cp})
+              {city.population
+                ? ` compte environ ${city.population.toLocaleString("fr-FR")} habitants`
+                : ""}
+              {city.epci ? ` et fait partie de ${city.epci}` : ""}, dans le département de{" "}
+              {city.departement || "la Haute-Garonne"}. Située à environ {city.distToulouse}{" "}
+              km de Toulouse et {city.distBessieres} km de notre atelier de Bessières, la
+              commune bénéficie d&apos;une intervention rapide.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Prestations — carrousel (fond blanc) */}
+      <section>
+        <div className="mx-auto max-w-7xl px-4 py-16 lg:px-8">
+          <h2 className="text-2xl font-bold text-anthracite">
+            Nos prestations à {city.name}
+          </h2>
+          <div className="mt-6">
+            <ServicesCarousel variant="compact" />
+          </div>
+        </div>
+      </section>
+
+      {/* Pourquoi nous (fond gris clair) */}
+      <section className="bg-muted">
+        <div className="mx-auto max-w-5xl px-4 py-16 lg:px-8">
+          <h2 className="text-2xl font-bold text-anthracite">
+            Pourquoi choisir ATB Charpente à {city.name} ?
+          </h2>
+          <div className="mt-6 grid gap-5 sm:grid-cols-2">
+            {[
+              { t: "20 ans d'expérience", d: "Plus de 130 chantiers réalisés autour de Toulouse." },
+              { t: "Garantie décennale", d: "Artisan assuré et qualifié, travaux garantis." },
+              { t: "Interlocuteur unique", d: "Un seul contact, de l'étude au chantier." },
+              { t: "Devis gratuit", d: "Détaillé et sans engagement, sous 24/48h." },
+            ].map((item) => (
+              <div
+                key={item.t}
+                className="flex items-start gap-4 rounded-2xl border border-black/5 bg-white p-5 shadow-sm"
+              >
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-orange/10 text-orange">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M5 12l5 5L20 7" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+                <div>
+                  <p className="font-semibold text-anthracite">{item.t}</p>
+                  <p className="mt-1 text-sm text-foreground/70">{item.d}</p>
+                </div>
+              </div>
             ))}
           </div>
-        ) : (
-          <p className="text-lg leading-relaxed text-foreground/85">{buildIntro(city)}</p>
-        )}
-
-        {/* Infos clés — cartes mettant en valeur les données réelles */}
-        <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
-          {[
-            city.population && {
-              icon: (
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 7a4 4 0 1 0 0 .01M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
-              ),
-              value: city.population.toLocaleString("fr-FR"),
-              label: "habitants",
-            },
-            {
-              icon: <path d="M12 21s-7-5.5-7-11a7 7 0 1 1 14 0c0 5.5-7 11-7 11zM12 10a1 1 0 1 0 0 .01" />,
-              value: `${city.distToulouse} km`,
-              label: "de Toulouse",
-            },
-            {
-              icon: <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6" />,
-              value: `${city.distBessieres} km`,
-              label: "de notre atelier",
-            },
-            {
-              icon: (
-                <path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3zM9 12l2 2 4-4" />
-              ),
-              value: "Décennale",
-              label: "artisan assuré",
-            },
-          ]
-            .filter(Boolean)
-            .map((f, i) => {
-              const card = f as { icon: React.ReactNode; value: string; label: string };
-              return (
-                <div
-                  key={i}
-                  className="rounded-2xl border border-black/5 bg-white p-5 text-center shadow-sm"
-                >
-                  <span className="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-full bg-orange/10 text-orange">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      {card.icon}
-                    </svg>
-                  </span>
-                  <p className="text-lg font-bold text-anthracite">{card.value}</p>
-                  <p className="text-xs text-foreground/60">{card.label}</p>
-                </div>
-              );
-            })}
         </div>
+      </section>
 
-        {/* Travaux détaillés — texte SEO localisé */}
-        <h2 className="mt-14 text-2xl font-bold text-anthracite">
-          Charpente, couverture et zinguerie à {city.name}
-        </h2>
-        <div className="mt-4 space-y-4 text-foreground/80">
-          <p>
-            En tant que charpentier couvreur intervenant à{" "}
-            <Link href="/" className="font-medium text-orange hover:underline">
-              Toulouse
-            </Link>{" "}
-            et jusqu&apos;à {city.name}, ATB Charpente couvre l&apos;ensemble de vos
-            besoins de toiture, du gros œuvre à la finition.
-          </p>
-          <p>
-            À {city.name}, nous réalisons la <strong>création et la rénovation de
-            charpentes bois</strong> : charpente traditionnelle, fermettes et ossature
-            bois. Nos charpentiers interviennent sur les constructions neuves comme sur
-            la restauration de charpentes anciennes — renforcement, remplacement de
-            pièces, traitement curatif contre les insectes xylophages (capricornes,
-            vrillettes) et les champignons. Chaque ouvrage est dimensionné pour garantir
-            la solidité et la durabilité de votre toiture.
-          </p>
-          <p>
-            La <strong>couverture</strong> protège votre maison des intempéries. À{" "}
-            {city.name}, nous posons et rénovons les toitures en tuiles — tuiles canal et
-            romanes en terre cuite, typiques de la région toulousaine, comme les tuiles
-            mécaniques. Réfection complète, remaniement, remplacement de tuiles cassées,
-            démoussage et traitement hydrofuge : nous redonnons étanchéité et esthétique
-            à votre toit, dans le respect du style local.
-          </p>
-          <p>
-            Côté <strong>zinguerie</strong>, une bonne évacuation des eaux de pluie est
-            indispensable. Nous installons et remplaçons vos gouttières en zinc, réputées
-            pour leur durabilité, ainsi que les descentes, noues, solins et habillages de
-            rives, et traitons les gouttières qui débordent ou fuient pour protéger
-            durablement vos façades et fondations.
-          </p>
-          <p>
-            Enfin, pour améliorer votre confort et réduire vos factures d&apos;énergie à{" "}
-            {city.name}, nous assurons l&apos;<strong>isolation de toiture</strong> par
-            l&apos;extérieur (sarking) ou des combles, la pose de{" "}
-            <strong>fenêtres de toit</strong> et la création de{" "}
-            <strong>pergolas en bois</strong> sur mesure.
-          </p>
-        </div>
-
-        {/* Prestations — cartes */}
-        <h2 className="mt-14 text-2xl font-bold text-anthracite">
-          Nos prestations à {city.name}
-        </h2>
-        <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((s) => (
-            <Link
-              key={s.slug}
-              href={`/${s.slug}`}
-              className="group flex flex-col rounded-2xl border border-black/5 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
-            >
-              <span className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-orange/10 text-orange">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M3 11l9-8 9 8M5 9.5V21h14V9.5" />
-                </svg>
-              </span>
-              <h3 className="font-semibold text-anthracite group-hover:text-orange">
-                {s.title}
-              </h3>
-              <p className="mt-2 flex-1 text-sm text-foreground/70">{s.excerpt}</p>
-              <span className="mt-4 text-sm font-semibold text-orange">En savoir plus →</span>
-            </Link>
-          ))}
-        </div>
-
-        {/* À propos — panneau */}
-        <div className="mt-14 rounded-2xl bg-muted p-6 sm:p-8">
+      {/* Communes voisines (fond blanc) */}
+      <section>
+        <div className="mx-auto max-w-5xl px-4 py-16 lg:px-8">
           <h2 className="text-2xl font-bold text-anthracite">
-            Votre charpentier couvreur de proximité à {city.name}
+            Charpentier couvreur autour de {city.name}
           </h2>
-          <p className="mt-4 text-foreground/80">
-            {city.name} ({city.cp})
-            {city.population
-              ? ` compte environ ${city.population.toLocaleString("fr-FR")} habitants`
-              : ""}
-            {city.epci ? ` et fait partie de ${city.epci}` : ""}, dans le département de{" "}
-            {city.departement || "la Haute-Garonne"}. Située à environ {city.distToulouse}{" "}
-            km de Toulouse et {city.distBessieres} km de notre atelier de Bessières, la
-            commune bénéficie d&apos;une intervention rapide d&apos;ATB Charpente pour la
-            création comme la rénovation de votre toiture : charpente bois, couverture en
-            tuiles, zinguerie et isolation.
-          </p>
-        </div>
-
-        {/* Pourquoi nous — cartes */}
-        <h2 className="mt-14 text-2xl font-bold text-anthracite">
-          Pourquoi choisir ATB Charpente à {city.name} ?
-        </h2>
-        <div className="mt-6 grid gap-5 sm:grid-cols-2">
-          {[
-            { t: "20 ans d'expérience", d: "Plus de 130 chantiers réalisés autour de Toulouse." },
-            { t: "Garantie décennale", d: "Artisan assuré et qualifié, travaux garantis." },
-            { t: "Interlocuteur unique", d: "Un seul contact, de l'étude au chantier." },
-            { t: "Devis gratuit", d: "Détaillé et sans engagement, sous 24/48h." },
-          ].map((item) => (
-            <div
-              key={item.t}
-              className="flex items-start gap-4 rounded-2xl border border-black/5 bg-white p-5 shadow-sm"
-            >
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-orange/10 text-orange">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M5 12l5 5L20 7" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </span>
-              <div>
-                <p className="font-semibold text-anthracite">{item.t}</p>
-                <p className="mt-1 text-sm text-foreground/70">{item.d}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Communes voisines — cartes (maillage) */}
-        <h2 className="mt-14 text-2xl font-bold text-anthracite">
-          Charpentier couvreur autour de {city.name}
-        </h2>
-        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {city.neighbors.map((n) => (
-            <Link
-              key={n.slug}
-              href={`/charpentier-couvreur/${n.slug}`}
-              className="group flex items-center gap-3 rounded-xl border border-black/5 bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
-            >
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-orange/10 text-orange">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 21s-7-5.5-7-11a7 7 0 1 1 14 0c0 5.5-7 11-7 11zM12 10a1 1 0 1 0 0 .01" />
-                </svg>
-              </span>
-              <span className="text-sm font-medium text-anthracite group-hover:text-orange">
-                Charpentier à {n.name}
-              </span>
-            </Link>
-          ))}
-        </div>
-
-        {/* FAQ */}
-        <h2 className="mt-14 text-2xl font-bold text-anthracite">
-          Questions fréquentes — {city.name}
-        </h2>
-        <div className="mt-6 space-y-3">
-          {faq.map((f) => (
-            <details key={f.q} className="rounded-2xl border border-black/5 bg-white p-5 shadow-sm">
-              <summary className="cursor-pointer font-semibold text-anthracite">
-                {f.q}
-              </summary>
-              <p className="mt-3 text-foreground/80">{f.a}</p>
-            </details>
-          ))}
-        </div>
-
-        {/* CTA */}
-        <div className="mt-14 overflow-hidden rounded-2xl bg-anthracite-dark p-8 text-center text-white sm:p-10">
-          <h2 className="text-2xl font-bold">Un projet de toiture à {city.name} ?</h2>
-          <p className="mt-2 text-white/70">
-            Contactez ATB Charpente pour un devis gratuit et sans engagement.
-          </p>
-          <div className="mt-6 flex flex-wrap justify-center gap-4">
-            <Link
-              href={routes.contact}
-              className="rounded-full bg-orange px-7 py-3.5 font-semibold text-white transition-colors hover:bg-orange-dark"
-            >
-              Demander un devis
-            </Link>
-            <a
-              href={site.contact.phoneHref}
-              className="rounded-full border border-white/30 px-7 py-3.5 font-semibold text-white hover:bg-white/10"
-            >
-              {site.contact.phone}
-            </a>
+          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {city.neighbors.map((n) => (
+              <Link
+                key={n.slug}
+                href={`/charpentier-couvreur/${n.slug}`}
+                className="group flex items-center gap-3 rounded-xl border border-black/5 bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
+              >
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-orange/10 text-orange">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 21s-7-5.5-7-11a7 7 0 1 1 14 0c0 5.5-7 11-7 11zM12 10a1 1 0 1 0 0 .01" />
+                  </svg>
+                </span>
+                <span className="text-sm font-medium text-anthracite group-hover:text-orange">
+                  Charpentier à {n.name}
+                </span>
+              </Link>
+            ))}
           </div>
         </div>
-      </article>
+      </section>
+
+      {/* FAQ (fond gris clair) */}
+      <section className="bg-muted">
+        <div className="mx-auto max-w-3xl px-4 py-16 lg:px-8">
+          <h2 className="text-2xl font-bold text-anthracite">
+            Questions fréquentes — {city.name}
+          </h2>
+          <div className="mt-6 space-y-3">
+            {faq.map((f) => (
+              <details key={f.q} className="rounded-2xl border border-black/5 bg-white p-5 shadow-sm">
+                <summary className="cursor-pointer font-semibold text-anthracite">
+                  {f.q}
+                </summary>
+                <p className="mt-3 text-foreground/80">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACT — fond = image d'en-tête de l'article */}
+      <section className="relative overflow-hidden bg-anthracite-dark">
+        <Image
+          src={heroFor(city.slug)}
+          alt=""
+          fill
+          className="object-cover opacity-30"
+          sizes="100vw"
+        />
+        <div className="relative mx-auto max-w-7xl px-4 py-20 lg:px-8">
+          <div className="w-full rounded-2xl bg-[#f7f3ec] p-8 shadow-xl sm:max-w-xl sm:p-10 lg:ml-auto">
+            <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-orange">
+              Contactez-nous
+            </p>
+            <h2 className="text-3xl font-bold leading-tight text-anthracite sm:text-4xl">
+              Un projet de toiture à {city.name} ?
+            </h2>
+            <p className="mt-3 text-foreground/70">
+              Devis gratuit et sans engagement — réponse rapide.
+            </p>
+            <div className="mt-6">
+              <ContactForm />
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
