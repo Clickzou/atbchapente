@@ -234,7 +234,7 @@ const CROQUIS: Record<string, string> = {
   "isolation-toiture": "isolation-toiture.jpg",
   "pose-changement-gouttieres-zinc": "gouttiere-toit.jpg",
   "pose-remaniement-tuiles": "couverture-tuile.jpg",
-  "creation-fenetre-de-toit-bois": "croquis-maison.jpg",
+  "creation-fenetre-de-toit-bois": "fenetre-toit.png",
   "creation-pergola-bois": "croquis-pergola.jpg",
 };
 
