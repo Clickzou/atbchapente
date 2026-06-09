@@ -231,7 +231,7 @@ export default async function VillePage({
 
       {/* Section 1 : texte à gauche, stats à droite — pleine largeur avec marges */}
       <section className="mx-auto max-w-7xl px-4 py-16 lg:px-8">
-        <div className="grid gap-10 lg:grid-cols-[1.7fr_1fr] lg:items-start lg:gap-14">
+        <div className="grid gap-10 lg:grid-cols-[1.7fr_1fr] lg:items-stretch lg:gap-14">
           <div>
             {cityContent[city.slug] ? (
               <div className="space-y-4 text-lg leading-relaxed text-foreground/85">
@@ -244,8 +244,8 @@ export default async function VillePage({
             )}
           </div>
 
-          {/* Stats — cartes données réelles */}
-          <div className="grid grid-cols-2 gap-4">
+          {/* Stats — cartes données réelles (remplissent la hauteur du texte) */}
+          <div className="grid grid-cols-2 gap-4 lg:h-full lg:grid-rows-2">
             {[
               city.population && {
                 icon: (
@@ -278,7 +278,7 @@ export default async function VillePage({
                 return (
                   <div
                     key={i}
-                    className="rounded-2xl border border-black/5 bg-white p-5 text-center shadow-sm"
+                    className="flex h-full flex-col items-center justify-center rounded-2xl border border-black/5 bg-white p-5 text-center shadow-sm"
                   >
                     <span className="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-full bg-orange/10 text-orange">
                       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -294,7 +294,19 @@ export default async function VillePage({
         </div>
       </section>
 
-      {/* Section 2 — Métier (fond gris clair) */}
+      {/* Section 2 — Nos prestations (carrousel) */}
+      <section>
+        <div className="mx-auto max-w-7xl px-4 py-16 lg:px-8">
+          <h2 className="text-2xl font-bold text-anthracite">
+            Nos prestations à {city.name}
+          </h2>
+          <div className="mt-6">
+            <ServicesCarousel variant="compact" />
+          </div>
+        </div>
+      </section>
+
+      {/* Section 3 — Métier (fond gris clair) */}
       <section className="bg-muted">
         <div className="mx-auto max-w-5xl px-4 py-16 lg:px-8">
           <h2 className="text-2xl font-bold text-anthracite">
@@ -350,18 +362,6 @@ export default async function VillePage({
               km de Toulouse et {city.distBessieres} km de notre atelier de Bessières, la
               commune bénéficie d&apos;une intervention rapide.
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Prestations — carrousel (fond blanc) */}
-      <section>
-        <div className="mx-auto max-w-7xl px-4 py-16 lg:px-8">
-          <h2 className="text-2xl font-bold text-anthracite">
-            Nos prestations à {city.name}
-          </h2>
-          <div className="mt-6">
-            <ServicesCarousel variant="compact" />
           </div>
         </div>
       </section>
