@@ -294,20 +294,20 @@ export default async function VillePage({
         </div>
       </section>
 
-      {/* Section 2 — Nos prestations (carrousel) */}
-      <section>
-        <div className="mx-auto max-w-7xl px-4 py-16 lg:px-8">
+      {/* Section 2 — Nos prestations (carrousel pleine largeur, fond gris) */}
+      <section className="bg-muted py-16">
+        <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <h2 className="text-2xl font-bold text-anthracite">
             Nos prestations à {city.name}
           </h2>
-          <div className="mt-6">
-            <ServicesCarousel variant="compact" />
-          </div>
+        </div>
+        <div className="mt-6">
+          <ServicesCarousel />
         </div>
       </section>
 
-      {/* Section 3 — Métier (fond gris clair) */}
-      <section className="bg-muted">
+      {/* Section 3 — Métier (fond blanc) */}
+      <section>
         <div className="mx-auto max-w-5xl px-4 py-16 lg:px-8">
           <h2 className="text-2xl font-bold text-anthracite">
             Charpente, couverture et zinguerie à {city.name}
