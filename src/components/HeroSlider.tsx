@@ -37,7 +37,7 @@ const slides = [
   })),
 ];
 
-const DELAY = 3000;
+const DELAY = 4000;
 const titleClass =
   "absolute inset-0 max-w-3xl text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl";
 
