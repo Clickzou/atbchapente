@@ -8,10 +8,15 @@ import type { ContentBlock } from "@/lib/articles/types";
 import ArticleRenderer from "@/components/ArticleRenderer";
 import ZoneMap from "@/components/ZoneMap";
 
-// Image illustrant certaines sections (à gauche du texte), par titre de H2.
-function sectionImageFor(heading: string): string | null {
+// Image illustrant certaines sections (gauche ou droite du texte), par titre de H2.
+function sectionImageFor(
+  heading: string,
+): { src: string; side: "left" | "right" } | null {
   const h = heading.toLowerCase();
-  if (h.includes("création d'une charpente bois neuve")) return "/images/charpente-neuve.jpg";
+  if (h.includes("création d'une charpente bois neuve"))
+    return { src: "/images/charpente-neuve.jpg", side: "left" };
+  if (h.includes("rénovation et renforcement"))
+    return { src: "/images/renovation-charpente.png", side: "right" };
   return null;
 }
 
@@ -290,16 +295,16 @@ export default async function ServicePage({
             <section key={i} className={bg}>
               <div className="mx-auto max-w-[1600px] px-4 py-14 lg:px-12">
                 <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-14">
-                  <div className="order-2 lg:order-1">
+                  <div className={`order-2 ${img.side === "left" ? "lg:order-1" : "lg:order-2"}`}>
                     <Image
-                      src={img}
+                      src={img.src}
                       alt={head.type === "heading" ? head.text : ""}
                       width={900}
                       height={650}
                       className="h-auto w-full rounded-2xl"
                     />
                   </div>
-                  <div className="order-1 lg:order-2">
+                  <div className={`order-1 ${img.side === "left" ? "lg:order-2" : "lg:order-1"}`}>
                     <ArticleRenderer blocks={s.blocks!} />
                   </div>
                 </div>
