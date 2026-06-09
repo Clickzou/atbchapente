@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 // croquis « zone d'intervention » (et ses copies), photos stock (iStock + visuels
 // de charpentier génériques) et visuels FAQ.
 const EXCLUDE =
-  /^(axel|zone-|istock-|question-)|zone-intervention|charpentier-toulouse-bessieres|creation-projet-charpente/i;
+  /^(axel|zone-|istock-|question-)|zone-intervention|charpentier-toulouse-bessieres|creation-projet-charpente|img-20250403-wa0006/i;
 
 function getPhotos() {
   const dir = path.join(process.cwd(), "public", "images", "realisations");
