@@ -22,8 +22,11 @@ export const FORMSPREE_ENDPOINT =
   process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT || FORMSPREE_DEFAULT;
 
 export const CONTACT_EMAIL = site.contact.email;
-// Adresse mise systématiquement en copie des demandes (suivi Clickzou).
-export const COPY_EMAIL = "jc@clickzou.fr";
+// Adresse mise en copie (Cc) des demandes. Le destinataire principal (« To »)
+// est configuré dans Formspree (jc@clickzou.fr) ; on met Axel en copie ici.
+// NB : le Cc doit être DIFFÉRENT du destinataire Formspree, sinon Formspree
+// refuse l'envoi (« address must be unique between to/cc »).
+export const COPY_EMAIL = "axelcharpente@yahoo.fr";
 
 export type SubmitResult =
   | { ok: true; mode: "formspree" | "mailto" }
