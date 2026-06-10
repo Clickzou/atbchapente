@@ -1,0 +1,54 @@
+name: Publication automatique d'articles de blog
+
+# Publie 1 article à chaque exécution → mardi et vendredi = 2 articles/semaine.
+# Le calendrier éditorial (src/lib/articles/editorial-calendar.ts) est la source
+# de vérité : quand tous les sujets sont `done`, le script ne fait rien.
+on:
+  schedule:
+    - cron: "7 9 * * 2" # mardi 09:07 UTC
+    - cron: "7 9 * * 5" # vendredi 09:07 UTC
+  workflow_dispatch: {} # permet aussi un lancement manuel
+
+permissions:
+  contents: write # pour committer + pousser l'article généré
+
+concurrency:
+  group: publish-article
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      # Génère l'article + l'image, met à jour le barrel et le calendrier.
+      - name: Générer le prochain article
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          FAL_KEY: ${{ secrets.FAL_KEY }}
+        run: node scripts/publish-next-article.mjs
+
+      # Gate qualité : refuse de publier un article < 2000 mots ou un build cassé.
+      - name: Vérifier (build + seuil de mots)
+        run: npm run build
+
+      # Commit + push (déclenche le redéploiement Vercel).
+      - name: Commit & push
+        run: |
+          if git diff --quiet && git diff --cached --quiet; then
+            echo "Aucun changement (calendrier épuisé ?) — rien à committer."
+            exit 0
+          fi
+          git config user.name "ATB Charpente Bot"
+          git config user.email "bot@atb-charpente.fr"
+          git add -A
+          git commit -m "Blog: publication automatique d'un article"
+          git push
