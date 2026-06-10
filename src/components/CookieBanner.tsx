@@ -28,6 +28,8 @@ export default function CookieBanner() {
     } catch {
       /* ignore */
     }
+    // Permet à la mesure d'audience de se charger immédiatement à l'acceptation.
+    if (value === "accepted") window.dispatchEvent(new Event("atb-cookie-accepted"));
     setVisible(false);
   };
 

@@ -1,9 +1,12 @@
 import { NextResponse } from "next/server";
 
-// TODO: brancher l'envoi d'email réel (Resend recommandé).
-// 1. npm i resend
-// 2. Ajouter RESEND_API_KEY dans les variables d'environnement (Vercel).
-// 3. Décommenter l'envoi ci-dessous.
+// Envoi d'email via Resend. Configuration (Vercel) :
+//  - RESEND_API_KEY : clé API Resend.
+//  - CONTACT_TO (optionnel) : destinataire (défaut axelcharpente@yahoo.fr).
+//  - CONTACT_FROM (optionnel) : expéditeur sur un domaine vérifié dans Resend
+//    (défaut "ATB Charpente <onboarding@resend.dev>" pour test ; à remplacer par
+//    une adresse @atb-charpente.fr une fois le domaine vérifié).
+// Sans RESEND_API_KEY, la demande est simplement journalisée (pas de blocage).
 export async function POST(request: Request) {
   try {
     const data = await request.json();
@@ -35,19 +38,24 @@ export async function POST(request: Request) {
       .filter(Boolean)
       .join("\n");
 
-    // --- Envoi email (à activer une fois Resend configuré) ---
-    // const { Resend } = await import("resend");
-    // const resend = new Resend(process.env.RESEND_API_KEY);
-    // await resend.emails.send({
-    //   from: "Site ATB Charpente <contact@atb-charpente.fr>",
-    //   to: "axelcharpente@yahoo.fr",
-    //   replyTo: email,
-    //   subject,
-    //   text: body,
-    // });
-
-    // En attendant la configuration de Resend, on log côté serveur.
-    console.log("[contact]", subject, "\n", body);
+    if (process.env.RESEND_API_KEY) {
+      const { Resend } = await import("resend");
+      const resend = new Resend(process.env.RESEND_API_KEY);
+      const { error } = await resend.emails.send({
+        from: process.env.CONTACT_FROM ?? "ATB Charpente <onboarding@resend.dev>",
+        to: process.env.CONTACT_TO ?? "axelcharpente@yahoo.fr",
+        replyTo: email,
+        subject,
+        text: body,
+      });
+      if (error) {
+        console.error("[contact] Resend error:", error);
+        return NextResponse.json({ error: "Envoi impossible" }, { status: 502 });
+      }
+    } else {
+      // Pas de clé configurée : on journalise (utile en dev / avant Resend).
+      console.log("[contact]", subject, "\n", body);
+    }
 
     return NextResponse.json({ ok: true });
   } catch {

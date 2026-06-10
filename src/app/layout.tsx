@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CookieBanner from "@/components/CookieBanner";
 import LeadPopup from "@/components/LeadPopup";
+import Analytics from "@/components/Analytics";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -27,10 +28,29 @@ export const metadata: Metadata = {
     title: `${site.name} — ${site.baseline}`,
     description: site.description,
     url: site.url,
+    images: [
+      {
+        url: site.ogImage,
+        width: 1200,
+        height: 630,
+        alt: `${site.name} — ${site.baseline}`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} — ${site.baseline}`,
+    description: site.description,
+    images: [site.ogImage],
   },
   icons: {
     icon: "/images/favicon-atb-charpente.webp",
   },
+  // Vérification Google Search Console (renseigner NEXT_PUBLIC_GSC_VERIFICATION
+  // dans les variables d'environnement Vercel ; sinon balise non rendue).
+  verification: process.env.NEXT_PUBLIC_GSC_VERIFICATION
+    ? { google: process.env.NEXT_PUBLIC_GSC_VERIFICATION }
+    : undefined,
 };
 
 // Données structurées schema.org — absentes du site WordPress (levier SEO local).
@@ -45,6 +65,7 @@ const localBusinessSchema = {
   email: site.contact.email,
   address: {
     "@type": "PostalAddress",
+    streetAddress: site.street,
     addressLocality: site.contact.addressLocality,
     postalCode: site.contact.postalCode,
     addressRegion: site.contact.region,
@@ -54,7 +75,20 @@ const localBusinessSchema = {
     { "@type": "City", name: "Toulouse" },
     { "@type": "City", name: "Bessières" },
   ],
-  // TODO: ajouter geo (lat/lng), openingHours et sameAs (fiche Google) une fois confirmés.
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: site.geo.lat,
+    longitude: site.geo.lng,
+  },
+  hasMap: site.reviews.url,
+  sameAs: [site.reviews.url],
+  priceRange: site.priceRange,
+  openingHoursSpecification: site.openingHours.map((h) => ({
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: h.days,
+    opens: h.open,
+    closes: h.close,
+  })),
 };
 
 export default function RootLayout({
@@ -74,6 +108,7 @@ export default function RootLayout({
         <Footer />
         <CookieBanner />
         <LeadPopup />
+        <Analytics />
       </body>
     </html>
   );

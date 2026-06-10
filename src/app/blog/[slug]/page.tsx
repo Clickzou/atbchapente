@@ -11,8 +11,6 @@ import {
 } from "@/lib/articles";
 import { categoryColors } from "@/lib/articles/types";
 import ArticleRenderer from "@/components/ArticleRenderer";
-import ServicesCarousel from "@/components/ServicesCarousel";
-import ContactForm from "@/components/ContactForm";
 import IconsBackground from "@/components/IconsBackground";
 import GoogleReviewBadge from "@/components/GoogleReviewBadge";
 
@@ -165,20 +163,6 @@ export default async function ArticlePage({
         </div>
       </section>
 
-      {/* Nos prestations (carrousel pleine largeur, fond gris) */}
-      <section className="bg-muted py-16">
-        <div className="mx-auto max-w-2xl px-4 text-center lg:px-8">
-          <h2 className="text-2xl font-bold text-anthracite">Nos prestations</h2>
-          <p className="mt-3 text-foreground/70">
-            Charpente, couverture, zinguerie et isolation à Toulouse et ses environs —
-            un interlocuteur unique pour votre toiture.
-          </p>
-        </div>
-        <div className="mt-8">
-          <ServicesCarousel variant="compact" />
-        </div>
-      </section>
-
       {/* Maillage interne — à lire aussi */}
       {related.length > 0 && (
         <section>
@@ -218,27 +202,6 @@ export default async function ArticlePage({
           </div>
         </section>
       )}
-
-      {/* CONTACT — identique aux pages villes */}
-      <section className="relative overflow-hidden bg-anthracite-dark">
-        <Image src={hero} alt="" fill className="object-cover opacity-30" sizes="100vw" />
-        <div className="relative mx-auto max-w-7xl px-4 py-20 lg:px-8">
-          <div className="w-full rounded-2xl bg-white p-8 shadow-xl sm:max-w-xl sm:p-10 lg:ml-auto">
-            <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-orange">
-              Contactez-nous
-            </p>
-            <h2 className="text-3xl font-bold leading-tight text-anthracite sm:text-4xl">
-              Un projet de toiture ?
-            </h2>
-            <p className="mt-3 text-foreground/70">
-              Devis gratuit et sans engagement — réponse rapide.
-            </p>
-            <div className="mt-6">
-              <ContactForm />
-            </div>
-          </div>
-        </div>
-      </section>
     </article>
   );
 }

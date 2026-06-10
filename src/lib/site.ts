@@ -27,6 +27,15 @@ export const site = {
     rating: "5,0",
     url: "https://www.google.com/maps/search/?api=1&query=ATB+Charpente+Bessi%C3%A8res",
   },
+  // Coordonnées géographiques (signal local schema.org). TODO: affiner avec les
+  // coordonnées exactes du 491 chemin des Bourdettes (ci-dessous = Bessières bourg).
+  geo: { lat: 43.7976, lng: 1.6043 },
+  street: "491 chemin des Bourdettes",
+  // Horaires d'ouverture. TODO: confirmer avec le client (la fiche Google en a).
+  openingHours: [{ days: ["Mo", "Tu", "We", "Th", "Fr"], open: "08:00", close: "18:00" }],
+  priceRange: "€€",
+  // Image Open Graph par défaut (partages réseaux / messageries), 16:9.
+  ogImage: "/images/og-atb-charpente.jpg",
 } as const;
 
 // Routes nommées (slugs réels du WordPress = continuité SEO).
