@@ -77,7 +77,7 @@ export const services: Service[] = [
     slug: "creation-charpente-bois-renovation",
     title: "Charpente",
     heading: "Création & rénovation de charpente bois à Toulouse",
-    seoTitle: "Charpentier à Toulouse – Création & rénovation de charpente bois",
+    seoTitle: "Charpentier à Toulouse – charpente bois & rénovation",
     metaDescription:
       "Charpentier à Toulouse : charpente traditionnelle, ossature bois, rénovation et extension sur mesure. Devis gratuit autour de Toulouse et Bessières.",
     excerpt:
@@ -89,7 +89,7 @@ export const services: Service[] = [
     slug: "isolation-toiture",
     title: "Isolation",
     heading: "Isolation de toiture à Toulouse",
-    seoTitle: "Isolation de toiture à Toulouse & Bessières – Confort thermique",
+    seoTitle: "Isolation de toiture à Toulouse – confort & économies",
     metaDescription:
       "Isolation de toiture par l'extérieur (sarking) à Toulouse et Bessières : confort thermique et économies d'énergie. Devis gratuit.",
     excerpt:
@@ -100,7 +100,7 @@ export const services: Service[] = [
     slug: "pose-changement-gouttieres-zinc",
     title: "Gouttière",
     heading: "Pose & changement de gouttières zinc à Toulouse",
-    seoTitle: "Gouttières zinc à Toulouse – Pose & remplacement | ATB Charpente",
+    seoTitle: "Gouttières zinc à Toulouse – pose & remplacement",
     metaDescription:
       "Pose et remplacement de gouttières zinc à Toulouse et ses environs pour une évacuation des eaux durable. Devis gratuit.",
     excerpt:
@@ -111,7 +111,7 @@ export const services: Service[] = [
     slug: "pose-remaniement-tuiles",
     title: "Tuiles",
     heading: "Pose & remaniement de tuiles à Toulouse",
-    seoTitle: "Couverture tuiles à Toulouse – Pose & remaniement | ATB Charpente",
+    seoTitle: "Couvreur tuiles à Toulouse – pose & remaniement",
     metaDescription:
       "Couverture neuve, réfection et remaniement de toitures en tuiles à Toulouse et Bessières. Charpentier couvreur, devis gratuit.",
     excerpt: "Couverture neuve, réfection et remaniement de toitures en tuiles.",
@@ -121,7 +121,7 @@ export const services: Service[] = [
     slug: "creation-fenetre-de-toit-bois",
     title: "Fenêtre de toit",
     heading: "Pose de fenêtre de toit à Toulouse",
-    seoTitle: "Pose de fenêtre de toit à Toulouse & Bessières – ATB Charpente",
+    seoTitle: "Pose de fenêtre de toit à Toulouse – Velux & bois",
     metaDescription:
       "Installation de fenêtres de toit à Toulouse pour apporter lumière et ventilation à vos combles. Devis gratuit.",
     excerpt:
@@ -132,7 +132,7 @@ export const services: Service[] = [
     slug: "creation-pergola-bois",
     title: "Pergola",
     heading: "Création de pergola en bois à Toulouse",
-    seoTitle: "Pergola bois sur mesure à Toulouse – Création | ATB Charpente",
+    seoTitle: "Pergola bois sur mesure à Toulouse – création",
     metaDescription:
       "Conception et fabrication de pergolas en bois sur mesure à Toulouse et ses environs. Devis gratuit.",
     excerpt:

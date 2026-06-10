@@ -1318,6 +1318,46 @@ export default async function ServicePage({
         );
       })}
 
+      {/* Maillage interne — pilier Toulouse + services frères (silo SEO) */}
+      <section className="bg-muted">
+        <div className="mx-auto max-w-5xl px-4 py-16 lg:px-8">
+          <h2 className="text-2xl font-bold text-anthracite">
+            ATB Charpente, charpentier couvreur à Toulouse
+          </h2>
+          <p className="mt-3 max-w-3xl text-foreground/70">
+            {data.title} fait partie de notre offre complète de toiture. Découvrez
+            notre{" "}
+            <Link
+              href={routes.cornerstone}
+              className="font-medium text-orange hover:underline"
+            >
+              métier de charpentier couvreur à Toulouse
+            </Link>{" "}
+            et l&apos;ensemble de nos prestations à Toulouse et ses environs :
+          </p>
+          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {services
+              .filter((s) => s.slug !== data.slug)
+              .map((s) => (
+                <Link
+                  key={s.slug}
+                  href={`/${s.slug}`}
+                  className="group flex items-center gap-3 rounded-xl border border-black/5 bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
+                >
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-orange/10 text-orange">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M9 18l6-6-6-6" />
+                    </svg>
+                  </span>
+                  <span className="text-sm font-medium text-anthracite group-hover:text-orange">
+                    {s.heading}
+                  </span>
+                </Link>
+              ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA final */}
       {ctaBlock && (
         <section className="mx-auto max-w-3xl px-4 py-14 lg:px-8">

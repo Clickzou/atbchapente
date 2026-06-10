@@ -96,7 +96,7 @@ export async function generateMetadata({
   const city = cityBySlug.get(ville);
   if (!city) return {};
   return {
-    title: `Charpentier couvreur à ${city.name} (${city.cp}) | ATB Charpente`,
+    title: `Charpentier couvreur à ${city.name} (${city.cp})`,
     description: `Charpentier couvreur à ${city.name} : charpente, couverture, zinguerie, isolation de toiture et pergola. Artisan, garantie décennale, devis gratuit. Intervention rapide à ${city.name} et alentours.`,
     alternates: { canonical: `/charpentier-couvreur/${city.slug}` },
     // Anti-doorway : seules les villes à vraie demande sont indexées ; la longue

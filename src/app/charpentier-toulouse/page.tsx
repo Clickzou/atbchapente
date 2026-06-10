@@ -8,7 +8,7 @@ import ArticleRenderer from "@/components/ArticleRenderer";
 import GoogleReviewBadge from "@/components/GoogleReviewBadge";
 
 export const metadata: Metadata = {
-  title: "Charpentier Toulouse – Charpente, couverture & zinguerie | ATB Charpente",
+  title: "Charpentier Toulouse – charpente, couverture & zinguerie",
   description:
     "Charpentier couvreur à Toulouse : création et rénovation de charpente bois, couverture, zinguerie et isolation de toiture. Artisan, garantie décennale, devis gratuit.",
   alternates: { canonical: routes.cornerstone },

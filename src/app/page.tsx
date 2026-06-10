@@ -7,7 +7,8 @@ import HeroSlider from "@/components/HeroSlider";
 // Home = page de marque/landing (signal de marque + mot-clé). La requête « charpentier
 // couvreur à Toulouse » est portée en priorité par la cornerstone /charpentier-toulouse.
 export const metadata: Metadata = {
-  title: "ATB Charpente — Charpentier couvreur à Toulouse & Bessières",
+  // `absolute` pour éviter que le template "%s | ATB Charpente" ne double la marque.
+  title: { absolute: "ATB Charpente — charpentier couvreur à Toulouse & Bessières" },
   description: site.description,
   alternates: { canonical: "/" },
 };
