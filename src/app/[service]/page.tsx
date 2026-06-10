@@ -543,8 +543,43 @@ export default async function ServicePage({
   if (faqBlock) sections.push({ kind: "faq" });
   sections.push({ kind: "zone" });
 
+  // Données structurées : fil d'Ariane + FAQ (les pages services n'en avaient pas).
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Accueil", item: site.url },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: data.title,
+            item: `${site.url}/${data.slug}`,
+          },
+        ],
+      },
+      ...(faqBlock && faqBlock.type === "faq"
+        ? [
+            {
+              "@type": "FAQPage",
+              mainEntity: faqBlock.items.map((f) => ({
+                "@type": "Question",
+                name: f.question,
+                acceptedAnswer: { "@type": "Answer", text: f.answer },
+              })),
+            },
+          ]
+        : []),
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* HERO landing — comme la home et les articles */}
       <section className="relative flex min-h-[100svh] items-center overflow-hidden bg-anthracite-dark text-white">
         <Image src={data.heroImage ?? data.image} alt="" fill priority className="object-cover" sizes="100vw" />

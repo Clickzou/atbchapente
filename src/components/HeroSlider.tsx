@@ -44,6 +44,9 @@ const titleClass =
 
 export default function HeroSlider() {
   const [index, setIndex] = useState(0);
+  // On ne charge l'image d'un slide qu'une fois qu'il a été affiché (perf/LCP) :
+  // au 1er rendu, seul le slide 0 est dans le DOM ; les autres se montent à la volée.
+  const [loaded, setLoaded] = useState<Set<number>>(() => new Set([0]));
   const active = slides[index];
 
   const go = useCallback(
@@ -52,26 +55,29 @@ export default function HeroSlider() {
   );
 
   useEffect(() => {
+    setLoaded((s) => (s.has(index) ? s : new Set(s).add(index)));
     const id = setInterval(() => setIndex((i) => (i + 1) % slides.length), DELAY);
     return () => clearInterval(id);
   }, [index]);
 
   return (
     <section className="relative flex min-h-[100svh] items-center overflow-hidden bg-anthracite-dark text-white">
-      {/* Slides en fond */}
-      {slides.map((slide, i) => (
-        <Image
-          key={slide.src}
-          src={slide.src}
-          alt=""
-          fill
-          priority={i === 0}
-          sizes="100vw"
-          className={`object-cover transition-opacity duration-1000 ease-in-out ${
-            i === index ? "opacity-85" : "opacity-0"
-          }`}
-        />
-      ))}
+      {/* Slides en fond (montés à la demande pour ne pas charger 7 images au départ) */}
+      {slides.map((slide, i) =>
+        loaded.has(i) ? (
+          <Image
+            key={slide.src}
+            src={slide.src}
+            alt=""
+            fill
+            priority={i === 0}
+            sizes="100vw"
+            className={`object-cover transition-opacity duration-1000 ease-in-out ${
+              i === index ? "opacity-85" : "opacity-0"
+            }`}
+          />
+        ) : null,
+      )}
 
       {/* Voile dégradé pour la lisibilité */}
       <div className="absolute inset-0 bg-gradient-to-r from-anthracite-dark/85 via-anthracite-dark/45 to-transparent" />

@@ -4,6 +4,10 @@ import { getArticlesSorted } from "@/lib/articles";
 import { indexedCities } from "@/lib/zone-communes";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  // Date de génération (build) utilisée comme `lastModified` pour les pages
+  // sans date de contenu propre — aide les moteurs à planifier le crawl.
+  const now = new Date();
+
   const staticPages = [
     "",
     routes.cornerstone,
@@ -12,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     routes.contact,
   ].map((p) => ({
     url: `${site.url}${p}`,
+    lastModified: now,
     changeFrequency: "monthly" as const,
     // Cornerstone = cible SEO principale : priorité élevée (juste après l'accueil).
     priority: p === "" ? 1 : p === routes.cornerstone ? 0.9 : 0.8,
@@ -19,6 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const servicePages = services.map((s) => ({
     url: `${site.url}/${s.slug}`,
+    lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
@@ -35,6 +41,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const cityPages = indexedCities.map((c) => ({
     url: `${site.url}/charpentier-couvreur/${c.slug}`,
+    lastModified: now,
     changeFrequency: "monthly" as const,
     priority: 0.5,
   }));

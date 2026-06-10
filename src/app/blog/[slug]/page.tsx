@@ -69,19 +69,36 @@ export default async function ArticlePage({
 
   const articleSchema = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    headline: article.title,
-    description: article.metaDescription,
-    datePublished: article.date,
-    dateModified: article.updated ?? article.date,
-    image: article.heroImage ? `${site.url}${article.heroImage}` : undefined,
-    author: { "@type": "Organization", name: site.name, url: site.url },
-    publisher: {
-      "@type": "Organization",
-      name: site.name,
-      logo: { "@type": "ImageObject", url: `${site.url}/images/logo-atb-charpente.png` },
-    },
-    mainEntityOfPage: `${site.url}/blog/${article.slug}`,
+    "@graph": [
+      {
+        "@type": "Article",
+        headline: article.title,
+        description: article.metaDescription,
+        datePublished: article.date,
+        dateModified: article.updated ?? article.date,
+        image: article.heroImage ? `${site.url}${article.heroImage}` : undefined,
+        author: { "@type": "Organization", name: site.name, url: site.url },
+        publisher: {
+          "@type": "Organization",
+          name: site.name,
+          logo: { "@type": "ImageObject", url: `${site.url}/images/logo-atb-charpente.png` },
+        },
+        mainEntityOfPage: `${site.url}/blog/${article.slug}`,
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Accueil", item: site.url },
+          { "@type": "ListItem", position: 2, name: "Blog", item: `${site.url}${routes.blog}` },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: article.title,
+            item: `${site.url}/blog/${article.slug}`,
+          },
+        ],
+      },
+    ],
   };
 
   return (
