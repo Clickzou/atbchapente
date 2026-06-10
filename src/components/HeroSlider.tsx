@@ -78,9 +78,10 @@ export default function HeroSlider() {
 
       {/* Contenu */}
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-24 lg:px-8">
-        {/* H1 unique de la page (étiquette), constant et toujours visible */}
+        {/* H1 unique de la page — orienté marque (garde le mot-clé) pour ne pas
+            cannibaliser la cornerstone /charpentier-toulouse qui cible la requête. */}
         <h1 className="mb-3 text-sm font-semibold uppercase tracking-widest text-orange">
-          {site.baseline}
+          {site.name} · {site.baseline}
         </h1>
 
         {/* Titres par slide (fondu) — NON sémantiques (aucun Hn).

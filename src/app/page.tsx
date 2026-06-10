@@ -1,7 +1,16 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { site, routes } from "@/lib/site";
 import HeroSlider from "@/components/HeroSlider";
+
+// Home = page de marque/landing (signal de marque + mot-clé). La requête « charpentier
+// couvreur à Toulouse » est portée en priorité par la cornerstone /charpentier-toulouse.
+export const metadata: Metadata = {
+  title: "ATB Charpente — Charpentier couvreur à Toulouse & Bessières",
+  description: site.description,
+  alternates: { canonical: "/" },
+};
 import ServicesCarousel from "@/components/ServicesCarousel";
 import ContactForm from "@/components/ContactForm";
 
