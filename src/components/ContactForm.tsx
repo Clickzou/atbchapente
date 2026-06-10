@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { submitForm } from "@/lib/formspree";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -10,17 +11,17 @@ export default function ContactForm() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("sending");
-    const formData = new FormData(e.currentTarget);
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        body: JSON.stringify(Object.fromEntries(formData)),
-        headers: { "Content-Type": "application/json" },
-      });
-      if (!res.ok) throw new Error();
+    const form = e.currentTarget;
+    const data = Object.fromEntries(new FormData(form)) as Record<string, string>;
+    const fullName = (data.nom ?? "").trim();
+    const result = await submitForm(data, {
+      subject: `Nouvelle demande${data.sujet ? ` (${data.sujet})` : ""} de ${fullName}`,
+      replyTo: data.email,
+    });
+    if (result.ok) {
       setStatus("sent");
-      e.currentTarget.reset();
-    } catch {
+      form.reset();
+    } else {
       setStatus("error");
     }
   }

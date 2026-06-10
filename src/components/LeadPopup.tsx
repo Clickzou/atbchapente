@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { submitForm } from "@/lib/formspree";
 
 // Popup de captation : demande si l'internaute veut un service/devis ou un
 // rendez-vous, avec prénom, nom, email et téléphone. Affichée une seule fois par
@@ -40,21 +41,24 @@ export default function LeadPopup() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("sending");
-    const data = Object.fromEntries(new FormData(e.currentTarget));
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        body: JSON.stringify({ ...data, demande, source: "popup" }),
-        headers: { "Content-Type": "application/json" },
-      });
-      if (!res.ok) throw new Error();
+    const data = {
+      ...Object.fromEntries(new FormData(e.currentTarget)),
+      demande,
+      source: "popup",
+    } as Record<string, string>;
+    const fullName = [data.prenom, data.nom].filter(Boolean).join(" ").trim();
+    const result = await submitForm(data, {
+      subject: `Popup — ${demande === "rendez-vous" ? "demande de rendez-vous" : "demande de devis"} de ${fullName}`,
+      replyTo: data.email,
+    });
+    if (result.ok) {
       setStatus("sent");
       try {
         sessionStorage.setItem(KEY, "1");
       } catch {
         /* ignore */
       }
-    } catch {
+    } else {
       setStatus("error");
     }
   }
