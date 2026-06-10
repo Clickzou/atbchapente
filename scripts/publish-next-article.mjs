@@ -6,7 +6,7 @@
 // Le workflow se charge ensuite du build (gate qualité), du commit et du push.
 //
 // Variables d'env requises : ANTHROPIC_API_KEY, FAL_KEY.
-import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, readdirSync, existsSync, appendFileSync } from "node:fs";
 import { mkdir } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -123,3 +123,8 @@ writeFileSync(join(POSTS, "index.ts"), barrel);
 lines[idx] = line.replace('"todo"', '"done"');
 writeFileSync(CAL, lines.join("\n"));
 console.log("Barrel régénéré, sujet marqué done. OK.");
+
+// Expose le sujet publié au workflow (step suivant : notification e-mail).
+if (process.env.GITHUB_OUTPUT) {
+  appendFileSync(process.env.GITHUB_OUTPUT, `slug=${topic.slug}\ntitle=${topic.title}\n`);
+}

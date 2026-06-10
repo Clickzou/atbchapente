@@ -31,6 +31,7 @@ jobs:
 
       # Génère l'article + l'image, met à jour le barrel et le calendrier.
       - name: Générer le prochain article
+        id: generate
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           FAL_KEY: ${{ secrets.FAL_KEY }}
@@ -52,3 +53,14 @@ jobs:
           git add -A
           git commit -m "Blog: publication automatique d'un article"
           git push
+
+      # Notifie par e-mail (Resend) — uniquement si un article a été publié.
+      - name: Notifier la publication (e-mail)
+        if: ${{ steps.generate.outputs.slug != '' }}
+        env:
+          ART_SLUG: ${{ steps.generate.outputs.slug }}
+          ART_TITLE: ${{ steps.generate.outputs.title }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          PUBLICATION_NOTIFY_EMAIL: ${{ secrets.PUBLICATION_NOTIFY_EMAIL }}
+          CONTACT_FROM: ${{ secrets.CONTACT_FROM }}
+        run: node scripts/notify-publication.mjs

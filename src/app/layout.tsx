@@ -2,10 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import CookieBanner from "@/components/CookieBanner";
-import LeadPopup from "@/components/LeadPopup";
+import { SiteHeader, SiteFooterAndExtras } from "@/components/SiteChrome";
 import Analytics from "@/components/Analytics";
 
 const inter = Inter({
@@ -102,11 +99,9 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
         />
-        <Header />
+        <SiteHeader />
         <main className="flex-1">{children}</main>
-        <Footer />
-        <CookieBanner />
-        <LeadPopup />
+        <SiteFooterAndExtras />
         <Analytics />
       </body>
     </html>
