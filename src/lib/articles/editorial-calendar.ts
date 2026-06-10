@@ -21,37 +21,37 @@ export interface EditorialTopic {
 
 export const editorialCalendar: EditorialTopic[] = [
   // ── Semaine 1 ──
-  { week: 1, slug: "renover-charpente-ancienne", title: "Rénover une charpente ancienne : le guide complet", primaryKeyword: "rénover une charpente ancienne", category: "Charpente", intent: "informational", status: "todo" },
-  { week: 1, slug: "isolation-toiture-exterieur-sarking", title: "Isolation de toiture par l'extérieur : le sarking expliqué", primaryKeyword: "isolation toiture par l'extérieur", category: "Isolation", intent: "informational", status: "todo" },
+  { week: 1, slug: "renover-charpente-ancienne", title: "Rénover une charpente ancienne : le guide complet", primaryKeyword: "rénover une charpente ancienne", category: "Charpente", intent: "informational", status: "done" },
+  { week: 1, slug: "isolation-toiture-exterieur-sarking", title: "Isolation de toiture par l'extérieur : le sarking expliqué", primaryKeyword: "isolation toiture par l'extérieur", category: "Isolation", intent: "informational", status: "done" },
   // ── Semaine 2 ──
-  { week: 2, slug: "prix-refection-toiture-m2", title: "Prix d'une réfection de toiture au m²", primaryKeyword: "prix réfection toiture m2", category: "Couverture", intent: "commercial", status: "todo" },
-  { week: 2, slug: "renovation-toiture-guide", title: "Rénovation de toiture : le guide complet", primaryKeyword: "rénovation toiture", category: "Rénovation toiture", intent: "informational", status: "todo" },
+  { week: 2, slug: "prix-refection-toiture-m2", title: "Prix d'une réfection de toiture au m²", primaryKeyword: "prix réfection toiture m2", category: "Couverture", intent: "commercial", status: "done" },
+  { week: 2, slug: "renovation-toiture-guide", title: "Rénovation de toiture : le guide complet", primaryKeyword: "rénovation toiture", category: "Rénovation toiture", intent: "informational", status: "done" },
   // ── Semaine 3 ──
-  { week: 3, slug: "entretien-toiture-calendrier", title: "Entretien de toiture : le calendrier annuel", primaryKeyword: "entretien toiture", category: "Conseils & entretien", intent: "informational", status: "todo" },
-  { week: 3, slug: "prix-charpente-neuve-m2", title: "Prix d'une charpente neuve au m²", primaryKeyword: "prix charpente neuve m2", category: "Prix & devis", intent: "commercial", status: "todo" },
+  { week: 3, slug: "entretien-toiture-calendrier", title: "Entretien de toiture : le calendrier annuel", primaryKeyword: "entretien toiture", category: "Conseils & entretien", intent: "informational", status: "done" },
+  { week: 3, slug: "prix-charpente-neuve-m2", title: "Prix d'une charpente neuve au m²", primaryKeyword: "prix charpente neuve m2", category: "Prix & devis", intent: "commercial", status: "done" },
   // ── Semaine 4 ──
-  { week: 4, slug: "gouttiere-zinc-vs-pvc", title: "Gouttière en zinc ou en PVC : comparatif", primaryKeyword: "gouttière zinc ou pvc", category: "Zinguerie", intent: "commercial", status: "todo" },
-  { week: 4, slug: "declaration-prealable-travaux-toiture", title: "Déclaration préalable pour des travaux de toiture", primaryKeyword: "déclaration préalable toiture", category: "Réglementation & aides", intent: "informational", status: "todo" },
+  { week: 4, slug: "gouttiere-zinc-vs-pvc", title: "Gouttière en zinc ou en PVC : comparatif", primaryKeyword: "gouttière zinc ou pvc", category: "Zinguerie", intent: "commercial", status: "done" },
+  { week: 4, slug: "declaration-prealable-travaux-toiture", title: "Déclaration préalable pour des travaux de toiture", primaryKeyword: "déclaration préalable toiture", category: "Réglementation & aides", intent: "informational", status: "done" },
   // ── Semaine 5 ──
-  { week: 5, slug: "pergola-bois-vs-alu", title: "Pergola en bois ou en aluminium ?", primaryKeyword: "pergola bois ou alu", category: "Pergola & extérieur", intent: "commercial", status: "todo" },
-  { week: 5, slug: "signes-charpente-a-renover", title: "7 signes qu'il faut rénover votre charpente", primaryKeyword: "signes charpente à rénover", category: "Charpente", intent: "informational", status: "todo" },
+  { week: 5, slug: "pergola-bois-vs-alu", title: "Pergola en bois ou en aluminium ?", primaryKeyword: "pergola bois ou alu", category: "Pergola & extérieur", intent: "commercial", status: "done" },
+  { week: 5, slug: "signes-charpente-a-renover", title: "7 signes qu'il faut rénover votre charpente", primaryKeyword: "signes charpente à rénover", category: "Charpente", intent: "informational", status: "done" },
   // ── Semaine 6 ──
-  { week: 6, slug: "isolation-combles-perdus-ou-amenages", title: "Combles perdus ou aménagés : quelle isolation ?", primaryKeyword: "isolation combles perdus ou aménagés", category: "Isolation", intent: "informational", status: "todo" },
-  { week: 6, slug: "types-de-tuiles-comparatif", title: "Les différents types de tuiles : comparatif", primaryKeyword: "types de tuiles", category: "Couverture", intent: "informational", status: "todo" },
+  { week: 6, slug: "isolation-combles-perdus-ou-amenages", title: "Combles perdus ou aménagés : quelle isolation ?", primaryKeyword: "isolation combles perdus ou aménagés", category: "Isolation", intent: "informational", status: "done" },
+  { week: 6, slug: "types-de-tuiles-comparatif", title: "Les différents types de tuiles : comparatif", primaryKeyword: "types de tuiles", category: "Couverture", intent: "informational", status: "done" },
   // ── Semaine 7 ──
-  { week: 7, slug: "quand-refaire-sa-toiture", title: "Quand faut-il refaire sa toiture ?", primaryKeyword: "quand refaire sa toiture", category: "Rénovation toiture", intent: "informational", status: "todo" },
-  { week: 7, slug: "inspection-toiture-checklist", title: "Inspecter sa toiture : la checklist", primaryKeyword: "inspection toiture", category: "Conseils & entretien", intent: "informational", status: "todo" },
+  { week: 7, slug: "quand-refaire-sa-toiture", title: "Quand faut-il refaire sa toiture ?", primaryKeyword: "quand refaire sa toiture", category: "Rénovation toiture", intent: "informational", status: "done" },
+  { week: 7, slug: "inspection-toiture-checklist", title: "Inspecter sa toiture : la checklist", primaryKeyword: "inspection toiture", category: "Conseils & entretien", intent: "informational", status: "done" },
   // ── Semaine 8 ──
-  { week: 8, slug: "cout-renovation-toiture-complete", title: "Coût d'une rénovation de toiture complète", primaryKeyword: "coût rénovation toiture", category: "Prix & devis", intent: "commercial", status: "todo" },
-  { week: 8, slug: "entretien-gouttieres-frequence", title: "À quelle fréquence entretenir ses gouttières ?", primaryKeyword: "entretien gouttières", category: "Zinguerie", intent: "informational", status: "todo" },
+  { week: 8, slug: "cout-renovation-toiture-complete", title: "Coût d'une rénovation de toiture complète", primaryKeyword: "coût rénovation toiture", category: "Prix & devis", intent: "commercial", status: "done" },
+  { week: 8, slug: "entretien-gouttieres-frequence", title: "À quelle fréquence entretenir ses gouttières ?", primaryKeyword: "entretien gouttières", category: "Zinguerie", intent: "informational", status: "done" },
   // ── Semaine 9 ──
-  { week: 9, slug: "reglementation-fenetre-toit-voisinage", title: "Fenêtre de toit et vis-à-vis : la réglementation", primaryKeyword: "réglementation fenêtre de toit", category: "Réglementation & aides", intent: "informational", status: "todo" },
-  { week: 9, slug: "prix-pergola-bois-sur-mesure", title: "Prix d'une pergola en bois sur mesure", primaryKeyword: "prix pergola bois sur mesure", category: "Pergola & extérieur", intent: "commercial", status: "todo" },
+  { week: 9, slug: "reglementation-fenetre-toit-voisinage", title: "Fenêtre de toit et vis-à-vis : la réglementation", primaryKeyword: "réglementation fenêtre de toit", category: "Réglementation & aides", intent: "informational", status: "done" },
+  { week: 9, slug: "prix-pergola-bois-sur-mesure", title: "Prix d'une pergola en bois sur mesure", primaryKeyword: "prix pergola bois sur mesure", category: "Pergola & extérieur", intent: "commercial", status: "done" },
   // ── Semaine 10 ──
-  { week: 10, slug: "charpente-traditionnelle-vs-fermette", title: "Charpente traditionnelle ou fermette : que choisir ?", primaryKeyword: "charpente traditionnelle ou fermette", category: "Charpente", intent: "commercial", status: "todo" },
-  { week: 10, slug: "meilleur-isolant-toiture", title: "Quel est le meilleur isolant pour une toiture ?", primaryKeyword: "meilleur isolant toiture", category: "Isolation", intent: "commercial", status: "todo" },
+  { week: 10, slug: "charpente-traditionnelle-vs-fermette", title: "Charpente traditionnelle ou fermette : que choisir ?", primaryKeyword: "charpente traditionnelle ou fermette", category: "Charpente", intent: "commercial", status: "done" },
+  { week: 10, slug: "meilleur-isolant-toiture", title: "Quel est le meilleur isolant pour une toiture ?", primaryKeyword: "meilleur isolant toiture", category: "Isolation", intent: "commercial", status: "done" },
   // ── Semaine 11 ──
-  { week: 11, slug: "tuiles-canal-vs-mecaniques", title: "Tuiles canal ou mécaniques : que choisir ?", primaryKeyword: "tuiles canal ou mécaniques", category: "Couverture", intent: "commercial", status: "todo" },
+  { week: 11, slug: "tuiles-canal-vs-mecaniques", title: "Tuiles canal ou mécaniques : que choisir ?", primaryKeyword: "tuiles canal ou mécaniques", category: "Couverture", intent: "commercial", status: "done" },
   { week: 11, slug: "renovation-toiture-maison-ancienne", title: "Rénover la toiture d'une maison ancienne", primaryKeyword: "rénovation toiture maison ancienne", category: "Rénovation toiture", intent: "informational", status: "todo" },
   // ── Semaine 12 ──
   { week: 12, slug: "mousse-toiture-traitement", title: "Mousse sur la toiture : traiter et prévenir", primaryKeyword: "mousse toiture", category: "Conseils & entretien", intent: "informational", status: "todo" },

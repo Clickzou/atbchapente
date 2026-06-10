@@ -1,13 +1,11 @@
 import type { BlogArticle } from "./types";
 import { charpenteArticles } from "./charpente";
+import { posts } from "./posts";
 
-// Registre central des articles. Chaque fichier de catégorie exporte un tableau
-// d'articles ; on les agrège ici. Le cron d'auto-publication ajoute de nouveaux
-// fichiers/entrées puis commit (cf. ATB_SEO_MASTER.md).
-export const allArticles: BlogArticle[] = [
-  ...charpenteArticles,
-  // ...couvertureArticles, ...isolationArticles, etc. (ajoutés au fil de l'eau)
-];
+// Registre central des articles. On agrège l'article-template (`charpente.ts`)
+// et tous les posts du dossier `posts/` (1 fichier par article). Le cron
+// d'auto-publication dépose un nouveau fichier dans `posts/` (cf. ATB_SEO_MASTER.md).
+export const allArticles: BlogArticle[] = [...charpenteArticles, ...posts];
 
 const articleMap = new Map(allArticles.map((a) => [a.slug, a]));
 
