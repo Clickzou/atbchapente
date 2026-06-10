@@ -6,12 +6,10 @@ import { usePathname, useRouter } from "next/navigation";
 const NAV = [
   { href: "/dashboard", label: "Vue d'ensemble" },
   { href: "/dashboard/articles", label: "Articles" },
+  { href: "/dashboard/seo", label: "SEO & trafic" },
 ];
 
-const SOON = [
-  { label: "SEO (GA4 + Search Console)" },
-  { label: "Google Business" },
-];
+const SOON = [{ label: "Google Business" }];
 
 export default function Sidebar() {
   const pathname = usePathname();
