@@ -64,14 +64,24 @@ const res = await fetch("https://api.anthropic.com/v1/messages", {
   },
   body: JSON.stringify({
     model: "claude-sonnet-4-6",
-    max_tokens: 8192,
+    // Marge large : un article >= 2000 mots en TS (blocs typés) dépasse 8192 tokens
+    // et serait tronqué → fichier invalide. 16000 laisse de la marge.
+    max_tokens: 16000,
     messages: [{ role: "user", content: userPrompt }],
   }),
 });
 if (!res.ok) throw new Error(`Anthropic HTTP ${res.status} ${await res.text()}`);
-let code = (await res.json()).content.map((c) => c.text || "").join("");
+const data = await res.json();
+// Garde-fou : si la réponse a été coupée par la limite de tokens, on refuse
+// (sinon on écrit un .ts tronqué qui casse le build de tous les autres articles).
+if (data.stop_reason === "max_tokens")
+  throw new Error("Réponse tronquée (max_tokens atteint) — article trop long.");
+let code = data.content.map((c) => c.text || "").join("");
 code = code.replace(/^```[a-z]*\n?/i, "").replace(/\n?```\s*$/i, "").trim() + "\n";
 if (!code.includes("export const article")) throw new Error("Sortie modèle invalide");
+// Une sortie complète se termine par la fermeture de l'objet (`};`).
+if (!code.trimEnd().endsWith("};"))
+  throw new Error("Sortie tronquée — fin de fichier inattendue (pas de `};`).");
 await mkdir(POSTS, { recursive: true });
 writeFileSync(join(POSTS, `${topic.slug}.ts`), code);
 console.log("Article écrit.");

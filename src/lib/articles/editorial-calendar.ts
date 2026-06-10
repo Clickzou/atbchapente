@@ -52,7 +52,7 @@ export const editorialCalendar: EditorialTopic[] = [
   { week: 10, slug: "meilleur-isolant-toiture", title: "Quel est le meilleur isolant pour une toiture ?", primaryKeyword: "meilleur isolant toiture", category: "Isolation", intent: "commercial", status: "done" },
   // ── Semaine 11 ──
   { week: 11, slug: "tuiles-canal-vs-mecaniques", title: "Tuiles canal ou mécaniques : que choisir ?", primaryKeyword: "tuiles canal ou mécaniques", category: "Couverture", intent: "commercial", status: "done" },
-  { week: 11, slug: "renovation-toiture-maison-ancienne", title: "Rénover la toiture d'une maison ancienne", primaryKeyword: "rénovation toiture maison ancienne", category: "Rénovation toiture", intent: "informational", status: "todo" },
+  { week: 11, slug: "renovation-toiture-maison-ancienne", title: "Rénover la toiture d'une maison ancienne", primaryKeyword: "rénovation toiture maison ancienne", category: "Rénovation toiture", intent: "informational", status: "done" },
   // ── Semaine 12 ──
   { week: 12, slug: "mousse-toiture-traitement", title: "Mousse sur la toiture : traiter et prévenir", primaryKeyword: "mousse toiture", category: "Conseils & entretien", intent: "informational", status: "todo" },
   { week: 12, slug: "lire-devis-charpentier", title: "Comment lire un devis de charpentier", primaryKeyword: "lire devis charpentier", category: "Prix & devis", intent: "commercial", status: "todo" },

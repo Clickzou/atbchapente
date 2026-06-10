@@ -1,5 +1,4 @@
-// Barrel des articles de blog (1 fichier par article dans ./).
-// Le cron d’auto-publication ajoute un fichier ici + une ligne d’import.
+// Barrel des articles de blog (généré). 1 fichier par article dans ./
 import type { BlogArticle } from "../types";
 import { article as charpenteTraditionnelleVsFermette } from "./charpente-traditionnelle-vs-fermette";
 import { article as coutRenovationToitureComplete } from "./cout-renovation-toiture-complete";
@@ -18,6 +17,7 @@ import { article as prixRefectionToitureM2 } from "./prix-refection-toiture-m2";
 import { article as quandRefaireSaToiture } from "./quand-refaire-sa-toiture";
 import { article as reglementationFenetreToitVoisinage } from "./reglementation-fenetre-toit-voisinage";
 import { article as renovationToitureGuide } from "./renovation-toiture-guide";
+import { article as renovationToitureMaisonAncienne } from "./renovation-toiture-maison-ancienne";
 import { article as signesCharpenteARenover } from "./signes-charpente-a-renover";
 import { article as tuilesCanalVsMecaniques } from "./tuiles-canal-vs-mecaniques";
 import { article as typesDeTuilesComparatif } from "./types-de-tuiles-comparatif";
@@ -40,6 +40,7 @@ export const posts: BlogArticle[] = [
   quandRefaireSaToiture,
   reglementationFenetreToitVoisinage,
   renovationToitureGuide,
+  renovationToitureMaisonAncienne,
   signesCharpenteARenover,
   tuilesCanalVsMecaniques,
   typesDeTuilesComparatif,
