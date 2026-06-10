@@ -2,6 +2,16 @@ import Link from "next/link";
 import Image from "next/image";
 import type { ContentBlock } from "@/lib/articles/types";
 
+// Slug d'ancre pour les titres (sommaire / liens profonds). Accents retirés.
+export function slugifyHeading(text: string): string {
+  return text
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 // Rendu d'un tableau de blocs typés en JSX. Le **gras** dans les paragraphes/items
 // est interprété (champ sémantique SEO mis en avant comme chez Clickzou).
 function renderInline(text: string) {
@@ -33,11 +43,19 @@ export default function ArticleRenderer({ blocks }: { blocks: ContentBlock[] }) 
 
           case "heading":
             return block.level === 2 ? (
-              <h2 key={i} className="pt-6 text-2xl font-bold text-anthracite">
+              <h2
+                key={i}
+                id={slugifyHeading(block.text)}
+                className="scroll-mt-24 pt-6 text-2xl font-bold text-anthracite"
+              >
                 {block.text}
               </h2>
             ) : (
-              <h3 key={i} className="pt-4 text-xl font-semibold text-anthracite">
+              <h3
+                key={i}
+                id={slugifyHeading(block.text)}
+                className="scroll-mt-24 pt-4 text-xl font-semibold text-anthracite"
+              >
                 {block.text}
               </h3>
             );

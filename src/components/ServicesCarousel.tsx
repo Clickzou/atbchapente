@@ -15,7 +15,7 @@ export default function ServicesCarousel({
   place?: string;
 }) {
   const trackRef = useRef<HTMLDivElement>(null);
-  const pad = variant === "full" ? "px-4 lg:px-[100px]" : "px-4 lg:px-12";
+  const pad = variant === "full" ? "px-4 md:px-8 lg:px-[100px]" : "px-4 md:px-6 lg:px-12";
   const arrowL = variant === "full" ? "left-[58px]" : "left-3";
   const arrowR = variant === "full" ? "right-[58px]" : "right-3";
 
@@ -41,7 +41,7 @@ export default function ServicesCarousel({
             key={s.slug}
             href={`/${s.slug}`}
             data-card
-            className="group flex w-[82%] shrink-0 snap-start flex-col overflow-hidden rounded-xl border border-black/5 bg-white shadow-sm transition-shadow hover:shadow-md sm:w-[46%] lg:w-[calc((100%-4.5rem)/4)]"
+            className="group flex w-[82%] shrink-0 snap-start flex-col overflow-hidden rounded-xl border border-black/5 bg-white shadow-sm transition-shadow hover:shadow-md sm:w-[46%] md:w-[31%] lg:w-[calc((100%-4.5rem)/4)]"
           >
             <div className="relative h-64 overflow-hidden">
               <Image

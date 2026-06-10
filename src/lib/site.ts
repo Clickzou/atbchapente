@@ -36,6 +36,17 @@ export const site = {
   priceRange: "€€",
   // Image Open Graph par défaut (partages réseaux / messageries), 16:9.
   ogImage: "/images/og-atb-charpente.jpg",
+  // Identité légale (source Insee/RNE via societe.com, MAJ 10/06/2026).
+  legal: {
+    form: "SARL (Société à responsabilité limitée)",
+    siren: "823 274 097",
+    siret: "823 274 097 00018",
+    vat: "FR58823274097",
+    ape: "4391A — Travaux de charpente",
+    rcs: "RCS Toulouse 823 274 097",
+    director: "Axel Truc", // responsable de la publication
+    capital: "6 000 €", // capital social fixe
+  },
 } as const;
 
 // Routes nommées (slugs réels du WordPress = continuité SEO).
@@ -77,9 +88,9 @@ export const services: Service[] = [
     slug: "creation-charpente-bois-renovation",
     title: "Charpente",
     heading: "Création & rénovation de charpente bois à Toulouse",
-    seoTitle: "Charpentier à Toulouse – charpente bois & rénovation",
+    seoTitle: "Charpente bois à Toulouse – création & rénovation",
     metaDescription:
-      "Charpentier à Toulouse : charpente traditionnelle, ossature bois, rénovation et extension sur mesure. Devis gratuit autour de Toulouse et Bessières.",
+      "Charpente bois à Toulouse : charpente traditionnelle, ossature bois, rénovation et extension sur mesure. Devis gratuit autour de Toulouse et Bessières.",
     excerpt:
       "Charpente traditionnelle, ossature bois, rénovation et extension, réalisées sur mesure.",
     image: "/images/realisations/creation-charpente.jpg",
@@ -102,7 +113,7 @@ export const services: Service[] = [
     heading: "Pose & changement de gouttières zinc à Toulouse",
     seoTitle: "Gouttières zinc à Toulouse – pose & remplacement",
     metaDescription:
-      "Pose et remplacement de gouttières zinc à Toulouse et ses environs pour une évacuation des eaux durable. Devis gratuit.",
+      "Pose et remplacement de gouttières zinc à Toulouse, Bessières et leurs environs pour une évacuation des eaux durable. Devis gratuit.",
     excerpt:
       "Pose et remplacement de gouttières zinc pour une évacuation des eaux durable.",
     image: "/images/realisations/pose-goutuere-zinc.webp",
@@ -111,9 +122,9 @@ export const services: Service[] = [
     slug: "pose-remaniement-tuiles",
     title: "Tuiles",
     heading: "Pose & remaniement de tuiles à Toulouse",
-    seoTitle: "Couvreur tuiles à Toulouse – pose & remaniement",
+    seoTitle: "Couverture tuiles à Toulouse – pose & remaniement",
     metaDescription:
-      "Couverture neuve, réfection et remaniement de toitures en tuiles à Toulouse et Bessières. Charpentier couvreur, devis gratuit.",
+      "Couverture neuve, réfection et remaniement de toitures en tuiles à Toulouse et Bessières. Couvreur tuiles, devis gratuit.",
     excerpt: "Couverture neuve, réfection et remaniement de toitures en tuiles.",
     image: "/images/realisations/pose-changement-tuile-canal-romane-plate.jpg",
   },
@@ -123,7 +134,7 @@ export const services: Service[] = [
     heading: "Pose de fenêtre de toit à Toulouse",
     seoTitle: "Pose de fenêtre de toit à Toulouse – Velux & bois",
     metaDescription:
-      "Installation de fenêtres de toit à Toulouse pour apporter lumière et ventilation à vos combles. Devis gratuit.",
+      "Installation de fenêtres de toit à Toulouse et Bessières pour apporter lumière et ventilation à vos combles. Devis gratuit.",
     excerpt:
       "Installation de fenêtres de toit pour apporter lumière et ventilation à vos combles.",
     image: "/images/realisations/IMG-20250403-WA0015.jpg",
@@ -134,7 +145,7 @@ export const services: Service[] = [
     heading: "Création de pergola en bois à Toulouse",
     seoTitle: "Pergola bois sur mesure à Toulouse – création",
     metaDescription:
-      "Conception et fabrication de pergolas en bois sur mesure à Toulouse et ses environs. Devis gratuit.",
+      "Conception et fabrication de pergolas en bois sur mesure à Toulouse, Bessières et leurs environs. Devis gratuit.",
     excerpt:
       "Conception et fabrication de pergolas en bois sur mesure pour vos extérieurs.",
     image: "/images/realisations/pose-pergola-bois-toulouse-bessiere.jpg",

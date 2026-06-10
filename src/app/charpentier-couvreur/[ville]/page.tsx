@@ -100,8 +100,9 @@ export async function generateMetadata({
     description: `Charpentier couvreur à ${city.name} : charpente, couverture, zinguerie, isolation de toiture et pergola. Artisan, garantie décennale, devis gratuit. Intervention rapide à ${city.name} et alentours.`,
     alternates: { canonical: `/charpentier-couvreur/${city.slug}` },
     // Anti-doorway : seules les villes à vraie demande sont indexées ; la longue
-    // traîne reste crawlable (follow) mais hors index.
-    robots: city.indexed ? undefined : { index: false, follow: true },
+    // traîne reste crawlable (follow) mais hors index. Balise robots émise
+    // explicitement dans les deux cas (pas d'ambiguïté côté crawler).
+    robots: { index: city.indexed, follow: true },
   };
 }
 
@@ -165,12 +166,24 @@ export default async function VillePage({
         name: `${site.name} — Charpentier couvreur à ${city.name}`,
         description: `Charpentier couvreur à ${city.name} : charpente, couverture, zinguerie, isolation de toiture.`,
         telephone: site.contact.phone,
-        areaServed: { "@type": "City", name: city.name },
+        priceRange: site.priceRange,
+        areaServed: [
+          { "@type": "City", name: city.name },
+          { "@type": "AdministrativeArea", name: "Haute-Garonne" },
+          { "@type": "AdministrativeArea", name: "Occitanie" },
+        ],
         address: {
           "@type": "PostalAddress",
+          streetAddress: site.street,
           addressLocality: site.contact.addressLocality,
           postalCode: site.contact.postalCode,
+          addressRegion: site.contact.region,
           addressCountry: "FR",
+        },
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: site.geo.lat,
+          longitude: site.geo.lng,
         },
         url: `${site.url}/charpentier-couvreur/${city.slug}`,
       },

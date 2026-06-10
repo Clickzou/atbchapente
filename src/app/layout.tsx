@@ -43,9 +43,8 @@ export const metadata: Metadata = {
     description: site.description,
     images: [site.ogImage],
   },
-  icons: {
-    icon: "/images/favicon-atb-charpente.webp",
-  },
+  // Favicon / icônes : gérés par les conventions de fichiers dans app/
+  // (favicon.ico, icon.png, apple-icon.png — générés depuis le logo ATB).
   // Vérification Google Search Console (renseigner NEXT_PUBLIC_GSC_VERIFICATION
   // dans les variables d'environnement Vercel ; sinon balise non rendue).
   verification: process.env.NEXT_PUBLIC_GSC_VERIFICATION

@@ -5,11 +5,15 @@ import CookieSettingsButton from "@/components/CookieSettingsButton";
 
 export default function Footer() {
   const year = 2026;
+  // Navigation : on retire les liens services (déjà listés dans « Nos prestations »)
+  // pour éviter la duplication et raccourcir le footer sur mobile.
+  const serviceHrefs = new Set(services.map((s) => `/${s.slug}`));
+  const navItems = mainNav.filter((item) => !serviceHrefs.has(item.href));
   return (
     <footer className="bg-anthracite-dark text-white/80">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 lg:grid-cols-4 lg:px-8">
+      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-6 gap-y-8 px-4 py-12 sm:gap-10 lg:grid-cols-4 lg:px-8">
         {/* Marque */}
-        <div className="lg:col-span-1">
+        <div className="col-span-2 lg:col-span-1">
           <Image
             src="/images/logo-atb-charpente.png"
             alt="ATB Charpente"
@@ -47,7 +51,7 @@ export default function Footer() {
                 Charpentier Toulouse
               </Link>
             </li>
-            {mainNav.map((item) => (
+            {navItems.map((item) => (
               <li key={item.href}>
                 <Link href={item.href} className="hover:text-orange">
                   {item.label}
@@ -58,7 +62,7 @@ export default function Footer() {
         </div>
 
         {/* Contact */}
-        <div>
+        <div className="col-span-2 sm:col-span-1">
           <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-white">
             Contact
           </h3>

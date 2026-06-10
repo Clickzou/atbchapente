@@ -9,6 +9,7 @@ import {
   getRelatedArticles,
   isPublished,
 } from "@/lib/articles";
+import { serviceForArticle } from "@/lib/articles/service-links";
 import { categoryColors } from "@/lib/articles/types";
 import ArticleRenderer from "@/components/ArticleRenderer";
 import IconsBackground from "@/components/IconsBackground";
@@ -60,6 +61,7 @@ export default async function ArticlePage({
   if (!article || (!isPublished(article) && !isLocal)) notFound();
 
   const related = getRelatedArticles(article);
+  const service = serviceForArticle(article);
   const hero = article.heroImage ?? DEFAULT_HERO;
   const dateStr = new Date(article.date).toLocaleDateString("fr-FR", {
     day: "numeric",
@@ -179,6 +181,39 @@ export default async function ArticlePage({
           <ArticleRenderer blocks={article.content} />
         </div>
       </section>
+
+      {/* Maillage descendant — prestation liée + pilier Toulouse */}
+      {service && (
+        <section className="bg-muted">
+          <div className="mx-auto max-w-5xl px-4 py-12 lg:px-8">
+            <div className="flex flex-col items-start gap-5 rounded-2xl border border-black/5 bg-white p-6 shadow-sm sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-widest text-orange">
+                  Notre prestation
+                </p>
+                <p className="mt-1 text-lg font-semibold text-anthracite">
+                  {service.heading}
+                </p>
+                <p className="mt-1 text-sm text-foreground/70">{service.excerpt}</p>
+              </div>
+              <div className="flex shrink-0 flex-wrap gap-3">
+                <Link
+                  href={`/${service.slug}`}
+                  className="rounded-full bg-orange px-6 py-3 font-semibold text-white transition-colors hover:bg-orange-dark"
+                >
+                  Découvrir la prestation
+                </Link>
+                <Link
+                  href={routes.cornerstone}
+                  className="rounded-full border border-black/10 px-6 py-3 font-semibold text-anthracite transition-colors hover:border-orange hover:text-orange"
+                >
+                  Charpentier à Toulouse
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Maillage interne — à lire aussi */}
       {related.length > 0 && (

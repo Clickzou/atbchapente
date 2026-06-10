@@ -40,7 +40,7 @@ const slides = [
 
 const DELAY = 4000;
 const titleClass =
-  "absolute inset-0 max-w-3xl text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl";
+  "absolute inset-0 max-w-3xl text-3xl font-bold leading-tight sm:text-4xl md:text-5xl lg:text-6xl";
 
 export default function HeroSlider() {
   const [index, setIndex] = useState(0);
@@ -107,7 +107,7 @@ export default function HeroSlider() {
         </div>
 
         {/* Accroche du service actif — sur 1 ligne (sauf mobile si trop long) */}
-        <p className="text-lg text-white/85 whitespace-normal sm:whitespace-nowrap">
+        <p className="text-base text-white/85 whitespace-normal sm:text-lg lg:whitespace-nowrap">
           {active.excerpt}
         </p>
 

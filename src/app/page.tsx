@@ -11,6 +11,15 @@ export const metadata: Metadata = {
   title: { absolute: "ATB Charpente — charpentier couvreur à Toulouse & Bessières" },
   description: site.description,
   alternates: { canonical: "/" },
+  // OpenGraph propre (sinon partages réseaux sans image dédiée à la home).
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    url: "/",
+    title: "ATB Charpente — charpentier couvreur à Toulouse & Bessières",
+    description: site.description,
+    images: [{ url: site.ogImage, width: 1200, height: 630 }],
+  },
 };
 import ServicesCarousel from "@/components/ServicesCarousel";
 import ContactForm from "@/components/ContactForm";
@@ -109,7 +118,7 @@ export default function Home() {
       {/* SEO — Charpentier couvreur à Toulouse (texte + lien cornerstone) */}
       <section className="bg-white">
         <div className="mx-auto max-w-6xl px-4 py-20 lg:px-8">
-          <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:items-center lg:gap-16">
+          <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr] lg:items-center lg:gap-16">
             <div>
               <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-orange">
                 Charpentier couvreur à Toulouse
@@ -169,14 +178,14 @@ export default function Home() {
 
       {/* A PROPOS */}
       <section className="bg-muted">
-        <Reveal className="reveal-stagger mx-auto grid max-w-7xl items-center gap-12 px-4 py-24 lg:grid-cols-2 lg:gap-16 lg:px-8">
+        <Reveal className="reveal-stagger mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 md:grid-cols-2 md:py-20 lg:gap-16 lg:px-8 lg:py-24">
           {/* Visuel encadré + carte flottante */}
           <div className="relative">
             <div
               aria-hidden
               className="absolute -left-4 -top-4 h-full w-full rounded-2xl border-2 border-orange/40"
             />
-            <div className="relative h-[420px] overflow-hidden rounded-2xl shadow-xl lg:h-[520px]">
+            <div className="relative h-[300px] overflow-hidden rounded-2xl shadow-xl sm:h-[380px] lg:h-[520px]">
               <Image
                 src="/images/axel-fondateur.webp"
                 alt="Axel, fondateur d'ATB Charpente"
@@ -238,12 +247,18 @@ export default function Home() {
               ))}
             </ul>
 
-            <div className="mt-9">
+            <div className="mt-9 flex flex-wrap items-center gap-4">
               <Link
                 href={routes.realisations}
                 className="inline-block rounded-full bg-orange px-7 py-3.5 font-semibold text-white transition-colors hover:bg-orange-dark"
               >
                 Découvrez nos réalisations
+              </Link>
+              <Link
+                href={routes.blog}
+                className="inline-flex items-center gap-1.5 font-semibold text-anthracite underline-offset-4 transition-colors hover:text-orange hover:underline"
+              >
+                Conseils &amp; guides toiture →
               </Link>
             </div>
           </div>

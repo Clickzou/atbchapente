@@ -22,7 +22,11 @@ export const charpenteArticles: BlogArticle[] = [
     heroImage: "/images/realisations/IMG-20250403-WA0001.jpg",
     heroImageAlt: "Charpente en bois ancienne en cours de rénovation",
     status: "published",
-    relatedSlugs: [],
+    relatedSlugs: [
+      "signes-charpente-a-renover",
+      "charpente-traditionnelle-vs-fermette",
+      "prix-charpente-neuve-m2",
+    ],
     content: [
       {
         type: "paragraph",

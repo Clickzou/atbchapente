@@ -543,10 +543,29 @@ export default async function ServicePage({
   if (faqBlock) sections.push({ kind: "faq" });
   sections.push({ kind: "zone" });
 
-  // Données structurées : fil d'Ariane + FAQ (les pages services n'en avaient pas).
+  // Données structurées : Service + fil d'Ariane + FAQ (les pages services n'en avaient pas).
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
+      {
+        "@type": "Service",
+        name: data.heading,
+        description: data.metaDescription,
+        url: `${site.url}/${data.slug}`,
+        serviceType: data.title,
+        image: `${site.url}${data.heroImage ?? data.image}`,
+        provider: {
+          "@type": "RoofingContractor",
+          name: site.name,
+          url: site.url,
+          telephone: site.contact.phoneHref.replace("tel:", ""),
+        },
+        areaServed: [
+          { "@type": "City", name: "Toulouse" },
+          { "@type": "City", name: "Bessières" },
+          { "@type": "AdministrativeArea", name: "Haute-Garonne" },
+        ],
+      },
       {
         "@type": "BreadcrumbList",
         itemListElement: [
