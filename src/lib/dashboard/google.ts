@@ -1,13 +1,35 @@
 import { google } from "googleapis";
 
-// Lecture GA4 + Search Console via un compte de service (clé JSON dans
-// GOOGLE_SERVICE_ACCOUNT_JSON). Sans config/accès, on renvoie configured:false
-// et le dashboard affiche un état « non configuré » au lieu de planter.
+// Lecture GA4 + Search Console. Deux modes d'authentification, par ordre de
+// priorité :
+//   1) OAuth « utilisateur » via un refresh token (GOOGLE_OAUTH_CLIENT_ID /
+//      _SECRET / _REFRESH_TOKEN) — le dashboard lit au nom d'un compte qui a
+//      déjà accès à GA4 + GSC. Retenu car GA4/GSC refusaient d'ajouter le
+//      compte de service comme utilisateur.
+//   2) Compte de service (GOOGLE_SERVICE_ACCOUNT_JSON) — repli historique.
+// Sans config/accès, on renvoie configured:false et le dashboard affiche un
+// état « non configuré » au lieu de planter.
 
 const GA4_PROPERTY_ID = process.env.GA4_PROPERTY_ID; // ex. "541044459"
 const GSC_SITE_URL = process.env.GSC_SITE_URL; // ex. "https://atb-charpente.fr/"
 
+const SCOPES = [
+  "https://www.googleapis.com/auth/analytics.readonly",
+  "https://www.googleapis.com/auth/webmasters.readonly",
+];
+
 function getAuth() {
+  // Mode 1 — OAuth utilisateur (refresh token).
+  const clientId = process.env.GOOGLE_OAUTH_CLIENT_ID;
+  const clientSecret = process.env.GOOGLE_OAUTH_CLIENT_SECRET;
+  const refreshToken = process.env.GOOGLE_OAUTH_REFRESH_TOKEN;
+  if (clientId && clientSecret && refreshToken) {
+    const oauth2 = new google.auth.OAuth2(clientId, clientSecret);
+    oauth2.setCredentials({ refresh_token: refreshToken });
+    return oauth2;
+  }
+
+  // Mode 2 — Compte de service (repli).
   const raw = process.env.GOOGLE_SERVICE_ACCOUNT_JSON;
   if (!raw) return null;
   let creds: { client_email?: string; private_key?: string };
@@ -21,10 +43,7 @@ function getAuth() {
     email: creds.client_email,
     // Les clés collées dans une variable d'env ont souvent des \n littéraux.
     key: creds.private_key.replace(/\\n/g, "\n"),
-    scopes: [
-      "https://www.googleapis.com/auth/analytics.readonly",
-      "https://www.googleapis.com/auth/webmasters.readonly",
-    ],
+    scopes: SCOPES,
   });
 }
 
