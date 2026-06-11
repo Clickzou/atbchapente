@@ -1,0 +1,35 @@
+name: Publication automatique Google Business
+
+# Publie 1 post sur la fiche Google Business à chaque exécution.
+# Lundi + jeudi = 2 posts/semaine (jours décalés de l'auto-publication blog).
+# Le post part directement sur Google : pas de commit/build.
+on:
+  schedule:
+    - cron: "20 8 * * 1" # lundi 08:20 UTC
+    - cron: "20 8 * * 4" # jeudi 08:20 UTC
+  workflow_dispatch: {} # lancement manuel possible
+
+concurrency:
+  group: publish-gbp
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Générer et publier le post GBP
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          FAL_KEY: ${{ secrets.FAL_KEY }}
+          GBP_CLIENT_ID: ${{ secrets.GBP_CLIENT_ID }}
+          GBP_CLIENT_SECRET: ${{ secrets.GBP_CLIENT_SECRET }}
+          GBP_REFRESH_TOKEN: ${{ secrets.GBP_REFRESH_TOKEN }}
+          GBP_ACCOUNT_ID: ${{ secrets.GBP_ACCOUNT_ID }}
+          GBP_LOCATION_ID: ${{ secrets.GBP_LOCATION_ID }}
+        run: node scripts/publish-gbp-post.mjs
