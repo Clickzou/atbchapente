@@ -7,9 +7,10 @@ const NAV = [
   { href: "/dashboard", label: "Vue d'ensemble" },
   { href: "/dashboard/articles", label: "Articles" },
   { href: "/dashboard/seo", label: "SEO & trafic" },
+  { href: "/dashboard/gbp", label: "Google Business" },
 ];
 
-const SOON = [{ label: "Google Business" }];
+const SOON: { label: string }[] = [];
 
 export default function Sidebar() {
   const pathname = usePathname();
@@ -45,17 +46,21 @@ export default function Sidebar() {
             </Link>
           );
         })}
-        <p className="px-3 pb-1 pt-5 text-[10px] font-semibold uppercase tracking-widest text-white/40">
-          Bientôt
-        </p>
-        {SOON.map((item) => (
-          <span
-            key={item.label}
-            className="block cursor-default rounded-lg px-3 py-2 text-sm text-white/35"
-          >
-            {item.label}
-          </span>
-        ))}
+        {SOON.length > 0 && (
+          <>
+            <p className="px-3 pb-1 pt-5 text-[10px] font-semibold uppercase tracking-widest text-white/40">
+              Bientôt
+            </p>
+            {SOON.map((item) => (
+              <span
+                key={item.label}
+                className="block cursor-default rounded-lg px-3 py-2 text-sm text-white/35"
+              >
+                {item.label}
+              </span>
+            ))}
+          </>
+        )}
       </nav>
       <div className="p-3">
         <button
