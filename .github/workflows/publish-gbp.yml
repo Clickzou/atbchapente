@@ -1,11 +1,11 @@
 name: Publication automatique Google Business
 
-# Publie 1 post sur la fiche Google Business à chaque exécution.
-# Lundi + jeudi = 2 posts/semaine (jours décalés de l'auto-publication blog).
+# Publie 1 post (texte + image) sur la fiche Google Business à chaque exécution.
+# Mardi + jeudi = 2 posts/semaine (les photos seules sortent lundi & vendredi).
 # Le post part directement sur Google : pas de commit/build.
 on:
   schedule:
-    - cron: "20 8 * * 1" # lundi 08:20 UTC
+    - cron: "20 8 * * 2" # mardi 08:20 UTC
     - cron: "20 8 * * 4" # jeudi 08:20 UTC
   workflow_dispatch: {} # lancement manuel possible
 

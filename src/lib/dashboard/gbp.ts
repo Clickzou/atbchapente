@@ -213,6 +213,27 @@ export async function getGbpPosts(): Promise<GbpPost[]> {
   }));
 }
 
+// ── Photos (media) ──
+
+export type GbpMedia = { name: string; createTime?: string; thumbnailUrl?: string };
+
+export async function getGbpMedia(): Promise<GbpMedia[]> {
+  if (!gbpConfigured()) return [];
+  const token = await getAccessToken();
+  if (!token) return [];
+  const data = await apiGet(
+    token,
+    `${API_V4}/accounts/${ACCOUNT_ID}/locations/${LOCATION_ID}/media`
+  );
+  return (data?.mediaItems ?? [])
+    .filter((m: any) => m.mediaFormat === "PHOTO")
+    .map((m: any) => ({
+      name: m.name,
+      createTime: m.createTime,
+      thumbnailUrl: m.thumbnailUrl ?? m.googleUrl,
+    }));
+}
+
 // ── Publication d'un post ──
 
 export type CreatePostResult = { ok: boolean; error?: string; name?: string };

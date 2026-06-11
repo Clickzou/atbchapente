@@ -4,6 +4,7 @@ import {
   getGbpReviews,
   getGbpPerformance,
   getGbpPosts,
+  getGbpMedia,
   type GbpPost,
 } from "@/lib/dashboard/gbp";
 import GbpPublishForm from "@/components/dashboard/GbpPublishForm";
@@ -16,8 +17,10 @@ const fmtDay = (d: Date | string | undefined) =>
     ? new Date(d).toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" })
     : "—";
 
-// Prochaines dates de publication automatique (cron : lundi + jeudi).
-function nextPublications(): { label: string; date: Date }[] {
+type Scheduled = { type: "post" | "photo"; label: string; date: Date };
+
+// Planning des publications automatiques : photos lundi/vendredi, posts mardi/jeudi.
+function nextPublications(): Scheduled[] {
   const now = new Date();
   const next = (weekday: number) => {
     const d = new Date(now);
@@ -25,22 +28,33 @@ function nextPublications(): { label: string; date: Date }[] {
     d.setDate(d.getDate() + diff);
     return d;
   };
-  return [
-    { label: "Post automatique (texte + image)", date: next(1) }, // lundi
-    { label: "Post automatique (texte + image)", date: next(4) }, // jeudi
-  ].sort((a, b) => a.date.getTime() - b.date.getTime());
+  const items: Scheduled[] = [
+    { type: "photo", label: "Photo automatique", date: next(1) }, // lundi
+    { type: "post", label: "Post automatique (texte + image)", date: next(2) }, // mardi
+    { type: "post", label: "Post automatique (texte + image)", date: next(4) }, // jeudi
+    { type: "photo", label: "Photo automatique", date: next(5) }, // vendredi
+  ];
+  return items.sort((a, b) => a.date.getTime() - b.date.getTime());
 }
 
-function Stat({ label, value, accent, alert }: { label: string; value: string; accent?: boolean; alert?: boolean }) {
+function isThisMonth(iso?: string): boolean {
+  if (!iso) return false;
+  const d = new Date(iso);
+  const now = new Date();
+  return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear();
+}
+
+function Stat({ label, value, accent }: { label: string; value: string; accent?: boolean }) {
   return (
-    <div className={`rounded-2xl border p-4 shadow-sm ${alert ? "border-red-300 bg-red-50" : accent ? "border-black/5 bg-orange/10" : "border-black/5 bg-white"}`}>
-      <p className={`text-2xl font-bold ${alert ? "text-red-600" : accent ? "text-orange-dark" : "text-anthracite"}`}>{value}</p>
+    <div className={`rounded-2xl border border-black/5 p-4 shadow-sm ${accent ? "bg-orange/10" : "bg-white"}`}>
+      <p className={`text-2xl font-bold ${accent ? "text-orange-dark" : "text-anthracite"}`}>{value}</p>
       <p className="mt-0.5 text-[11px] text-foreground/55">{label}</p>
     </div>
   );
 }
 
-function PubCard({ post, scheduled }: { post?: GbpPost; scheduled?: { label: string; date: Date } }) {
+function PubCard({ post, scheduled }: { post?: GbpPost; scheduled?: Scheduled }) {
+  const isPhoto = scheduled?.type === "photo";
   const title = scheduled?.label ?? post?.summary ?? "";
   const img = post?.imageUrl;
   const date = scheduled ? scheduled.date : post?.createTime;
@@ -51,7 +65,7 @@ function PubCard({ post, scheduled }: { post?: GbpPost; scheduled?: { label: str
           // eslint-disable-next-line @next/next/no-img-element
           <img src={img} alt="" className="h-full w-full object-cover" />
         ) : (
-          <span className="text-xl">🪵</span>
+          <span className="text-xl">{isPhoto ? "🖼️" : "🪵"}</span>
         )}
       </div>
       <div className="min-w-0 flex-1">
@@ -63,7 +77,13 @@ function PubCard({ post, scheduled }: { post?: GbpPost; scheduled?: { label: str
           >
             {scheduled ? "Programmé" : "Publié"}
           </span>
-          <span className="rounded bg-muted px-1.5 py-0.5 text-[9px] font-medium text-foreground/60">Post</span>
+          <span
+            className={`rounded px-1.5 py-0.5 text-[9px] font-medium ${
+              isPhoto ? "bg-pink-100 text-pink-600" : "bg-muted text-foreground/60"
+            }`}
+          >
+            {isPhoto ? "Photo" : "Post"}
+          </span>
         </div>
         <p className="mt-1 line-clamp-2 text-[11px] text-foreground/70">{title}</p>
         <p className="mt-1 text-[10px] text-foreground/40">{fmtDay(date)}</p>
@@ -99,19 +119,16 @@ export default async function DashboardGbp() {
     );
   }
 
-  const [profile, perf, reviews, posts] = await Promise.all([
+  const [profile, perf, reviews, posts, media] = await Promise.all([
     getGbpProfile(),
     getGbpPerformance(30),
     getGbpReviews(),
     getGbpPosts(),
+    getGbpMedia(),
   ]);
 
-  const now = new Date();
-  const postsThisMonth = posts.filter((p) => {
-    if (!p.createTime) return false;
-    const d = new Date(p.createTime);
-    return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear();
-  }).length;
+  const postsThisMonth = posts.filter((p) => isThisMonth(p.createTime)).length;
+  const photosThisMonth = media.filter((m) => isThisMonth(m.createTime)).length;
   const upcoming = nextPublications();
 
   return (
@@ -120,8 +137,9 @@ export default async function DashboardGbp() {
       <div>
         <h1 className="text-2xl font-bold text-anthracite">Fiche Google My Business</h1>
         <p className="mt-1 max-w-2xl text-sm text-foreground/60">
-          Publication automatique : 2 posts (texte + image) par semaine, les <strong>lundi</strong> &amp;{" "}
-          <strong>jeudi</strong>. Suivez ici l'état de la fiche et le planning des publications.
+          Publication automatique : <strong>2 posts</strong> (texte + image) les <strong>mardi</strong> &amp;{" "}
+          <strong>jeudi</strong>, et <strong>2 photos</strong> les <strong>lundi</strong> &amp;{" "}
+          <strong>vendredi</strong>. Suivez ici l'état de la fiche et le planning des publications.
         </p>
       </div>
 
@@ -156,9 +174,9 @@ export default async function DashboardGbp() {
           {/* Stats du mois */}
           <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
             <Stat label="Posts publiés (ce mois)" value={nf.format(postsThisMonth)} />
+            <Stat label="Photos publiées (ce mois)" value={nf.format(photosThisMonth)} />
             <Stat label="À venir (auto)" value={nf.format(upcoming.length)} accent />
             <Stat label="Note moyenne" value={profile.avgRating ? `${profile.avgRating.toFixed(1)} ★` : "—"} accent />
-            <Stat label="En échec" value="0" />
           </div>
 
           {/* Prochaines publications (planning auto) */}
@@ -167,16 +185,16 @@ export default async function DashboardGbp() {
               <p className="font-semibold text-anthracite">Prochaines publications</p>
               <span className="text-[10px] text-foreground/40">Programmées automatiquement</span>
             </div>
-            <div className="space-y-2">
+            <div className="grid gap-2 md:grid-cols-2">
               {upcoming.map((u, i) => (
                 <PubCard key={i} scheduled={u} />
               ))}
             </div>
           </section>
 
-          {/* Publié récemment */}
+          {/* Publié récemment (posts) */}
           <section className="rounded-2xl border border-black/5 bg-white p-5 shadow-sm">
-            <p className="mb-3 font-semibold text-anthracite">Publié récemment</p>
+            <p className="mb-3 font-semibold text-anthracite">Posts publiés récemment</p>
             {posts.length === 0 ? (
               <p className="text-sm text-foreground/50">Aucun post pour le moment.</p>
             ) : (
@@ -187,6 +205,21 @@ export default async function DashboardGbp() {
               </div>
             )}
           </section>
+
+          {/* Photos récentes */}
+          {media.length > 0 && (
+            <section className="rounded-2xl border border-black/5 bg-white p-5 shadow-sm">
+              <p className="mb-3 font-semibold text-anthracite">Photos récentes</p>
+              <div className="grid grid-cols-3 gap-2 sm:grid-cols-5 md:grid-cols-8">
+                {media.slice(0, 16).map((m) =>
+                  m.thumbnailUrl ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img key={m.name} src={m.thumbnailUrl} alt="" className="aspect-square w-full rounded-lg border border-black/5 object-cover" />
+                  ) : null
+                )}
+              </div>
+            </section>
+          )}
 
           {/* Performance */}
           <section>
@@ -234,11 +267,11 @@ export default async function DashboardGbp() {
           {/* Encart automatisation */}
           <section className="rounded-2xl border border-orange/20 bg-orange/5 p-4">
             <p className="flex items-center gap-2 text-xs font-bold text-orange-dark">⚡ Automatisation de la fiche</p>
-            <p className="mt-2 text-[11px] text-foreground/70">
-              <strong>Posts (texte + image)</strong> : 2/semaine, générés et publiés automatiquement les{" "}
-              <strong>lundi</strong> &amp; <strong>jeudi</strong>. Aucune action requise — utilisez « Publier un post »
-              uniquement pour une actualité ponctuelle (offre, réalisation).
-            </p>
+            <div className="mt-2 grid gap-2 text-[11px] text-foreground/70 sm:grid-cols-2">
+              <p><strong>Posts (texte + image)</strong> : 2/semaine, publiés automatiquement <strong>mardi</strong> &amp; <strong>jeudi</strong>.</p>
+              <p><strong>Photos</strong> : 2/semaine, publiées automatiquement <strong>lundi</strong> &amp; <strong>vendredi</strong>.</p>
+            </div>
+            <p className="mt-2 text-[10px] text-foreground/45">Aucune action requise. « Publier un post » sert uniquement pour une actualité ponctuelle.</p>
           </section>
         </>
       )}
