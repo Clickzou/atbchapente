@@ -2,6 +2,7 @@
 
 import Script from "next/script";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 // Google Analytics 4, chargé UNIQUEMENT après consentement aux cookies (RGPD).
 // L'ID est lu depuis NEXT_PUBLIC_GA_ID (variable d'env Vercel) : tant qu'il n'est
@@ -11,6 +12,9 @@ const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 export default function Analytics() {
   const [allowed, setAllowed] = useState(false);
+  const pathname = usePathname();
+  // L'espace d'admin /dashboard ne doit jamais être tracké dans GA4.
+  const isDashboard = pathname?.startsWith("/dashboard") ?? false;
 
   useEffect(() => {
     if (!GA_ID) return;
@@ -26,7 +30,7 @@ export default function Analytics() {
     return () => window.removeEventListener("atb-cookie-accepted", check);
   }, []);
 
-  if (!GA_ID || !allowed) return null;
+  if (!GA_ID || !allowed || isDashboard) return null;
 
   return (
     <>

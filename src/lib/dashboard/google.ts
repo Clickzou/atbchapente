@@ -103,6 +103,15 @@ export async function getGa4Summary(days = 28): Promise<Ga4Summary> {
         dimensions: [{ name: "pagePath" }],
         metrics: [{ name: "sessions" }],
         orderBys: [{ metric: { metricName: "sessions" }, desc: true }],
+        // On exclut l'espace d'admin /dashboard des stats publiques.
+        dimensionFilter: {
+          notExpression: {
+            filter: {
+              fieldName: "pagePath",
+              stringFilter: { matchType: "BEGINS_WITH", value: "/dashboard" },
+            },
+          },
+        },
         limit: "10",
       },
     });
@@ -180,14 +189,51 @@ export async function getGscSummary(days = 28): Promise<GscSummary> {
       siteUrl: GSC_SITE_URL,
       requestBody: { ...range, dimensions: ["page"], rowLimit: 25 },
     });
-    const topPages = (pRes.data.rows ?? []).map((r) => ({
-      page: r.keys?.[0] ?? "",
-      clicks: r.clicks ?? 0,
-      impressions: r.impressions ?? 0,
-    }));
+    const topPages = (pRes.data.rows ?? [])
+      .map((r) => ({
+        page: r.keys?.[0] ?? "",
+        clicks: r.clicks ?? 0,
+        impressions: r.impressions ?? 0,
+      }))
+      // On exclut l'espace d'admin /dashboard des stats publiques.
+      .filter((p) => !p.page.includes("/dashboard"));
 
     return { configured: true, ok: true, totals, topQueries, topPages };
   } catch (e) {
     return { configured: true, ok: false, error: e instanceof Error ? e.message : "Erreur GSC" };
+  }
+}
+
+export type GscDailyPoint = { date: string; clicks: number; impressions: number };
+
+// Série journalière (clics + impressions) pour le graphique d'évolution.
+// On récupère 90 jours ; le composant client découpe selon la période choisie.
+export async function getGscDaily(days = 90): Promise<GscDailyPoint[]> {
+  const auth = getAuth();
+  if (!auth || !GSC_SITE_URL) return [];
+  try {
+    const sc = google.searchconsole({ version: "v1", auth });
+    const end = new Date();
+    end.setDate(end.getDate() - 2); // ~2 j de latence GSC
+    const start = new Date();
+    start.setDate(start.getDate() - days - 2);
+    const res = await sc.searchanalytics.query({
+      siteUrl: GSC_SITE_URL,
+      requestBody: {
+        startDate: ymd(start),
+        endDate: ymd(end),
+        dimensions: ["date"],
+        rowLimit: days + 5,
+      },
+    });
+    return (res.data.rows ?? [])
+      .map((r) => ({
+        date: r.keys?.[0] ?? "",
+        clicks: r.clicks ?? 0,
+        impressions: r.impressions ?? 0,
+      }))
+      .sort((a, b) => a.date.localeCompare(b.date));
+  } catch {
+    return [];
   }
 }

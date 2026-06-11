@@ -1,4 +1,5 @@
-import { getGa4Summary, getGscSummary } from "@/lib/dashboard/google";
+import { getGa4Summary, getGscSummary, getGscDaily } from "@/lib/dashboard/google";
+import SeoChart from "@/components/dashboard/SeoChart";
 
 export const dynamic = "force-dynamic";
 
@@ -39,7 +40,11 @@ const nf = new Intl.NumberFormat("fr-FR");
 const pct = (v: number) => `${(v * 100).toFixed(1)} %`;
 
 export default async function DashboardSeo() {
-  const [ga, gsc] = await Promise.all([getGa4Summary(28), getGscSummary(28)]);
+  const [ga, gsc, daily] = await Promise.all([
+    getGa4Summary(28),
+    getGscSummary(28),
+    getGscDaily(90),
+  ]);
 
   return (
     <div className="space-y-8">
@@ -106,6 +111,11 @@ export default async function DashboardSeo() {
               <Stat label="CTR" value={pct(gsc.totals!.ctr)} />
               <Stat label="Position moy." value={gsc.totals!.position.toFixed(1)} />
             </div>
+            {daily.length > 0 && (
+              <div className="mt-4">
+                <SeoChart data={daily} />
+              </div>
+            )}
             <div className="mt-4 grid gap-4 lg:grid-cols-2">
               <div className="rounded-2xl border border-black/5 bg-white p-5 shadow-sm">
                 <p className="font-semibold text-anthracite">Requêtes (top clics)</p>
