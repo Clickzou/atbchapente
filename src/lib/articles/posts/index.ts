@@ -9,6 +9,7 @@ import { article as gouttiereZincVsPvc } from "./gouttiere-zinc-vs-pvc";
 import { article as inspectionToitureChecklist } from "./inspection-toiture-checklist";
 import { article as isolationComblesPerdusOuAmenages } from "./isolation-combles-perdus-ou-amenages";
 import { article as isolationToitureExterieurSarking } from "./isolation-toiture-exterieur-sarking";
+import { article as lireDevisCharpentier } from "./lire-devis-charpentier";
 import { article as meilleurIsolantToiture } from "./meilleur-isolant-toiture";
 import { article as mousseToitureTraitement } from "./mousse-toiture-traitement";
 import { article as pergolaBoisVsAlu } from "./pergola-bois-vs-alu";
@@ -33,6 +34,7 @@ export const posts: BlogArticle[] = [
   inspectionToitureChecklist,
   isolationComblesPerdusOuAmenages,
   isolationToitureExterieurSarking,
+  lireDevisCharpentier,
   meilleurIsolantToiture,
   mousseToitureTraitement,
   pergolaBoisVsAlu,

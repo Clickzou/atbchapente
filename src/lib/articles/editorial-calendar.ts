@@ -55,7 +55,7 @@ export const editorialCalendar: EditorialTopic[] = [
   { week: 11, slug: "renovation-toiture-maison-ancienne", title: "Rénover la toiture d'une maison ancienne", primaryKeyword: "rénovation toiture maison ancienne", category: "Rénovation toiture", intent: "informational", status: "done" },
   // ── Semaine 12 ──
   { week: 12, slug: "mousse-toiture-traitement", title: "Mousse sur la toiture : traiter et prévenir", primaryKeyword: "mousse toiture", category: "Conseils & entretien", intent: "informational", status: "done" },
-  { week: 12, slug: "lire-devis-charpentier", title: "Comment lire un devis de charpentier", primaryKeyword: "lire devis charpentier", category: "Prix & devis", intent: "commercial", status: "todo" },
+  { week: 12, slug: "lire-devis-charpentier", title: "Comment lire un devis de charpentier", primaryKeyword: "lire devis charpentier", category: "Prix & devis", intent: "commercial", status: "done" },
   // ── Semaine 13 ──
   { week: 13, slug: "evacuation-eaux-pluviales-probleme", title: "Problèmes d'évacuation des eaux pluviales", primaryKeyword: "évacuation eaux pluviales", category: "Zinguerie", intent: "informational", status: "todo" },
   { week: 13, slug: "aides-renovation-energetique-2026", title: "Aides à la rénovation énergétique 2026", primaryKeyword: "aides rénovation énergétique 2026", category: "Réglementation & aides", intent: "informational", status: "todo" },
