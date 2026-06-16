@@ -5,6 +5,7 @@ import { article as coutRenovationToitureComplete } from "./cout-renovation-toit
 import { article as declarationPrealableTravauxToiture } from "./declaration-prealable-travaux-toiture";
 import { article as entretienGouttieresFrequence } from "./entretien-gouttieres-frequence";
 import { article as entretienToitureCalendrier } from "./entretien-toiture-calendrier";
+import { article as evacuationEauxPluvialesProbleme } from "./evacuation-eaux-pluviales-probleme";
 import { article as gouttiereZincVsPvc } from "./gouttiere-zinc-vs-pvc";
 import { article as inspectionToitureChecklist } from "./inspection-toiture-checklist";
 import { article as isolationComblesPerdusOuAmenages } from "./isolation-combles-perdus-ou-amenages";
@@ -30,6 +31,7 @@ export const posts: BlogArticle[] = [
   declarationPrealableTravauxToiture,
   entretienGouttieresFrequence,
   entretienToitureCalendrier,
+  evacuationEauxPluvialesProbleme,
   gouttiereZincVsPvc,
   inspectionToitureChecklist,
   isolationComblesPerdusOuAmenages,
