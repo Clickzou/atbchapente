@@ -24,7 +24,7 @@ function getPhotos() {
   try {
     return fs
       .readdirSync(dir)
-      .filter((f) => /\.(jpe?g|png|webp)$/i.test(f))
+      .filter((f) => /\.(jpe?g|png|webp|mp4)$/i.test(f))
       .filter((f) => !EXCLUDE.test(f))
       .sort();
   } catch {
