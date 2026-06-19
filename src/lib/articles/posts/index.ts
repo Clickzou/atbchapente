@@ -1,5 +1,6 @@
 // Barrel des articles de blog (généré). 1 fichier par article dans ./
 import type { BlogArticle } from "../types";
+import { article as aidesRenovationEnergetique2026 } from "./aides-renovation-energetique-2026";
 import { article as charpenteTraditionnelleVsFermette } from "./charpente-traditionnelle-vs-fermette";
 import { article as coutRenovationToitureComplete } from "./cout-renovation-toiture-complete";
 import { article as declarationPrealableTravauxToiture } from "./declaration-prealable-travaux-toiture";
@@ -26,6 +27,7 @@ import { article as tuilesCanalVsMecaniques } from "./tuiles-canal-vs-mecaniques
 import { article as typesDeTuilesComparatif } from "./types-de-tuiles-comparatif";
 
 export const posts: BlogArticle[] = [
+  aidesRenovationEnergetique2026,
   charpenteTraditionnelleVsFermette,
   coutRenovationToitureComplete,
   declarationPrealableTravauxToiture,
