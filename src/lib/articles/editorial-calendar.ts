@@ -60,7 +60,7 @@ export const editorialCalendar: EditorialTopic[] = [
   { week: 13, slug: "evacuation-eaux-pluviales-probleme", title: "Problèmes d'évacuation des eaux pluviales", primaryKeyword: "évacuation eaux pluviales", category: "Zinguerie", intent: "informational", status: "done" },
   { week: 13, slug: "aides-renovation-energetique-2026", title: "Aides à la rénovation énergétique 2026", primaryKeyword: "aides rénovation énergétique 2026", category: "Réglementation & aides", intent: "informational", status: "done" },
   // ── Semaine 14 ──
-  { week: 14, slug: "pergola-bioclimatique-bois", title: "La pergola bioclimatique en bois", primaryKeyword: "pergola bioclimatique bois", category: "Pergola & extérieur", intent: "informational", status: "todo" },
+  { week: 14, slug: "pergola-bioclimatique-bois", title: "La pergola bioclimatique en bois", primaryKeyword: "pergola bioclimatique bois", category: "Pergola & extérieur", intent: "informational", status: "done" },
   { week: 14, slug: "traitement-charpente-insectes-xylophages", title: "Traitement de charpente contre les insectes xylophages", primaryKeyword: "traitement charpente insectes", category: "Charpente", intent: "informational", status: "todo" },
   // ── Semaine 15 ──
   { week: 15, slug: "prix-isolation-toiture", title: "Prix d'une isolation de toiture en 2026", primaryKeyword: "prix isolation toiture", category: "Isolation", intent: "commercial", status: "todo" },
