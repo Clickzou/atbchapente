@@ -64,7 +64,7 @@ export const editorialCalendar: EditorialTopic[] = [
   { week: 14, slug: "traitement-charpente-insectes-xylophages", title: "Traitement de charpente contre les insectes xylophages", primaryKeyword: "traitement charpente insectes", category: "Charpente", intent: "informational", status: "done" },
   // ── Semaine 15 ──
   { week: 15, slug: "prix-isolation-toiture", title: "Prix d'une isolation de toiture en 2026", primaryKeyword: "prix isolation toiture", category: "Isolation", intent: "commercial", status: "done" },
-  { week: 15, slug: "remaniement-toiture-quand", title: "Remaniement de toiture : quand et pourquoi ?", primaryKeyword: "remaniement toiture", category: "Couverture", intent: "informational", status: "todo" },
+  { week: 15, slug: "remaniement-toiture-quand", title: "Remaniement de toiture : quand et pourquoi ?", primaryKeyword: "remaniement toiture", category: "Couverture", intent: "informational", status: "done" },
   // ── Semaine 16 ──
   { week: 16, slug: "installation-velux-fenetre-toit", title: "Installer un Velux : étapes et conseils", primaryKeyword: "installation velux", category: "Rénovation toiture", intent: "informational", status: "todo" },
   { week: 16, slug: "preparer-toiture-hiver", title: "Préparer sa toiture pour l'hiver", primaryKeyword: "préparer toiture hiver", category: "Conseils & entretien", intent: "informational", status: "todo" },

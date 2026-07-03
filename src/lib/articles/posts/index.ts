@@ -22,6 +22,7 @@ import { article as prixPergolaBoisSurMesure } from "./prix-pergola-bois-sur-mes
 import { article as prixRefectionToitureM2 } from "./prix-refection-toiture-m2";
 import { article as quandRefaireSaToiture } from "./quand-refaire-sa-toiture";
 import { article as reglementationFenetreToitVoisinage } from "./reglementation-fenetre-toit-voisinage";
+import { article as remaniementToitureQuand } from "./remaniement-toiture-quand";
 import { article as renovationToitureGuide } from "./renovation-toiture-guide";
 import { article as renovationToitureMaisonAncienne } from "./renovation-toiture-maison-ancienne";
 import { article as signesCharpenteARenover } from "./signes-charpente-a-renover";
@@ -52,6 +53,7 @@ export const posts: BlogArticle[] = [
   prixRefectionToitureM2,
   quandRefaireSaToiture,
   reglementationFenetreToitVoisinage,
+  remaniementToitureQuand,
   renovationToitureGuide,
   renovationToitureMaisonAncienne,
   signesCharpenteARenover,
