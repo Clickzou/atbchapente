@@ -9,6 +9,7 @@ import { article as entretienToitureCalendrier } from "./entretien-toiture-calen
 import { article as evacuationEauxPluvialesProbleme } from "./evacuation-eaux-pluviales-probleme";
 import { article as gouttiereZincVsPvc } from "./gouttiere-zinc-vs-pvc";
 import { article as inspectionToitureChecklist } from "./inspection-toiture-checklist";
+import { article as installationVeluxFenetreToit } from "./installation-velux-fenetre-toit";
 import { article as isolationComblesPerdusOuAmenages } from "./isolation-combles-perdus-ou-amenages";
 import { article as isolationToitureExterieurSarking } from "./isolation-toiture-exterieur-sarking";
 import { article as lireDevisCharpentier } from "./lire-devis-charpentier";
@@ -40,6 +41,7 @@ export const posts: BlogArticle[] = [
   evacuationEauxPluvialesProbleme,
   gouttiereZincVsPvc,
   inspectionToitureChecklist,
+  installationVeluxFenetreToit,
   isolationComblesPerdusOuAmenages,
   isolationToitureExterieurSarking,
   lireDevisCharpentier,
