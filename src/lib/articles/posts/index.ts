@@ -17,6 +17,7 @@ import { article as meilleurIsolantToiture } from "./meilleur-isolant-toiture";
 import { article as mousseToitureTraitement } from "./mousse-toiture-traitement";
 import { article as pergolaBioclimatiqueBois } from "./pergola-bioclimatique-bois";
 import { article as pergolaBoisVsAlu } from "./pergola-bois-vs-alu";
+import { article as preparerToitureHiver } from "./preparer-toiture-hiver";
 import { article as prixCharpenteNeuveM2 } from "./prix-charpente-neuve-m2";
 import { article as prixIsolationToiture } from "./prix-isolation-toiture";
 import { article as prixPergolaBoisSurMesure } from "./prix-pergola-bois-sur-mesure";
@@ -49,6 +50,7 @@ export const posts: BlogArticle[] = [
   mousseToitureTraitement,
   pergolaBioclimatiqueBois,
   pergolaBoisVsAlu,
+  preparerToitureHiver,
   prixCharpenteNeuveM2,
   prixIsolationToiture,
   prixPergolaBoisSurMesure,

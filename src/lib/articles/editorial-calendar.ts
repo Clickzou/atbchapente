@@ -67,7 +67,7 @@ export const editorialCalendar: EditorialTopic[] = [
   { week: 15, slug: "remaniement-toiture-quand", title: "Remaniement de toiture : quand et pourquoi ?", primaryKeyword: "remaniement toiture", category: "Couverture", intent: "informational", status: "done" },
   // ── Semaine 16 ──
   { week: 16, slug: "installation-velux-fenetre-toit", title: "Installer un Velux : étapes et conseils", primaryKeyword: "installation velux", category: "Rénovation toiture", intent: "informational", status: "done" },
-  { week: 16, slug: "preparer-toiture-hiver", title: "Préparer sa toiture pour l'hiver", primaryKeyword: "préparer toiture hiver", category: "Conseils & entretien", intent: "informational", status: "todo" },
+  { week: 16, slug: "preparer-toiture-hiver", title: "Préparer sa toiture pour l'hiver", primaryKeyword: "préparer toiture hiver", category: "Conseils & entretien", intent: "informational", status: "done" },
   // ── Semaine 17 ──
   { week: 17, slug: "prix-pose-velux", title: "Prix de la pose d'un Velux", primaryKeyword: "prix pose velux", category: "Prix & devis", intent: "commercial", status: "todo" },
   { week: 17, slug: "types-de-gouttieres", title: "Les différents types de gouttières", primaryKeyword: "types de gouttières", category: "Zinguerie", intent: "informational", status: "todo" },
