@@ -21,6 +21,7 @@ import { article as preparerToitureHiver } from "./preparer-toiture-hiver";
 import { article as prixCharpenteNeuveM2 } from "./prix-charpente-neuve-m2";
 import { article as prixIsolationToiture } from "./prix-isolation-toiture";
 import { article as prixPergolaBoisSurMesure } from "./prix-pergola-bois-sur-mesure";
+import { article as prixPoseVelux } from "./prix-pose-velux";
 import { article as prixRefectionToitureM2 } from "./prix-refection-toiture-m2";
 import { article as quandRefaireSaToiture } from "./quand-refaire-sa-toiture";
 import { article as reglementationFenetreToitVoisinage } from "./reglementation-fenetre-toit-voisinage";
@@ -54,6 +55,7 @@ export const posts: BlogArticle[] = [
   prixCharpenteNeuveM2,
   prixIsolationToiture,
   prixPergolaBoisSurMesure,
+  prixPoseVelux,
   prixRefectionToitureM2,
   quandRefaireSaToiture,
   reglementationFenetreToitVoisinage,
