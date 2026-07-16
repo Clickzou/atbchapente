@@ -5,6 +5,16 @@ import Image from "next/image";
 
 const isVideo = (file: string) => /\.mp4$/i.test(file);
 
+// Alt SEO dérivé du nom de fichier (« solin-zinc-souche-cheminee-bessieres.jpeg »
+// → « Solin zinc souche cheminee bessieres – ATB Charpente »). Les fichiers encore
+// nommés IMG-2025… ne portent aucun sens : on retombe sur un libellé générique.
+function altFor(file: string, i: number) {
+  const slug = file.replace(/\.[^.]+$/, "");
+  if (/^img[-_]?\d/i.test(slug)) return `Réalisation ATB Charpente ${i + 1}`;
+  const label = slug.replace(/[-_]+/g, " ").replace(/\s+\d+$/, "").trim();
+  return `${label.charAt(0).toUpperCase()}${label.slice(1)} – ATB Charpente`;
+}
+
 // Galerie interactive : vignettes carrées (survol zoom) + lightbox plein écran
 // avec navigation clavier (← → Échap), flèches, compteur et fermeture au clic.
 // Gère photos (jpg/png/webp) et vidéos (mp4).
@@ -56,7 +66,7 @@ export default function Gallery({ photos }: { photos: string[] }) {
             ) : (
               <Image
                 src={`/images/realisations/${file}`}
-                alt={`Réalisation ATB Charpente ${i + 1}`}
+                alt={altFor(file, i)}
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
                 sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
@@ -144,7 +154,7 @@ export default function Gallery({ photos }: { photos: string[] }) {
             ) : (
               <Image
                 src={`/images/realisations/${photos[open]}`}
-                alt={`Réalisation ATB Charpente ${open + 1}`}
+                alt={altFor(photos[open], open)}
                 fill
                 className="object-contain"
                 sizes="100vw"
