@@ -31,6 +31,7 @@ import { article as renovationToitureMaisonAncienne } from "./renovation-toiture
 import { article as signesCharpenteARenover } from "./signes-charpente-a-renover";
 import { article as traitementCharpenteInsectesXylophages } from "./traitement-charpente-insectes-xylophages";
 import { article as tuilesCanalVsMecaniques } from "./tuiles-canal-vs-mecaniques";
+import { article as typesDeGouttieres } from "./types-de-gouttieres";
 import { article as typesDeTuilesComparatif } from "./types-de-tuiles-comparatif";
 
 export const posts: BlogArticle[] = [
@@ -65,5 +66,6 @@ export const posts: BlogArticle[] = [
   signesCharpenteARenover,
   traitementCharpenteInsectesXylophages,
   tuilesCanalVsMecaniques,
+  typesDeGouttieres,
   typesDeTuilesComparatif,
 ];

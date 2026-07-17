@@ -70,7 +70,7 @@ export const editorialCalendar: EditorialTopic[] = [
   { week: 16, slug: "preparer-toiture-hiver", title: "Préparer sa toiture pour l'hiver", primaryKeyword: "préparer toiture hiver", category: "Conseils & entretien", intent: "informational", status: "done" },
   // ── Semaine 17 ──
   { week: 17, slug: "prix-pose-velux", title: "Prix de la pose d'un Velux", primaryKeyword: "prix pose velux", category: "Prix & devis", intent: "commercial", status: "done" },
-  { week: 17, slug: "types-de-gouttieres", title: "Les différents types de gouttières", primaryKeyword: "types de gouttières", category: "Zinguerie", intent: "informational", status: "todo" },
+  { week: 17, slug: "types-de-gouttieres", title: "Les différents types de gouttières", primaryKeyword: "types de gouttières", category: "Zinguerie", intent: "informational", status: "done" },
   // ── Semaine 18 ──
   { week: 18, slug: "assurance-decennale-charpentier", title: "L'assurance décennale du charpentier", primaryKeyword: "assurance décennale charpentier", category: "Réglementation & aides", intent: "informational", status: "todo" },
   { week: 18, slug: "carport-bois-abri-voiture", title: "Carport en bois : l'abri voiture sur mesure", primaryKeyword: "carport bois", category: "Pergola & extérieur", intent: "commercial", status: "todo" },
