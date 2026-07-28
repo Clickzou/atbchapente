@@ -6,6 +6,7 @@ import { article as carportBoisAbriVoiture } from "./carport-bois-abri-voiture";
 import { article as charpenteTraditionnelleVsFermette } from "./charpente-traditionnelle-vs-fermette";
 import { article as coutRenovationToitureComplete } from "./cout-renovation-toiture-complete";
 import { article as declarationPrealableTravauxToiture } from "./declaration-prealable-travaux-toiture";
+import { article as dureeDeVieCharpenteBois } from "./duree-de-vie-charpente-bois";
 import { article as entretienGouttieresFrequence } from "./entretien-gouttieres-frequence";
 import { article as entretienToitureCalendrier } from "./entretien-toiture-calendrier";
 import { article as evacuationEauxPluvialesProbleme } from "./evacuation-eaux-pluviales-probleme";
@@ -43,6 +44,7 @@ export const posts: BlogArticle[] = [
   charpenteTraditionnelleVsFermette,
   coutRenovationToitureComplete,
   declarationPrealableTravauxToiture,
+  dureeDeVieCharpenteBois,
   entretienGouttieresFrequence,
   entretienToitureCalendrier,
   evacuationEauxPluvialesProbleme,
