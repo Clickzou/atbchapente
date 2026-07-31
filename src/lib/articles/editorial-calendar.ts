@@ -76,7 +76,7 @@ export const editorialCalendar: EditorialTopic[] = [
   { week: 18, slug: "carport-bois-abri-voiture", title: "Carport en bois : l'abri voiture sur mesure", primaryKeyword: "carport bois", category: "Pergola & extérieur", intent: "commercial", status: "done" },
   // ── Semaine 19 ──
   { week: 19, slug: "duree-de-vie-charpente-bois", title: "Quelle est la durée de vie d'une charpente en bois ?", primaryKeyword: "durée de vie charpente bois", category: "Charpente", intent: "informational", status: "done" },
-  { week: 19, slug: "aides-isolation-toiture-2026", title: "Aides à l'isolation de toiture en 2026", primaryKeyword: "aides isolation toiture 2026", category: "Isolation", intent: "informational", status: "todo" },
+  { week: 19, slug: "aides-isolation-toiture-2026", title: "Aides à l'isolation de toiture en 2026", primaryKeyword: "aides isolation toiture 2026", category: "Isolation", intent: "informational", status: "done" },
   // ── Semaine 20 ──
   { week: 20, slug: "demoussage-toiture-prix", title: "Démoussage de toiture : prix et méthode", primaryKeyword: "démoussage toiture prix", category: "Couverture", intent: "commercial", status: "todo" },
   { week: 20, slug: "amenagement-combles-etapes", title: "Aménager ses combles : les étapes", primaryKeyword: "aménagement combles", category: "Rénovation toiture", intent: "informational", status: "todo" },
