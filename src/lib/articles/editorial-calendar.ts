@@ -79,7 +79,7 @@ export const editorialCalendar: EditorialTopic[] = [
   { week: 19, slug: "aides-isolation-toiture-2026", title: "Aides à l'isolation de toiture en 2026", primaryKeyword: "aides isolation toiture 2026", category: "Isolation", intent: "informational", status: "done" },
   // ── Semaine 20 ──
   { week: 20, slug: "demoussage-toiture-prix", title: "Démoussage de toiture : prix et méthode", primaryKeyword: "démoussage toiture prix", category: "Couverture", intent: "commercial", status: "done" },
-  { week: 20, slug: "amenagement-combles-etapes", title: "Aménager ses combles : les étapes", primaryKeyword: "aménagement combles", category: "Rénovation toiture", intent: "informational", status: "todo" },
+  { week: 20, slug: "amenagement-combles-etapes", title: "Aménager ses combles : les étapes", primaryKeyword: "aménagement combles", category: "Rénovation toiture", intent: "informational", status: "done" },
   // ── Semaine 21 ──
   { week: 21, slug: "signe-infiltration-eau-toiture", title: "Repérer une infiltration d'eau par la toiture", primaryKeyword: "infiltration eau toiture", category: "Conseils & entretien", intent: "informational", status: "todo" },
   { week: 21, slug: "tarif-demoussage-toiture", title: "Tarif d'un démoussage de toiture", primaryKeyword: "tarif démoussage toiture", category: "Prix & devis", intent: "commercial", status: "todo" },
