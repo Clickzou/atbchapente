@@ -34,6 +34,7 @@ import { article as reglementationFenetreToitVoisinage } from "./reglementation-
 import { article as remaniementToitureQuand } from "./remaniement-toiture-quand";
 import { article as renovationToitureGuide } from "./renovation-toiture-guide";
 import { article as renovationToitureMaisonAncienne } from "./renovation-toiture-maison-ancienne";
+import { article as signeInfiltrationEauToiture } from "./signe-infiltration-eau-toiture";
 import { article as signesCharpenteARenover } from "./signes-charpente-a-renover";
 import { article as traitementCharpenteInsectesXylophages } from "./traitement-charpente-insectes-xylophages";
 import { article as tuilesCanalVsMecaniques } from "./tuiles-canal-vs-mecaniques";
@@ -75,6 +76,7 @@ export const posts: BlogArticle[] = [
   remaniementToitureQuand,
   renovationToitureGuide,
   renovationToitureMaisonAncienne,
+  signeInfiltrationEauToiture,
   signesCharpenteARenover,
   traitementCharpenteInsectesXylophages,
   tuilesCanalVsMecaniques,
