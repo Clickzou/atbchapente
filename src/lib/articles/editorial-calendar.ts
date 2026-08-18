@@ -84,7 +84,7 @@ export const editorialCalendar: EditorialTopic[] = [
   { week: 21, slug: "signe-infiltration-eau-toiture", title: "Repérer une infiltration d'eau par la toiture", primaryKeyword: "infiltration eau toiture", category: "Conseils & entretien", intent: "informational", status: "done" },
   { week: 21, slug: "tarif-demoussage-toiture", title: "Tarif d'un démoussage de toiture", primaryKeyword: "tarif démoussage toiture", category: "Prix & devis", intent: "commercial", status: "done" },
   // ── Semaine 22 ──
-  { week: 22, slug: "noue-toiture-zinguerie", title: "La noue de toiture : rôle et étanchéité", primaryKeyword: "noue toiture", category: "Zinguerie", intent: "informational", status: "todo" },
+  { week: 22, slug: "noue-toiture-zinguerie", title: "La noue de toiture : rôle et étanchéité", primaryKeyword: "noue toiture", category: "Zinguerie", intent: "informational", status: "done" },
   { week: 22, slug: "permis-construire-surelevation", title: "Surélévation : permis de construire ou pas ?", primaryKeyword: "permis construire surélévation", category: "Réglementation & aides", intent: "informational", status: "todo" },
   // ── Semaine 23 ──
   { week: 23, slug: "terrasse-bois-entretien", title: "Entretenir une terrasse en bois", primaryKeyword: "entretien terrasse bois", category: "Pergola & extérieur", intent: "informational", status: "todo" },
