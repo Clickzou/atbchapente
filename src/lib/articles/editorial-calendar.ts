@@ -85,7 +85,7 @@ export const editorialCalendar: EditorialTopic[] = [
   { week: 21, slug: "tarif-demoussage-toiture", title: "Tarif d'un démoussage de toiture", primaryKeyword: "tarif démoussage toiture", category: "Prix & devis", intent: "commercial", status: "done" },
   // ── Semaine 22 ──
   { week: 22, slug: "noue-toiture-zinguerie", title: "La noue de toiture : rôle et étanchéité", primaryKeyword: "noue toiture", category: "Zinguerie", intent: "informational", status: "done" },
-  { week: 22, slug: "permis-construire-surelevation", title: "Surélévation : permis de construire ou pas ?", primaryKeyword: "permis construire surélévation", category: "Réglementation & aides", intent: "informational", status: "todo" },
+  { week: 22, slug: "permis-construire-surelevation", title: "Surélévation : permis de construire ou pas ?", primaryKeyword: "permis construire surélévation", category: "Réglementation & aides", intent: "informational", status: "done" },
   // ── Semaine 23 ──
   { week: 23, slug: "terrasse-bois-entretien", title: "Entretenir une terrasse en bois", primaryKeyword: "entretien terrasse bois", category: "Pergola & extérieur", intent: "informational", status: "todo" },
   { week: 23, slug: "charpente-extension-maison", title: "Charpente pour une extension de maison : les solutions", primaryKeyword: "charpente extension maison", category: "Charpente", intent: "informational", status: "todo" },

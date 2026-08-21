@@ -24,6 +24,7 @@ import { article as mousseToitureTraitement } from "./mousse-toiture-traitement"
 import { article as noueToitureZinguerie } from "./noue-toiture-zinguerie";
 import { article as pergolaBioclimatiqueBois } from "./pergola-bioclimatique-bois";
 import { article as pergolaBoisVsAlu } from "./pergola-bois-vs-alu";
+import { article as permisConstruireSurelevation } from "./permis-construire-surelevation";
 import { article as preparerToitureHiver } from "./preparer-toiture-hiver";
 import { article as prixCharpenteNeuveM2 } from "./prix-charpente-neuve-m2";
 import { article as prixIsolationToiture } from "./prix-isolation-toiture";
@@ -68,6 +69,7 @@ export const posts: BlogArticle[] = [
   noueToitureZinguerie,
   pergolaBioclimatiqueBois,
   pergolaBoisVsAlu,
+  permisConstruireSurelevation,
   preparerToitureHiver,
   prixCharpenteNeuveM2,
   prixIsolationToiture,
