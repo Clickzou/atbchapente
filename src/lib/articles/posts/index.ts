@@ -39,6 +39,7 @@ import { article as renovationToitureMaisonAncienne } from "./renovation-toiture
 import { article as signeInfiltrationEauToiture } from "./signe-infiltration-eau-toiture";
 import { article as signesCharpenteARenover } from "./signes-charpente-a-renover";
 import { article as tarifDemoussageToiture } from "./tarif-demoussage-toiture";
+import { article as terrasseBoisEntretien } from "./terrasse-bois-entretien";
 import { article as traitementCharpenteInsectesXylophages } from "./traitement-charpente-insectes-xylophages";
 import { article as tuilesCanalVsMecaniques } from "./tuiles-canal-vs-mecaniques";
 import { article as typesDeGouttieres } from "./types-de-gouttieres";
@@ -84,6 +85,7 @@ export const posts: BlogArticle[] = [
   signeInfiltrationEauToiture,
   signesCharpenteARenover,
   tarifDemoussageToiture,
+  terrasseBoisEntretien,
   traitementCharpenteInsectesXylophages,
   tuilesCanalVsMecaniques,
   typesDeGouttieres,
