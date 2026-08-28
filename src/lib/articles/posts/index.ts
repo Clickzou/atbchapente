@@ -5,6 +5,7 @@ import { article as aidesRenovationEnergetique2026 } from "./aides-renovation-en
 import { article as amenagementComblesEtapes } from "./amenagement-combles-etapes";
 import { article as assuranceDecennaleCharpentier } from "./assurance-decennale-charpentier";
 import { article as carportBoisAbriVoiture } from "./carport-bois-abri-voiture";
+import { article as charpenteExtensionMaison } from "./charpente-extension-maison";
 import { article as charpenteTraditionnelleVsFermette } from "./charpente-traditionnelle-vs-fermette";
 import { article as coutRenovationToitureComplete } from "./cout-renovation-toiture-complete";
 import { article as declarationPrealableTravauxToiture } from "./declaration-prealable-travaux-toiture";
@@ -51,6 +52,7 @@ export const posts: BlogArticle[] = [
   amenagementComblesEtapes,
   assuranceDecennaleCharpentier,
   carportBoisAbriVoiture,
+  charpenteExtensionMaison,
   charpenteTraditionnelleVsFermette,
   coutRenovationToitureComplete,
   declarationPrealableTravauxToiture,
