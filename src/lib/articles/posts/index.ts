@@ -10,6 +10,7 @@ import { article as charpenteTraditionnelleVsFermette } from "./charpente-tradit
 import { article as coutRenovationToitureComplete } from "./cout-renovation-toiture-complete";
 import { article as declarationPrealableTravauxToiture } from "./declaration-prealable-travaux-toiture";
 import { article as demoussageToiturePrix } from "./demoussage-toiture-prix";
+import { article as deperditionChaleurToiture } from "./deperdition-chaleur-toiture";
 import { article as dureeDeVieCharpenteBois } from "./duree-de-vie-charpente-bois";
 import { article as entretienGouttieresFrequence } from "./entretien-gouttieres-frequence";
 import { article as entretienToitureCalendrier } from "./entretien-toiture-calendrier";
@@ -57,6 +58,7 @@ export const posts: BlogArticle[] = [
   coutRenovationToitureComplete,
   declarationPrealableTravauxToiture,
   demoussageToiturePrix,
+  deperditionChaleurToiture,
   dureeDeVieCharpenteBois,
   entretienGouttieresFrequence,
   entretienToitureCalendrier,

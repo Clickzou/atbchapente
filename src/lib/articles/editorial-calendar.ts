@@ -90,7 +90,7 @@ export const editorialCalendar: EditorialTopic[] = [
   { week: 23, slug: "terrasse-bois-entretien", title: "Entretenir une terrasse en bois", primaryKeyword: "entretien terrasse bois", category: "Pergola & extérieur", intent: "informational", status: "done" },
   { week: 23, slug: "charpente-extension-maison", title: "Charpente pour une extension de maison : les solutions", primaryKeyword: "charpente extension maison", category: "Charpente", intent: "informational", status: "done" },
   // ── Semaine 24 ──
-  { week: 24, slug: "deperdition-chaleur-toiture", title: "Toiture : jusqu'à 30 % de déperditions de chaleur", primaryKeyword: "déperdition chaleur toiture", category: "Isolation", intent: "informational", status: "todo" },
+  { week: 24, slug: "deperdition-chaleur-toiture", title: "Toiture : jusqu'à 30 % de déperditions de chaleur", primaryKeyword: "déperdition chaleur toiture", category: "Isolation", intent: "informational", status: "done" },
   { week: 24, slug: "fuite-toiture-que-faire", title: "Fuite de toiture : que faire en urgence ?", primaryKeyword: "fuite toiture que faire", category: "Couverture", intent: "informational", status: "todo" },
   // ── Semaine 25 ──
   { week: 25, slug: "renovation-toiture-avant-vente", title: "Faut-il rénover sa toiture avant de vendre ?", primaryKeyword: "rénovation toiture avant vente", category: "Rénovation toiture", intent: "informational", status: "todo" },
