@@ -15,6 +15,7 @@ import { article as dureeDeVieCharpenteBois } from "./duree-de-vie-charpente-boi
 import { article as entretienGouttieresFrequence } from "./entretien-gouttieres-frequence";
 import { article as entretienToitureCalendrier } from "./entretien-toiture-calendrier";
 import { article as evacuationEauxPluvialesProbleme } from "./evacuation-eaux-pluviales-probleme";
+import { article as fuiteToitureQueFaire } from "./fuite-toiture-que-faire";
 import { article as gouttiereZincVsPvc } from "./gouttiere-zinc-vs-pvc";
 import { article as inspectionToitureChecklist } from "./inspection-toiture-checklist";
 import { article as installationVeluxFenetreToit } from "./installation-velux-fenetre-toit";
@@ -63,6 +64,7 @@ export const posts: BlogArticle[] = [
   entretienGouttieresFrequence,
   entretienToitureCalendrier,
   evacuationEauxPluvialesProbleme,
+  fuiteToitureQueFaire,
   gouttiereZincVsPvc,
   inspectionToitureChecklist,
   installationVeluxFenetreToit,
