@@ -37,6 +37,7 @@ import { article as prixRefectionToitureM2 } from "./prix-refection-toiture-m2";
 import { article as quandRefaireSaToiture } from "./quand-refaire-sa-toiture";
 import { article as reglementationFenetreToitVoisinage } from "./reglementation-fenetre-toit-voisinage";
 import { article as remaniementToitureQuand } from "./remaniement-toiture-quand";
+import { article as renovationToitureAvantVente } from "./renovation-toiture-avant-vente";
 import { article as renovationToitureGuide } from "./renovation-toiture-guide";
 import { article as renovationToitureMaisonAncienne } from "./renovation-toiture-maison-ancienne";
 import { article as signeInfiltrationEauToiture } from "./signe-infiltration-eau-toiture";
@@ -86,6 +87,7 @@ export const posts: BlogArticle[] = [
   quandRefaireSaToiture,
   reglementationFenetreToitVoisinage,
   remaniementToitureQuand,
+  renovationToitureAvantVente,
   renovationToitureGuide,
   renovationToitureMaisonAncienne,
   signeInfiltrationEauToiture,
