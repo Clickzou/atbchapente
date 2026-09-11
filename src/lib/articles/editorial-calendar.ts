@@ -94,7 +94,7 @@ export const editorialCalendar: EditorialTopic[] = [
   { week: 24, slug: "fuite-toiture-que-faire", title: "Fuite de toiture : que faire en urgence ?", primaryKeyword: "fuite toiture que faire", category: "Couverture", intent: "informational", status: "done" },
   // ── Semaine 25 ──
   { week: 25, slug: "renovation-toiture-avant-vente", title: "Faut-il rénover sa toiture avant de vendre ?", primaryKeyword: "rénovation toiture avant vente", category: "Rénovation toiture", intent: "informational", status: "done" },
-  { week: 25, slug: "condensation-combles-solutions", title: "Condensation dans les combles : solutions", primaryKeyword: "condensation combles", category: "Conseils & entretien", intent: "informational", status: "todo" },
+  { week: 25, slug: "condensation-combles-solutions", title: "Condensation dans les combles : solutions", primaryKeyword: "condensation combles", category: "Conseils & entretien", intent: "informational", status: "done" },
   // ── Semaine 26 ──
   { week: 26, slug: "prix-isolation-combles", title: "Prix de l'isolation des combles", primaryKeyword: "prix isolation combles", category: "Prix & devis", intent: "commercial", status: "todo" },
   { week: 26, slug: "solin-etancheite-cheminee", title: "Solin de cheminée : assurer l'étanchéité", primaryKeyword: "solin cheminée", category: "Zinguerie", intent: "informational", status: "todo" },

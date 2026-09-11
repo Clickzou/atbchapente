@@ -7,6 +7,7 @@ import { article as assuranceDecennaleCharpentier } from "./assurance-decennale-
 import { article as carportBoisAbriVoiture } from "./carport-bois-abri-voiture";
 import { article as charpenteExtensionMaison } from "./charpente-extension-maison";
 import { article as charpenteTraditionnelleVsFermette } from "./charpente-traditionnelle-vs-fermette";
+import { article as condensationComblesSolutions } from "./condensation-combles-solutions";
 import { article as coutRenovationToitureComplete } from "./cout-renovation-toiture-complete";
 import { article as declarationPrealableTravauxToiture } from "./declaration-prealable-travaux-toiture";
 import { article as demoussageToiturePrix } from "./demoussage-toiture-prix";
@@ -57,6 +58,7 @@ export const posts: BlogArticle[] = [
   carportBoisAbriVoiture,
   charpenteExtensionMaison,
   charpenteTraditionnelleVsFermette,
+  condensationComblesSolutions,
   coutRenovationToitureComplete,
   declarationPrealableTravauxToiture,
   demoussageToiturePrix,
