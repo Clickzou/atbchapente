@@ -96,7 +96,7 @@ export const editorialCalendar: EditorialTopic[] = [
   { week: 25, slug: "renovation-toiture-avant-vente", title: "Faut-il rénover sa toiture avant de vendre ?", primaryKeyword: "rénovation toiture avant vente", category: "Rénovation toiture", intent: "informational", status: "done" },
   { week: 25, slug: "condensation-combles-solutions", title: "Condensation dans les combles : solutions", primaryKeyword: "condensation combles", category: "Conseils & entretien", intent: "informational", status: "done" },
   // ── Semaine 26 ──
-  { week: 26, slug: "prix-isolation-combles", title: "Prix de l'isolation des combles", primaryKeyword: "prix isolation combles", category: "Prix & devis", intent: "commercial", status: "todo" },
+  { week: 26, slug: "prix-isolation-combles", title: "Prix de l'isolation des combles", primaryKeyword: "prix isolation combles", category: "Prix & devis", intent: "commercial", status: "done" },
   { week: 26, slug: "solin-etancheite-cheminee", title: "Solin de cheminée : assurer l'étanchéité", primaryKeyword: "solin cheminée", category: "Zinguerie", intent: "informational", status: "todo" },
   // ── Semaine 27 ──
   { week: 27, slug: "normes-charpente-dtu", title: "Les normes et DTU de la charpente", primaryKeyword: "normes charpente dtu", category: "Réglementation & aides", intent: "informational", status: "todo" },

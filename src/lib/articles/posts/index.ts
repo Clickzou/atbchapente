@@ -31,6 +31,7 @@ import { article as pergolaBoisVsAlu } from "./pergola-bois-vs-alu";
 import { article as permisConstruireSurelevation } from "./permis-construire-surelevation";
 import { article as preparerToitureHiver } from "./preparer-toiture-hiver";
 import { article as prixCharpenteNeuveM2 } from "./prix-charpente-neuve-m2";
+import { article as prixIsolationCombles } from "./prix-isolation-combles";
 import { article as prixIsolationToiture } from "./prix-isolation-toiture";
 import { article as prixPergolaBoisSurMesure } from "./prix-pergola-bois-sur-mesure";
 import { article as prixPoseVelux } from "./prix-pose-velux";
@@ -82,6 +83,7 @@ export const posts: BlogArticle[] = [
   permisConstruireSurelevation,
   preparerToitureHiver,
   prixCharpenteNeuveM2,
+  prixIsolationCombles,
   prixIsolationToiture,
   prixPergolaBoisSurMesure,
   prixPoseVelux,
