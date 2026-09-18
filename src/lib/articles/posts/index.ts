@@ -44,6 +44,7 @@ import { article as renovationToitureGuide } from "./renovation-toiture-guide";
 import { article as renovationToitureMaisonAncienne } from "./renovation-toiture-maison-ancienne";
 import { article as signeInfiltrationEauToiture } from "./signe-infiltration-eau-toiture";
 import { article as signesCharpenteARenover } from "./signes-charpente-a-renover";
+import { article as solinEtancheiteCheminee } from "./solin-etancheite-cheminee";
 import { article as tarifDemoussageToiture } from "./tarif-demoussage-toiture";
 import { article as terrasseBoisEntretien } from "./terrasse-bois-entretien";
 import { article as traitementCharpenteInsectesXylophages } from "./traitement-charpente-insectes-xylophages";
@@ -96,6 +97,7 @@ export const posts: BlogArticle[] = [
   renovationToitureMaisonAncienne,
   signeInfiltrationEauToiture,
   signesCharpenteARenover,
+  solinEtancheiteCheminee,
   tarifDemoussageToiture,
   terrasseBoisEntretien,
   traitementCharpenteInsectesXylophages,
