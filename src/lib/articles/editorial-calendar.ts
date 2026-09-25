@@ -100,7 +100,7 @@ export const editorialCalendar: EditorialTopic[] = [
   { week: 26, slug: "solin-etancheite-cheminee", title: "Solin de cheminée : assurer l'étanchéité", primaryKeyword: "solin cheminée", category: "Zinguerie", intent: "informational", status: "done" },
   // ── Semaine 27 ──
   { week: 27, slug: "normes-charpente-dtu", title: "Les normes et DTU de la charpente", primaryKeyword: "normes charpente dtu", category: "Réglementation & aides", intent: "informational", status: "done" },
-  { week: 27, slug: "abri-jardin-bois-sur-mesure", title: "Abri de jardin en bois sur mesure", primaryKeyword: "abri de jardin bois", category: "Pergola & extérieur", intent: "commercial", status: "todo" },
+  { week: 27, slug: "abri-jardin-bois-sur-mesure", title: "Abri de jardin en bois sur mesure", primaryKeyword: "abri de jardin bois", category: "Pergola & extérieur", intent: "commercial", status: "done" },
   // ── Semaine 28 ──
   { week: 28, slug: "renforcer-une-charpente", title: "Comment renforcer une charpente affaiblie ?", primaryKeyword: "renforcer une charpente", category: "Charpente", intent: "informational", status: "todo" },
   { week: 28, slug: "isolation-toiture-renovation-energetique", title: "Isolation de toiture et rénovation énergétique", primaryKeyword: "isolation toiture rénovation énergétique", category: "Isolation", intent: "informational", status: "todo" },
