@@ -23,6 +23,7 @@ import { article as inspectionToitureChecklist } from "./inspection-toiture-chec
 import { article as installationVeluxFenetreToit } from "./installation-velux-fenetre-toit";
 import { article as isolationComblesPerdusOuAmenages } from "./isolation-combles-perdus-ou-amenages";
 import { article as isolationToitureExterieurSarking } from "./isolation-toiture-exterieur-sarking";
+import { article as isolationToitureRenovationEnergetique } from "./isolation-toiture-renovation-energetique";
 import { article as lireDevisCharpentier } from "./lire-devis-charpentier";
 import { article as meilleurIsolantToiture } from "./meilleur-isolant-toiture";
 import { article as mousseToitureTraitement } from "./mousse-toiture-traitement";
@@ -79,6 +80,7 @@ export const posts: BlogArticle[] = [
   installationVeluxFenetreToit,
   isolationComblesPerdusOuAmenages,
   isolationToitureExterieurSarking,
+  isolationToitureRenovationEnergetique,
   lireDevisCharpentier,
   meilleurIsolantToiture,
   mousseToitureTraitement,
