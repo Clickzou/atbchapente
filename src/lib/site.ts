@@ -21,11 +21,11 @@ export const site = {
     postalCode: "31660",
     region: "Occitanie",
   },
-  // Avis Google (fiche GMB). TODO: remplacer `url` par l'URL exacte de la fiche
-  // (lien « partager » de la fiche Google) ; le lien Maps ci-dessous fait l'affaire.
+  // Avis Google (fiche GMB) : lien direct vers la fiche, par son identifiant
+  // Google (cid), relevé par l'API Google Places le 06/10/2026.
   reviews: {
     rating: "5,0",
-    url: "https://www.google.com/maps/search/?api=1&query=ATB+Charpente+Bessi%C3%A8res",
+    url: "https://maps.google.com/?cid=11004668386294557315",
   },
   // Coordonnées géographiques (signal local schema.org). TODO: affiner avec les
   // coordonnées exactes du 491 chemin des Bourdettes (ci-dessous = Bessières bourg).
