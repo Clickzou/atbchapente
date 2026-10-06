@@ -1,5 +1,9 @@
 // Auto-publication d'UN article de blog (appelé par le GitHub Action 2×/semaine).
-// 1. Prend le prochain sujet `status: "todo"` du calendrier éditorial.
+// 0. Créneau réservé (sujet du calendrier portant `date: "AAAA-MM-JJ"`, article
+//    rédigé à l'avance et déposé dans posts/ avec cette date) : si sa date est
+//    atteinte, on le publie À LA PLACE d'un sujet automatique (marqué `done`,
+//    rendu visible par le redéploiement). Rien n'est généré ce jour-là.
+// 1. Sinon, prend le prochain sujet `status: "todo"` SANS date du calendrier.
 // 2. Génère l'article (API Claude) selon docs/blog-generation-rules.md.
 // 3. Génère l'image hero (fal.ai).
 // 4. Régénère le barrel posts/index.ts et marque le sujet `done`.
@@ -20,16 +24,47 @@ const ANTHROPIC_KEY = process.env.ANTHROPIC_API_KEY;
 const FAL_KEY = process.env.FAL_KEY;
 if (!ANTHROPIC_KEY) throw new Error("ANTHROPIC_API_KEY manquant");
 
-// 1. Prochain sujet todo (ordre du fichier = ordre des semaines).
 const calText = readFileSync(CAL, "utf8");
 const lines = calText.split(/\r?\n/);
-const idx = lines.findIndex((l) => /slug:\s*"/.test(l) && l.includes('"todo"'));
+const champ = (l, k) => (l.match(new RegExp(`\\b${k}:\\s*"([^"]+)"`)) || [])[1];
+const estSujetTodo = (l) => /slug:\s*"/.test(l) && l.includes('"todo"');
+// Date du jour à Paris (AAAA-MM-JJ), comme le site (`aujourdhuiParis`).
+const aujourdhui = new Intl.DateTimeFormat("en-CA", {
+  timeZone: "Europe/Paris", year: "numeric", month: "2-digit", day: "2-digit",
+}).format(new Date());
+
+// 0. Créneau réservé arrivé à échéance, article déjà rédigé : on le publie tel quel
+//    (il est déjà dans posts/ et dans le barrel ; le redéploiement le rend visible).
+const idxReserve = lines.findIndex((l) => {
+  const d = champ(l, "date");
+  return estSujetTodo(l) && d && d <= aujourdhui && existsSync(join(POSTS, `${champ(l, "slug")}.ts`));
+});
+if (idxReserve !== -1) {
+  const l = lines[idxReserve];
+  lines[idxReserve] = l.replace('"todo"', '"done"');
+  writeFileSync(CAL, lines.join("\n"));
+  console.log("Créneau réservé publié (article rédigé à l'avance) :", champ(l, "slug"));
+  if (process.env.GITHUB_OUTPUT) {
+    appendFileSync(process.env.GITHUB_OUTPUT, `slug=${champ(l, "slug")}\ntitle=${champ(l, "title")}\n`);
+  }
+  process.exit(0);
+}
+for (const l of lines) {
+  const d = champ(l, "date");
+  if (estSujetTodo(l) && d && d <= aujourdhui) {
+    console.warn(`Créneau réservé ${champ(l, "slug")} (${d}) : article pas encore rédigé — sujet automatique publié à la place.`);
+  }
+}
+
+// 1. Prochain sujet todo SANS date (ordre du fichier = ordre des semaines).
+//    Les sujets datés sont réservés à des articles rédigés à la main : jamais générés ici.
+const idx = lines.findIndex((l) => estSujetTodo(l) && !champ(l, "date"));
 if (idx === -1) {
   console.log("Aucun sujet `todo` restant — calendrier épuisé. Rien à publier.");
   process.exit(0);
 }
 const line = lines[idx];
-const get = (k) => (line.match(new RegExp(`${k}:\\s*"([^"]+)"`)) || [])[1];
+const get = (k) => champ(line, k);
 const topic = {
   slug: get("slug"),
   title: get("title"),

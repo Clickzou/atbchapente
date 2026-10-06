@@ -10,7 +10,7 @@ import type { BlogArticle } from "./types";
 const RULES: { service: string; kw: RegExp }[] = [
   { service: "creation-pergola-bois", kw: /pergola/ },
   { service: "creation-fenetre-de-toit-bois", kw: /fenetre|fen[eê]tre|velux/ },
-  { service: "pose-changement-gouttieres-zinc", kw: /goutti[eè]re|zingu/ },
+  { service: "pose-changement-gouttieres-zinc", kw: /goutti[eè]re|zingu|ch[eé]neau/ },
   { service: "isolation-toiture", kw: /isolation|isolant|combles|sarking/ },
   { service: "creation-charpente-bois-renovation", kw: /charpente|fermette|ossature/ },
   { service: "pose-remaniement-tuiles", kw: /tuile|couverture|r[ée]fection|toiture|toit/ },

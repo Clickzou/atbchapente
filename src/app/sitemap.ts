@@ -3,6 +3,10 @@ import { services, site, routes } from "@/lib/site";
 import { getArticlesSorted } from "@/lib/articles";
 import { indexedCities } from "@/lib/zone-communes";
 
+// Publication programmée : régénéré au plus toutes les heures, pour qu'un article
+// rédigé à l'avance y entre à sa date de parution sans redéploiement.
+export const revalidate = 3600;
+
 export default function sitemap(): MetadataRoute.Sitemap {
   // Date de génération (build) utilisée comme `lastModified` pour les pages
   // sans date de contenu propre — aide les moteurs à planifier le crawl.

@@ -4,6 +4,13 @@ import type { BlogCategory, SearchIntent } from "./types";
 // Source de vérité du cron d'auto-publication : il prend les 2 prochains sujets
 // `status: "todo"` (par numéro de semaine), rédige l'article (>= 2000 mots,
 // cf. ATB_SEO_MASTER.md §4), puis passe le sujet à `status: "done"`.
+// Créneaux réservés (champ `date`, décision de JC du 06/10/2026, audit
+// docs/audits-articles/2026-10/atb.md du dépôt clickzou-v2) : 6 sujets de l'audit
+// SEO/GEO remplacent 6 sujets du calendrier qui faisaient doublon —
+// devis-toiture-pieges, verifier-devis-charpente (≈ lire-devis-charpentier),
+// sarking-avantages-inconvenients (≈ isolation-toiture-exterieur-sarking),
+// cout-pergola-bois (≈ prix-pergola-bois-sur-mesure), maprimerenov-toiture
+// (≈ aides-isolation-toiture-2026), choisir-couvreur (≈ choisir-charpentier-couvreur).
 // Les sujets sont des requêtes LONG-TAIL informationnelles (anti-cannibalisation :
 // jamais les head terms réservés aux pages services, cf. master §5).
 
@@ -17,6 +24,14 @@ export interface EditorialTopic {
   category: BlogCategory;
   intent: SearchIntent;
   status: EditorialStatus;
+  /**
+   * Créneau réservé (AAAA-MM-JJ, un mardi ou un vendredi) : l'article est rédigé
+   * à la main, à l'avance, et déposé dans `posts/` avec cette date. Le robot ne
+   * génère JAMAIS un sujet daté ; le jour venu, il le publie à la place d'un
+   * sujet automatique (cf. scripts/publish-next-article.mjs). Sans date : sujet
+   * automatique, rédigé et publié par le robot le jour de son passage.
+   */
+  date?: string;
 }
 
 export const editorialCalendar: EditorialTopic[] = [
@@ -109,30 +124,33 @@ export const editorialCalendar: EditorialTopic[] = [
   { week: 29, slug: "assurance-degat-toiture", title: "Dégât de toiture : que couvre l'assurance ?", primaryKeyword: "assurance dégât toiture", category: "Rénovation toiture", intent: "informational", status: "todo" },
   // ── Semaine 30 ──
   { week: 30, slug: "nid-frelon-guepe-toiture", title: "Nid de frelons sous la toiture : que faire ?", primaryKeyword: "nid frelon toiture", category: "Conseils & entretien", intent: "informational", status: "todo" },
-  { week: 30, slug: "devis-toiture-pieges", title: "Devis de toiture : les pièges à éviter", primaryKeyword: "devis toiture", category: "Prix & devis", intent: "commercial", status: "todo" },
+  { week: 30, slug: "charpente-abimee-qui-appeler", title: "Charpente abîmée : charpentier, expert ou traiteur du bois, qui appeler ?", primaryKeyword: "charpente abîmée qui appeler", category: "Charpente", intent: "commercial", status: "todo", date: "2026-10-16" },
   // ── Semaine 31 ──
   { week: 31, slug: "gouttiere-qui-deborde", title: "Gouttière qui déborde : causes et solutions", primaryKeyword: "gouttière qui déborde", category: "Zinguerie", intent: "informational", status: "todo" },
   { week: 31, slug: "maprimerenov-conditions-2026", title: "MaPrimeRénov' 2026 : conditions et montants", primaryKeyword: "maprimerénov conditions 2026", category: "Réglementation & aides", intent: "informational", status: "todo" },
   // ── Semaine 32 ──
+  { week: 32, slug: "nettoyage-cheneau", title: "Nettoyage de chéneau : quand le faire et qui appeler à l’automne", primaryKeyword: "nettoyage de chéneau", category: "Zinguerie", intent: "informational", status: "todo", date: "2026-10-27" },
   { week: 32, slug: "pergola-adossee-vs-autoportee", title: "Pergola adossée ou autoportée ?", primaryKeyword: "pergola adossée ou autoportée", category: "Pergola & extérieur", intent: "commercial", status: "todo" },
   { week: 32, slug: "charpente-combles-amenageables", title: "Aménager ses combles : quelle charpente ?", primaryKeyword: "charpente combles aménageables", category: "Charpente", intent: "informational", status: "todo" },
   // ── Semaine 33 ──
-  { week: 33, slug: "sarking-avantages-inconvenients", title: "Sarking : avantages et inconvénients", primaryKeyword: "sarking avantages inconvénients", category: "Isolation", intent: "informational", status: "todo" },
+  { week: 33, slug: "recherche-fuite-toiture", title: "Recherche de fuite de toiture : comment un couvreur trouve l’origine d’une infiltration", primaryKeyword: "recherche de fuite toiture", category: "Couverture", intent: "informational", status: "todo", date: "2026-11-10" },
   { week: 33, slug: "duree-de-vie-toiture-tuiles", title: "Durée de vie d'une toiture en tuiles", primaryKeyword: "durée de vie toiture tuiles", category: "Couverture", intent: "informational", status: "todo" },
   // ── Semaine 34 ──
   { week: 34, slug: "toiture-apres-tempete", title: "Toiture endommagée après une tempête : les démarches", primaryKeyword: "toiture après tempête", category: "Rénovation toiture", intent: "informational", status: "todo" },
   { week: 34, slug: "ventilation-toiture-importance", title: "Pourquoi bien ventiler sa toiture", primaryKeyword: "ventilation toiture", category: "Conseils & entretien", intent: "informational", status: "todo" },
   // ── Semaine 35 ──
-  { week: 35, slug: "cout-pergola-bois", title: "Combien coûte une pergola en bois ?", primaryKeyword: "prix pergola bois", category: "Prix & devis", intent: "commercial", status: "todo" },
+  { week: 35, slug: "choisir-charpentier-couvreur", title: "Choisir son charpentier couvreur près de Toulouse : les vérifications avant de signer", primaryKeyword: "choisir un charpentier couvreur", category: "Charpente", intent: "commercial", status: "todo", date: "2026-11-20" },
   { week: 35, slug: "habillage-zinc-debords-toit", title: "Habillage en zinc des débords de toit", primaryKeyword: "habillage zinc débord de toit", category: "Zinguerie", intent: "informational", status: "todo" },
   // ── Semaine 36 ──
   { week: 36, slug: "cee-certificats-economie-energie-toiture", title: "Les primes CEE pour la toiture", primaryKeyword: "cee toiture", category: "Réglementation & aides", intent: "informational", status: "todo" },
   { week: 36, slug: "essence-bois-exterieur", title: "Quelle essence de bois pour l'extérieur ?", primaryKeyword: "essence bois extérieur", category: "Pergola & extérieur", intent: "informational", status: "todo" },
   // ── Semaine 37 ──
   { week: 37, slug: "essences-bois-charpente", title: "Quelles essences de bois pour une charpente ?", primaryKeyword: "essences de bois charpente", category: "Charpente", intent: "informational", status: "todo" },
+  { week: 37, slug: "gouttiere-reparer-ou-remplacer", title: "Gouttières abîmées : réparer ou tout remplacer ?", primaryKeyword: "réparer ou remplacer une gouttière", category: "Zinguerie", intent: "commercial", status: "todo", date: "2026-12-08" },
   { week: 37, slug: "epaisseur-isolant-toiture", title: "Quelle épaisseur d'isolant pour une toiture ?", primaryKeyword: "épaisseur isolant toiture", category: "Isolation", intent: "informational", status: "todo" },
   // ── Semaine 38 ──
   { week: 38, slug: "tuiles-terre-cuite-avantages", title: "Les avantages des tuiles en terre cuite", primaryKeyword: "tuiles terre cuite", category: "Couverture", intent: "informational", status: "todo" },
+  { week: 38, slug: "pergola-bois-charpentier-ou-menuisier", title: "Pergola bois sur mesure : charpentier ou menuisier, à qui la confier ?", primaryKeyword: "quel artisan pour une pergola bois", category: "Pergola & extérieur", intent: "commercial", status: "todo", date: "2026-12-18" },
   { week: 38, slug: "diagnostic-toiture", title: "Le diagnostic de toiture : pourquoi, comment", primaryKeyword: "diagnostic toiture", category: "Rénovation toiture", intent: "informational", status: "todo" },
   // ── Semaine 39 ──
   { week: 39, slug: "nettoyer-gouttieres-soi-meme", title: "Nettoyer ses gouttières soi-même : guide", primaryKeyword: "nettoyer gouttières", category: "Conseils & entretien", intent: "informational", status: "todo" },
@@ -160,7 +178,6 @@ export const editorialCalendar: EditorialTopic[] = [
   { week: 46, slug: "toiture-vegetalisee-entretien", title: "Toiture végétalisée : entretien et conseils", primaryKeyword: "toiture végétalisée", category: "Conseils & entretien", intent: "informational", status: "todo" },
   // ── Semaine 47 ──
   { week: 47, slug: "garantie-travaux-toiture", title: "Quelles garanties pour vos travaux de toiture ?", primaryKeyword: "garantie travaux toiture", category: "Réglementation & aides", intent: "informational", status: "todo" },
-  { week: 47, slug: "verifier-devis-charpente", title: "Devis de charpente : les points à vérifier", primaryKeyword: "devis charpente", category: "Charpente", intent: "commercial", status: "todo" },
   // ── Semaine 48 ──
   { week: 48, slug: "laine-de-bois-toiture", title: "La laine de bois pour isoler sa toiture", primaryKeyword: "laine de bois toiture", category: "Isolation", intent: "informational", status: "todo" },
   { week: 48, slug: "ecran-sous-toiture-utilite", title: "Écran sous-toiture : à quoi ça sert ?", primaryKeyword: "écran sous-toiture", category: "Couverture", intent: "informational", status: "todo" },
@@ -169,9 +186,7 @@ export const editorialCalendar: EditorialTopic[] = [
   { week: 49, slug: "quand-appeler-charpentier", title: "Quand faut-il appeler un charpentier ?", primaryKeyword: "quand appeler un charpentier", category: "Conseils & entretien", intent: "informational", status: "todo" },
   // ── Semaine 50 ──
   { week: 50, slug: "entretien-charpente-bois", title: "Comment entretenir une charpente en bois ?", primaryKeyword: "entretien charpente bois", category: "Charpente", intent: "informational", status: "todo" },
-  { week: 50, slug: "maprimerenov-toiture", title: "MaPrimeRénov' pour l'isolation de toiture", primaryKeyword: "maprimerénov toiture", category: "Isolation", intent: "informational", status: "todo" },
   // ── Semaine 51 ──
-  { week: 51, slug: "choisir-couvreur", title: "Comment choisir un bon couvreur ?", primaryKeyword: "choisir un couvreur", category: "Couverture", intent: "commercial", status: "todo" },
   { week: 51, slug: "surelevation-toiture-charpente", title: "Surélévation de toiture : ce qu'il faut savoir", primaryKeyword: "surélévation toiture", category: "Charpente", intent: "informational", status: "todo" },
   // ── Semaine 52 ──
   { week: 52, slug: "aides-refection-toiture", title: "Quelles aides pour refaire sa toiture ?", primaryKeyword: "aides réfection toiture", category: "Couverture", intent: "informational", status: "todo" },
@@ -181,7 +196,7 @@ export const editorialCalendar: EditorialTopic[] = [
 /** Prochains sujets à rédiger (status todo), triés par semaine. */
 export function getNextTopics(count = 2) {
   return editorialCalendar
-    .filter((t) => t.status === "todo")
+    .filter((t) => t.status === "todo" && !t.date)
     .sort((a, b) => a.week - b.week)
     .slice(0, count);
 }

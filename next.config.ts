@@ -1,6 +1,19 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Aperçu signé des articles programmés (espace client Clickzou) : jamais
+  // indexé, et la signature ne part pas dans l'en-tête Referer des liens sortants.
+  async headers() {
+    return [
+      {
+        source: "/blog/apercu/:path*",
+        headers: [
+          { key: "X-Robots-Tag", value: "noindex, nofollow" },
+          { key: "Referrer-Policy", value: "no-referrer" },
+        ],
+      },
+    ];
+  },
   // Redirections 301 pour préserver le SEO à la migration WordPress → Next.
   // Les slugs des pages services/contact/réalisations/blog/cornerstone sont
   // conservés à l'identique (pas de redirection nécessaire). On redirige ici

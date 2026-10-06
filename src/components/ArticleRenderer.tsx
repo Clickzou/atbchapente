@@ -13,18 +13,30 @@ export function slugifyHeading(text: string): string {
 }
 
 // Rendu d'un tableau de blocs typés en JSX. Le **gras** dans les paragraphes/items
-// est interprété (champ sémantique SEO mis en avant comme chez Clickzou).
+// est interprété (champ sémantique SEO mis en avant comme chez Clickzou), ainsi
+// que les liens internes `[ancre](/chemin)` (maillage dans le corps du texte,
+// verrouillé à la relecture client côté Clickzou). Seuls les chemins internes
+// (commençant par « / ») deviennent des liens ; le reste est laissé en texte.
 function renderInline(text: string) {
-  const parts = text.split(/(\*\*[^*]+\*\*)/g);
-  return parts.map((part, i) =>
-    part.startsWith("**") && part.endsWith("**") ? (
-      <strong key={i} className="font-semibold text-anthracite">
-        {part.slice(2, -2)}
-      </strong>
-    ) : (
-      <span key={i}>{part}</span>
-    ),
-  );
+  const parts = text.split(/(\*\*[^*]+\*\*|\[[^\]]+\]\(\/[^)\s]*\))/g);
+  return parts.map((part, i) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return (
+        <strong key={i} className="font-semibold text-anthracite">
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+    const lien = /^\[([^\]]+)\]\((\/[^)\s]*)\)$/.exec(part);
+    if (lien) {
+      return (
+        <Link key={i} href={lien[2]} className="font-medium text-orange underline underline-offset-2 hover:text-orange-dark">
+          {lien[1]}
+        </Link>
+      );
+    }
+    return <span key={i}>{part}</span>;
+  });
 }
 
 const calloutStyles = {

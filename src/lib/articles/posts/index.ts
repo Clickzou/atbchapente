@@ -6,6 +6,7 @@ import { article as aidesRenovationEnergetique2026 } from "./aides-renovation-en
 import { article as amenagementComblesEtapes } from "./amenagement-combles-etapes";
 import { article as assuranceDecennaleCharpentier } from "./assurance-decennale-charpentier";
 import { article as carportBoisAbriVoiture } from "./carport-bois-abri-voiture";
+import { article as charpenteAbimeeQuiAppeler } from "./charpente-abimee-qui-appeler";
 import { article as charpenteExtensionMaison } from "./charpente-extension-maison";
 import { article as charpenteTraditionnelleVsFermette } from "./charpente-traditionnelle-vs-fermette";
 import { article as condensationComblesSolutions } from "./condensation-combles-solutions";
@@ -27,6 +28,7 @@ import { article as isolationToitureRenovationEnergetique } from "./isolation-to
 import { article as lireDevisCharpentier } from "./lire-devis-charpentier";
 import { article as meilleurIsolantToiture } from "./meilleur-isolant-toiture";
 import { article as mousseToitureTraitement } from "./mousse-toiture-traitement";
+import { article as nettoyageCheneau } from "./nettoyage-cheneau";
 import { article as normesCharpenteDtu } from "./normes-charpente-dtu";
 import { article as noueToitureZinguerie } from "./noue-toiture-zinguerie";
 import { article as pergolaBioclimatiqueBois } from "./pergola-bioclimatique-bois";
@@ -63,6 +65,7 @@ export const posts: BlogArticle[] = [
   amenagementComblesEtapes,
   assuranceDecennaleCharpentier,
   carportBoisAbriVoiture,
+  charpenteAbimeeQuiAppeler,
   charpenteExtensionMaison,
   charpenteTraditionnelleVsFermette,
   condensationComblesSolutions,
@@ -84,6 +87,7 @@ export const posts: BlogArticle[] = [
   lireDevisCharpentier,
   meilleurIsolantToiture,
   mousseToitureTraitement,
+  nettoyageCheneau,
   normesCharpenteDtu,
   noueToitureZinguerie,
   pergolaBioclimatiqueBois,

@@ -4,6 +4,10 @@ import BlogList, { type BlogCard } from "@/components/BlogList";
 import GoogleReviewBadge from "@/components/GoogleReviewBadge";
 import { site } from "@/lib/site";
 
+// Publication programmée : régénéré au plus toutes les heures, pour qu'un article
+// rédigé à l'avance y entre à sa date de parution sans redéploiement.
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Blog — Conseils charpente, couverture & toiture",
   description:
