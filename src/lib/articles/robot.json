@@ -1,0 +1,4 @@
+{
+  "_note": "Décision SEO du 06/10/2026 (déléguée par JC) : les sujets automatiques du robot sont suspendus tant que les articles existants en page 2-3 de Google ne sont pas retravaillés (voir pulse/journal.json). Les créneaux réservés rédigés par Clickzou continuent d'être publiés. Remettre true pour réactiver.",
+  "sujetsAutomatiques": false
+}

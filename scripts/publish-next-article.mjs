@@ -65,6 +65,16 @@ for (const l of lines) {
   }
 }
 
+// Sujets automatiques suspendus (décision SEO du 06/10/2026, déléguée par JC) : sur 90 jours,
+// 21 des 57 articles n'apparaissent jamais dans Google et le blog n'a rapporté que 54 clics.
+// Priorité : retravailler les articles en page 2-3 (journal Pulse) plutôt qu'en publier de
+// nouveaux. Les créneaux réservés (étape 0) continuent. Réactiver : robot.json → true.
+const ROBOT = join(root, "src/lib/articles/robot.json");
+if (existsSync(ROBOT) && JSON.parse(readFileSync(ROBOT, "utf8")).sujetsAutomatiques === false) {
+  console.log("Sujets automatiques suspendus (src/lib/articles/robot.json) : rien d'autre à publier.");
+  process.exit(0);
+}
+
 // 1. Prochain sujet todo SANS date (ordre du fichier = ordre des semaines).
 //    Les sujets datés sont réservés à des articles rédigés à la main : jamais générés ici.
 const idx = lines.findIndex((l) => estSujetTodo(l) && !champ(l, "date"));
