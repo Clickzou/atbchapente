@@ -124,22 +124,22 @@ export const editorialCalendar: EditorialTopic[] = [
   { week: 29, slug: "assurance-degat-toiture", title: "Dégât de toiture : que couvre l'assurance ?", primaryKeyword: "assurance dégât toiture", category: "Rénovation toiture", intent: "informational", status: "todo" },
   // ── Semaine 30 ──
   { week: 30, slug: "nid-frelon-guepe-toiture", title: "Nid de frelons sous la toiture : que faire ?", primaryKeyword: "nid frelon toiture", category: "Conseils & entretien", intent: "informational", status: "todo" },
-  { week: 30, slug: "charpente-abimee-qui-appeler", title: "Charpente abîmée : charpentier, expert ou traiteur du bois, qui appeler ?", primaryKeyword: "charpente abîmée qui appeler", category: "Charpente", intent: "commercial", status: "todo", date: "2026-10-16" },
+  { week: 30, slug: "charpente-abimee-qui-appeler", title: "Charpente abîmée : charpentier, expert ou traiteur du bois, qui appeler ?", primaryKeyword: "charpente abîmée qui appeler", category: "Charpente", intent: "commercial", status: "todo", date: "2026-10-23" },
   // ── Semaine 31 ──
   { week: 31, slug: "gouttiere-qui-deborde", title: "Gouttière qui déborde : causes et solutions", primaryKeyword: "gouttière qui déborde", category: "Zinguerie", intent: "informational", status: "todo" },
   { week: 31, slug: "maprimerenov-conditions-2026", title: "MaPrimeRénov' 2026 : conditions et montants", primaryKeyword: "maprimerénov conditions 2026", category: "Réglementation & aides", intent: "informational", status: "todo" },
   // ── Semaine 32 ──
-  { week: 32, slug: "nettoyage-cheneau", title: "Nettoyage de chéneau : quand le faire et qui appeler à l’automne", primaryKeyword: "nettoyage de chéneau", category: "Zinguerie", intent: "informational", status: "todo", date: "2026-10-27" },
+  { week: 32, slug: "nettoyage-cheneau", title: "Nettoyage de chéneau : quand le faire et qui appeler à l’automne", primaryKeyword: "nettoyage de chéneau", category: "Zinguerie", intent: "informational", status: "todo", date: "2026-11-03" },
   { week: 32, slug: "pergola-adossee-vs-autoportee", title: "Pergola adossée ou autoportée ?", primaryKeyword: "pergola adossée ou autoportée", category: "Pergola & extérieur", intent: "commercial", status: "todo" },
   { week: 32, slug: "charpente-combles-amenageables", title: "Aménager ses combles : quelle charpente ?", primaryKeyword: "charpente combles aménageables", category: "Charpente", intent: "informational", status: "todo" },
   // ── Semaine 33 ──
-  { week: 33, slug: "recherche-fuite-toiture", title: "Recherche de fuite de toiture : comment un couvreur trouve l’origine d’une infiltration", primaryKeyword: "recherche de fuite toiture", category: "Couverture", intent: "informational", status: "todo", date: "2026-11-10" },
+  { week: 33, slug: "recherche-fuite-toiture", title: "Recherche de fuite de toiture : comment un couvreur trouve l’origine d’une infiltration", primaryKeyword: "recherche de fuite toiture", category: "Couverture", intent: "informational", status: "todo", date: "2026-11-17" },
   { week: 33, slug: "duree-de-vie-toiture-tuiles", title: "Durée de vie d'une toiture en tuiles", primaryKeyword: "durée de vie toiture tuiles", category: "Couverture", intent: "informational", status: "todo" },
   // ── Semaine 34 ──
   { week: 34, slug: "toiture-apres-tempete", title: "Toiture endommagée après une tempête : les démarches", primaryKeyword: "toiture après tempête", category: "Rénovation toiture", intent: "informational", status: "todo" },
   { week: 34, slug: "ventilation-toiture-importance", title: "Pourquoi bien ventiler sa toiture", primaryKeyword: "ventilation toiture", category: "Conseils & entretien", intent: "informational", status: "todo" },
   // ── Semaine 35 ──
-  { week: 35, slug: "choisir-charpentier-couvreur", title: "Choisir son charpentier couvreur près de Toulouse : les vérifications avant de signer", primaryKeyword: "choisir un charpentier couvreur", category: "Charpente", intent: "commercial", status: "todo", date: "2026-11-20" },
+  { week: 35, slug: "choisir-charpentier-couvreur", title: "Choisir son charpentier couvreur près de Toulouse : les vérifications avant de signer", primaryKeyword: "choisir un charpentier couvreur", category: "Charpente", intent: "commercial", status: "todo", date: "2026-11-27" },
   { week: 35, slug: "habillage-zinc-debords-toit", title: "Habillage en zinc des débords de toit", primaryKeyword: "habillage zinc débord de toit", category: "Zinguerie", intent: "informational", status: "todo" },
   // ── Semaine 36 ──
   { week: 36, slug: "cee-certificats-economie-energie-toiture", title: "Les primes CEE pour la toiture", primaryKeyword: "cee toiture", category: "Réglementation & aides", intent: "informational", status: "todo" },

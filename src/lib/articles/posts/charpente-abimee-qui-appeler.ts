@@ -1,7 +1,7 @@
 import type { BlogArticle } from "../types";
 
 // Rédigé à la main le 06/10/2026 (audit SEO/GEO d'octobre, créneau réservé du
-// calendrier) : publié automatiquement le 16/10/2026. Faits sur ATB repris
+// calendrier) : publié automatiquement le 23/10/2026. Faits sur ATB repris
 // uniquement des pages du site (méthode, zone, garantie, devis gratuit).
 export const article: BlogArticle = {
   slug: "charpente-abimee-qui-appeler",
@@ -15,7 +15,7 @@ export const article: BlogArticle = {
   primaryKeyword: "charpente abîmée qui appeler",
   intent: "commercial",
   tags: ["charpente", "réparation", "diagnostic", "traitement du bois", "Haute-Garonne"],
-  date: "2026-10-16",
+  date: "2026-10-23",
   author: "ATB Charpente",
   readTime: "10 min",
   heroImage: "/images/realisations/depose-toiture-ancienne-charpente-bessieres.jpeg",

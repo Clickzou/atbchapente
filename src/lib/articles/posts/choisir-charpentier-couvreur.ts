@@ -1,7 +1,7 @@
 import type { BlogArticle } from "../types";
 
 // Rédigé à la main le 06/10/2026 (audit SEO/GEO d'octobre, créneau réservé du
-// calendrier) : publié automatiquement le 20/11/2026. Faits sur ATB repris
+// calendrier) : publié automatiquement le 27/11/2026. Faits sur ATB repris
 // uniquement de la fiche de faits et des pages du site (SARL, SIREN, Bessières,
 // métiers, devis gratuit, garantie décennale). Ancienneté, nombre de chantiers,
 // qualifications, assureur, nombre d'avis et rayon : à confirmer, non écrits.
@@ -17,7 +17,7 @@ export const article: BlogArticle = {
   primaryKeyword: "choisir un charpentier couvreur",
   intent: "commercial",
   tags: ["charpentier couvreur", "devis", "assurance décennale", "artisan", "Haute-Garonne"],
-  date: "2026-11-20",
+  date: "2026-11-27",
   author: "ATB Charpente",
   readTime: "11 min",
   heroImage: "/images/realisations/vue-ensemble-refection-toiture-tuiles-canal-bessieres.jpeg",

@@ -1,7 +1,7 @@
 import type { BlogArticle } from "../types";
 
 // Rédigé à la main le 06/10/2026 (audit SEO/GEO d'octobre, créneau réservé du
-// calendrier) : publié automatiquement le 10/11/2026. La recherche de fuite
+// calendrier) : publié automatiquement le 17/11/2026. La recherche de fuite
 // n'est PAS confirmée comme prestation d'ATB (consignes client, « à confirmer ») :
 // l'article explique la méthode et oriente vers les prestations confirmées
 // (couverture, remaniement, solins, zinguerie, charpente) des pages du site.
@@ -17,7 +17,7 @@ export const article: BlogArticle = {
   primaryKeyword: "recherche de fuite toiture",
   intent: "informational",
   tags: ["fuite de toiture", "infiltration", "couverture", "tuiles", "étanchéité"],
-  date: "2026-11-10",
+  date: "2026-11-17",
   author: "ATB Charpente",
   readTime: "11 min",
   heroImage: "/images/realisations/solin-zinc-souche-cheminee-brique-toiture-tuiles-bessieres.jpeg",

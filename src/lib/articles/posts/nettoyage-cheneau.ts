@@ -1,7 +1,7 @@
 import type { BlogArticle } from "../types";
 
 // Rédigé à la main le 06/10/2026 (audit SEO/GEO d'octobre, créneau réservé du
-// calendrier) : publié automatiquement le 27/10/2026. Faits sur ATB repris
+// calendrier) : publié automatiquement le 03/11/2026. Faits sur ATB repris
 // uniquement des pages du site (zinguerie, chéneaux, zone, devis) ; fréquence de
 // nettoyage reprise de l'article « À quelle fréquence entretenir ses gouttières ? ».
 export const article: BlogArticle = {
@@ -16,7 +16,7 @@ export const article: BlogArticle = {
   primaryKeyword: "nettoyage de chéneau",
   intent: "informational",
   tags: ["chéneau", "zinguerie", "entretien", "eaux pluviales", "automne"],
-  date: "2026-10-27",
+  date: "2026-11-03",
   author: "ATB Charpente",
   readTime: "10 min",
   heroImage: "/images/realisations/refection-toiture-tuiles-zinc-toulouse.jpeg",
