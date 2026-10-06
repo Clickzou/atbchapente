@@ -237,11 +237,14 @@ export default function CharpentierToulousePage() {
         areaServed: { "@type": "City", name: "Toulouse" },
         address: {
           "@type": "PostalAddress",
+          streetAddress: site.street,
           addressLocality: site.contact.addressLocality,
           postalCode: site.contact.postalCode,
           addressCountry: "FR",
         },
         url: `${site.url}${routes.cornerstone}`,
+        // Valeurs écrites en dur : fiche Google vérifiée le 06/10/2026 (API Places),
+        // note 5 sur 1 avis. À mettre à jour si le nombre d'avis change.
         aggregateRating: {
           "@type": "AggregateRating",
           ratingValue: "5",
