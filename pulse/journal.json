@@ -1,0 +1,112 @@
+[
+  {
+    "id": "atb-2026-10-faq-articles",
+    "titre": "Déclarer les questions-réponses des articles à Google et aux IA",
+    "probleme": "Audit du 06/10/2026 : les 58 articles en ligne se terminent tous par une foire aux questions, mais aucun ne la déclare dans ses données structurées (FAQPage), alors que les pages de service, la page Charpentier Toulouse et les pages villes le font. Relevé Pulse du 05/10/2026 : sur les questions générales auxquelles un article d'ATB Charpente répond déjà, aucune IA ne cite le site.",
+    "correction": "Ajouter aux données structurées de chaque article un bloc FAQPage construit à partir de sa foire aux questions existante (mêmes questions, mêmes réponses), sans changer le texte affiché ; l'aperçu des articles programmés reste sans données structurées.",
+    "type": "technique",
+    "qui": "pulse",
+    "statut": "prevue",
+    "prevue_le": "2026-10-08",
+    "faite_le": null,
+    "verifiee_le": null,
+    "mesure": "citation",
+    "questions": [
+      "Quel est le prix d'une réfection de toiture au m² ?",
+      "Charpente traditionnelle ou fermette : que choisir ?",
+      "Gouttière en zinc ou en PVC : laquelle choisir ?",
+      "Faut-il une déclaration préalable pour refaire sa toiture ?",
+      "Quels signes montrent qu'une charpente doit être rénovée ?",
+      "Quel est le meilleur isolant pour une toiture ?"
+    ]
+  },
+  {
+    "id": "atb-2026-10-liens-services-articles",
+    "titre": "Relier chaque page de service aux articles de son thème",
+    "probleme": "Audit du 06/10/2026 : les 6 pages de service ne contiennent aucun lien vers le blog (0 lien relevé en ligne sur la page Gouttières zinc), et 26 des 58 articles en ligne ne reçoivent aucun lien d'une autre page du site. Relevé Pulse du 05/10/2026 : ATB Charpente n'est pas cité sur les questions pergola, rénovation de charpente et isolation par l'extérieur.",
+    "correction": "Ajouter en bas de chaque page de service une liste de 3 à 5 liens vers les articles en ligne du même thème, choisis avec la même règle que le lien article vers service déjà en place ; titres des articles uniquement, aucun nouveau paragraphe commercial, pages villes inchangées.",
+    "type": "technique",
+    "qui": "pulse",
+    "statut": "prevue",
+    "prevue_le": "2026-10-13",
+    "faite_le": null,
+    "verifiee_le": null,
+    "mesure": "citation",
+    "questions": [
+      "Quel artisan pour refaire une toiture en tuiles près de Toulouse ?",
+      "Rénovation de charpente bois en Haute-Garonne : à qui s'adresser ?",
+      "Qui pose des gouttières en zinc à Toulouse ?",
+      "Entreprise pour une isolation de toiture par l'extérieur au nord de Toulouse",
+      "Qui installe des fenêtres de toit à Toulouse ?",
+      "Pergola en bois sur mesure à Toulouse : quel artisan ?"
+    ]
+  },
+  {
+    "id": "atb-2026-10-reponse-directe-articles",
+    "titre": "Mettre une réponse directe en tête des 4 articles qui répondent aux questions suivies",
+    "probleme": "Relevé Pulse du 05/10/2026 : ATB Charpente n'est cité sur aucune des 4 questions gouttière zinc ou PVC, déclaration préalable, prix de réfection au m² et meilleur isolant, alors qu'un article du site traite chacune ; les IA citent travaux.com, service-public.fr, Leroy Merlin ou habitatpresto.com. Les 4 articles ouvrent par une mise en contexte, sans réponse en une phrase.",
+    "correction": "Ajouter en tête de chacun des 4 articles une réponse directe d'une à deux phrases, tirée du contenu déjà présent dans l'article (aucun chiffre ni fait nouveau, aucun prix présenté comme celui d'ATB), sans toucher au reste du texte.",
+    "type": "contenu",
+    "qui": "pulse",
+    "statut": "prevue",
+    "prevue_le": "2026-10-20",
+    "faite_le": null,
+    "verifiee_le": null,
+    "mesure": "citation",
+    "questions": [
+      "Quel est le prix d'une réfection de toiture au m² ?",
+      "Gouttière en zinc ou en PVC : laquelle choisir ?",
+      "Faut-il une déclaration préalable pour refaire sa toiture ?",
+      "Quel est le meilleur isolant pour une toiture ?"
+    ]
+  },
+  {
+    "id": "atb-2026-10-nombre-avis",
+    "titre": "Confirmer le nombre réel d'avis Google",
+    "probleme": "Audit du 06/10/2026 : les données structurées de la page Charpentier Toulouse annoncent une note de 5 sur 1 seul avis, valeur écrite en dur qui ne suit pas la fiche Google ; le reste du site affiche 5,0 sans nombre d'avis. Les avis ne sont jamais modifiés par Pulse sans accord.",
+    "correction": "Confirmer le nombre réel d'avis Google d'ATB Charpente ; JC met ensuite ce nombre à jour dans les données de la page, ou retire la note si elle ne peut pas être tenue à jour.",
+    "type": "technique",
+    "qui": "vous",
+    "statut": "prevue",
+    "prevue_le": "2026-10-22",
+    "faite_le": null,
+    "verifiee_le": null,
+    "mesure": "description",
+    "questions": [
+      "Quel charpentier couvreur choisir à Toulouse ?"
+    ]
+  },
+  {
+    "id": "atb-2026-10-annuaires",
+    "titre": "Vérifier la présence d'ATB Charpente sur les annuaires cités par les IA",
+    "probleme": "Relevé Pulse du 05/10/2026 : ATB Charpente n'est cité sur aucune des questions « quel artisan » à Toulouse, en Haute-Garonne, à Balma ou L'Union et à Saint-Sulpice-la-Pointe ; les IA s'appuient sur PagesJaunes, Obat, travaux.com et plus-que-pro, et sur des concurrents locaux.",
+    "correction": "Vérifier qu'ATB Charpente a une fiche à jour sur PagesJaunes, Obat, travaux.com et plus-que-pro (nom, adresse de Bessières, téléphone, site atb-charpente.fr, métiers), et la créer là où elle manque.",
+    "type": "externe",
+    "qui": "vous",
+    "statut": "prevue",
+    "prevue_le": "2026-10-27",
+    "faite_le": null,
+    "verifiee_le": null,
+    "mesure": "citation",
+    "questions": [
+      "Quel charpentier couvreur choisir à Toulouse ?",
+      "Rénovation de charpente bois en Haute-Garonne : à qui s'adresser ?",
+      "Charpentier couvreur à Balma ou à L'Union",
+      "Couvreur à Saint-Sulpice-la-Pointe dans le Tarn"
+    ]
+  },
+  {
+    "id": "atb-2026-11-identite-profils",
+    "titre": "Fournir l'adresse exacte de la fiche Google et les profils officiels de l'entreprise",
+    "probleme": "Audit du 06/10/2026 : dans les données structurées du site, ATB Charpente n'est relié qu'à une recherche Google Maps, pas à l'adresse exacte de sa fiche Google ni à un autre profil officiel ; horaires, coordonnées GPS et e-mail sont marqués « à confirmer » dans le site. Relevé Pulse du 05/10/2026 : 0 citation sur les 60 réponses données par les IA sans recherche web.",
+    "correction": "Fournir l'adresse exacte de la fiche Google d'ATB Charpente, les profils officiels éventuels (Facebook, Instagram, annuaires) et confirmer horaires et e-mail ; JC les inscrit dans l'identité du site, qui n'est pas modifiée par Pulse.",
+    "type": "technique",
+    "qui": "vous",
+    "statut": "prevue",
+    "prevue_le": "2026-11-03",
+    "faite_le": null,
+    "verifiee_le": null,
+    "mesure": "citation",
+    "questions": []
+  }
+]
