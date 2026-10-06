@@ -1,0 +1,2134 @@
+{
+  "version": 1,
+  "depot": "Clickzou/atbchapente",
+  "site": "https://atb-charpente.fr",
+  "propriete_search_console": "https://atb-charpente.fr/",
+  "genere_le": "2026-10-06T21:02:26.492Z",
+  "periodes": {
+    "j90": {
+      "du": "2026-07-06",
+      "au": "2026-10-03"
+    },
+    "j28": {
+      "du": "2026-09-06",
+      "au": "2026-10-03"
+    }
+  },
+  "quota_contenus_mois": 2,
+  "inventaire": "complet",
+  "arbitrage": {
+    "decision": "geler",
+    "explication_client": "13 de vos 31 articles en ligne depuis plus de 3 mois ne sont encore jamais montrés par Google. Plutôt que d'en ajouter de nouveaux, nous améliorons et regroupons ceux qui existent : c'est ce qui fait monter un site.",
+    "stats": {
+      "articles_mesures": 57,
+      "articles_90j_et_plus": 31,
+      "invisibles": 13,
+      "taux_invisibles": 0.419,
+      "en_zone_refresh": 7,
+      "articles_moins_90j": 26
+    },
+    "recommandations": [
+      {
+        "regle": "a",
+        "action": "refresh",
+        "chemin": "/blog/entretien-gouttieres-frequence",
+        "titre": "À quelle fréquence entretenir ses gouttières ?",
+        "cible": null,
+        "requetes": [
+          {
+            "requete": "entretien de gouttières",
+            "impressions": 47,
+            "clics": 0,
+            "position": 23.5
+          },
+          {
+            "requete": "entretien gouttiere professionnel",
+            "impressions": 44,
+            "clics": 0,
+            "position": 27.3
+          },
+          {
+            "requete": "entretien gouttières",
+            "impressions": 31,
+            "clics": 0,
+            "position": 27.5
+          }
+        ],
+        "j90": {
+          "impressions": 820,
+          "clics": 9,
+          "position": 17
+        },
+        "j28": {
+          "impressions": 366,
+          "clics": 5,
+          "position": 15.1
+        },
+        "raison": "(a) position 17.0 sur 90 j, 820 affichages, 9 clics.",
+        "pourquoi_client": "Cet article a été vu 820 fois dans Google en 3 mois, mais il est en 17e position, en deuxième page de Google, où l'on clique très peu. Le retravailler pour le faire monter rapporte plus qu'un nouvel article.",
+        "rang": 1
+      },
+      {
+        "regle": "a",
+        "action": "refresh",
+        "chemin": "/blog/traitement-charpente-insectes-xylophages",
+        "titre": "Traitement de charpente contre les insectes xylophages",
+        "cible": null,
+        "requetes": [
+          {
+            "requete": "traitement xylophages saint james",
+            "impressions": 127,
+            "clics": 0,
+            "position": 15.4
+          },
+          {
+            "requete": "traitement vrillette 22",
+            "impressions": 71,
+            "clics": 0,
+            "position": 24.7
+          },
+          {
+            "requete": "traitements xylophage",
+            "impressions": 25,
+            "clics": 0,
+            "position": 21.2
+          }
+        ],
+        "j90": {
+          "impressions": 550,
+          "clics": 8,
+          "position": 14.7
+        },
+        "j28": {
+          "impressions": 190,
+          "clics": 3,
+          "position": 11.5
+        },
+        "raison": "(a) position 14.7 sur 90 j, 550 affichages, 8 clics.",
+        "pourquoi_client": "Cet article a été vu 550 fois dans Google en 3 mois, mais il est en 15e position, en deuxième page de Google, où l'on clique très peu. Le retravailler pour le faire monter rapporte plus qu'un nouvel article.",
+        "rang": 2
+      },
+      {
+        "regle": "a",
+        "action": "refresh",
+        "chemin": "/blog/tarif-demoussage-toiture",
+        "titre": "Tarif d'un démoussage de toiture",
+        "cible": null,
+        "requetes": [
+          {
+            "requete": "prix demoussage toiture",
+            "impressions": 54,
+            "clics": 0,
+            "position": 34.1
+          },
+          {
+            "requete": "démoussage toiture prix",
+            "impressions": 31,
+            "clics": 0,
+            "position": 33.3
+          },
+          {
+            "requete": "prix démoussage toiture",
+            "impressions": 19,
+            "clics": 0,
+            "position": 27.3
+          }
+        ],
+        "j90": {
+          "impressions": 336,
+          "clics": 0,
+          "position": 29.7
+        },
+        "j28": {
+          "impressions": 8,
+          "clics": 0,
+          "position": 8.9
+        },
+        "raison": "(a) position 29.7 sur 90 j, 336 affichages, 0 clics.",
+        "pourquoi_client": "Cet article a été vu 336 fois dans Google en 3 mois, mais il est en 30e position, en troisième page de Google, où l'on clique très peu. Le retravailler pour le faire monter rapporte plus qu'un nouvel article.",
+        "rang": 3
+      },
+      {
+        "regle": "a",
+        "action": "refresh",
+        "chemin": "/blog/solin-etancheite-cheminee",
+        "titre": "Solin de cheminée : assurer l'étanchéité",
+        "cible": null,
+        "requetes": [
+          {
+            "requete": "solin cheminée",
+            "impressions": 36,
+            "clics": 0,
+            "position": 8.4
+          },
+          {
+            "requete": "solin de cheminée",
+            "impressions": 12,
+            "clics": 0,
+            "position": 8.9
+          },
+          {
+            "requete": "étanchéité cheminée toiture",
+            "impressions": 10,
+            "clics": 0,
+            "position": 23.5
+          }
+        ],
+        "j90": {
+          "impressions": 305,
+          "clics": 2,
+          "position": 9.1
+        },
+        "j28": {
+          "impressions": 305,
+          "clics": 2,
+          "position": 9.1
+        },
+        "raison": "(a) position 9.1 sur 90 j, 305 affichages, 2 clics.",
+        "pourquoi_client": "Cet article a été vu 305 fois dans Google en 3 mois, mais il est en 9e position, en bas de la première page de Google, où l'on clique très peu. Le retravailler pour le faire monter rapporte plus qu'un nouvel article.",
+        "rang": 4
+      },
+      {
+        "regle": "a",
+        "action": "refresh",
+        "chemin": "/blog/types-de-tuiles-comparatif",
+        "titre": "Les différents types de tuiles : comparatif",
+        "cible": null,
+        "requetes": [],
+        "j90": {
+          "impressions": 128,
+          "clics": 2,
+          "position": 8
+        },
+        "j28": {
+          "impressions": 110,
+          "clics": 0,
+          "position": 7.8
+        },
+        "raison": "(a) position 8.0 sur 90 j, 128 affichages, 2 clics.",
+        "pourquoi_client": "Cet article a été vu 128 fois dans Google en 3 mois, mais il est en 8e position, en bas de la première page de Google, où l'on clique très peu. Le retravailler pour le faire monter rapporte plus qu'un nouvel article.",
+        "rang": 5
+      },
+      {
+        "regle": "a",
+        "action": "refresh",
+        "chemin": "/blog/noue-toiture-zinguerie",
+        "titre": "La noue de toiture : rôle et étanchéité",
+        "cible": null,
+        "requetes": [
+          {
+            "requete": "noue toiture",
+            "impressions": 20,
+            "clics": 0,
+            "position": 10.4
+          },
+          {
+            "requete": "reparer une noue en zinc",
+            "impressions": 7,
+            "clics": 0,
+            "position": 37.3
+          },
+          {
+            "requete": "noue toiture zinc",
+            "impressions": 6,
+            "clics": 0,
+            "position": 43.5
+          }
+        ],
+        "j90": {
+          "impressions": 110,
+          "clics": 0,
+          "position": 15
+        },
+        "j28": {
+          "impressions": 18,
+          "clics": 0,
+          "position": 6.6
+        },
+        "raison": "(a) position 15.0 sur 90 j, 110 affichages, 0 clics.",
+        "pourquoi_client": "Cet article a été vu 110 fois dans Google en 3 mois, mais il est en 15e position, en deuxième page de Google, où l'on clique très peu. Le retravailler pour le faire monter rapporte plus qu'un nouvel article.",
+        "rang": 6
+      },
+      {
+        "regle": "a",
+        "action": "refresh",
+        "chemin": "/blog/renover-charpente-ancienne",
+        "titre": "Rénover une charpente ancienne : le guide complet",
+        "cible": null,
+        "requetes": [
+          {
+            "requete": "entretien charpente ancienne",
+            "impressions": 36,
+            "clics": 0,
+            "position": 20.4
+          }
+        ],
+        "j90": {
+          "impressions": 64,
+          "clics": 1,
+          "position": 17.2
+        },
+        "j28": {
+          "impressions": 41,
+          "clics": 1,
+          "position": 17
+        },
+        "raison": "(a) position 17.2 sur 90 j, 64 affichages, 1 clics.",
+        "pourquoi_client": "Cet article a été vu 64 fois dans Google en 3 mois, mais il est en 17e position, en deuxième page de Google, où l'on clique très peu. Le retravailler pour le faire monter rapporte plus qu'un nouvel article.",
+        "rang": 7
+      },
+      {
+        "regle": "b",
+        "action": "refonte",
+        "chemin": "/blog/declaration-prealable-travaux-toiture",
+        "titre": "Déclaration préalable pour des travaux de toiture",
+        "cible": null,
+        "requetes": [],
+        "j90": {
+          "impressions": 0,
+          "clics": 0,
+          "position": null
+        },
+        "j28": {
+          "impressions": 0,
+          "clics": 0,
+          "position": null
+        },
+        "raison": "(b) publié le 2026-06-10, 0 affichage sur 90 j, aucun article proche.",
+        "pourquoi_client": "Cet article est en ligne depuis plus de 3 mois et Google ne l'a encore jamais montré. Nous le réécrivons autour d'une question que vos clients posent vraiment.",
+        "rang": 8
+      },
+      {
+        "regle": "b",
+        "action": "refonte",
+        "chemin": "/blog/gouttiere-zinc-vs-pvc",
+        "titre": "Gouttière en zinc ou en PVC : comparatif",
+        "cible": null,
+        "requetes": [],
+        "j90": {
+          "impressions": 0,
+          "clics": 0,
+          "position": null
+        },
+        "j28": {
+          "impressions": 0,
+          "clics": 0,
+          "position": null
+        },
+        "raison": "(b) publié le 2026-06-10, 0 affichage sur 90 j, aucun article proche.",
+        "pourquoi_client": "Cet article est en ligne depuis plus de 3 mois et Google ne l'a encore jamais montré. Nous le réécrivons autour d'une question que vos clients posent vraiment.",
+        "rang": 9
+      },
+      {
+        "regle": "b",
+        "action": "fusion",
+        "chemin": "/blog/isolation-combles-perdus-ou-amenages",
+        "titre": "Combles perdus ou aménagés : quelle isolation ?",
+        "cible": {
+          "chemin": "/blog/amenagement-combles-etapes",
+          "titre": "Aménager ses combles : les étapes"
+        },
+        "requetes": [],
+        "j90": {
+          "impressions": 0,
+          "clics": 0,
+          "position": null
+        },
+        "j28": {
+          "impressions": 0,
+          "clics": 0,
+          "position": null
+        },
+        "raison": "(b) publié le 2026-06-10, 0 affichage sur 90 j, proche de /blog/amenagement-combles-etapes (similarité 0.40).",
+        "pourquoi_client": "Cet article est en ligne depuis plus de 3 mois et Google ne l'a encore jamais montré. Nous le regroupons avec « Aménager ses combles : les étapes », qui traite d'un sujet proche : une seule page plus complète a de bien meilleures chances d'être placée.",
+        "rang": 10
+      },
+      {
+        "regle": "b",
+        "action": "refonte",
+        "chemin": "/blog/mousse-toiture-traitement",
+        "titre": "Mousse sur la toiture : traiter et prévenir",
+        "cible": null,
+        "requetes": [],
+        "j90": {
+          "impressions": 0,
+          "clics": 0,
+          "position": null
+        },
+        "j28": {
+          "impressions": 0,
+          "clics": 0,
+          "position": null
+        },
+        "raison": "(b) publié le 2026-06-10, 0 affichage sur 90 j, aucun article proche.",
+        "pourquoi_client": "Cet article est en ligne depuis plus de 3 mois et Google ne l'a encore jamais montré. Nous le réécrivons autour d'une question que vos clients posent vraiment.",
+        "rang": 11
+      },
+      {
+        "regle": "b",
+        "action": "refonte",
+        "chemin": "/blog/prix-charpente-neuve-m2",
+        "titre": "Prix d’une charpente neuve au m²",
+        "cible": null,
+        "requetes": [],
+        "j90": {
+          "impressions": 0,
+          "clics": 0,
+          "position": null
+        },
+        "j28": {
+          "impressions": 0,
+          "clics": 0,
+          "position": null
+        },
+        "raison": "(b) publié le 2026-06-10, 0 affichage sur 90 j, aucun article proche.",
+        "pourquoi_client": "Cet article est en ligne depuis plus de 3 mois et Google ne l'a encore jamais montré. Nous le réécrivons autour d'une question que vos clients posent vraiment.",
+        "rang": 12
+      },
+      {
+        "regle": "b",
+        "action": "fusion",
+        "chemin": "/blog/prix-pergola-bois-sur-mesure",
+        "titre": "Prix d’une pergola en bois sur mesure",
+        "cible": {
+          "chemin": "/blog/pergola-bioclimatique-bois",
+          "titre": "La pergola bioclimatique en bois"
+        },
+        "requetes": [],
+        "j90": {
+          "impressions": 0,
+          "clics": 0,
+          "position": null
+        },
+        "j28": {
+          "impressions": 0,
+          "clics": 0,
+          "position": null
+        },
+        "raison": "(b) publié le 2026-06-10, 0 affichage sur 90 j, proche de /blog/pergola-bioclimatique-bois (similarité 0.37).",
+        "pourquoi_client": "Cet article est en ligne depuis plus de 3 mois et Google ne l'a encore jamais montré. Nous le regroupons avec « La pergola bioclimatique en bois », qui traite d'un sujet proche : une seule page plus complète a de bien meilleures chances d'être placée.",
+        "rang": 13
+      },
+      {
+        "regle": "b",
+        "action": "refonte",
+        "chemin": "/blog/prix-refection-toiture-m2",
+        "titre": "Prix d’une réfection de toiture au m²",
+        "cible": null,
+        "requetes": [],
+        "j90": {
+          "impressions": 0,
+          "clics": 0,
+          "position": null
+        },
+        "j28": {
+          "impressions": 0,
+          "clics": 0,
+          "position": null
+        },
+        "raison": "(b) publié le 2026-06-10, 0 affichage sur 90 j, aucun article proche.",
+        "pourquoi_client": "Cet article est en ligne depuis plus de 3 mois et Google ne l'a encore jamais montré. Nous le réécrivons autour d'une question que vos clients posent vraiment.",
+        "rang": 14
+      },
+      {
+        "regle": "b",
+        "action": "refonte",
+        "chemin": "/blog/reglementation-fenetre-toit-voisinage",
+        "titre": "Fenêtre de toit et vis-à-vis : la réglementation",
+        "cible": null,
+        "requetes": [],
+        "j90": {
+          "impressions": 0,
+          "clics": 0,
+          "position": null
+        },
+        "j28": {
+          "impressions": 0,
+          "clics": 0,
+          "position": null
+        },
+        "raison": "(b) publié le 2026-06-10, 0 affichage sur 90 j, aucun article proche.",
+        "pourquoi_client": "Cet article est en ligne depuis plus de 3 mois et Google ne l'a encore jamais montré. Nous le réécrivons autour d'une question que vos clients posent vraiment.",
+        "rang": 15
+      },
+      {
+        "regle": "b",
+        "action": "refonte",
+        "chemin": "/blog/renovation-toiture-guide",
+        "titre": "Rénovation de toiture : le guide complet",
+        "cible": null,
+        "requetes": [],
+        "j90": {
+          "impressions": 0,
+          "clics": 0,
+          "position": null
+        },
+        "j28": {
+          "impressions": 0,
+          "clics": 0,
+          "position": null
+        },
+        "raison": "(b) publié le 2026-06-10, 0 affichage sur 90 j, aucun article proche.",
+        "pourquoi_client": "Cet article est en ligne depuis plus de 3 mois et Google ne l'a encore jamais montré. Nous le réécrivons autour d'une question que vos clients posent vraiment.",
+        "rang": 16
+      },
+      {
+        "regle": "b",
+        "action": "fusion",
+        "chemin": "/blog/renovation-toiture-maison-ancienne",
+        "titre": "Rénover la toiture d'une maison ancienne",
+        "cible": {
+          "chemin": "/blog/renover-charpente-ancienne",
+          "titre": "Rénover une charpente ancienne : le guide complet"
+        },
+        "requetes": [],
+        "j90": {
+          "impressions": 0,
+          "clics": 0,
+          "position": null
+        },
+        "j28": {
+          "impressions": 0,
+          "clics": 0,
+          "position": null
+        },
+        "raison": "(b) publié le 2026-06-10, 0 affichage sur 90 j, proche de /blog/renover-charpente-ancienne (similarité 0.47).",
+        "pourquoi_client": "Cet article est en ligne depuis plus de 3 mois et Google ne l'a encore jamais montré. Nous le regroupons avec « Rénover une charpente ancienne : le guide complet », qui traite d'un sujet proche : une seule page plus complète a de bien meilleures chances d'être placée.",
+        "rang": 17
+      },
+      {
+        "regle": "b",
+        "action": "refonte",
+        "chemin": "/blog/signes-charpente-a-renover",
+        "titre": "7 signes qu’il faut rénover votre charpente",
+        "cible": null,
+        "requetes": [],
+        "j90": {
+          "impressions": 0,
+          "clics": 0,
+          "position": null
+        },
+        "j28": {
+          "impressions": 0,
+          "clics": 0,
+          "position": null
+        },
+        "raison": "(b) publié le 2026-06-10, 0 affichage sur 90 j, aucun article proche.",
+        "pourquoi_client": "Cet article est en ligne depuis plus de 3 mois et Google ne l'a encore jamais montré. Nous le réécrivons autour d'une question que vos clients posent vraiment.",
+        "rang": 18
+      },
+      {
+        "regle": "b",
+        "action": "refonte",
+        "chemin": "/blog/tuiles-canal-vs-mecaniques",
+        "titre": "Tuiles canal ou mécaniques : que choisir ?",
+        "cible": null,
+        "requetes": [],
+        "j90": {
+          "impressions": 0,
+          "clics": 0,
+          "position": null
+        },
+        "j28": {
+          "impressions": 0,
+          "clics": 0,
+          "position": null
+        },
+        "raison": "(b) publié le 2026-06-10, 0 affichage sur 90 j, aucun article proche.",
+        "pourquoi_client": "Cet article est en ligne depuis plus de 3 mois et Google ne l'a encore jamais montré. Nous le réécrivons autour d'une question que vos clients posent vraiment.",
+        "rang": 19
+      },
+      {
+        "regle": "b",
+        "action": "refonte",
+        "chemin": "/blog/prix-isolation-toiture",
+        "titre": "Prix d'une isolation de toiture en 2026",
+        "cible": null,
+        "requetes": [],
+        "j90": {
+          "impressions": 0,
+          "clics": 0,
+          "position": null
+        },
+        "j28": {
+          "impressions": 0,
+          "clics": 0,
+          "position": null
+        },
+        "raison": "(b) publié le 2026-06-30, 0 affichage sur 90 j, aucun article proche.",
+        "pourquoi_client": "Cet article est en ligne depuis plus de 3 mois et Google ne l'a encore jamais montré. Nous le réécrivons autour d'une question que vos clients posent vraiment.",
+        "rang": 20
+      }
+    ],
+    "deja_au_journal": {
+      "/blog/entretien-gouttieres-frequence": "atb-2026-10-refresh-entretien-gouttieres-frequence",
+      "/blog/traitement-charpente-insectes-xylophages": "atb-2026-10-refresh-traitement-charpente-insectes-xylophages",
+      "/blog/tarif-demoussage-toiture": "atb-2026-10-refresh-tarif-demoussage-toiture",
+      "/blog/solin-etancheite-cheminee": "atb-2026-10-refresh-solin-etancheite-cheminee",
+      "/blog/types-de-tuiles-comparatif": "atb-2026-10-refresh-types-de-tuiles-comparatif",
+      "/blog/noue-toiture-zinguerie": "atb-2026-10-refresh-noue-toiture-zinguerie",
+      "/blog/renover-charpente-ancienne": "atb-2026-10-refresh-renover-charpente-ancienne"
+    }
+  },
+  "requetes_mal_couvertes": [
+    {
+      "requete": "charpentier toulouse",
+      "impressions": 535,
+      "meilleure_position": 34.4,
+      "meilleure_page": "/charpentier-toulouse",
+      "page_dediee": true,
+      "informationnelle": false,
+      "candidate_nouvel_article": false
+    },
+    {
+      "requete": "installation gouttière toulouse",
+      "impressions": 133,
+      "meilleure_position": 30.7,
+      "meilleure_page": "/pose-changement-gouttieres-zinc",
+      "page_dediee": true,
+      "informationnelle": false,
+      "candidate_nouvel_article": false
+    },
+    {
+      "requete": "installation goutière bessière",
+      "impressions": 95,
+      "meilleure_position": 26,
+      "meilleure_page": "/pose-changement-gouttieres-zinc",
+      "page_dediee": false,
+      "informationnelle": false,
+      "candidate_nouvel_article": false
+    },
+    {
+      "requete": "rénovation charpente toulouse",
+      "impressions": 89,
+      "meilleure_position": 35,
+      "meilleure_page": "/creation-charpente-bois-renovation",
+      "page_dediee": true,
+      "informationnelle": false,
+      "candidate_nouvel_article": false
+    },
+    {
+      "requete": "pergola bois toulouse",
+      "impressions": 83,
+      "meilleure_position": 35,
+      "meilleure_page": "/creation-pergola-bois",
+      "page_dediee": true,
+      "informationnelle": false,
+      "candidate_nouvel_article": false
+    },
+    {
+      "requete": "réparation charpente toulouse",
+      "impressions": 81,
+      "meilleure_position": 27.4,
+      "meilleure_page": "/creation-charpente-bois-renovation",
+      "page_dediee": true,
+      "informationnelle": false,
+      "candidate_nouvel_article": false
+    },
+    {
+      "requete": "charpente toulouse",
+      "impressions": 80,
+      "meilleure_position": 40.9,
+      "meilleure_page": "/charpentier-toulouse",
+      "page_dediee": true,
+      "informationnelle": false,
+      "candidate_nouvel_article": false
+    },
+    {
+      "requete": "traitement bois saint-jory",
+      "impressions": 77,
+      "meilleure_position": 38.6,
+      "meilleure_page": "/creation-charpente-bois-renovation",
+      "page_dediee": true,
+      "informationnelle": false,
+      "candidate_nouvel_article": false
+    },
+    {
+      "requete": "pose fenêtre toit toulouse",
+      "impressions": 75,
+      "meilleure_position": 24.6,
+      "meilleure_page": "/creation-fenetre-de-toit-bois",
+      "page_dediee": true,
+      "informationnelle": false,
+      "candidate_nouvel_article": false
+    },
+    {
+      "requete": "remplacement gouttières zinc rungis",
+      "impressions": 75,
+      "meilleure_position": 31.7,
+      "meilleure_page": "/pose-changement-gouttieres-zinc",
+      "page_dediee": true,
+      "informationnelle": false,
+      "candidate_nouvel_article": false
+    },
+    {
+      "requete": "traitement vrillette 22",
+      "impressions": 71,
+      "meilleure_position": 24.7,
+      "meilleure_page": "/blog/traitement-charpente-insectes-xylophages",
+      "page_dediee": true,
+      "informationnelle": false,
+      "candidate_nouvel_article": false
+    },
+    {
+      "requete": "étanchéité toiture bessière",
+      "impressions": 71,
+      "meilleure_position": 55.6,
+      "meilleure_page": "/",
+      "page_dediee": false,
+      "informationnelle": false,
+      "candidate_nouvel_article": false
+    },
+    {
+      "requete": "charpentier à salies-du-salat",
+      "impressions": 66,
+      "meilleure_position": 51.6,
+      "meilleure_page": "/contact-charpentier",
+      "page_dediee": true,
+      "informationnelle": false,
+      "candidate_nouvel_article": false
+    },
+    {
+      "requete": "pergola bois cugnaux",
+      "impressions": 64,
+      "meilleure_position": 29.5,
+      "meilleure_page": "/creation-pergola-bois",
+      "page_dediee": true,
+      "informationnelle": false,
+      "candidate_nouvel_article": false
+    },
+    {
+      "requete": "remplacement gouttières zinc evry",
+      "impressions": 64,
+      "meilleure_position": 28.4,
+      "meilleure_page": "/pose-changement-gouttieres-zinc",
+      "page_dediee": true,
+      "informationnelle": false,
+      "candidate_nouvel_article": false
+    }
+  ],
+  "pages_money_a_soutenir": [
+    {
+      "chemin": "/",
+      "impressions": 1759,
+      "clics": 31,
+      "position": 21.3,
+      "requetes": [
+        {
+          "requete": "atb charpente",
+          "impressions": 158,
+          "clics": 10,
+          "position": 2
+        },
+        {
+          "requete": "rénovation charpente bessière",
+          "impressions": 108,
+          "clics": 0,
+          "position": 6.8
+        },
+        {
+          "requete": "charpentier bessière",
+          "impressions": 106,
+          "clics": 0,
+          "position": 8.5
+        }
+      ]
+    },
+    {
+      "chemin": "/pose-changement-gouttieres-zinc",
+      "impressions": 1075,
+      "clics": 0,
+      "position": 28,
+      "requetes": [
+        {
+          "requete": "installation gouttière toulouse",
+          "impressions": 133,
+          "clics": 0,
+          "position": 30.7
+        },
+        {
+          "requete": "changement gouttière zinc toulouse",
+          "impressions": 91,
+          "clics": 0,
+          "position": 15.2
+        },
+        {
+          "requete": "rénovation goutière bessière",
+          "impressions": 84,
+          "clics": 0,
+          "position": 16.5
+        }
+      ]
+    },
+    {
+      "chemin": "/creation-pergola-bois",
+      "impressions": 588,
+      "clics": 0,
+      "position": 23.2,
+      "requetes": [
+        {
+          "requete": "création pergola bois toulouse",
+          "impressions": 94,
+          "clics": 0,
+          "position": 16.8
+        },
+        {
+          "requete": "pergola bois toulouse",
+          "impressions": 83,
+          "clics": 0,
+          "position": 35
+        },
+        {
+          "requete": "création pergola bois bessière",
+          "impressions": 82,
+          "clics": 0,
+          "position": 10.2
+        }
+      ]
+    },
+    {
+      "chemin": "/pose-remaniement-tuiles",
+      "impressions": 414,
+      "clics": 0,
+      "position": 8.6,
+      "requetes": [
+        {
+          "requete": "remaniement tuiles bessière",
+          "impressions": 103,
+          "clics": 0,
+          "position": 2.2
+        },
+        {
+          "requete": "pose tuiles toulouse",
+          "impressions": 72,
+          "clics": 0,
+          "position": 7.8
+        },
+        {
+          "requete": "remaniement tuiles toulouse",
+          "impressions": 67,
+          "clics": 0,
+          "position": 1.8
+        }
+      ]
+    },
+    {
+      "chemin": "/creation-fenetre-de-toit-bois",
+      "impressions": 250,
+      "clics": 0,
+      "position": 21.7,
+      "requetes": [
+        {
+          "requete": "pose fenêtre toit bessière",
+          "impressions": 76,
+          "clics": 0,
+          "position": 11.9
+        },
+        {
+          "requete": "pose fenêtre toit toulouse",
+          "impressions": 75,
+          "clics": 0,
+          "position": 24.6
+        },
+        {
+          "requete": "pose de fenêtre de toit à toulouse",
+          "impressions": 35,
+          "clics": 0,
+          "position": 30.8
+        }
+      ]
+    },
+    {
+      "chemin": "/contact-charpentier",
+      "impressions": 209,
+      "clics": 0,
+      "position": 22.7,
+      "requetes": [
+        {
+          "requete": "atb charpente",
+          "impressions": 80,
+          "clics": 0,
+          "position": 17.7
+        },
+        {
+          "requete": "atb charpente",
+          "impressions": 21,
+          "clics": 0,
+          "position": 14.9
+        },
+        {
+          "requete": "charpentier à lacaugne",
+          "impressions": 17,
+          "clics": 0,
+          "position": 51.9
+        }
+      ]
+    }
+  ],
+  "suivi_effets": [],
+  "articles": [
+    {
+      "chemin": "/blog/entretien-gouttieres-frequence",
+      "titre": "À quelle fréquence entretenir ses gouttières ?",
+      "publie_le": "2026-06-10",
+      "j90": {
+        "impressions": 820,
+        "clics": 9,
+        "position": 17
+      },
+      "j28": {
+        "impressions": 366,
+        "clics": 5,
+        "position": 15.1
+      },
+      "requetes": [
+        {
+          "requete": "entretien de gouttières",
+          "impressions": 47,
+          "clics": 0,
+          "position": 23.5
+        },
+        {
+          "requete": "entretien gouttiere professionnel",
+          "impressions": 44,
+          "clics": 0,
+          "position": 27.3
+        },
+        {
+          "requete": "entretien gouttières",
+          "impressions": 31,
+          "clics": 0,
+          "position": 27.5
+        }
+      ]
+    },
+    {
+      "chemin": "/blog/traitement-charpente-insectes-xylophages",
+      "titre": "Traitement de charpente contre les insectes xylophages",
+      "publie_le": "2026-06-26",
+      "j90": {
+        "impressions": 550,
+        "clics": 8,
+        "position": 14.7
+      },
+      "j28": {
+        "impressions": 190,
+        "clics": 3,
+        "position": 11.5
+      },
+      "requetes": [
+        {
+          "requete": "traitement xylophages saint james",
+          "impressions": 127,
+          "clics": 0,
+          "position": 15.4
+        },
+        {
+          "requete": "traitement vrillette 22",
+          "impressions": 71,
+          "clics": 0,
+          "position": 24.7
+        },
+        {
+          "requete": "traitements xylophage",
+          "impressions": 25,
+          "clics": 0,
+          "position": 21.2
+        }
+      ]
+    },
+    {
+      "chemin": "/blog/duree-de-vie-charpente-bois",
+      "titre": "Quelle est la durée de vie d'une charpente en bois ?",
+      "publie_le": "2026-07-28",
+      "j90": {
+        "impressions": 407,
+        "clics": 15,
+        "position": 6
+      },
+      "j28": {
+        "impressions": 263,
+        "clics": 10,
+        "position": 5.7
+      },
+      "requetes": [
+        {
+          "requete": "poutre en chene",
+          "impressions": 2,
+          "clics": 0,
+          "position": 4.5
+        },
+        {
+          "requete": "charpente ancienne grange",
+          "impressions": 1,
+          "clics": 0,
+          "position": 3
+        },
+        {
+          "requete": "charpente bois entretien et durée de vie",
+          "impressions": 1,
+          "clics": 0,
+          "position": 21
+        }
+      ]
+    },
+    {
+      "chemin": "/blog/tarif-demoussage-toiture",
+      "titre": "Tarif d'un démoussage de toiture",
+      "publie_le": "2026-08-14",
+      "j90": {
+        "impressions": 336,
+        "clics": 0,
+        "position": 29.7
+      },
+      "j28": {
+        "impressions": 8,
+        "clics": 0,
+        "position": 8.9
+      },
+      "requetes": [
+        {
+          "requete": "prix demoussage toiture",
+          "impressions": 54,
+          "clics": 0,
+          "position": 34.1
+        },
+        {
+          "requete": "démoussage toiture prix",
+          "impressions": 31,
+          "clics": 0,
+          "position": 33.3
+        },
+        {
+          "requete": "prix démoussage toiture",
+          "impressions": 19,
+          "clics": 0,
+          "position": 27.3
+        }
+      ]
+    },
+    {
+      "chemin": "/blog/solin-etancheite-cheminee",
+      "titre": "Solin de cheminée : assurer l'étanchéité",
+      "publie_le": "2026-09-18",
+      "j90": {
+        "impressions": 305,
+        "clics": 2,
+        "position": 9.1
+      },
+      "j28": {
+        "impressions": 305,
+        "clics": 2,
+        "position": 9.1
+      },
+      "requetes": [
+        {
+          "requete": "solin cheminée",
+          "impressions": 36,
+          "clics": 0,
+          "position": 8.4
+        },
+        {
+          "requete": "solin de cheminée",
+          "impressions": 12,
+          "clics": 0,
+          "position": 8.9
+        },
+        {
+          "requete": "étanchéité cheminée toiture",
+          "impressions": 10,
+          "clics": 0,
+          "position": 23.5
+        }
+      ]
+    },
+    {
+      "chemin": "/blog/remaniement-toiture-quand",
+      "titre": "Remaniement de toiture : quand et pourquoi ?",
+      "publie_le": "2026-07-03",
+      "j90": {
+        "impressions": 133,
+        "clics": 3,
+        "position": 7.3
+      },
+      "j28": {
+        "impressions": 73,
+        "clics": 1,
+        "position": 7.2
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/types-de-tuiles-comparatif",
+      "titre": "Les différents types de tuiles : comparatif",
+      "publie_le": "2026-06-10",
+      "j90": {
+        "impressions": 128,
+        "clics": 2,
+        "position": 8
+      },
+      "j28": {
+        "impressions": 110,
+        "clics": 0,
+        "position": 7.8
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/installation-velux-fenetre-toit",
+      "titre": "Installer un Velux : étapes et conseils",
+      "publie_le": "2026-07-07",
+      "j90": {
+        "impressions": 118,
+        "clics": 1,
+        "position": 31.2
+      },
+      "j28": {
+        "impressions": 92,
+        "clics": 0,
+        "position": 35.3
+      },
+      "requetes": [
+        {
+          "requete": "pose velux",
+          "impressions": 13,
+          "clics": 0,
+          "position": 43.5
+        },
+        {
+          "requete": "pose velux renovation",
+          "impressions": 12,
+          "clics": 0,
+          "position": 48.3
+        },
+        {
+          "requete": "pose de velux",
+          "impressions": 10,
+          "clics": 0,
+          "position": 51.9
+        }
+      ]
+    },
+    {
+      "chemin": "/blog/evacuation-eaux-pluviales-probleme",
+      "titre": "Problèmes d'évacuation des eaux pluviales",
+      "publie_le": "2026-06-16",
+      "j90": {
+        "impressions": 116,
+        "clics": 4,
+        "position": 5.8
+      },
+      "j28": {
+        "impressions": 33,
+        "clics": 2,
+        "position": 5
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/noue-toiture-zinguerie",
+      "titre": "La noue de toiture : rôle et étanchéité",
+      "publie_le": "2026-08-18",
+      "j90": {
+        "impressions": 110,
+        "clics": 0,
+        "position": 15
+      },
+      "j28": {
+        "impressions": 18,
+        "clics": 0,
+        "position": 6.6
+      },
+      "requetes": [
+        {
+          "requete": "noue toiture",
+          "impressions": 20,
+          "clics": 0,
+          "position": 10.4
+        },
+        {
+          "requete": "reparer une noue en zinc",
+          "impressions": 7,
+          "clics": 0,
+          "position": 37.3
+        },
+        {
+          "requete": "noue toiture zinc",
+          "impressions": 6,
+          "clics": 0,
+          "position": 43.5
+        }
+      ]
+    },
+    {
+      "chemin": "/blog/fuite-toiture-que-faire",
+      "titre": "Fuite de toiture : que faire en urgence ?",
+      "publie_le": "2026-09-04",
+      "j90": {
+        "impressions": 108,
+        "clics": 0,
+        "position": 33.3
+      },
+      "j28": {
+        "impressions": 89,
+        "clics": 0,
+        "position": 32
+      },
+      "requetes": [
+        {
+          "requete": "toiture expertise fuites",
+          "impressions": 21,
+          "clics": 0,
+          "position": 22.6
+        },
+        {
+          "requete": "fuite toiture",
+          "impressions": 12,
+          "clics": 0,
+          "position": 47.2
+        },
+        {
+          "requete": "réparation fuite toiture",
+          "impressions": 12,
+          "clics": 0,
+          "position": 57.3
+        }
+      ]
+    },
+    {
+      "chemin": "/blog/renover-charpente-ancienne",
+      "titre": "Rénover une charpente ancienne : le guide complet",
+      "publie_le": "2026-06-08",
+      "j90": {
+        "impressions": 64,
+        "clics": 1,
+        "position": 17.2
+      },
+      "j28": {
+        "impressions": 41,
+        "clics": 1,
+        "position": 17
+      },
+      "requetes": [
+        {
+          "requete": "entretien charpente ancienne",
+          "impressions": 36,
+          "clics": 0,
+          "position": 20.4
+        }
+      ]
+    },
+    {
+      "chemin": "/blog/carport-bois-abri-voiture",
+      "titre": "Carport en bois : l'abri voiture sur mesure",
+      "publie_le": "2026-07-24",
+      "j90": {
+        "impressions": 57,
+        "clics": 0,
+        "position": 38.4
+      },
+      "j28": {
+        "impressions": 57,
+        "clics": 0,
+        "position": 38.4
+      },
+      "requetes": [
+        {
+          "requete": "carport bois",
+          "impressions": 13,
+          "clics": 0,
+          "position": 39.6
+        },
+        {
+          "requete": "abri voiture bois",
+          "impressions": 6,
+          "clics": 0,
+          "position": 46.8
+        },
+        {
+          "requete": "abri voiture en bois",
+          "impressions": 4,
+          "clics": 0,
+          "position": 42.3
+        }
+      ]
+    },
+    {
+      "chemin": "/blog/deperdition-chaleur-toiture",
+      "titre": "Toiture : jusqu'à 30 % de déperditions de chaleur",
+      "publie_le": "2026-09-01",
+      "j90": {
+        "impressions": 56,
+        "clics": 1,
+        "position": 6.9
+      },
+      "j28": {
+        "impressions": 48,
+        "clics": 1,
+        "position": 5.8
+      },
+      "requetes": [
+        {
+          "requete": "rénovation toiture et déperditions thermiques",
+          "impressions": 2,
+          "clics": 0,
+          "position": 27
+        },
+        {
+          "requete": "pourquoi la toiture est-elle responsable de nombreuses déperditions ?",
+          "impressions": 1,
+          "clics": 0,
+          "position": 10
+        }
+      ]
+    },
+    {
+      "chemin": "/blog/inspection-toiture-checklist",
+      "titre": "Inspecter sa toiture : la checklist",
+      "publie_le": "2026-06-10",
+      "j90": {
+        "impressions": 55,
+        "clics": 4,
+        "position": 7.7
+      },
+      "j28": {
+        "impressions": 14,
+        "clics": 0,
+        "position": 7.4
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/meilleur-isolant-toiture",
+      "titre": "Quel est le meilleur isolant pour une toiture ?",
+      "publie_le": "2026-06-10",
+      "j90": {
+        "impressions": 53,
+        "clics": 0,
+        "position": 69.5
+      },
+      "j28": {
+        "impressions": 2,
+        "clics": 0,
+        "position": 6
+      },
+      "requetes": [
+        {
+          "requete": "meilleur isolant thermique toiture",
+          "impressions": 17,
+          "clics": 0,
+          "position": 70.7
+        },
+        {
+          "requete": "panneaux isolants de toiture ou charpente traditionnelle avec isolation : que choisir ?",
+          "impressions": 10,
+          "clics": 0,
+          "position": 66.9
+        },
+        {
+          "requete": "meilleur isolant toiture",
+          "impressions": 3,
+          "clics": 0,
+          "position": 77
+        }
+      ]
+    },
+    {
+      "chemin": "/blog/prix-pose-velux",
+      "titre": "Prix de la pose d'un Velux",
+      "publie_le": "2026-07-14",
+      "j90": {
+        "impressions": 48,
+        "clics": 1,
+        "position": 34.1
+      },
+      "j28": {
+        "impressions": 5,
+        "clics": 0,
+        "position": 15.4
+      },
+      "requetes": [
+        {
+          "requete": "prix pose de velux sur toiture par couvreur",
+          "impressions": 13,
+          "clics": 0,
+          "position": 35.1
+        },
+        {
+          "requete": "tarif velux",
+          "impressions": 4,
+          "clics": 0,
+          "position": 25
+        },
+        {
+          "requete": "devis pour changement de velux sur toiture",
+          "impressions": 2,
+          "clics": 0,
+          "position": 79
+        }
+      ]
+    },
+    {
+      "chemin": "/blog/assurance-decennale-charpentier",
+      "titre": "L'assurance décennale du charpentier",
+      "publie_le": "2026-07-21",
+      "j90": {
+        "impressions": 46,
+        "clics": 1,
+        "position": 18.7
+      },
+      "j28": {
+        "impressions": 21,
+        "clics": 0,
+        "position": 10.8
+      },
+      "requetes": [
+        {
+          "requete": "garantie décennale charpentier",
+          "impressions": 12,
+          "clics": 0,
+          "position": 29.6
+        },
+        {
+          "requete": "décennale charpentier",
+          "impressions": 4,
+          "clics": 0,
+          "position": 35.3
+        },
+        {
+          "requete": "assurance decennale charpentier",
+          "impressions": 2,
+          "clics": 0,
+          "position": 28.5
+        }
+      ]
+    },
+    {
+      "chemin": "/blog/amenagement-combles-etapes",
+      "titre": "Aménager ses combles : les étapes",
+      "publie_le": "2026-08-07",
+      "j90": {
+        "impressions": 41,
+        "clics": 0,
+        "position": 24.7
+      },
+      "j28": {
+        "impressions": 16,
+        "clics": 0,
+        "position": 21.4
+      },
+      "requetes": [
+        {
+          "requete": "étapes aménagement combles",
+          "impressions": 8,
+          "clics": 0,
+          "position": 23.1
+        },
+        {
+          "requete": "amenagement comble charpente traditionnelle",
+          "impressions": 4,
+          "clics": 0,
+          "position": 27.8
+        },
+        {
+          "requete": "amenager combles travaux materiaux etapes",
+          "impressions": 3,
+          "clics": 0,
+          "position": 13.3
+        }
+      ]
+    },
+    {
+      "chemin": "/blog/types-de-gouttieres",
+      "titre": "Les différents types de gouttières",
+      "publie_le": "2026-07-17",
+      "j90": {
+        "impressions": 40,
+        "clics": 0,
+        "position": 11.7
+      },
+      "j28": {
+        "impressions": 10,
+        "clics": 0,
+        "position": 11
+      },
+      "requetes": [
+        {
+          "requete": "types gouttières",
+          "impressions": 7,
+          "clics": 0,
+          "position": 33.3
+        }
+      ]
+    },
+    {
+      "chemin": "/blog/renovation-toiture-avant-vente",
+      "titre": "Faut-il rénover sa toiture avant de vendre ?",
+      "publie_le": "2026-09-08",
+      "j90": {
+        "impressions": 38,
+        "clics": 1,
+        "position": 7.3
+      },
+      "j28": {
+        "impressions": 38,
+        "clics": 1,
+        "position": 7.3
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/pergola-bois-vs-alu",
+      "titre": "Pergola en bois ou en aluminium ?",
+      "publie_le": "2026-06-10",
+      "j90": {
+        "impressions": 31,
+        "clics": 0,
+        "position": 37
+      },
+      "j28": {
+        "impressions": 6,
+        "clics": 0,
+        "position": 45
+      },
+      "requetes": [
+        {
+          "requete": "pergola aluminium ou bois comparatif",
+          "impressions": 10,
+          "clics": 0,
+          "position": 27.4
+        },
+        {
+          "requete": "pergolas aluminium et bois",
+          "impressions": 1,
+          "clics": 0,
+          "position": 77
+        },
+        {
+          "requete": "toiture pergola matériaux comparatif",
+          "impressions": 1,
+          "clics": 0,
+          "position": 75
+        }
+      ]
+    },
+    {
+      "chemin": "/blog/demoussage-toiture-prix",
+      "titre": "Démoussage de toiture : prix et méthode",
+      "publie_le": "2026-08-04",
+      "j90": {
+        "impressions": 26,
+        "clics": 0,
+        "position": 70.3
+      },
+      "j28": {
+        "impressions": 1,
+        "clics": 0,
+        "position": 11
+      },
+      "requetes": [
+        {
+          "requete": "démoussage toiture prix",
+          "impressions": 6,
+          "clics": 0,
+          "position": 81
+        },
+        {
+          "requete": "prix demoussage toiture",
+          "impressions": 3,
+          "clics": 0,
+          "position": 82.7
+        },
+        {
+          "requete": "demoussage toiture tarif",
+          "impressions": 2,
+          "clics": 0,
+          "position": 76
+        }
+      ]
+    },
+    {
+      "chemin": "/blog/entretien-toiture-calendrier",
+      "titre": "Entretien de toiture : le calendrier annuel",
+      "publie_le": "2026-06-10",
+      "j90": {
+        "impressions": 25,
+        "clics": 0,
+        "position": 8.4
+      },
+      "j28": {
+        "impressions": 7,
+        "clics": 0,
+        "position": 6.6
+      },
+      "requetes": [
+        {
+          "requete": "entretien toiture selon les saisons",
+          "impressions": 10,
+          "clics": 0,
+          "position": 11.7
+        }
+      ]
+    },
+    {
+      "chemin": "/blog/permis-construire-surelevation",
+      "titre": "Surélévation : permis de construire ou pas ?",
+      "publie_le": "2026-08-21",
+      "j90": {
+        "impressions": 22,
+        "clics": 0,
+        "position": 8
+      },
+      "j28": {
+        "impressions": 19,
+        "clics": 0,
+        "position": 8.2
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/preparer-toiture-hiver",
+      "titre": "Préparer sa toiture pour l'hiver",
+      "publie_le": "2026-07-10",
+      "j90": {
+        "impressions": 20,
+        "clics": 0,
+        "position": 7.5
+      },
+      "j28": {
+        "impressions": 13,
+        "clics": 0,
+        "position": 8.5
+      },
+      "requetes": [
+        {
+          "requete": "travaux toiture a realiser avant hiver",
+          "impressions": 10,
+          "clics": 0,
+          "position": 8.9
+        },
+        {
+          "requete": "remaniement tuiles toulouse",
+          "impressions": 1,
+          "clics": 0,
+          "position": 13
+        }
+      ]
+    },
+    {
+      "chemin": "/blog/quand-refaire-sa-toiture",
+      "titre": "Quand faut-il refaire sa toiture ?",
+      "publie_le": "2026-06-10",
+      "j90": {
+        "impressions": 11,
+        "clics": 0,
+        "position": 11.2
+      },
+      "j28": {
+        "impressions": 5,
+        "clics": 0,
+        "position": 13
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/abri-jardin-bois-sur-mesure",
+      "titre": "Abri de jardin en bois sur mesure",
+      "publie_le": "2026-09-25",
+      "j90": {
+        "impressions": 10,
+        "clics": 0,
+        "position": 42
+      },
+      "j28": {
+        "impressions": 10,
+        "clics": 0,
+        "position": 42
+      },
+      "requetes": [
+        {
+          "requete": "atb charpente",
+          "impressions": 2,
+          "clics": 0,
+          "position": 25
+        },
+        {
+          "requete": "création pergola bois bessière",
+          "impressions": 2,
+          "clics": 0,
+          "position": 27
+        },
+        {
+          "requete": "pose de bardage bessière",
+          "impressions": 2,
+          "clics": 0,
+          "position": 58.5
+        }
+      ]
+    },
+    {
+      "chemin": "/blog/charpente-traditionnelle-vs-fermette",
+      "titre": "Charpente traditionnelle ou fermette : que choisir ?",
+      "publie_le": "2026-06-10",
+      "j90": {
+        "impressions": 9,
+        "clics": 0,
+        "position": 8.2
+      },
+      "j28": {
+        "impressions": 6,
+        "clics": 0,
+        "position": 7.2
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/charpente-extension-maison",
+      "titre": "Charpente pour une extension de maison : les solutions",
+      "publie_le": "2026-08-28",
+      "j90": {
+        "impressions": 8,
+        "clics": 1,
+        "position": 5.9
+      },
+      "j28": {
+        "impressions": 7,
+        "clics": 1,
+        "position": 5.7
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/isolation-toiture-exterieur-sarking",
+      "titre": "Isolation de toiture par l’extérieur : le sarking expliqué",
+      "publie_le": "2026-06-10",
+      "j90": {
+        "impressions": 8,
+        "clics": 0,
+        "position": 13.8
+      },
+      "j28": {
+        "impressions": 6,
+        "clics": 0,
+        "position": 12
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/pergola-bioclimatique-bois",
+      "titre": "La pergola bioclimatique en bois",
+      "publie_le": "2026-06-23",
+      "j90": {
+        "impressions": 7,
+        "clics": 0,
+        "position": 17.9
+      },
+      "j28": {
+        "impressions": 2,
+        "clics": 0,
+        "position": 8.5
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/signe-infiltration-eau-toiture",
+      "titre": "Repérer une infiltration d'eau par la toiture",
+      "publie_le": "2026-08-11",
+      "j90": {
+        "impressions": 6,
+        "clics": 0,
+        "position": 9.2
+      },
+      "j28": {
+        "impressions": 4,
+        "clics": 0,
+        "position": 8.5
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/aides-renovation-energetique-2026",
+      "titre": "Aides à la rénovation énergétique 2026",
+      "publie_le": "2026-06-19",
+      "j90": {
+        "impressions": 4,
+        "clics": 0,
+        "position": 7
+      },
+      "j28": {
+        "impressions": 4,
+        "clics": 0,
+        "position": 7
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/cout-renovation-toiture-complete",
+      "titre": "Coût d’une rénovation de toiture complète",
+      "publie_le": "2026-06-10",
+      "j90": {
+        "impressions": 4,
+        "clics": 0,
+        "position": 7.8
+      },
+      "j28": {
+        "impressions": 3,
+        "clics": 0,
+        "position": 7.7
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/lire-devis-charpentier",
+      "titre": "Comment lire un devis de charpentier",
+      "publie_le": "2026-06-12",
+      "j90": {
+        "impressions": 2,
+        "clics": 0,
+        "position": 4.5
+      },
+      "j28": {
+        "impressions": 2,
+        "clics": 0,
+        "position": 4.5
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/aides-isolation-toiture-2026",
+      "titre": "Aides à l'isolation de toiture en 2026",
+      "publie_le": "2026-07-31",
+      "j90": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "j28": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/condensation-combles-solutions",
+      "titre": "Condensation dans les combles : solutions",
+      "publie_le": "2026-09-11",
+      "j90": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "j28": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/declaration-prealable-travaux-toiture",
+      "titre": "Déclaration préalable pour des travaux de toiture",
+      "publie_le": "2026-06-10",
+      "j90": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "j28": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/gouttiere-zinc-vs-pvc",
+      "titre": "Gouttière en zinc ou en PVC : comparatif",
+      "publie_le": "2026-06-10",
+      "j90": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "j28": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/isolation-combles-perdus-ou-amenages",
+      "titre": "Combles perdus ou aménagés : quelle isolation ?",
+      "publie_le": "2026-06-10",
+      "j90": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "j28": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/isolation-toiture-renovation-energetique",
+      "titre": "Isolation de toiture et rénovation énergétique",
+      "publie_le": "2026-10-02",
+      "j90": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "j28": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/mousse-toiture-traitement",
+      "titre": "Mousse sur la toiture : traiter et prévenir",
+      "publie_le": "2026-06-10",
+      "j90": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "j28": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/normes-charpente-dtu",
+      "titre": "Les normes et DTU de la charpente",
+      "publie_le": "2026-09-22",
+      "j90": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "j28": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/prix-charpente-neuve-m2",
+      "titre": "Prix d’une charpente neuve au m²",
+      "publie_le": "2026-06-10",
+      "j90": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "j28": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/prix-isolation-combles",
+      "titre": "Prix de l'isolation des combles",
+      "publie_le": "2026-09-15",
+      "j90": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "j28": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/prix-isolation-toiture",
+      "titre": "Prix d'une isolation de toiture en 2026",
+      "publie_le": "2026-06-30",
+      "j90": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "j28": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/prix-pergola-bois-sur-mesure",
+      "titre": "Prix d’une pergola en bois sur mesure",
+      "publie_le": "2026-06-10",
+      "j90": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "j28": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/prix-refection-toiture-m2",
+      "titre": "Prix d’une réfection de toiture au m²",
+      "publie_le": "2026-06-10",
+      "j90": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "j28": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/refaire-toiture-etapes",
+      "titre": "Refaire sa toiture : les étapes clés",
+      "publie_le": "2026-10-06",
+      "j90": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "j28": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/reglementation-fenetre-toit-voisinage",
+      "titre": "Fenêtre de toit et vis-à-vis : la réglementation",
+      "publie_le": "2026-06-10",
+      "j90": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "j28": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/renforcer-une-charpente",
+      "titre": "Comment renforcer une charpente affaiblie ?",
+      "publie_le": "2026-09-29",
+      "j90": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "j28": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/renovation-toiture-guide",
+      "titre": "Rénovation de toiture : le guide complet",
+      "publie_le": "2026-06-10",
+      "j90": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "j28": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/renovation-toiture-maison-ancienne",
+      "titre": "Rénover la toiture d'une maison ancienne",
+      "publie_le": "2026-06-10",
+      "j90": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "j28": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/signes-charpente-a-renover",
+      "titre": "7 signes qu’il faut rénover votre charpente",
+      "publie_le": "2026-06-10",
+      "j90": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "j28": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/terrasse-bois-entretien",
+      "titre": "Entretenir une terrasse en bois",
+      "publie_le": "2026-08-25",
+      "j90": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "j28": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "requetes": []
+    },
+    {
+      "chemin": "/blog/tuiles-canal-vs-mecaniques",
+      "titre": "Tuiles canal ou mécaniques : que choisir ?",
+      "publie_le": "2026-06-10",
+      "j90": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "j28": {
+        "impressions": 0,
+        "clics": 0,
+        "position": null
+      },
+      "requetes": []
+    }
+  ]
+}
