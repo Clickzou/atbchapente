@@ -9,6 +9,7 @@ import { article as carportBoisAbriVoiture } from "./carport-bois-abri-voiture";
 import { article as charpenteAbimeeQuiAppeler } from "./charpente-abimee-qui-appeler";
 import { article as charpenteExtensionMaison } from "./charpente-extension-maison";
 import { article as charpenteTraditionnelleVsFermette } from "./charpente-traditionnelle-vs-fermette";
+import { article as choisirCharpentierCouvreur } from "./choisir-charpentier-couvreur";
 import { article as condensationComblesSolutions } from "./condensation-combles-solutions";
 import { article as coutRenovationToitureComplete } from "./cout-renovation-toiture-complete";
 import { article as declarationPrealableTravauxToiture } from "./declaration-prealable-travaux-toiture";
@@ -70,6 +71,7 @@ export const posts: BlogArticle[] = [
   charpenteAbimeeQuiAppeler,
   charpenteExtensionMaison,
   charpenteTraditionnelleVsFermette,
+  choisirCharpentierCouvreur,
   condensationComblesSolutions,
   coutRenovationToitureComplete,
   declarationPrealableTravauxToiture,
