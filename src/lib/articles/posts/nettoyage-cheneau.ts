@@ -39,7 +39,7 @@ export const article: BlogArticle = {
     },
     {
       type: "paragraph",
-      text: "Ce guide explique ce qu’est un chéneau et pourquoi il réclame plus d’attention qu’une gouttière, à quel moment le nettoyer, comment se déroule un nettoyage bien fait et dans quels cas faire appel à un professionnel. Il a été rédigé par **ATB Charpente**, charpentier-couvreur-zingueur installé à Bessières, qui intervient à Toulouse et dans un rayon d’une trentaine de kilomètres.",
+      text: "Ce guide explique ce qu’est un chéneau et pourquoi il réclame plus d’attention qu’une gouttière, à quel moment le nettoyer, comment se déroule un nettoyage bien fait et dans quels cas faire appel à un professionnel. Il a été rédigé par **ATB Charpente**, charpentier-couvreur-zingueur installé à Bessières, qui intervient à Toulouse et dans le nord toulousain.",
     },
     {
       type: "heading",

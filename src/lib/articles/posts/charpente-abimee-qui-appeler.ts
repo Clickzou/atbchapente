@@ -38,7 +38,7 @@ export const article: BlogArticle = {
     },
     {
       type: "paragraph",
-      text: "Ce guide fait le tri. Il explique ce que fait chacun de ces professionnels, dans quel ordre les solliciter selon votre situation, et comment préparer le premier rendez-vous. Il a été rédigé par **ATB Charpente**, charpentier-couvreur installé à Bessières, qui intervient à Toulouse et dans un rayon d’une trentaine de kilomètres.",
+      text: "Ce guide fait le tri. Il explique ce que fait chacun de ces professionnels, dans quel ordre les solliciter selon votre situation, et comment préparer le premier rendez-vous. Il a été rédigé par **ATB Charpente**, charpentier-couvreur installé à Bessières, qui intervient à Toulouse et dans le nord toulousain.",
     },
     {
       type: "heading",
@@ -247,7 +247,7 @@ export const article: BlogArticle = {
     },
     {
       type: "paragraph",
-      text: "Basés à **Bessières**, nous intervenons à **Toulouse** et dans un rayon d’environ 30 kilomètres, notamment à L’Union, Balma, Saint-Jean, Montrabé, Saint-Jory, Garidech, Montberon, Montjoire et Buzet-sur-Tarn. Le déplacement pour établir le devis est gratuit, et le devis est détaillé et sans engagement.",
+      text: "Basés à **Bessières**, nous intervenons à **Toulouse** et dans les communes alentour, notamment à L’Union, Balma, Saint-Jean, Montrabé, Saint-Jory, Garidech, Montberon, Montjoire et Buzet-sur-Tarn. Le déplacement pour établir le devis est gratuit, et le devis est détaillé et sans engagement.",
     },
     {
       type: "list",
@@ -294,7 +294,7 @@ export const article: BlogArticle = {
         {
           question: "ATB Charpente intervient-il dans ma commune ?",
           answer:
-            "Nous intervenons à Toulouse et dans un rayon d’environ 30 kilomètres autour de Bessières. En cas de doute sur votre commune, contactez-nous : nous vous répondons rapidement.",
+            "Nous intervenons à Toulouse et dans les communes autour de Bessières. En cas de doute sur votre commune, contactez-nous : nous vous répondons rapidement.",
         },
       ],
     },
@@ -304,7 +304,7 @@ export const article: BlogArticle = {
     },
     {
       type: "cta",
-      text: "Votre charpente montre des signes de faiblesse ? ATB Charpente se déplace gratuitement à Toulouse et dans un rayon d’environ 30 km autour de Bessières pour établir un diagnostic et un devis détaillé.",
+      text: "Votre charpente montre des signes de faiblesse ? ATB Charpente se déplace gratuitement à Toulouse et dans les communes autour de Bessières pour établir un diagnostic et un devis détaillé.",
       href: "/contact-charpentier",
       label: "Demander un devis gratuit",
     },
