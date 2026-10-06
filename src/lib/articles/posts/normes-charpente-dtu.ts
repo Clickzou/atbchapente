@@ -237,11 +237,6 @@ export const article: BlogArticle = {
       text: "Dans les Pyrénées et le piémont pyrénéen, les espèces locales comme le **sapin de Loir** ou le **pin des Landes** — traité en autoclave pour les emplois extérieurs — sont encore très utilisées par les charpentiers artisanaux de la région. Il est important que le bois utilisé porte le marquage **CE** attestant son classement mécanique.",
     },
     {
-      type: "quote",
-      text: "Chez nous, chaque pièce de bois qui part en chantier est classée mécaniquement et porte son marquage CE. Ce n'est pas une contrainte administrative : c'est la garantie que la structure que nous posons tiendra dans le temps, qu'il vente d'Autan ou qu'il neige sur le Lauragais.",
-      author: "L'équipe ATB Charpente",
-    },
-    {
       type: "heading",
       level: 2,
       text: "RE2020 et toiture : les exigences thermiques à intégrer dès la conception",

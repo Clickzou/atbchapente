@@ -173,11 +173,6 @@ export const article: BlogArticle = {
       ],
     },
     {
-      type: "quote",
-      text: "Le prix au m² est un bon point de départ pour se faire une idée, jamais une vérité absolue. Ce qui coûte vraiment cher, ce sont les mauvaises surprises sous l’ancienne couverture. C’est précisément pour les anticiper que nous montons sur le toit avant de chiffrer.",
-      author: "L’équipe ATB Charpente",
-    },
-    {
       type: "heading",
       level: 2,
       text: "Comment économiser sur sa réfection de toiture",

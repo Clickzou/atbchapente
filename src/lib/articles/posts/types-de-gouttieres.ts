@@ -255,11 +255,6 @@ export const article: BlogArticle = {
       text: "En règle générale, pour une surface de toiture inférieure à 30 m² par versant, une gouttière R25 (demi-ronde 25 cm) suffit. Entre 30 et 60 m², on passe à la R33. Au-delà, la R40 ou une gouttière carrée équivalente s'impose. Le diamètre des descentes (60, 80 ou 100 mm) doit être cohérent avec le débit attendu.",
     },
     {
-      type: "quote",
-      text: "Un dimensionnement correct des gouttières et des descentes est aussi important que le choix du matériau. On voit trop souvent des remplacements de gouttières à l'identique alors que le modèle d'origine était clairement sous-dimensionné pour le versant de toit concerné. C'est l'occasion de corriger le problème une bonne fois pour toutes.",
-      author: "L'équipe ATB Charpente",
-    },
-    {
       type: "heading",
       level: 2,
       text: "Les accessoires indispensables d'un système de gouttières performant",

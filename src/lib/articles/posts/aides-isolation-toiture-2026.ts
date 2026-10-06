@@ -261,11 +261,6 @@ export const article: BlogArticle = {
       ]
     },
     {
-      type: "quote",
-      text: "Nos clients à Toulouse et dans la métropole sont souvent surpris de voir à quel point le reste à charge peut être réduit quand on cumule correctement MaPrimeRénov', les CEE et la TVA réduite. Sur certains chantiers d'isolation de combles pour des ménages modestes, l'isolation peut revenir à quasi-zéro. C'est pourquoi on accompagne systématiquement nos clients dans le montage de leurs dossiers d'aides.",
-      author: "L'équipe ATB Charpente"
-    },
-    {
       type: "heading",
       level: 2,
       text: "Isoler sa toiture à Toulouse : les spécificités locales à connaître"

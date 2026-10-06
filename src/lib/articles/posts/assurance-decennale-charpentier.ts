@@ -142,11 +142,6 @@ export const article: BlogArticle = {
       text: "En pratique, pour une simple réfection de toiture sur une maison existante, l'obligation de dommages-ouvrage est souvent méconnue et peu sanctionnée. Elle reste néanmoins **fortement recommandée** pour tout chantier dépassant quelques dizaines de milliers d'euros, notamment lors d'une rénovation complète de charpente. Sans assurance DO, en cas de sinistre, vous devrez attendre l'issue d'une procédure judiciaire parfois longue avant d'être indemnisé."
     },
     {
-      type: "quote",
-      text: "Nous remettons systématiquement notre attestation d'assurance décennale à jour à chaque nouveau client, avant même de démarrer les travaux. C'est une question de confiance et de transparence : un artisan sérieux n'a aucune raison de refuser de vous la fournir.",
-      author: "L'équipe ATB Charpente"
-    },
-    {
       type: "heading",
       level: 2,
       text: "Comment vérifier la décennale d'un charpentier avant de signer"

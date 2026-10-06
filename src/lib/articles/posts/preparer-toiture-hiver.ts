@@ -197,11 +197,6 @@ export const article: BlogArticle = {
       text: "Si votre inspection des combles a révélé des signes inquiétants sur la charpente (bois pourri, insectes xylophages, déformation), il est impératif de faire intervenir un charpentier avant l'hiver. Une charpente affaiblie supporte mal le poids de l'eau de pluie accumulée ou, dans les cas extrêmes, d'une couche de neige. Sur les hauteurs de la Haute-Garonne ou dans le Lauragais exposé aux vents, les charges sur la toiture peuvent être significatives."
     },
     {
-      type: "quote",
-      text: "On intervient régulièrement en urgence après des hivers difficiles pour des charpentes dont les signes de faiblesse étaient déjà visibles à l'automne. Un contrôle préventif en septembre ou octobre coûte dix fois moins cher qu'une réparation structurelle en janvier, quand le toit a bougé.",
-      author: "L'équipe ATB Charpente"
-    },
-    {
       type: "heading",
       level: 2,
       text: "Étape 4 : vérifier l'isolation et la ventilation des combles"

@@ -152,11 +152,6 @@ export const article: BlogArticle = {
       ]
     },
     {
-      type: "quote",
-      text: "Le sarking est souvent la meilleure option lorsqu'une toiture doit de toute façon être refaite. Le surcoût par rapport à une simple réfection sans isolation est amorti en quelques années, surtout avec les aides actuelles. Nous recommandons systématiquement cette solution à nos clients du Grand Toulouse qui rénovent une toiture en tuiles canal de plus de 30 ans.",
-      author: "L'équipe ATB Charpente"
-    },
-    {
       type: "heading",
       level: 3,
       text: "5. Isolation sous toiture par écran HPV : complémentaire, pas suffisante seule"

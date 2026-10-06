@@ -203,11 +203,6 @@ export const article: BlogArticle = {
       text: "Profitez d’une réfection de toiture pour traiter l’isolation en même temps. Reprendre la couverture sans isoler, c’est passer à côté d’économies d’énergie importantes et risquer de devoir rouvrir le toit quelques années plus tard.",
     },
     {
-      type: "quote",
-      text: "Notre rôle n’est pas de vous faire refaire un toit qui peut encore tenir, mais de vous dire honnêtement quand la réparation devient un mauvais calcul. Un diagnostic sérieux vaut mieux qu’un devis de réfection systématique.",
-      author: "L’équipe ATB Charpente",
-    },
-    {
       type: "heading",
       level: 2,
       text: "Le climat toulousain et l’exposition : des facteurs déterminants",

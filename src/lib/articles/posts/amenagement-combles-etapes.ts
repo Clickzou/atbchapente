@@ -131,11 +131,6 @@ export const article: BlogArticle = {
       text: "Les planchers de combles perdus sont souvent conçus pour supporter uniquement des charges légères (stockage). Pour les rendre habitables, ils doivent être vérifiés et si nécessaire renforcés afin d'atteindre une résistance d'au moins **150 à 250 kg/m²** (charges d'exploitation réglementaires pour un plancher habitable). Ce renforcement peut passer par le doublage des solives existantes ou par la pose d'un solivage neuf."
     },
     {
-      type: "quote",
-      text: "Chaque projet d'aménagement de combles est unique. Nous prenons le temps d'évaluer précisément la structure existante avant de proposer la solution la plus adaptée — et la plus durable — à chaque maison.",
-      author: "L'équipe ATB Charpente"
-    },
-    {
       type: "heading",
       level: 2,
       text: "Étape 4 – L'isolation thermique et acoustique, cœur du projet"

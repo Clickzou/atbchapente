@@ -182,11 +182,6 @@ export const article: BlogArticle = {
       ],
     },
     {
-      type: "quote",
-      text: "Le bon bois n’est pas le plus cher, c’est celui qui correspond à votre projet. Pour neuf charpentes sur dix dans la région, un pin des Landes ou un douglas bien dimensionné et bien traité fait un ouvrage solide pour des décennies. Le chêne, on le réserve à ce qui le mérite vraiment.",
-      author: "L’équipe ATB Charpente",
-    },
-    {
       type: "heading",
       level: 2,
       text: "La part de la pose dans le prix final",

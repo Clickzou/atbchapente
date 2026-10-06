@@ -184,11 +184,6 @@ export const article: BlogArticle = {
       text: "En complément des gouttières, l’automne est le moment de refaire un **contrôle complet de l’étanchéité** avant la saison des pluies : reprendre les tuiles déplacées par les vents d’été, vérifier une dernière fois les solins et les noues, et s’assurer que rien ne laissera passer l’eau pendant les mois humides. Mieux vaut une demi-journée de vérification en octobre qu’un seau sous une fuite en janvier.",
     },
     {
-      type: "quote",
-      text: "Sur dix infiltrations que nous réparons en hiver à Toulouse, neuf auraient été évitées par un simple contrôle d’automne. L’entretien préventif n’est jamais une dépense : c’est toujours une économie.",
-      author: "L’équipe ATB Charpente",
-    },
-    {
       type: "heading",
       level: 2,
       text: "Hiver : vigilance et sécurité",

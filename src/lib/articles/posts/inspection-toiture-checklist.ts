@@ -225,11 +225,6 @@ export const article: BlogArticle = {
       text: "Profitez d’une zone où une tuile manque ou peut être soulevée délicatement pour observer l’**écran sous-toiture**. Sur une couverture récente, ce film assure une seconde barrière contre l’eau ; sur une toiture ancienne, il est souvent absent, ce qui rend l’étanchéité des tuiles d’autant plus critique. Un écran déchiré, fragilisé ou détrempé est un signe à faire évaluer par un professionnel.",
     },
     {
-      type: "quote",
-      text: "Sur dix infiltrations que nous réparons à Toulouse, neuf trouvent leur origine dans un solin ou une jonction, pas dans la tuile elle-même. Inspecter sa toiture, c’est avant tout savoir regarder les bons points.",
-      author: "L’équipe ATB Charpente",
-    },
-    {
       type: "heading",
       level: 2,
       text: "Récapitulatif : la checklist complète en un coup d’œil",

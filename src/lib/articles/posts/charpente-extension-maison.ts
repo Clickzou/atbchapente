@@ -182,11 +182,6 @@ export const article: BlogArticle = {
       text: "Dans certains projets, l'extension se greffe en créant une ouverture dans la toiture existante pour assurer la continuité architecturale. Cette opération est la plus complexe : elle nécessite de **créer une trémie dans la charpente d'origine**, de renforcer les éléments adjacents et de réaliser un raccord d'étanchéité parfait. Ce type de travaux requiert l'intervention d'un charpentier expérimenté, capable d'analyser l'état de la charpente existante avant toute intervention.",
     },
     {
-      type: "quote",
-      text: "Chaque jonction entre une toiture existante et une extension est unique. Nous commençons toujours par inspecter la charpente d'origine avant de proposer une solution de raccordement : l'état du bois, la pente, les matériaux de couverture en place — tout cela détermine la bonne approche.",
-      author: "L'équipe ATB Charpente",
-    },
-    {
       type: "heading",
       level: 2,
       text: "Les matériaux de couverture adaptés à une extension en Haute-Garonne",

@@ -123,11 +123,6 @@ export const article: BlogArticle = {
       text: "Depuis 2023 et maintenu en 2026, le **parcours accompagné** permet de bénéficier de bonus supplémentaires si les travaux permettent un gain d'au moins deux classes énergétiques au DPE. Ce parcours impose le recours à un **Mon Accompagnateur Rénov'** (MAR), un conseiller indépendant qui aide à construire le plan de travaux, choisir les entreprises et monter les dossiers d'aides. La prestation du MAR est elle-même subventionnée jusqu'à 100 % pour les ménages très modestes.",
     },
     {
-      type: "quote",
-      text: "Nous accompagnons régulièrement nos clients dans la constitution de leur dossier ANAH. Un chantier bien préparé — avec le bon professionnel RGE, les devis conformes et le bon ordre de passage des travaux — peut diviser par deux le reste à charge des propriétaires toulousains.",
-      author: "L'équipe ATB Charpente",
-    },
-    {
       type: "heading",
       level: 2,
       text: "Les Certificats d'Économies d'Énergie (CEE)",

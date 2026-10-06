@@ -212,11 +212,6 @@ export const article: BlogArticle = {
       ],
     },
     {
-      type: "quote",
-      text: "Une fuite de toiture réparée à la va-vite peut sembler résolue, mais si l'origine réelle n'est pas identifiée et traitée, l'eau trouvera toujours un autre chemin. Mieux vaut un diagnostic complet une fois que dix rafistolages successifs qui ne règlent rien.",
-      author: "L'équipe ATB Charpente",
-    },
-    {
       type: "heading",
       level: 2,
       text: "Quand appeler un couvreur en urgence ?",

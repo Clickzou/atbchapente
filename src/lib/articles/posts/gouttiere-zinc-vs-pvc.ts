@@ -87,11 +87,6 @@ export const article: BlogArticle = {
       text: "Le **PVC** a longtemps souffert d’un rendu un peu plastique. L’offre s’est améliorée : on trouve aujourd’hui des teintes variées (blanc, gris, sable, marron, parfois imitation zinc). Sur une construction contemporaine ou un pavillon récent, il fait parfaitement l’affaire. En revanche, ses couleurs ont tendance à se ternir et à se décolorer avec les années, alors que le zinc gagne en cachet avec le temps.",
     },
     {
-      type: "quote",
-      text: "Sur une bâtisse ancienne, le zinc ne se voit pas — et c’est tout l’intérêt. Le PVC, lui, finit toujours par trahir son âge par sa couleur qui passe. Le bon matériau est celui qui se fait oublier au service de l’architecture.",
-      author: "L’équipe ATB Charpente",
-    },
-    {
       type: "heading",
       level: 2,
       text: "Critère 3 : le prix",

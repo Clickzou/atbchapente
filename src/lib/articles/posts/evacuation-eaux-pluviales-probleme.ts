@@ -160,11 +160,6 @@ export const article: BlogArticle = {
       ]
     },
     {
-      type: "quote",
-      text: "Dans notre métier, nous constatons régulièrement que des charpentes abîmées auraient pu être épargnées avec un simple nettoyage annuel des gouttières et la vérification de deux ou trois solins. Le coût de l'entretien préventif est sans commune mesure avec celui d'une reprise structurelle.",
-      author: "L'équipe ATB Charpente"
-    },
-    {
       type: "heading",
       level: 2,
       text: "Comment diagnostiquer un problème d'évacuation des eaux pluviales ?"

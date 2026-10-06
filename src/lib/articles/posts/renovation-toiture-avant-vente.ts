@@ -119,11 +119,6 @@ export const article: BlogArticle = {
       ],
     },
     {
-      type: "quote",
-      text: "Dans notre expérience sur le secteur de Toulouse et sa périphérie, nous voyons régulièrement des vendeurs qui investissent quelques milliers d'euros dans la remise en état de la couverture et récupèrent deux à trois fois cette somme sur le prix de vente. Mais tout dépend de l'état de départ et du type de travaux envisagés. Un nettoyage et une repose de tuiles bien faits peuvent transformer l'image d'une maison sans ruiner le vendeur.",
-      author: "L'équipe ATB Charpente",
-    },
-    {
       type: "heading",
       level: 2,
       text: "Quels travaux de toiture réaliser avant une vente, et pour quel budget ?",

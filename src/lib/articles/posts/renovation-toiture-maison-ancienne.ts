@@ -128,11 +128,6 @@ export const article: BlogArticle = {
       text: "C'est l'intervention la plus lourde et la plus fréquente sur les maisons de plus de 30 ou 40 ans : dépose de toutes les tuiles, remplacement ou traitement de la charpente, pose d'un écran de sous-toiture (HPV), repose du voligeage et mise en place d'une couverture neuve. C'est aussi l'occasion idéale d'**intégrer une isolation thermique** par l'extérieur (sarking) ou par l'intérieur, et d'améliorer la ventilation des combles."
     },
     {
-      type: "quote",
-      text: "Sur une maison ancienne, la réfection totale est souvent plus rentable à long terme qu'une succession de petites réparations. On repart sur une base saine, on optimise l'isolation, et le propriétaire est tranquille pour 30 à 40 ans.",
-      author: "L'équipe ATB Charpente"
-    },
-    {
       type: "heading",
       level: 2,
       text: "Étape 3 : choisir les bons matériaux de couverture"

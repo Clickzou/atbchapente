@@ -243,11 +243,6 @@ export const article: BlogArticle = {
       ]
     },
     {
-      type: "quote",
-      text: "Sur les toitures toulousaines, nous recommandons systématiquement de coupler le démoussage avec un traitement hydrofuge. Les tuiles canal en terre cuite non vernissée sont naturellement poreuses et sans protection, elles se recolonisent en deux ou trois ans. Avec un hydrofuge de qualité bien appliqué, on gagne facilement 7 à 10 ans avant la prochaine intervention.",
-      author: "L'équipe ATB Charpente"
-    },
-    {
       type: "heading",
       level: 2,
       text: "Peut-on traiter sa toiture soi-même ?"

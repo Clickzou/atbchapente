@@ -130,11 +130,6 @@ export const article: BlogArticle = {
       text: "L’installation de **panneaux photovoltaïques ou solaires thermiques** intégrés ou posés en surimposition sur une toiture est, elle aussi, soumise à déclaration préalable, car elle modifie l’aspect extérieur. Il en va de même pour l’ajout d’une **lucarne**, d’un conduit de cheminée apparent ou d’une terrasse sur toit. En secteur protégé, ces équipements font l’objet d’un examen renforcé.",
     },
     {
-      type: "quote",
-      text: "La règle d’or que nous donnons à nos clients tient en une phrase : si quelqu’un peut voir une différence sur votre toiture depuis la rue, c’est qu’il faut probablement une déclaration préalable. Dans le doute, un appel au service urbanisme de la mairie évite bien des ennuis.",
-      author: "L’équipe ATB Charpente",
-    },
-    {
       type: "heading",
       level: 2,
       text: "Les secteurs protégés et l’avis de l’Architecte des Bâtiments de France",

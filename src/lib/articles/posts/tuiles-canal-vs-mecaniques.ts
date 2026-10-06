@@ -69,11 +69,6 @@ export const article: BlogArticle = {
       text: "La **tuile mécanique** offre un rendu plus régulier, plus net, parfois jugé un peu plus « industriel ». Sur une construction contemporaine ou un pavillon récent, ce rythme régulier est tout à fait adapté et souvent recherché. Les fabricants proposent désormais des coloris et des modèles galbés qui se rapprochent du rendu canal, mais l’œil averti distingue toujours l’emboîtement régulier d’une vraie toiture en tuiles creuses. Pour une rénovation à l’identique d’un bâti de caractère, la mécanique standard manque souvent d’âme.",
     },
     {
-      type: "quote",
-      text: "Sur une vieille bâtisse du Lauragais ou des coteaux toulousains, la tuile canal ne se discute pas : c’est elle qui donne au toit son âme. Sur une maison neuve, la mécanique fait gagner du temps sans trahir le quartier. Tout est question de cohérence avec le bâti et son environnement.",
-      author: "L’équipe ATB Charpente",
-    },
-    {
       type: "heading",
       level: 2,
       text: "Critère 2 : la pente minimale",

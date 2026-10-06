@@ -203,11 +203,6 @@ export const charpenteArticles: BlogArticle[] = [
         ],
       },
       {
-        type: "quote",
-        text: "Neuf chantiers sur dix que nous menons sur des charpentes anciennes se règlent par une rénovation ciblée. Remplacer une charpente entière n’est presque jamais la première solution : c’est le dernier recours quand le bois ne peut vraiment plus être sauvé.",
-        author: "L’équipe ATB Charpente",
-      },
-      {
         type: "heading",
         level: 2,
         text: "Les étapes d’un chantier de rénovation",

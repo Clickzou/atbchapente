@@ -203,11 +203,6 @@ export const article: BlogArticle = {
       text: "Pour une finition soignée, le pourtour intérieur de la fenêtre est habillé d'un tableau en bois (fourni en option par le fabricant) ou réalisé en plâtre ou en ba13 par le plaquiste. Cet habillage masque la structure de la charpente, améliore l'isolation thermique de l'encadrement et donne un rendu esthétique propre. C'est aussi le moment d'installer l'éventuel store intérieur ou d'envisager un store extérieur anti-chaleur si ce n'est pas déjà prévu."
     },
     {
-      type: "quote",
-      text: "Sur nos chantiers toulousains, nous constatons que la moitié des fuites liées aux fenêtres de toit viennent non pas du vitrage, mais du raccord d'étanchéité mal posé ou d'un kit inadapté à la tuile canal. Prendre le temps de bien choisir et de bien poser ce raccord, c'est s'éviter des dégâts des eaux dans les années qui suivent.",
-      author: "L'équipe ATB Charpente"
-    },
-    {
       type: "heading",
       level: 2,
       text: "Combien coûte l'installation d'un Velux ?"

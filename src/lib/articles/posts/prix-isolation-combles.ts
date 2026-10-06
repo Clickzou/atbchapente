@@ -214,11 +214,6 @@ export const article: BlogArticle = {
       ]
     },
     {
-      type: "quote",
-      text: "Sur chaque devis, nous prenons le temps d'expliquer le détail des postes de coût : l'isolant, la main-d'œuvre, les éventuels travaux préparatoires sur la charpente. La transparence est notre engagement, que le chantier fasse 40 m² ou 200 m².",
-      author: "L'équipe ATB Charpente"
-    },
-    {
       type: "heading",
       level: 2,
       text: "Quels facteurs font varier le prix de votre isolation ?"

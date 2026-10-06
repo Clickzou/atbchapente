@@ -134,11 +134,6 @@ export const article: BlogArticle = {
       text: "La jurisprudence considère qu’un **châssis de toit ouvrant et vitré clair** crée une vue lorsqu’il permet, depuis une position normale dans la pièce, d’apercevoir le fonds voisin. Mais tout dépend de la **configuration réelle**. Si la fenêtre est posée suffisamment haut sur le rampant pour qu’on ne voie que le ciel, ou si la pente est telle que le regard ne porte que vers le haut, l’existence d’une vue peut être discutée. À l’inverse, une fenêtre de toit basse, sur un rampant peu incliné dominant le jardin voisin, sera presque toujours qualifiée de vue soumise aux distances. La hauteur d’allège recommandée (souvent autour de 0,90 m à 1,20 m du sol fini de la pièce) joue ici un rôle déterminant.",
     },
     {
-      type: "quote",
-      text: "La question que nous posons systématiquement avant de poser un Velux côté voisin est simple : depuis le canapé ou le lit, verra-t-on le jardin d’à côté ? Si la réponse est oui, on raisonne en vue et on respecte les distances. Si on ne voit que le ciel, le risque de litige s’effondre. C’est une affaire de hauteur de pose autant que de droit.",
-      author: "L’équipe ATB Charpente",
-    },
-    {
       type: "heading",
       level: 2,
       text: "Quand les distances ne s’appliquent pas",

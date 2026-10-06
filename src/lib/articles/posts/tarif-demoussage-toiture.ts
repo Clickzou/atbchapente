@@ -197,11 +197,6 @@ export const article: BlogArticle = {
       ]
     },
     {
-      type: "quote",
-      text: "Un démoussage professionnel, c'est toujours l'occasion d'avoir un œil expert sur l'ensemble de la toiture. On repère souvent de petits problèmes qui auraient pu devenir des gros si on les avait laissés. Autour de Toulouse, après les étés chauds suivis d'automnes pluvieux, les tuiles canal prennent souvent des coups que l'œil non averti ne détecte pas depuis le sol.",
-      author: "L'équipe ATB Charpente"
-    },
-    {
       type: "heading",
       level: 2,
       text: "Aides et financements pour un démoussage de toiture"

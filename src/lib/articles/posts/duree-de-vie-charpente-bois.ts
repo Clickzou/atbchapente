@@ -157,11 +157,6 @@ export const article: BlogArticle = {
       text: "La **fermette industrielle** (structure triangulée préfabriquée en usine) utilise des bois de plus faible section, assemblés par des connecteurs métalliques. Elle est économique et rapide à poser, mais offre moins de tolérance à la dégradation : une pièce affaiblie peut compromettre l'ensemble de la triangulation. De plus, la plupart des fermettes sont conçues pour des combles perdus, ce qui rend l'inspection et l'entretien plus difficiles."
     },
     {
-      type: "quote",
-      text: "Nous intervenons régulièrement sur des charpentes en chêne datant du XVIIIe siècle dans la région toulousaine, qui ne nécessitent qu'un renforcement localisé. À l'inverse, nous voyons des fermettes des années 1980 à remplacer intégralement. L'âge seul ne dit pas tout : c'est la qualité de la construction et l'entretien qui font la différence.",
-      author: "L'équipe ATB Charpente"
-    },
-    {
       type: "heading",
       level: 2,
       text: "Comment évaluer l'état de santé de votre charpente ?"

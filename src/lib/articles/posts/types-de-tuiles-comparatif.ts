@@ -114,11 +114,6 @@ export const article: BlogArticle = {
       text: "Elle existe en différents profils : à grand moule (grandes tuiles, pose économique), à petit moule (rendu plus traditionnel) ou plate à emboîtement (qui imite la tuile plate tout en s’emboîtant). C’est un excellent compromis **prix / performance / facilité de pose**, accepté dans la plupart des zones non protégées. Son seul reproche : un aspect parfois jugé plus « standard » que la canal ou la plate authentiques.",
     },
     {
-      type: "quote",
-      text: "Le réflexe que nous voyons trop souvent, c’est de choisir la tuile sur catalogue, à la couleur. Le bon ordre est inverse : on part de la pente de la charpente et des règles d’urbanisme, puis on choisit la tuile qui s’y conforme. C’est ça qui garantit une toiture étanche et durable.",
-      author: "L’équipe ATB Charpente",
-    },
-    {
       type: "heading",
       level: 2,
       text: "La tuile en béton, l’alternative économique",

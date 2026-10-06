@@ -117,11 +117,6 @@ export const article: BlogArticle = {
       text: "En été, la **sécheresse et le vent d’autan** déposent poussières et débris secs qui s’accumulent silencieusement. Et l’hiver, même doux, connaît des **épisodes de gel** : l’eau retenue dans une gouttière encombrée gèle, se dilate, déforme les supports et fragilise les jonctions, en particulier sur le PVC qui devient cassant par temps froid. Un entretien régulier permet d’aborder chaque saison avec une évacuation libre et fiable.",
     },
     {
-      type: "quote",
-      text: "La plupart des sinistres de façade qu’on nous appelle à réparer auraient été évités par un simple nettoyage annuel. Une gouttière, ça ne se voit pas quand ça marche — on ne s’en occupe que lorsqu’il est déjà trop tard.",
-      author: "L’équipe ATB Charpente",
-    },
-    {
       type: "heading",
       level: 2,
       text: "Les signes d’une gouttière bouchée",

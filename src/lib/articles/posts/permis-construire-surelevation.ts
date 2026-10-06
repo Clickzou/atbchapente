@@ -178,11 +178,6 @@ export const article: BlogArticle = {
       text: "Le délai d'instruction d'un permis de construire pour une maison individuelle est de **2 mois** à compter du dépôt du dossier complet. Ce délai peut être porté à **3 mois** si le projet est situé dans un secteur soumis à l'avis de l'ABF ou dans une zone protégée. Pensez à anticiper ces délais dans votre planning de travaux."
     },
     {
-      type: "quote",
-      text: "Dans notre métier, nous accompagnons régulièrement nos clients dès la phase de conception. Comprendre les contraintes du PLU local avant de définir la hauteur de surélévation, c'est s'éviter bien des déconvenues et des allers-retours administratifs.",
-      author: "L'équipe ATB Charpente"
-    },
-    {
       type: "heading",
       level: 2,
       text: "Surélévation et règles de voisinage : les points de vigilance"

@@ -129,11 +129,6 @@ export const article: BlogArticle = {
       text: "**Quoi faire :** faites établir un **état parasitaire** par un professionnel, qui distingue infestation active et ancienne et identifie l’espèce. En présence de termites, la loi impose une **déclaration en mairie** et un traitement adapté (barrière chimique, appâts), bien plus lourd qu’un simple traitement de surface. Pour les autres xylophages, un traitement curatif complet protège durablement, en général garanti dix ans.",
     },
     {
-      type: "quote",
-      text: "On nous appelle souvent quand la sciure tombe déjà sur les meubles du grenier. Le réflexe gagnant, c’est l’inverse : un coup d’œil dans les combles chaque printemps. Une attaque prise tôt se traite en une journée ; prise trop tard, elle impose de changer des pièces maîtresses.",
-      author: "L’équipe ATB Charpente",
-    },
-    {
       type: "heading",
       level: 2,
       text: "Signe n°4 — De l’humidité, des taches ou des champignons",

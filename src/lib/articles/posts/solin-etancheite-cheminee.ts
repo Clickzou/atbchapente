@@ -143,11 +143,6 @@ export const article: BlogArticle = {
       text: "Si vous observez plusieurs de ces signaux, il est urgent de faire inspecter votre toiture par un professionnel. Une infiltration non traitée s'aggrave toujours avec le temps : l'eau qui pénètre en automne peut avoir causé des dégâts importants à la charpente d'ici le printemps suivant."
     },
     {
-      type: "quote",
-      text: "Nous intervenons souvent sur des cheminées dont le solin en mortier de ciment n'a pas été touché depuis 20 ou 30 ans. Les propriétaires ont parfois attendu que les taches au plafond deviennent inquiétantes avant d'appeler. Pourtant, en réfaisant le solin à temps, on évite de toucher à la charpente et on divise le coût de l'intervention par cinq.",
-      author: "L'équipe ATB Charpente"
-    },
-    {
       type: "heading",
       level: 2,
       text: "La pose d'un solin de cheminée : les étapes clés"

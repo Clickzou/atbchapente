@@ -151,11 +151,6 @@ export const article: BlogArticle = {
       ],
     },
     {
-      type: "quote",
-      author: "L’équipe ATB Charpente",
-      text: "Sur nos chantiers autour de Toulouse, nous orientons souvent vers la fibre de bois en sarking : la performance hivernale est au rendez-vous, mais c’est surtout le confort d’été qui fait la différence quand les combles sont aménagés en chambre.",
-    },
-    {
       type: "heading",
       level: 2,
       text: "Avantages et limites du sarking",

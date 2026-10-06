@@ -198,11 +198,6 @@ export const article: BlogArticle = {
       text: "L’intérêt de faire intervenir un professionnel ne tient pas seulement à la sécurité. Un couvreur-zingueur sait lire l’état du chéneau une fois vidé : il voit si une soudure commence à lâcher, si un relevé s’est décollé du mur ou si la pente s’est faussée. Une petite reprise faite à temps évite une infiltration et, plus tard, une réfection complète.",
     },
     {
-      type: "quote",
-      text: "Une zinguerie bien posée ne se voit pas : elle se mesure aux années de tranquillité qu’elle vous offre.",
-      author: "ATB Charpente",
-    },
-    {
       type: "heading",
       level: 2,
       text: "Et si le chéneau est en mauvais état ?",

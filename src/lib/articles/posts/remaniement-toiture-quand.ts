@@ -177,11 +177,6 @@ export const article: BlogArticle = {
       ]
     },
     {
-      type: "quote",
-      text: "Un remaniement réalisé à temps, c'est souvent dix ans de tranquillité gagnés sur une réfection totale. On voit trop de toitures toulousaines laissées à l'abandon jusqu'au point de non-retour. Un diagnostic précoce coûte bien moins cher qu'une charpente à refaire.",
-      author: "L'équipe ATB Charpente"
-    },
-    {
       type: "heading",
       level: 2,
       text: "Cas particulier des tuiles canal en Sud-Ouest"

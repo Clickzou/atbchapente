@@ -231,11 +231,6 @@ export const article: BlogArticle = {
       ],
     },
     {
-      type: "quote",
-      text: "Sous le soleil du Sud-Ouest, on ne juge pas une isolation seulement à l’hiver. Une bonne isolation de combles, c’est aussi des nuits d’été supportables sans climatisation. Le déphasage fait toute la différence, et c’est ce que nous expliquons à chaque client.",
-      author: "L’équipe ATB Charpente",
-    },
-    {
       type: "heading",
       level: 2,
       text: "Combien ça coûte et quelles aides ?",

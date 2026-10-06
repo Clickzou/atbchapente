@@ -188,11 +188,6 @@ export const article: BlogArticle = {
       ],
     },
     {
-      type: "quote",
-      text: "Un traitement de charpente bien conduit, c'est avant tout un diagnostic précis. Identifier la ou les espèces en cause, mesurer l'humidité du bois, évaluer la perte de section réelle : ces étapes déterminent si un traitement suffit ou si un remplacement partiel de la structure est nécessaire. On ne traite pas une larve de capricorne comme on traite des termites.",
-      author: "L'équipe ATB Charpente",
-    },
-    {
       type: "heading",
       level: 2,
       text: "Le rôle de l'humidité : la cause racine à corriger impérativement",

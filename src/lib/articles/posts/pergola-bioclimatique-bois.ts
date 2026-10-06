@@ -138,11 +138,6 @@ export const article: BlogArticle = {
       ]
     },
     {
-      type: "quote",
-      text: "Sur nos chantiers en Haute-Garonne, nous privilégions le douglas lamellé-collé pour les structures de pergola bioclimatique : c'est une essence régionale, belle, solide et qui vieillit avec dignité. Quand le client veut du sans-entretien, on propose le mélèze. Dans les deux cas, on dimensionne les sections pour tenir face au vent d'autan.",
-      author: "L'équipe ATB Charpente"
-    },
-    {
       type: "heading",
       level: 2,
       text: "Comment fonctionne le mécanisme bioclimatique ?"

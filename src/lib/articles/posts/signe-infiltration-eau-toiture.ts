@@ -142,11 +142,6 @@ export const article: BlogArticle = {
       ]
     },
     {
-      type: "quote",
-      text: "Dans notre expérience sur les toitures de la région, 80 % des infiltrations proviennent non pas des tuiles elles-mêmes, mais des points de raccord : faîtières, solins, noues et pourtours de fenêtres. Une visite annuelle de ces zones spécifiques suffit souvent à prévenir les problèmes avant qu'ils ne deviennent coûteux.",
-      author: "L'équipe ATB Charpente"
-    },
-    {
       type: "heading",
       level: 2,
       text: "Comment localiser précisément une infiltration ?"

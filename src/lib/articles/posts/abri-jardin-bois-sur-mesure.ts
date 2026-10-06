@@ -247,11 +247,6 @@ export const article: BlogArticle = {
       ]
     },
     {
-      type: "quote",
-      text: "Un abri de jardin en bois sur mesure, c'est avant tout un projet de vie. On prend le temps de comprendre vos besoins réels, la configuration de votre terrain et vos contraintes budgétaires avant de proposer une solution adaptée. C'est ça, le travail d'un artisan charpentier.",
-      author: "L'équipe ATB Charpente"
-    },
-    {
       type: "heading",
       level: 2,
       text: "Les étapes de réalisation d'un abri en bois par un artisan charpentier"

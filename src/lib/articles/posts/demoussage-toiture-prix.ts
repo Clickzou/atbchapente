@@ -264,11 +264,6 @@ export const article: BlogArticle = {
       ],
     },
     {
-      type: "quote",
-      text: "On voit régulièrement des toitures abîmées par des nettoyages haute pression mal maîtrisés ou des produits mal dosés. Un démoussage professionnel, c'est aussi une assurance contre les dommages involontaires sur vos tuiles. Et surtout, personne ne devrait monter seul sur un toit sans formation ni équipement adéquat.",
-      author: "L'équipe ATB Charpente",
-    },
-    {
       type: "heading",
       level: 2,
       text: "Aides financières et déductibilité : peut-on bénéficier d'une aide pour un démoussage ?",

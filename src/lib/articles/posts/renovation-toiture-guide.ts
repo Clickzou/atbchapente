@@ -128,11 +128,6 @@ export const article: BlogArticle = {
       ],
     },
     {
-      type: "quote",
-      text: "Sur une réfection, le diagnostic de la charpente est le moment décisif. C’est en déposant les tuiles qu’on voit vraiment l’état des bois. Mieux vaut traiter une panne pendant que la toiture est ouverte que de la découvrir trop tard.",
-      author: "L’équipe ATB Charpente",
-    },
-    {
       type: "heading",
       level: 2,
       text: "Quels matériaux choisir pour sa toiture ?",

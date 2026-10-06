@@ -169,11 +169,6 @@ export const article: BlogArticle = {
       text: "Lorsque le scellement à la chaux se dégrade (ce qui arrive inexorablement après 30 à 50 ans), les tuiles canal deviennent de véritables passoires à air. Une réfection complète de la toiture — avec pose d'un écran sous-toiture performant et d'une isolation adaptée — est alors indispensable pour retrouver une enveloppe performante."
     },
     {
-      type: "quote",
-      text: "Sur les chantiers de rénovation que nous menons autour de Toulouse, nous constatons régulièrement des combles complètement non isolés, ou avec un isolant des années 1980 qui ne fait plus son travail. Quand on refait la toiture, on en profite systématiquement pour traiter l'isolation : c'est là qu'on génère les vraies économies d'énergie pour nos clients.",
-      author: "L'équipe ATB Charpente"
-    },
-    {
       type: "heading",
       level: 2,
       text: "Les solutions techniques pour limiter les déperditions de chaleur par la toiture"

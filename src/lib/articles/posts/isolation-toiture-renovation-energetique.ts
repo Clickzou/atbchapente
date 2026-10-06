@@ -126,11 +126,6 @@ export const article: BlogArticle = {
       text: "Dans le Sud-Ouest, le sarking est souvent combiné à une reprise de la couverture en **tuiles canal** ou en **tuiles mécaniques**, deux types de tuiles traditionnels de la région. Le charpentier-couvreur repose ensuite les tuiles sur un nouveau chevronage, garantissant une étanchéité parfaite et une ventilation de la lame d'air sous couverture.",
     },
     {
-      type: "quote",
-      text: "Dans notre région toulousaine, nous recommandons très souvent le sarking lorsque la couverture montre des signes de vieillissement. C'est l'occasion de tout traiter en une seule intervention : isolation optimale, nouvelle couverture, et parfois même intégration de fenêtres de toit. Le résultat en termes de confort et d'économies est spectaculaire.",
-      author: "L'équipe ATB Charpente",
-    },
-    {
       type: "heading",
       level: 2,
       text: "Choisir les bons matériaux isolants pour la toiture",

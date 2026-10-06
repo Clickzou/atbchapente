@@ -266,11 +266,6 @@ export const article: BlogArticle = {
       ]
     },
     {
-      type: "quote",
-      text: "Un devis de pose de fenêtre de toit sérieux détaille toujours séparément la fourniture du produit, le raccord d'étanchéité, la main-d'œuvre, les accessoires et les éventuels travaux de charpente. Si tout est fondu en un prix global sans détail, demandez à le faire expliciter poste par poste.",
-      author: "L'équipe ATB Charpente"
-    },
-    {
       type: "heading",
       level: 2,
       text: "Durée des travaux et organisation du chantier"

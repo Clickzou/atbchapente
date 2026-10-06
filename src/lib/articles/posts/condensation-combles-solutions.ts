@@ -126,11 +126,6 @@ export const article: BlogArticle = {
       ]
     },
     {
-      type: "quote",
-      text: "Lors de nos diagnostics dans les combles de maisons toulousaines, nous constatons que dans 7 cas sur 10, la condensation est déjà bien installée avant que les propriétaires ne s'en inquiètent. Intervenir tôt, c'est souvent économiser plusieurs milliers d'euros de réparations.",
-      author: "L'équipe ATB Charpente"
-    },
-    {
       type: "heading",
       level: 2,
       text: "Les solutions pour éliminer la condensation dans les combles"

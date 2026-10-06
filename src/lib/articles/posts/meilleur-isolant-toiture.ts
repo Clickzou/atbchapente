@@ -159,11 +159,6 @@ export const article: BlogArticle = {
       ],
     },
     {
-      type: "quote",
-      text: "Sous le soleil du Sud-Ouest, on ne juge pas un isolant uniquement à sa résistance thermique. C’est le déphasage qui fait la différence entre des combles vivables en août et une fournaise. C’est pour ça que nous recommandons presque toujours un biosourcé dense sous les rampants exposés.",
-      author: "L’équipe ATB Charpente",
-    },
-    {
       type: "heading",
       level: 2,
       text: "Les isolants synthétiques : la performance dans peu d’épaisseur",

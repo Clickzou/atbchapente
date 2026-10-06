@@ -180,11 +180,6 @@ export const article: BlogArticle = {
       text: "Ces exemples montrent que le **périmètre des travaux** pèse souvent plus lourd que le seul choix du matériau. Ajouter l’isolation et la reprise de charpente peut faire grimper le prix au m² de 50 à 100 €, mais transforme durablement le confort thermique et la valeur du bien.",
     },
     {
-      type: "quote",
-      text: "Ce qui fait vraiment varier le coût d’une rénovation complète, ce n’est pas la couleur des tuiles, c’est ce qu’on découvre sous l’ancienne couverture. Une charpente saine ou une charpente à reprendre, ce sont deux budgets différents. C’est pourquoi nous montons toujours sur le toit avant de chiffrer.",
-      author: "L’équipe ATB Charpente",
-    },
-    {
       type: "heading",
       level: 2,
       text: "Quelles aides pour financer la rénovation ?",

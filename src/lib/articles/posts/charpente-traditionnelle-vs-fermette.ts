@@ -156,11 +156,6 @@ export const article: BlogArticle = {
       text: "La fermette, à l’inverse, n’a aucune vocation esthétique : son treillis de planches connectées par des plaques métalliques n’est pas fait pour être vu. Dans une fermette aménageable, le volume habitable est habillé de plaques de plâtre qui masquent entièrement la structure : le rendu final est lisse et moderne, mais on perd tout effet « charpente apparente ». Si le bois visible compte pour vous, la traditionnelle est le choix évident.",
     },
     {
-      type: "quote",
-      text: "Beaucoup de clients viennent nous voir en pensant que le choix se résume au prix. En réalité, la vraie question est : qu’allez-vous faire de l’espace sous votre toit, aujourd’hui et dans dix ans ? Quand on répond à ça, la charpente s’impose presque d’elle-même.",
-      author: "L’équipe ATB Charpente",
-    },
-    {
       type: "heading",
       level: 2,
       text: "Les portées : jusqu’où chaque charpente va",

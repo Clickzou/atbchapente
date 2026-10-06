@@ -33,7 +33,6 @@ export const article: BlogArticle = {
 - `{ type: "heading"; level: 2 | 3; text: string }`
 - `{ type: "list"; ordered?: boolean; items: string[] }`
 - `{ type: "callout"; text: string; variant?: "info" | "warning" | "tip" }`
-- `{ type: "quote"; text: string; author?: string }`
 - `{ type: "cta"; text: string; href: string; label: string }`
 - `{ type: "faq"; items: { question: string; answer: string }[] }`
 
@@ -42,7 +41,8 @@ export const article: BlogArticle = {
 - Structure claire en **H2/H3**, ton expert, pédagogique, rassurant, orienté artisan.
 - Traite le sujet en profondeur et répond à l'intention de recherche (`informational` = guide complet ; `commercial` = comparatif/prix avec aide à la décision).
 - Mentionne **Toulouse / la Haute-Garonne / le climat local / les tuiles canal du Sud-Ouest** quand c'est naturel (ancrage local), et **ATB Charpente** 1-2 fois, sans sur-optimiser.
-- Inclure : 2-3 `callout` (info/warning/tip), 1 `quote` (author « L'équipe ATB Charpente »), plusieurs `list` (dont au moins une `ordered` si pertinent), et 1 bloc `faq` (5-6 Q/R).
+- **N'invente AUCUNE citation ni AUCUN témoignage** : pas de bloc `quote`, pas de propos attribués à ATB Charpente, à son équipe ou à un client, pas d'anecdote ni de statistique de chantier présentée comme vécue par ATB (« sur nos chantiers, neuf fois sur dix… »).
+- Inclure : 2-3 `callout` (info/warning/tip), plusieurs `list` (dont au moins une `ordered` si pertinent), et 1 bloc `faq` (5-6 Q/R).
 - Terminer `content` par un bloc `cta` : `{ type:"cta", text:"...", href:"/contact-charpentier", label:"Demander un devis gratuit" }`.
 
 ## Contraintes techniques (impératif)

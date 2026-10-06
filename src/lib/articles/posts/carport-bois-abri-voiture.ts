@@ -79,11 +79,6 @@ export const article: BlogArticle = {
       ],
     },
     {
-      type: "quote",
-      text: "Quand un client hésite entre le bois et l'alu, on lui pose toujours la même question : est-ce que vous voulez un abri qui dure, ou un abri qui passe inaperçu ? Le bois, c'est un ouvrage qui prend de la patine et qui embellit avec le temps. Dans notre région, avec les maisons en brique et en pierre, c'est souvent la meilleure réponse.",
-      author: "L'équipe ATB Charpente",
-    },
-    {
       type: "heading",
       level: 2,
       text: "Les différents types de carports en bois",

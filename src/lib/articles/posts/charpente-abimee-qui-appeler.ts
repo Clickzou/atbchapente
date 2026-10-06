@@ -259,11 +259,6 @@ export const article: BlogArticle = {
       ],
     },
     {
-      type: "quote",
-      text: "Nous commençons toujours par un diagnostic complet de la charpente : c’est lui qui dit s’il faut renforcer, remplacer ou traiter.",
-      author: "L’équipe ATB Charpente",
-    },
-    {
       type: "heading",
       level: 2,
       text: "Questions fréquentes",

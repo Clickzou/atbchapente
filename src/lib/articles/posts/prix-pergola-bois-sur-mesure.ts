@@ -157,11 +157,6 @@ export const article: BlogArticle = {
       text: "Enfin, un poste souvent sous-estimé : la **mise en œuvre**. Le prix d’une pergola sur mesure intègre les **fondations** (plots béton, scellement des poteaux), la mise à niveau du terrain, l’ancrage, et le cas échéant le raccordement à la toiture et la gestion des eaux pluviales. Un terrain en pente, un accès difficile pour le matériel, une dalle existante à percer ou un raccordement complexe à une couverture en tuiles canal peuvent faire grimper le coût de pose. À l’inverse, une terrasse déjà plane et accessible simplifie le chantier.",
     },
     {
-      type: "quote",
-      text: "Le prix d’une pergola, ce n’est pas un prix au mètre carré qu’on lit sur un catalogue. C’est une structure qui doit tenir le vent d’autan, s’ancrer correctement dans le sol et, si elle s’adosse à la maison, dialoguer avec la toiture sans créer la moindre infiltration. C’est tout cela qu’un devis sérieux chiffre, et c’est pour cela qu’il faut voir le terrain.",
-      author: "L’équipe ATB Charpente",
-    },
-    {
       type: "heading",
       level: 2,
       text: "Pergola en kit ou sur mesure : ce que vous payez vraiment",

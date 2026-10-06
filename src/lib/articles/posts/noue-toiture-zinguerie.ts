@@ -251,11 +251,6 @@ export const article: BlogArticle = {
       ]
     },
     {
-      type: "quote",
-      text: "Une noue en bon état, c'est invisible : l'eau coule, disparaît discrètement et ne laisse aucune trace. Dès qu'on commence à remarquer quelque chose — une décoloration, une végétation, une déformation — c'est qu'il faut agir sans attendre.",
-      author: "L'équipe ATB Charpente"
-    },
-    {
       type: "heading",
       level: 2,
       text: "Entretenir sa noue de toiture : fréquence et méthodes"

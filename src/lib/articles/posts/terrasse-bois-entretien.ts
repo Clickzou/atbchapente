@@ -209,11 +209,6 @@ export const article: BlogArticle = {
       ]
     },
     {
-      type: "quote",
-      text: "Un entretien annuel de quelques heures, c'est le meilleur investissement pour une terrasse en bois. On voit trop souvent des terrasses de 5 ans qui ressemblent à des épaves parce qu'elles n'ont jamais été entretenues, alors qu'un bon nettoyage et un huilage régulier suffisent à les maintenir en parfait état pendant des décennies.",
-      author: "L'équipe ATB Charpente"
-    },
-    {
       type: "heading",
       level: 2,
       text: "Les points de contrôle souvent négligés"

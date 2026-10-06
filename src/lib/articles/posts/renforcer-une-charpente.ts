@@ -113,11 +113,6 @@ export const article: BlogArticle = {
       text: "Un charpentier expérimenté réalise un diagnostic structurel en plusieurs étapes. Il commence par une inspection visuelle complète depuis les combles, en évaluant l'état de chaque pièce de bois. Il mesure ensuite les flèches et les déformations à l'aide d'un niveau laser. Il sonde le bois avec un poinçon ou un marteau pour détecter les zones creuses ou spongieuses. Dans les cas complexes, il peut faire appel à un bureau d'études structures pour réaliser des calculs de résistance et vérifier que la charpente répond toujours aux exigences réglementaires, notamment face aux charges de neige et de vent définies par les Eurocodes."
     },
     {
-      type: "quote",
-      text: "Nous intervenons régulièrement sur des charpentes qui ont 80 à 150 ans. La plupart peuvent être consolidées efficacement sans démontage complet. Mais tout commence par un diagnostic honnête et rigoureux : il n'y a pas de bonne solution sans bonne analyse.",
-      author: "L'équipe ATB Charpente"
-    },
-    {
       type: "heading",
       level: 2,
       text: "Les principales techniques pour renforcer une charpente"

@@ -138,11 +138,6 @@ export const article: BlogArticle = {
       text: "L’**aluminium se prête aussi au sur-mesure**, mais dans un cadre plus industriel : les profilés sont standardisés, assemblés à partir de modules. On ajuste les dimensions, les coloris, les options (stores latéraux, éclairage LED intégré, capteurs de pluie et de vent, motorisation), mais on reste dans une logique de système. Le résultat est très propre et très technique, sans toutefois cette liberté de formes et cet artisanat unique que permet le bois.",
     },
     {
-      type: "quote",
-      text: "Une pergola bien conçue n’est pas un meuble de jardin posé là par hasard : c’est le prolongement architectural de la maison. Qu’elle soit en bois ou en aluminium, elle doit s’inscrire dans la pente du toit, respecter les proportions de la façade et résister au vent d’autan comme aux orages d’été. C’est tout le sens du sur-mesure.",
-      author: "L’équipe ATB Charpente",
-    },
-    {
       type: "heading",
       level: 2,
       text: "Intégration au jardin et à la maison",

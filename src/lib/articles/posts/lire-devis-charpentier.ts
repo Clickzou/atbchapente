@@ -240,11 +240,6 @@ export const article: BlogArticle = {
       text: "Elle couvre pendant **deux ans** les équipements dissociables de l'ouvrage : fenêtres de toit (type Velux), lanterneaux, certains systèmes de ventilation. Vérifiez si les fabricants de ces équipements proposent également leurs propres garanties commerciales (souvent 5 à 10 ans)."
     },
     {
-      type: "quote",
-      text: "Nous détaillons systématiquement chaque poste de nos devis et mentionnons notre assurance décennale en première page. Un client qui comprend ce qu'il paie est un client qui fait confiance — et c'est la base d'un chantier réussi.",
-      author: "L'équipe ATB Charpente"
-    },
-    {
       type: "heading",
       level: 2,
       text: "Comment comparer plusieurs devis sereinement"
