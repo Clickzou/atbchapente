@@ -2,6 +2,7 @@ import type { BlogArticle } from "./types";
 import { charpenteArticles } from "./charpente";
 import { posts } from "./posts";
 import { appliquerCorrections } from "./edition-client";
+import { estReservePremium } from "./premium";
 
 // Registre central des articles. On agrège l'article-template (`charpente.ts`)
 // et tous les posts du dossier `posts/` (1 fichier par article). Le cron
@@ -40,9 +41,12 @@ export function dateDeParution(article: BlogArticle): string {
  * rédigé à l'avance porte sa date future et reste invisible — blog, sitemap,
  * maillage, page article en 404 — jusqu'à ce jour-là. Il n'est lisible avant
  * que par l'aperçu signé (`/blog/apercu/<slug>`).
+ * Créneau réservé au pack Premium (`premium.ts`) : jamais publié tant que
+ * `articles-premium.json` ne dit pas `"publier": true`, même date passée.
  */
 export function isPublished(article: BlogArticle): boolean {
   if (article.status === "draft") return false;
+  if (estReservePremium(article.slug)) return false;
   return dateDeParution(article) <= aujourdhuiParis();
 }
 

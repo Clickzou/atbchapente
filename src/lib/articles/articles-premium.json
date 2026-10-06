@@ -1,0 +1,4 @@
+{
+  "_note": "Créneaux réservés (champ `date` d'editorial-calendar.ts, articles rédigés par Clickzou) : publiés SEULEMENT si \"publier\" vaut true (client au pack Premium). false = rédigés, listés dans l'espace client Clickzou (reservePremium: true), mais ni publiés sur le site ni remplacés. Lu par le site (src/lib/articles/premium.ts) ET par le robot (scripts/publish-next-article.mjs). Décision de JC du 06/10/2026 : ATB est au pack Croissance. Pour réactiver : passer à true, commit + push.",
+  "publier": false
+}

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { dateDeParution, getArticleBySlug, isPublished } from "@/lib/articles";
 import { champsEditables } from "@/lib/articles/edition-client";
+import { estReservePremium } from "@/lib/articles/premium";
 import { ENTETES_TABLEAU_DE_BORD, autoriseTableauDeBord } from "@/lib/articles/tableau-de-bord";
 
 /**
@@ -28,6 +29,7 @@ export async function GET(requete: Request) {
       titre: article.title,
       datePublication: dateDeParution(article),
       statut: isPublished(article) ? "publie" : "programme",
+      ...(estReservePremium(article.slug) ? { reservePremium: true } : {}),
       // Chemin du fichier de corrections dans le dépôt : Clickzou y écrit.
       fichierCorrections: "src/lib/articles/corrections-client.json",
       champs: champsEditables(article),

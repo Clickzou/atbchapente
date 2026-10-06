@@ -3,6 +3,9 @@
 //    rédigé à l'avance et déposé dans posts/ avec cette date) : si sa date est
 //    atteinte, on le publie À LA PLACE d'un sujet automatique (marqué `done`,
 //    rendu visible par le redéploiement). Rien n'est généré ce jour-là.
+//    Pack Premium (décision de JC du 06/10/2026) : si src/lib/articles/articles-premium.json
+//    dit "publier": false, les créneaux réservés ne sont NI publiés NI marqués `done` (ils
+//    attendent, listés dans l'espace client Clickzou). Les sujets automatiques : inchangés.
 // 1. Sinon, prend le prochain sujet `status: "todo"` SANS date du calendrier.
 // 2. Génère l'article (API Claude) selon docs/blog-generation-rules.md.
 // 3. Génère l'image hero (fal.ai).
@@ -17,6 +20,7 @@ import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const CAL = join(root, "src/lib/articles/editorial-calendar.ts");
+const PREMIUM = join(root, "src/lib/articles/articles-premium.json");
 const RULES = join(root, "docs/blog-generation-rules.md");
 const POSTS = join(root, "src/lib/articles/posts");
 
@@ -33,11 +37,14 @@ const aujourdhui = new Intl.DateTimeFormat("en-CA", {
   timeZone: "Europe/Paris", year: "numeric", month: "2-digit", day: "2-digit",
 }).format(new Date());
 
+// Créneaux réservés publiables seulement au pack Premium (même réglage que le site, premium.ts).
+const publierReserves = JSON.parse(readFileSync(PREMIUM, "utf8")).publier === true;
+
 // 0. Créneau réservé arrivé à échéance, article déjà rédigé : on le publie tel quel
 //    (il est déjà dans posts/ et dans le barrel ; le redéploiement le rend visible).
 const idxReserve = lines.findIndex((l) => {
   const d = champ(l, "date");
-  return estSujetTodo(l) && d && d <= aujourdhui && existsSync(join(POSTS, `${champ(l, "slug")}.ts`));
+  return publierReserves && estSujetTodo(l) && d && d <= aujourdhui && existsSync(join(POSTS, `${champ(l, "slug")}.ts`));
 });
 if (idxReserve !== -1) {
   const l = lines[idxReserve];
@@ -51,7 +58,9 @@ if (idxReserve !== -1) {
 }
 for (const l of lines) {
   const d = champ(l, "date");
-  if (estSujetTodo(l) && d && d <= aujourdhui) {
+  if (estSujetTodo(l) && d && d <= aujourdhui && !publierReserves) {
+    console.log(`Créneau réservé ${champ(l, "slug")} (${d}) : réservé au pack Premium (articles-premium.json), non publié.`);
+  } else if (estSujetTodo(l) && d && d <= aujourdhui) {
     console.warn(`Créneau réservé ${champ(l, "slug")} (${d}) : article pas encore rédigé — sujet automatique publié à la place.`);
   }
 }

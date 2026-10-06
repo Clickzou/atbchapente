@@ -4,6 +4,7 @@ import { allArticles, dateDeParution, isPublished } from "@/lib/articles";
 import type { BlogArticle } from "@/lib/articles/types";
 import { cheminApercu } from "@/lib/articles/apercu";
 import { serviceForArticle } from "@/lib/articles/service-links";
+import { estReservePremium } from "@/lib/articles/premium";
 import { ENTETES_TABLEAU_DE_BORD, autoriseTableauDeBord } from "@/lib/articles/tableau-de-bord";
 
 /**
@@ -25,6 +26,11 @@ import { ENTETES_TABLEAU_DE_BORD, autoriseTableauDeBord } from "@/lib/articles/t
  * rédigés à l'avance (« programme », avec un lien d'aperçu signé). Les sujets du
  * calendrier pas encore rédigés n'y figurent pas : il n'y aurait rien à relire
  * ni à valider. Sans clé valide : 401, et rien ne sort.
+ *
+ * Pack Premium (décision de JC du 06/10/2026) : tant que `articles-premium.json`
+ * dit `"publier": false`, les créneaux réservés restent « programme » (même date
+ * passée) avec `reservePremium: true` : l'espace client affiche « Réservé au pack
+ * Premium — non publié », n'envoie pas de rappel J-7, et l'aperçu reste lisible.
  */
 export const dynamic = "force-dynamic";
 
@@ -91,6 +97,7 @@ export async function GET(requete: Request) {
         chapo: brut(a.excerpt),
         essentiel: { reponse: reponse(a), points: points(a) },
         pilier: pilier(a),
+        ...(estReservePremium(a.slug) ? { reservePremium: true } : {}),
       };
     });
 
