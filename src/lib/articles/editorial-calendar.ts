@@ -120,7 +120,7 @@ export const editorialCalendar: EditorialTopic[] = [
   { week: 28, slug: "renforcer-une-charpente", title: "Comment renforcer une charpente affaiblie ?", primaryKeyword: "renforcer une charpente", category: "Charpente", intent: "informational", status: "done" },
   { week: 28, slug: "isolation-toiture-renovation-energetique", title: "Isolation de toiture et rénovation énergétique", primaryKeyword: "isolation toiture rénovation énergétique", category: "Isolation", intent: "informational", status: "done" },
   // ── Semaine 29 ──
-  { week: 29, slug: "refaire-toiture-etapes", title: "Refaire sa toiture : les étapes clés", primaryKeyword: "refaire sa toiture", category: "Couverture", intent: "informational", status: "todo" },
+  { week: 29, slug: "refaire-toiture-etapes", title: "Refaire sa toiture : les étapes clés", primaryKeyword: "refaire sa toiture", category: "Couverture", intent: "informational", status: "done" },
   { week: 29, slug: "assurance-degat-toiture", title: "Dégât de toiture : que couvre l'assurance ?", primaryKeyword: "assurance dégât toiture", category: "Rénovation toiture", intent: "informational", status: "todo" },
   // ── Semaine 30 ──
   { week: 30, slug: "nid-frelon-guepe-toiture", title: "Nid de frelons sous la toiture : que faire ?", primaryKeyword: "nid frelon toiture", category: "Conseils & entretien", intent: "informational", status: "todo" },

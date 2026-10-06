@@ -42,6 +42,7 @@ import { article as prixPergolaBoisSurMesure } from "./prix-pergola-bois-sur-mes
 import { article as prixPoseVelux } from "./prix-pose-velux";
 import { article as prixRefectionToitureM2 } from "./prix-refection-toiture-m2";
 import { article as quandRefaireSaToiture } from "./quand-refaire-sa-toiture";
+import { article as refaireToitureEtapes } from "./refaire-toiture-etapes";
 import { article as reglementationFenetreToitVoisinage } from "./reglementation-fenetre-toit-voisinage";
 import { article as remaniementToitureQuand } from "./remaniement-toiture-quand";
 import { article as renforcerUneCharpente } from "./renforcer-une-charpente";
@@ -101,6 +102,7 @@ export const posts: BlogArticle[] = [
   prixPoseVelux,
   prixRefectionToitureM2,
   quandRefaireSaToiture,
+  refaireToitureEtapes,
   reglementationFenetreToitVoisinage,
   remaniementToitureQuand,
   renforcerUneCharpente,
